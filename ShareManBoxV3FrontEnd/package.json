@@ -1,0 +1,23 @@
+{
+  "name": "ShareManBoxV3FrontEnd",
+  "version": "1.0.0",
+  "description": "ShareMan&#39;s personal website of version 3 with nuxt and laravel.",
+  "author": "ShareManT",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/pwa": "^2.6.0",
+    "ant-design-vue": "^1.1.10",
+    "cross-env": "^5.2.0",
+    "flyio": "^0.6.14",
+    "nuxt": "^2.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
