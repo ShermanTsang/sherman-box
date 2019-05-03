@@ -6,7 +6,7 @@
         ShareManBoxV3FrontEnd
       </h1>
       <h2 class="subtitle">
-        ShareMan&#39;s personal website of version 3 with nuxt and laravel.
+        ShareManBox front-end version 3 with nuxt.js.
       </h2>
       <div class="links">
         <a

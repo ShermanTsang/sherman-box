@@ -1,6 +1,6 @@
 # ShareManBoxV3FrontEnd
 
-> ShareMan&#39;s personal website of version 3 with nuxt and laravel.
+> ShareManBox front-end version 3 with nuxt.js.
 
 ## Build Setup
 
