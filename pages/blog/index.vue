@@ -2,13 +2,13 @@
 </style>
 
 <template>
-  <main>
+  <div>
     IndexPage
     <br>
     <nuxt-link to="/blog/1">
       Blog1
     </nuxt-link>
-  </main>
+  </div>
 </template>
 
 <script>

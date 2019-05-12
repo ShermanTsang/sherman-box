@@ -1,19 +1,20 @@
 <style lang="scss">
+  .main {
+    flex: 1;
+  }
 </style>
 
 <template>
-  <div>
-    Index
-  </div>
+  <main class="main">
+    <slot />
+  </main>
 </template>
 
 <script>
 export default {
-  layout: 'default',
+  name: 'LayoutMain',
   asyncData(context) {
-    return {
-
-    }
+    return {}
   }
 }
 </script>

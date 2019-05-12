@@ -1,5 +1,6 @@
 {
-  "name": "ShareManBoxV3FrontEnd",
+  "name": "shareman-box-v3-front-end",
+  "title": "曾小满的盒子 ShareMan's Box",
   "version": "1.0.0",
   "description": "ShareManBox front-end version 3 with nuxt.js.",
   "author": "ShareManT",
@@ -13,10 +14,11 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.4.1",
     "@nuxtjs/pwa": "^2.6.0",
     "ant-design-vue": "^1.1.10",
     "cross-env": "^5.2.0",
-    "flyio": "^0.6.14",
+    "lodash": "^4.17.11",
     "nuxt": "^2.4.0"
   },
   "devDependencies": {
