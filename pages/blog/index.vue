@@ -4,6 +4,7 @@
 <template>
   <div>
     IndexPage
+    {{ data.blogCollection }}
     <br>
     <nuxt-link to="/blog/1">
       Blog1
@@ -13,5 +14,20 @@
 
 <script>
 export default {
+  data() {
+    return {
+    }
+  },
+  async asyncData({ $axios, params }) {
+    const { data } = await $axios.$get('/api/blogs')
+    return {
+      data: {
+        blogCollection: data
+      }
+    }
+  },
+  mounted() {
+    console.log(this.data)
+  }
 }
 </script>

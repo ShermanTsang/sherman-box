@@ -12,9 +12,6 @@
 
 <script>
 export default {
-  name: 'LayoutMain',
-  asyncData(context) {
-    return {}
-  }
+  name: 'LayoutMain'
 }
 </script>

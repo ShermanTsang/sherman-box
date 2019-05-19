@@ -34,8 +34,10 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/antd-ui',
-    '@/plugins/global-components'
+    '@/plugins/config',
+    '@/plugins/helper',
+    '@/plugins/antdUI',
+    '@/plugins/components'
   ],
 
   /*
@@ -50,7 +52,15 @@ export default {
   ** Nuxt.js modules axios configuration
   */
   axios: {
+    // https: true,
+    // host: 'api.share-man.com',
+    // prefix: 'v1'
     // proxyHeaders: false
+    proxy: true
+  },
+
+  proxy: {
+    '/api/': { target: 'https://api.share-man.com', pathRewrite: { '^/api/': 'v1/' } }
   },
 
   /*

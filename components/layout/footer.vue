@@ -15,9 +15,6 @@
 
 <script>
 export default {
-  name: 'LayoutFooter',
-  asyncData(context) {
-    return {}
-  }
+  name: 'LayoutFooter'
 }
 </script>
