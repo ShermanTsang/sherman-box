@@ -21,13 +21,16 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#08AEEA' },
 
   /*
   ** Global CSS
   */
   css: [
-    'ant-design-vue/dist/antd.css'
+    'normalize.css',
+    'ant-design-vue/dist/antd.css',
+    '@/assets/global.scss',
+    '@/assets/override.scss'
   ],
 
   /*
@@ -37,6 +40,7 @@ export default {
     '@/plugins/config',
     '@/plugins/helper',
     '@/plugins/antdUI',
+    '@/plugins/axios',
     '@/plugins/components'
   ],
 

@@ -1,10 +1,10 @@
 <style lang="scss">
   .header {
-    height: 64px;
+    height: 74px;
     padding: 10px 20px;
     border-bottom: 1px solid #eee;
     overflow: hidden;
-    box-shadow: 0 0 6px rgba(0, 0, 0, .1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
 
     &__container {
       margin: 0 auto;
@@ -12,6 +12,7 @@
       height: 100%;
       display: flex;
       flex-flow: row nowrap;
+      justify-content: space-between;
       align-items: center;
 
       &__logo {
@@ -27,6 +28,9 @@
           cursor: pointer;
           flex: 1 0 auto;
           padding: 0 20px;
+          font-size: .95rem;
+          letter-spacing: 2px;
+          a{color: #666;}
         }
       }
     }
@@ -41,7 +45,9 @@
       </div>
       <div class="header__container__menu">
         <div v-for="(item,index) in $store.getters.moduleCollection" :key="index" class="header__container__menu__item">
-          {{ item.name }}
+          <nuxt-link :to="`/${item.url}`">
+            {{ item.name }}
+          </nuxt-link>
         </div>
       </div>
     </layout-container>
@@ -56,12 +62,8 @@ export default {
     }
   },
   mounted() {
-    this.getModuleCollection()
   },
   methods: {
-    getModuleCollection() {
-      this.$store.dispatch('moduleCollection')
-    }
   }
 }
 </script>

@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    {{ data.blogItem }}
+    {{ data.movieItem }}
   </div>
 </template>
 
@@ -13,10 +13,10 @@ export default {
     return /^\d+$/.test(params.id)
   },
   async asyncData({ $axios, params }) {
-    const { data } = await $axios.$get(`/api/blogs/${params.id}`)
+    const data = await $axios.$get(`api/movies/${params.id}`)
     return {
       data: {
-        blogItem: data.blogItem
+        movieItem: data.movieItem
       }
     }
   }
