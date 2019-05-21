@@ -6,6 +6,14 @@
         letter-spacing: 2px;
         font-size: 1rem;
       }
+      &__image {
+        width: 100px;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
     }
   }
 </style>
@@ -13,7 +21,7 @@
 <template>
   <layout-container>
     <div class="list">
-      <ui-card
+      <card
         v-for="item in data.blogCollection"
         :key="item.id"
         class="list__item"
@@ -22,20 +30,21 @@
         <div class="list__item__title">
           <nuxt-link :to="`/blog/${item.id}`">
             {{ item.title }}
-            {{ $getImageUrl(item.image) }}
           </nuxt-link>
         </div>
-        <div class="list__item__content"></div>
-      </ui-card>
+        <div class="list__item__image">
+          <img :src="$getImageUrl(item.image)">
+        </div>
+        <div class="list__item__content">
+          {{ item.description }}
+        </div>
+      </card>
     </div>
   </layout-container>
 </template>
 
 <script>
-import LayoutContainer from '../../components/layout/container'
-
 export default {
-  components: { LayoutContainer },
   data() {
     return {}
   },

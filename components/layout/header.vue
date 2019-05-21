@@ -4,7 +4,7 @@
     padding: 10px 20px;
     border-bottom: 1px solid #eee;
     overflow: hidden;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px #f0f1f2;
 
     &__container {
       margin: 0 auto;
@@ -41,7 +41,7 @@
   <header class="header">
     <layout-container class="header__container">
       <div class="header__container__logo">
-        <ui-logo></ui-logo>
+        <logo></logo>
       </div>
       <div class="header__container__menu">
         <div v-for="(item,index) in $store.getters.moduleCollection" :key="index" class="header__container__menu__item">

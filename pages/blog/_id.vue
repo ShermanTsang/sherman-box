@@ -1,10 +1,17 @@
 <style lang="scss">
+  .blog {
+    max-width: 960px;
+  }
 </style>
 
 <template>
-  <div>
-    {{ data.blogItem }}
-  </div>
+  <layout-container class="blog">
+    <div class="blog__title">
+      {{ data.blogItem.title }}
+    </div>
+    <markdown class="blog__content" :content="data.blogItem.content">
+    </markdown>
+  </layout-container>
 </template>
 
 <script>
