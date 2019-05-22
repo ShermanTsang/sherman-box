@@ -1,3 +1,4 @@
 export default () => ({
-  moduleCollection: []
+  moduleCollection: [],
+  pageCollection: []
 })

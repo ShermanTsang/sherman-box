@@ -9,7 +9,9 @@
 
 <template>
   <footer class="footer">
-    footer
+    <layout-container>
+      {{ $store.getters.pageCollection }}
+    </layout-container>
   </footer>
 </template>
 

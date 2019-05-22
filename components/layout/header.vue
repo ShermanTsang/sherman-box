@@ -28,7 +28,7 @@
           cursor: pointer;
           flex: 1 0 auto;
           padding: 0 20px;
-          font-size: .95rem;
+          font-size: 1rem;
           letter-spacing: 2px;
           a{color: #666;}
         }

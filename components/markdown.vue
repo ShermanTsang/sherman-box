@@ -1,6 +1,9 @@
 <style lang="scss">
   .markdown {
+    font-size: 1rem;
+    line-height: 30px;
     img {
+      margin: 10px 0;
       max-width: 100%;
     }
   }
