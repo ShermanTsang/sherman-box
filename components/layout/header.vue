@@ -39,7 +39,7 @@
 
 <template>
   <header class="header">
-    <layout-container class="header__container">
+    <container class="header__container">
       <div class="header__container__logo">
         <logo></logo>
       </div>
@@ -50,7 +50,7 @@
           </nuxt-link>
         </div>
       </div>
-    </layout-container>
+    </container>
   </header>
 </template>
 

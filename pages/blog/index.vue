@@ -83,7 +83,7 @@
 </style>
 
 <template>
-  <layout-container>
+  <container>
     <div class="list">
       <a-row :gutter="16">
         <a-col
@@ -114,7 +114,7 @@
         </a-col>
       </a-row>
     </div>
-  </layout-container>
+  </container>
 </template>
 
 <script>
