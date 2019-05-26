@@ -13,7 +13,10 @@
         &__item {
           cursor: pointer;
           display: inline-block;
-          font-size: 1rem;
+          font-size: .9rem;
+          a{
+            color: #999;
+          }
 
           &:not(:last-child) {
             margin-right: 20px;
@@ -34,7 +37,7 @@
     <container class="footer__container">
       <div class="footer__container__page">
         <div v-for="item in $store.getters.pageCollection" :key="item.id" class="footer__container__page__item">
-          <nuxt-link :to="{path:`/page/${item.url}`,params:{id:item.id,url:item.url}}">
+          <nuxt-link :to="{name:`page-url`,params:{type:'page',id:item.id,url:item.url}}">
             {{ item.name }}
           </nuxt-link>
         </div>

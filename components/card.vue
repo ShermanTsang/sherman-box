@@ -20,10 +20,6 @@
 export default {
   name: 'Card',
   props: {
-    image: {
-      type: String,
-      default: null
-    }
   }
 }
 </script>

@@ -39,9 +39,6 @@
       }
     }
 
-    &__content {
-    }
-
   }
 </style>
 
@@ -49,7 +46,7 @@
   <div class="blog">
     <div class="blog__header">
       <div class="blog__header__image">
-        <img :src="data.blogItem.image">
+        <img :src="$getImageUrl(data.blogItem.image)">
       </div>
       <div class="blog__header__title">
         {{ data.blogItem.title }}
@@ -58,6 +55,10 @@
     <blocker :height="60" />
     <container class="blog__content" :max-width="960">
       <markdown :content="data.blogItem.content" />
+    </container>
+    <blocker :height="60" />
+    <container :max-width="960">
+      <comment :data="data.blogItem.comments" />
     </container>
     <blocker :height="60" />
   </div>

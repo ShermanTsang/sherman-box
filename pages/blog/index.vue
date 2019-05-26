@@ -1,6 +1,5 @@
 <style lang="scss">
-  .list {
-    margin-top: 40px;
+  .blog-list {
     &__item {
       margin-bottom: 20px;
     }
@@ -84,7 +83,8 @@
 
 <template>
   <container>
-    <div class="list">
+    <blocker :height="40" />
+    <div v-if="data.blogCollection" class="blog-list">
       <a-row :gutter="16">
         <a-col
           v-for="item in data.blogCollection"
@@ -95,8 +95,7 @@
           :xl="12"
         >
           <card
-            class="list__item blog-card"
-            :image="$getImageUrl(item.image)"
+            class="blog-list__item blog-card"
           >
             <div class="blog-card__main">
               <div class="blog-card__main__title">
@@ -114,6 +113,9 @@
         </a-col>
       </a-row>
     </div>
+    <blocker :height="40" />
+    <pagination :page="meta.current_page" :total="meta.total" @change="changePage" />
+    <blocker :height="40" />
   </container>
 </template>
 
@@ -122,15 +124,26 @@ export default {
   data() {
     return {}
   },
-  async asyncData({ $axios, params }) {
-    const { data } = await $axios.$get('/api/blogs')
+  async asyncData({ $axios, query }) {
+    const { data, meta } = await $axios.$get(`/api/blogs`, {
+      params: {
+        page: query.page
+      }
+    })
     return {
       data: {
         blogCollection: data.blogCollection
-      }
+      },
+      meta: meta
     }
   },
   mounted() {
-  }
+  },
+  methods: {
+    changePage(currentPage) {
+      this.$router.push({ name: 'blog', query: { page: currentPage } })
+    }
+  },
+  watchQuery: ['page']
 }
 </script>

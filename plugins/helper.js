@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Gravatar from 'gravatar-url'
 
 export default function () {
   function getApiUrl(url) {
@@ -12,6 +13,19 @@ export default function () {
     return isWithDomain ? url : `https://${ossUrl}/${url}`
   }
 
+  function getAvatarUrl(type, sign) {
+    switch (type) {
+      case 'email':
+        const originUrl = Gravatar(sign, { size: 200 })
+        return originUrl.replace('gravatar.com', 'cn.gravatar.com')
+      case 'qq':
+        return `http://q2.qlogo.cn/headimg_dl?dst_uin=${sign}&spec=100`
+      default:
+        return ''
+    }
+  }
+
   Vue.prototype.$getApiUrl = getApiUrl
   Vue.prototype.$getImageUrl = getImageUrl
+  Vue.prototype.$getAvatarUrl = getAvatarUrl
 }
