@@ -46,7 +46,7 @@
   <div class="blog">
     <div class="blog__header">
       <div class="blog__header__image">
-        <img :src="$getImageUrl(data.blogItem.image)">
+        <img v-lazy="$getImageUrl(data.blogItem.image)">
       </div>
       <div class="blog__header__title">
         {{ data.blogItem.title }}

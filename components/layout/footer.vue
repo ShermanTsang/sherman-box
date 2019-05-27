@@ -15,7 +15,7 @@
           display: inline-block;
           font-size: .9rem;
           a{
-            color: #999;
+            color: #666;
           }
 
           &:not(:last-child) {

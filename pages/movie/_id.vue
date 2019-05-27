@@ -46,7 +46,7 @@
   <div class="movie">
     <div class="movie__header">
       <div class="movie__header__image">
-        <img :src="$getImageUrl(data.movieItem.image)">
+        <img class="test" :src="$getImageUrl(data.movieItem.image)">
       </div>
       <div class="movie__header__title">
         {{ data.movieItem.title }}
@@ -54,7 +54,7 @@
     </div>
     <blocker :height="60" />
     <container class="movie__content" :max-width="960">
-      <markdown :content="data.movieItem.comment" />
+      <markdown :content="data.movieItem.comment || ''" />
     </container>
     <blocker :height="60" />
     <container :max-width="960">
@@ -76,6 +76,11 @@ export default {
         movieItem: data.movieItem
       }
     }
+  },
+  mounted() {
+    this.$grade(document.querySelectorAll('.test'), null, (gradientData) => {
+      console.log(gradientData)
+    })
   }
 }
 </script>

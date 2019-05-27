@@ -30,6 +30,7 @@ export default {
     'normalize.css',
     'ant-design-vue/dist/antd.css',
     '@/assets/global.scss',
+    '@/assets/variables.scss',
     '@/assets/override.scss'
   ],
 
@@ -37,18 +38,19 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/config',
-    '@/plugins/helper',
-    '@/plugins/antdUI',
-    '@/plugins/axios',
-    '@/plugins/components'
+    { src: '@/plugins/config', ssr: true },
+    { src: '@/plugins/helper', ssr: true },
+    { src: '@/plugins/antd-ui', ssr: true },
+    { src: '@/plugins/axios', ssr: true },
+    { src: '@/plugins/components', ssr: true },
+    { src: '@/plugins/grade-color', ssr: true },
+    { src: '@/plugins/vue-lazyload', ssr: false }
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa',
     '@nuxtjs/axios'
   ],
 

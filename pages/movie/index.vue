@@ -7,22 +7,17 @@
 
   .movie-card {
     overflow: hidden;
-    display: flex;
-    flex-flow: row nowrap;
 
     &__poster {
       position: relative;
-      flex: 0 0 140px;
-      height: 210px;
-      box-shadow: 0 0 15px rgba(177, 177, 177, .6);
+      height: 280px;
+      overflow: hidden;
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
+        transition: all .2s ease-in-out;
       }
 
       &__score {
@@ -32,16 +27,15 @@
         border-radius: 50%;
         text-align: center;
         font-size: 1.1rem;
-        width: 26px;
-        height: 26px;
-        line-height: 26px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
         color: #fff;
         z-index: 50;
         box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
         opacity: .8;
-        -o-transition: all 300ms ease-in-out;
-        -webkit-transition: all 300ms ease-in-out;
-        transition: all 300ms ease-in-out;
+        background-color: #08AEEA;
+        transition: all .3s ease-in-out;
       }
 
       &__overlay {
@@ -60,23 +54,25 @@
       padding: 20px;
 
       &__name {
+        overflow: hidden;
         line-height: 1.2;
-        font-size: 1.1rem;
+        font-size: 1rem;
         letter-spacing: 2px;
         white-space: nowrap;
-        margin-bottom: 20px;
+        text-overflow: ellipsis;
 
         a {
           color: #666666;
         }
 
         small {
+          color: #999999;
           letter-spacing: 1px;
         }
       }
 
       &__info {
-        margin-top: 20px;
+        margin-top: 10px;
         letter-spacing: 1px;
         color: #999999;
         font-size: .9rem;
@@ -126,16 +122,18 @@
           v-for="item in data.movieCollection"
           :key="item.id"
           class="gutter-row"
-          :md="24"
-          :lg="12"
-          :xl="12"
+          :xs="12"
+          :sm="12"
+          :md="8"
+          :lg="6"
+          :xl="4"
         >
           <card
             class="movie-list__item movie-card"
             :image="$getImageUrl(item.image)"
           >
             <div class="movie-card__poster">
-              <img :src="$getImageUrl(item.image)">
+              <img v-lazy="$getImageUrl(item.image)">
               <div class="movie-card__poster__score">
                 {{ item.score }}
               </div>
@@ -146,6 +144,8 @@
                 <nuxt-link :to="`/movie/${item.id}`">
                   {{ item.name }}
                 </nuxt-link>
+                <br>
+                <small>{{ item.type }}</small>
               </div>
               <div class="movie-card__content__info"></div>
             </div>
