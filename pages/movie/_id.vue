@@ -51,6 +51,7 @@
       <div class="movie__header__image test">
         <img :src="$getImageUrl(data.movieItem.image)" cross-origin="anonymous">
       </div>
+      {{ data.movieItem.image }}
       <div class="movie__header__title">
         {{ data.movieItem.title }}
       </div>
