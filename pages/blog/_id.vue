@@ -5,14 +5,16 @@
       width: 100%;
       height: 300px;
       overflow: hidden;
-      &__image{
+
+      &__image {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: 1;
-        img{
+
+        img {
           transform: scale(1.15);
           filter: blur(10px);
           width: 100%;
@@ -20,6 +22,7 @@
           object-fit: cover;
         }
       }
+
       &__title {
         position: absolute;
         top: 0;
@@ -32,13 +35,12 @@
         align-items: center;
         justify-content: center;
         color: #fff;
-        text-shadow: 0 0 10px rgba(0,0,0,.5);
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         cursor: default;
         padding: 0 20px;
         letter-spacing: 2px;
       }
     }
-
   }
 </style>
 

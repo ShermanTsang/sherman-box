@@ -43,7 +43,7 @@ export default {
     { src: '@/plugins/antd-ui', ssr: true },
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/components', ssr: true },
-    { src: '@/plugins/grade-color', ssr: true },
+    { src: '@/plugins/grade-color', ssr: false },
     { src: '@/plugins/vue-lazyload', ssr: false }
   ],
 
@@ -66,13 +66,15 @@ export default {
   },
 
   proxy: {
-    '/api/': { target: 'https://api.share-man.com', pathRewrite: { '^/api/': 'v1/' } }
+    '/api/': { target: 'https://api.share-man.com', pathRewrite: { '^/api/': 'v1/' } },
+    '/oss/': { target: 'https://cdn.share-man.com', pathRewrite: { '^/oss/': '/' } }
   },
 
   /*
   ** Build configuration
   */
   build: {
+    maxChunkSize: 300000,
     /*
     ** You can extend webpack config here
     */
