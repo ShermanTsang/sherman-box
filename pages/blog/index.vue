@@ -114,7 +114,7 @@
       </a-row>
     </div>
     <blocker :height="40" />
-    <pagination :page="meta.current_page" :total="meta.total" @change="changePage" />
+    <pagination :page="meta.current_page" :total="meta.total" :size="meta.per_page" @change="changePage" />
     <blocker :height="40" />
   </container>
 </template>

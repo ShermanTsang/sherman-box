@@ -7,7 +7,7 @@
 
 <template>
   <div class="pagination">
-    <a-pagination v-model="page" :total="total" @change="changePage" />
+    <a-pagination v-model="page" :total="total" :page-size="size" @change="changePage" />
   </div>
 </template>
 
@@ -16,6 +16,10 @@ export default {
   name: 'Pagination',
   props: {
     page: {
+      type: Number,
+      default: 0
+    },
+    size: {
       type: Number,
       default: 0
     },

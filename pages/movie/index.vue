@@ -78,6 +78,8 @@
         font-size: .9rem;
         overflow: hidden;
         line-height: 2;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
         i {
           font-size: .9rem;
@@ -147,14 +149,16 @@
                 <br>
                 <small>{{ item.type }}</small>
               </div>
-              <div class="movie-card__content__info"></div>
+              <div class="movie-card__content__info">
+                {{ item.people }}
+              </div>
             </div>
           </card>
         </a-col>
       </a-row>
     </div>
     <blocker :height="40" />
-    <pagination :page="meta.current_page" :total="meta.total" @change="changePage" />
+    <pagination :page="meta.current_page" :total="meta.total" :size="meta.per_page" @change="changePage" />
     <blocker :height="40" />
   </container>
 </template>

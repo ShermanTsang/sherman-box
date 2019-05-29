@@ -3,40 +3,31 @@
     &__header {
       position: relative;
       width: 100%;
-      height: 300px;
+      padding: 60px 0;
       overflow: hidden;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
 
       &__image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-
+        overflow: hidden;
+        max-height: 475px;
+        max-width: 405px;
+        box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
         img {
-          transform: scale(1.15);
-          filter: blur(10px);
+          border-radius: 4px;
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
       }
 
-      &__title {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 2;
-        font-size: 1.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      &__name {
         color: #fff;
         text-shadow: 0 0 10px rgba(0, 0, 0, .5);
         cursor: default;
+        font-size: 1.5rem;
         padding: 0 20px;
         letter-spacing: 2px;
       }
@@ -48,12 +39,12 @@
 <template>
   <div class="movie">
     <div class="movie__header">
-      <div class="movie__header__image test">
+      <div class="movie__header__image">
         <img :src="$getImageUrl(data.movieItem.image)" cross-origin="anonymous">
       </div>
-      {{ data.movieItem.image }}
-      <div class="movie__header__title">
-        {{ data.movieItem.title }}
+      <blocker height="20" />
+      <div class="movie__header__name">
+        {{ data.movieItem.name }}
       </div>
     </div>
     <blocker :height="60" />
@@ -82,9 +73,12 @@ export default {
     }
   },
   mounted() {
-    this.$grade(document.querySelectorAll('.test'), null, (gradientData) => {
-      console.log(gradientData)
-    })
+    this.renderGradientColor('.movie__header')
+  },
+  methods: {
+    renderGradientColor(selector) {
+      this.$grade(document.querySelectorAll(selector))
+    }
   }
 }
 </script>
