@@ -12,8 +12,8 @@
 
       &__image {
         overflow: hidden;
-        max-height: 475px;
-        max-width: 405px;
+        max-height: 405px;
+        max-width: 270px;
         box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
         img {
           border-radius: 4px;
@@ -42,7 +42,7 @@
       <div class="movie__header__image">
         <img :src="$getImageUrl(data.movieItem.image)" cross-origin="anonymous">
       </div>
-      <blocker height="20" />
+      <blocker :height="20" />
       <div class="movie__header__name">
         {{ data.movieItem.name }}
       </div>

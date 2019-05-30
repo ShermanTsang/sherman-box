@@ -72,12 +72,10 @@
       }
 
       &__info {
-        margin-top: 10px;
         letter-spacing: 1px;
         color: #999999;
-        font-size: .9rem;
+        font-size: .85rem;
         overflow: hidden;
-        line-height: 2;
         white-space: nowrap;
         text-overflow: ellipsis;
 
@@ -149,8 +147,12 @@
                 <br>
                 <small>{{ item.type }}</small>
               </div>
+              <blocker :height="20" divider />
               <div class="movie-card__content__info">
                 {{ item.people }}
+              </div>
+              <div class="movie-card__content__info">
+                {{ $time(item.time).format('YYYY-MM-DD') }} / {{ $time(item.time).fromNow() }}
               </div>
             </div>
           </card>

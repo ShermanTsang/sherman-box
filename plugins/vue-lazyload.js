@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueLazyload from 'vue-lazyload'
+// import ImageLoading from 'assets/image/imageLoading.gif'
+// import ImageError from 'assets/image/imageError.png'
 
 Vue.use(VueLazyload, {
-  preLoad: 1.3, // 预加载的宽高比
-  error: 'dist/error.png', // 图片加载失败时使用的图片源
-  loading: 'dist/loading.gif', // 图片加载的路径
-  attempt: 1 // 尝试加载次数
+  preLoad: 1.3,
+  attempt: 1
+  // error: ImageError,
+  // loading: ImageLoading,
 })

@@ -29,9 +29,9 @@ export default {
   css: [
     'normalize.css',
     'ant-design-vue/dist/antd.css',
-    '@/assets/global.scss',
-    '@/assets/variables.scss',
-    '@/assets/override.scss'
+    '@/assets/scss/global.scss',
+    '@/assets/scss/variables.scss',
+    '@/assets/scss/override.scss'
   ],
 
   /*
@@ -43,7 +43,8 @@ export default {
     { src: '@/plugins/antd-ui', ssr: true },
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/components', ssr: true },
-    { src: '@/plugins/grade-color', ssr: false },
+    { src: '@/plugins/moment', ssr: true },
+    { src: '@/plugins/gradient-color', ssr: true },
     { src: '@/plugins/vue-lazyload', ssr: false }
   ],
 

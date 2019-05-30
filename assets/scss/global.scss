@@ -12,6 +12,24 @@ html {
     color: #666;
     text-decoration: none;
   }
+  img[lazy=loading] {
+    transition: all .5s ease-in-out;
+    animation: loading .5s infinite ease-in-out;
+  }
+  img[lazy=error] {
+    /*your style here*/
+  }
+  img[lazy=loaded] {
+    /*your style here*/
+  }
+  @keyframes loading {
+    0%{
+      background-color: rgba(177,177,177,.2);
+    }
+    100%{
+      background-color: rgba(177,177,177,.6);
+    }
+  }
 }
 
 *,
