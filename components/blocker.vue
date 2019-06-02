@@ -26,8 +26,12 @@ export default {
   name: 'Blocker',
   props: {
     height: {
-      type: Number,
-      default: 0
+      type: String,
+      default: '0'
+    },
+    width: {
+      type: String,
+      default: '100%'
     },
     divider: {
       type: Boolean,
@@ -37,7 +41,8 @@ export default {
   computed: {
     style() {
       return {
-        height: this.height + 'px'
+        height: this.height,
+        width: this.width
       }
     }
   }

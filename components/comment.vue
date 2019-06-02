@@ -74,7 +74,7 @@
             {{ item.content }}
           </div>
           <div class="comment__list__item__main__time">
-            {{ item.created_at }}
+            {{ item.datetime }}
           </div>
         </div>
       </div>

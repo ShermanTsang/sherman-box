@@ -51,18 +51,18 @@
         <img v-lazy="$getImageUrl(data.blogItem.image)">
       </div>
       <div class="blog__header__title">
-        {{ data.blogItem.title }}
+        {{ data.blogItem.name }}
       </div>
     </div>
-    <blocker :height="60" />
+    <blocker height="60px" />
     <container class="blog__content" :max-width="960">
       <markdown :content="data.blogItem.content" />
     </container>
-    <blocker :height="60" />
+    <blocker height="60px" />
     <container :max-width="960">
       <comment :data="data.blogItem.comments" />
     </container>
-    <blocker :height="60" />
+    <blocker height="60px" />
   </div>
 </template>
 
@@ -72,10 +72,10 @@ export default {
     return /^\d+$/.test(params.id)
   },
   async asyncData({ $axios, params }) {
-    const { data } = await $axios.$get(`/api/blogs/${params.id}`)
+    const { data: blogItem } = await $axios.$get(`/api/blogs/${params.id}`)
     return {
       data: {
-        blogItem: data.blogItem
+        blogItem
       }
     }
   }

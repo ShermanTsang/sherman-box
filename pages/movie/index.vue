@@ -115,7 +115,7 @@
 
 <template>
   <container>
-    <blocker :height="40" />
+    <blocker height="40px" />
     <div v-if="data.movieCollection" class="movie-list">
       <a-row :gutter="16">
         <a-col
@@ -130,7 +130,6 @@
         >
           <card
             class="movie-list__item movie-card"
-            :image="$getImageUrl(item.image)"
           >
             <div class="movie-card__poster">
               <img v-lazy="$getImageUrl(item.image)">
@@ -142,26 +141,25 @@
             <div class="movie-card__content">
               <div class="movie-card__content__name">
                 <nuxt-link :to="`/movie/${item.id}`">
-                  {{ item.name }}
+                  {{ item.name }}{{ item.memo ? ` ${item.memo}` : '' }}
                 </nuxt-link>
                 <br>
-                <small>{{ item.type }}</small>
+                <small>{{ item.type }}{{ item.category ? ` / ${item.category}`: '' }}</small>
               </div>
-              <blocker :height="20" divider />
+              <blocker height="20px" divider />
               <div class="movie-card__content__info">
                 {{ item.people }}
-              </div>
-              <div class="movie-card__content__info">
-                {{ $time(item.time).format('YYYY-MM-DD') }} / {{ $time(item.time).fromNow() }}
+                <br>
+                {{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}
               </div>
             </div>
           </card>
         </a-col>
       </a-row>
     </div>
-    <blocker :height="40" />
+    <blocker height="40px" />
     <pagination :page="meta.current_page" :total="meta.total" :size="meta.per_page" @change="changePage" />
-    <blocker :height="40" />
+    <blocker height="40px" />
   </container>
 </template>
 
@@ -171,16 +169,17 @@ export default {
     return {}
   },
   async asyncData({ $axios, query }) {
-    const { data, meta } = await $axios.$get(`/api/movies`, {
+    const { data: movieCollection, meta } = await $axios.$get(`/api/movies`, {
       params: {
+        page_size: 12,
         page: query.page
       }
     })
     return {
       data: {
-        movieCollection: data.movieCollection
+        movieCollection
       },
-      meta: meta
+      meta
     }
   },
   mounted() {

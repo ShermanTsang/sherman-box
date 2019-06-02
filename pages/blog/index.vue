@@ -83,7 +83,7 @@
 
 <template>
   <container>
-    <blocker :height="40" />
+    <blocker height="40px" />
     <div v-if="data.blogCollection" class="blog-list">
       <a-row :gutter="16">
         <a-col
@@ -100,22 +100,22 @@
             <div class="blog-card__main">
               <div class="blog-card__main__title">
                 <nuxt-link :to="`/blog/${item.id}`">
-                  {{ item.title }}
+                  {{ item.name }}
                 </nuxt-link>
               </div>
               <div class="blog-card__main__description">
                 {{ item.description }}
               </div>
             </div>
-            <div class="blog-card__image" :style="`background-image: url('${$getImageUrl(item.image)}')`">
+            <div v-lazy:background-image="$getImageUrl(item.image)" class="blog-card__image">
             </div>
           </card>
         </a-col>
       </a-row>
     </div>
-    <blocker :height="40" />
+    <blocker height="40px" />
     <pagination :page="meta.current_page" :total="meta.total" :size="meta.per_page" @change="changePage" />
-    <blocker :height="40" />
+    <blocker height="40px" />
   </container>
 </template>
 
@@ -125,16 +125,16 @@ export default {
     return {}
   },
   async asyncData({ $axios, query }) {
-    const { data, meta } = await $axios.$get(`/api/blogs`, {
+    const { data: blogCollection, meta } = await $axios.$get(`/api/blogs`, {
       params: {
         page: query.page
       }
     })
     return {
       data: {
-        blogCollection: data.blogCollection
+        blogCollection
       },
-      meta: meta
+      meta
     }
   },
   mounted() {

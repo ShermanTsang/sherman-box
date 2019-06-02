@@ -8,26 +8,35 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+
   a {
     color: #666;
     text-decoration: none;
   }
+
   img[lazy=loading] {
-    transition: all .5s ease-in-out;
-    animation: loading .5s infinite ease-in-out;
+    transition: opacity .25s linear;
+    animation: loading 1s infinite ease-in-out;
   }
+
   img[lazy=error] {
     /*your style here*/
   }
+
   img[lazy=loaded] {
     /*your style here*/
   }
+
   @keyframes loading {
-    0%{
-      background-color: rgba(177,177,177,.2);
+    0% {
+      background-color: #0093E9;
+      background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+      opacity: 0;
     }
-    100%{
-      background-color: rgba(177,177,177,.6);
+    100% {
+      background-color: #ffffff;
+      background-image: none;
+      opacity: 1;
     }
   }
 }
