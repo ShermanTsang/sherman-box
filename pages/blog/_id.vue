@@ -16,29 +16,41 @@
 
         img {
           transform: scale(1.15);
-          filter: blur(10px);
+          filter: blur(6px);
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
       }
 
-      &__title {
+      &__text {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: 2;
-        font-size: 1.8rem;
         display: flex;
+        flex-flow: column nowrap;
         align-items: center;
         justify-content: center;
         color: #fff;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         cursor: default;
         padding: 0 20px;
-        letter-spacing: 2px;
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+
+        &__title {
+          letter-spacing: 2px;
+          font-size: 1.6rem;
+          padding: 10px;
+          background-color: rgba(0, 0, 0, .4);
+        }
+
+        &__info {
+          max-width: 600px;
+          letter-spacing: 1px;
+          font-size: 1rem;
+        }
       }
     }
   }
@@ -50,8 +62,14 @@
       <div class="blog__header__image">
         <img v-lazy="$getImageUrl(data.blogItem.image)">
       </div>
-      <div class="blog__header__title">
-        {{ data.blogItem.name }}
+      <div class="blog__header__text">
+        <div class="blog__header__text__title">
+          {{ data.blogItem.name }}
+        </div>
+        <blocker height="20px" />
+        <div class="blog__header__text__info">
+          <icon name="clock" /> {{ $time(data.blogItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.blogItem.datetime).fromNow() }}
+        </div>
       </div>
     </div>
     <blocker height="60px" />

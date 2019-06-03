@@ -1,11 +1,11 @@
 <style lang="scss">
   .nameplate {
     cursor: default;
-    font-size: 2rem;
+    font-size: 1.8rem;
     letter-spacing: 4px;
 
     span {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       color: #999;
       text-transform: capitalize;
       letter-spacing: 2px;

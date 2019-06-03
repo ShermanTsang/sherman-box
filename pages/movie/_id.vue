@@ -47,7 +47,7 @@
           padding: 10px;
           cursor: default;
           color: #ffffff;
-          text-shadow: 0 0 10px rgba(0, 0, 0, .2);
+          text-shadow: 0 0 6px rgba(0, 0, 0, .4);
 
           &:not(:first-child) {
             border-top: 1px solid rgba(255, 255, 255, .2);
@@ -73,16 +73,16 @@
       <blocker width="100px" />
       <div class="movie__header__main">
         <div v-if="data.movieItem.type" class="movie__header__main__item">
-          {{ data.movieItem.type }}
+          <icon name="category" /> {{ data.movieItem.type }}
         </div>
         <div v-if="data.movieItem.people" class="movie__header__main__item">
-          {{ data.movieItem.people }}
+          <icon name="user" /> {{ data.movieItem.people }}
         </div>
         <div v-if="data.movieItem.site" class="movie__header__main__item">
-          {{ data.movieItem.site }}
+          <icon name="location" /> {{ data.movieItem.site }}
         </div>
         <div v-if="data.movieItem.datetime" class="movie__header__main__item">
-          {{ $time(data.movieItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.movieItem.datetime).fromNow() }}
+          <icon name="clock" /> {{ $time(data.movieItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.movieItem.datetime).fromNow() }}
         </div>
       </div>
     </div>

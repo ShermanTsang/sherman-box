@@ -38,8 +38,6 @@
         background: rgba(0, 0, 0, .2);
         display: inline;
         padding: 2px 5px;
-        -o-transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
       }
     }
@@ -114,14 +112,14 @@
                 <div class="project-text" style="font-size: .95rem;">
                   {{ item.type }} / {{ item.category }}
                 </div>
-                <div class="divider"></div>
+                <blocker height="4px" />
                 <div class="project-text" style="font-size: 1.2rem;">
                   {{ item.name }}
                 </div>
               </div>
               <div class="project-card__footer">
-                <i class="iconfont icon-status"></i> {{ item.status }}{{ item.progress !== 100 ? `(${item.progress}%)` : '' }}
-                <span class="right"><i class="iconfont icon-clock"></i> {{ $time(item.datetime_start).fromNow() }}</span>
+                <icon name="status" /> {{ item.status }}{{ item.progress !== 100 ? `(${item.progress}%)` : '' }}
+                <span class="right"><icon name="clock" /> {{ $time(item.datetime_start).fromNow() }}</span>
               </div>
             </nuxt-link>
           </card>

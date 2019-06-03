@@ -1,7 +1,7 @@
 <style lang="scss">
   .movie-list {
     &__item {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
   }
 
@@ -41,9 +41,14 @@
       &__overlay {
         position: absolute;
         top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         height: 100%;
         width: 100%;
         z-index: 40;
+        background-color: hsla(0, 0%, 20%, 0);
+        background-image: linear-gradient(hsla(0, 0%, 20%, 0), hsla(0, 0%, 20%, .50));
       }
 
     }
@@ -51,11 +56,11 @@
     &__content {
       overflow: hidden;
       position: relative;
-      padding: 20px;
+      padding: 10px 20px;
 
       &__name {
         overflow: hidden;
-        line-height: 1.2;
+        line-height: 1.4;
         font-size: 1rem;
         letter-spacing: 2px;
         white-space: nowrap;
@@ -74,14 +79,10 @@
       &__info {
         letter-spacing: 1px;
         color: #999999;
-        font-size: .85rem;
+        font-size: .8rem;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-
-        i {
-          font-size: .9rem;
-        }
 
         a {
           color: #999999;
@@ -91,22 +92,27 @@
     }
 
     &:hover {
-      .movie-card__poster {
-        img {
-          transform: scale(1.1);
-          -ms-transform: scale(1.1);
-          -webkit-transform: scale(1.1)
-        }
-        &__overlay {
-          background-color: transparent;
-          background-image: none;
+      .movie-card {
+        &__poster {
+
+          img {
+            transform: scale(1.05);
+          }
+
+          &__overlay {
+            background-color: transparent;
+            background-image: none;
+          }
+
+          &__score {
+            background: none;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, .9);
+          }
         }
 
-        &__score {
-          background: none;
-          font-size: 1.1rem;
-          font-weight: 800;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, .9);
+        &__content {
         }
       }
     }
@@ -136,20 +142,24 @@
               <div class="movie-card__poster__score">
                 {{ item.score }}
               </div>
-              <div class="movie-card__poster__overlay"></div>
+              <nuxt-link :to="`/movie/${item.id}`">
+                <div class="movie-card__poster__overlay"></div>
+              </nuxt-link>
             </div>
             <div class="movie-card__content">
               <div class="movie-card__content__name">
+                <small>{{ item.type }}</small>
+                <br>
                 <nuxt-link :to="`/movie/${item.id}`">
                   {{ item.name }}{{ item.memo ? ` ${item.memo}` : '' }}
                 </nuxt-link>
-                <br>
-                <small>{{ item.type }}{{ item.category ? ` / ${item.category}`: '' }}</small>
               </div>
               <blocker height="20px" divider />
               <div class="movie-card__content__info">
+                <icon name="user" size=".8rem" />
                 {{ item.people }}
                 <br>
+                <icon name="clock" size=".8rem" />
                 {{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}
               </div>
             </div>
