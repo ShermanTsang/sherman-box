@@ -105,6 +105,8 @@
               </div>
               <div class="blog-card__main__description">
                 {{ item.description }}
+                <blocker height="10px" />
+                <small>{{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}</small>
               </div>
             </div>
             <div v-lazy:background-image="$getImageUrl(item.image)" class="blog-card__image">

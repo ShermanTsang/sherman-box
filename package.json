@@ -24,6 +24,7 @@
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.4.0",
+    "vue-fancybox": "^1.0.3",
     "vue-lazyload": "^1.2.6"
   },
   "devDependencies": {

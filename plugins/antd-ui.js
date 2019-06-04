@@ -1,6 +1,10 @@
 import Vue from 'vue'
-// import Antd from 'ant-design-vue/lib'
-// import { Row, Pagination, Popconfirm } from 'ant-design-vue'
+import 'ant-design-vue/lib/grid/style/index.css'
+import 'ant-design-vue/lib/pagination/style/index.css'
+import 'ant-design-vue/lib/select/style/index.css'
+import 'ant-design-vue/lib/input/style/index.css'
+import 'ant-design-vue/lib/popover/style/index.css'
+import 'ant-design-vue/lib/button/style/index.css'
 import { Row, Col, Pagination, Popconfirm } from 'ant-design-vue'
 
 export default () => {

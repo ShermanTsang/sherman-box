@@ -81,6 +81,8 @@
         color: #999999;
         font-size: .8rem;
         overflow: hidden;
+        line-height: 1.5;
+        padding-left: 1px;
         white-space: nowrap;
         text-overflow: ellipsis;
 

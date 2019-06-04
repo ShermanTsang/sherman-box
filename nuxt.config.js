@@ -28,10 +28,11 @@ export default {
   */
   css: [
     'normalize.css',
-    'ant-design-vue/dist/antd.css',
+    // 'ant-design-vue/dist/antd.css',
     '@/assets/scss/global.scss',
     '@/assets/scss/variables.scss',
-    '@/assets/scss/override.scss'
+    '@/assets/scss/override.scss',
+    '@/assets/iconfont/iconfont.css'
   ],
 
   /*

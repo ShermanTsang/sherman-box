@@ -3,8 +3,11 @@
     font-size: 1rem;
     line-height: 2em;
     counter-reset: h1;
+    color: #666;
+    letter-spacing: 2px;
 
     h1, h2, h3, h4, h5 {
+      font-weight: normal;
       cursor: pointer;
 
       &:hover {
@@ -89,7 +92,7 @@
 </template>
 
 <script>
-import marked from 'marked'
+import Marked from 'marked'
 
 export default {
   name: 'Markdown',
@@ -99,22 +102,40 @@ export default {
       default: null
     }
   },
-  computed: {
-    compiledMarkdown() {
-      return marked(this.content)
+  data() {
+    return {
+      renderer: new Marked.Renderer()
     }
   },
-  mounted() {
-    marked.setOptions({
-      renderer: new marked.Renderer(),
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: true,
-      smartLists: true,
-      smartypants: false
-    })
+  computed: {
+    compiledMarkdown() {
+      this.setRenderer()
+      this.setOption()
+      return Marked(this.content)
+    }
+  },
+  methods: {
+    setRenderer() {
+      this.renderer.image = (href, title, text) => {
+        return `${href}`
+      }
+      this.renderer.link = (href, title, text) => {
+        const titleOutput = title ? `title="${title}"` : ''
+        return `<a href="${href}"  ${titleOutput} target="_blank">${text}</a>`
+      }
+    },
+    setOption() {
+      Marked.setOptions({
+        renderer: this.renderer,
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: true,
+        smartLists: true,
+        smartypants: false
+      })
+    }
   }
 }
 </script>
