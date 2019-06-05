@@ -109,15 +109,15 @@ export default {
   },
   computed: {
     compiledMarkdown() {
-      this.setRenderer()
       this.setOption()
+      this.setRenderer()
       return Marked(this.content)
     }
   },
   methods: {
     setRenderer() {
       this.renderer.image = (href, title, text) => {
-        return `${href}`
+        return `<img src="${this.$getImageUrl(href)}">`
       }
       this.renderer.link = (href, title, text) => {
         const titleOutput = title ? `title="${title}"` : ''

@@ -9,8 +9,10 @@ export default function () {
 
   function getImageUrl(url) {
     const isWithDomain = url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
-    const is3rdResource = url.indexOf('cdn.share-man.com') === -1
-    return isWithDomain ? (is3rdResource ? url : `/oss/${url.replace('https://cdn.share-man.com/', '')}`) : `/oss/${url}`
+    const is3rdResource = url.indexOf('cdn.share-man.com') === -1 && url.indexOf('sharemancdn.ochase.com') === -1
+    return isWithDomain
+      ? (is3rdResource ? url : `/oss/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
+      : `/oss/${url}`
   }
 
   function getAvatarUrl(type, sign) {

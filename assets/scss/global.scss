@@ -16,7 +16,7 @@ html {
 
   img[lazy=loading] {
     transition: opacity .25s linear;
-    animation: loading 1s infinite ease-in-out;
+    animation: loading .5s ease-in-out;
   }
 
   img[lazy=error] {

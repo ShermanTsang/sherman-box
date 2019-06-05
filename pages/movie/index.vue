@@ -140,7 +140,7 @@
             class="movie-list__item movie-card"
           >
             <div class="movie-card__poster">
-              <img v-lazy="$getImageUrl(item.image)">
+              <img :src="$getImageUrl(item.image)" lazy="loading">
               <div class="movie-card__poster__score">
                 {{ item.score }}
               </div>
