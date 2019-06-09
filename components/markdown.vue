@@ -78,7 +78,6 @@
       transition: all .2s ease-in;
 
       &:hover {
-        transform: scale(.99);
         box-shadow: 0 0 6px rgba(177, 177, 177, .5);
       }
     }
@@ -86,7 +85,7 @@
 </style>
 
 <template>
-  <article class="markdown" v-html="compiledMarkdown">
+  <article v-lazy-container="{ selector: 'img' }" class="markdown" v-html="getCompiledMarkdown()">
     <slot></slot>
   </article>
 </template>
@@ -114,10 +113,17 @@ export default {
       return Marked(this.content)
     }
   },
+  mounted() {
+  },
   methods: {
+    getCompiledMarkdown() {
+      this.setOption()
+      this.setRenderer()
+      return Marked(this.content)
+    },
     setRenderer() {
       this.renderer.image = (href, title, text) => {
-        return `<img src="${this.$getImageUrl(href)}">`
+        return `<img data-src="${this.$getImageUrl(href)}">`
       }
       this.renderer.link = (href, title, text) => {
         const titleOutput = title ? `title="${title}"` : ''
