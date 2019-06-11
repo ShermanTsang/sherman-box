@@ -73,7 +73,7 @@
     img {
       display: block;
       cursor: pointer;
-      margin: 10px auto;
+      margin: 20px auto;
       max-width: 100%;
       transition: all .2s ease-in;
 
@@ -85,7 +85,7 @@
 </style>
 
 <template>
-  <article v-lazy-container="{ selector: 'img' }" class="markdown" v-html="getCompiledMarkdown()">
+  <article v-lazy-container="{ selector: 'img' }" class="markdown" @click="handleClick($event)" v-html="compiledMarkdown">
     <slot></slot>
   </article>
 </template>
@@ -116,10 +116,13 @@ export default {
   mounted() {
   },
   methods: {
-    getCompiledMarkdown() {
-      this.setOption()
-      this.setRenderer()
-      return Marked(this.content)
+    handleClick(event) {
+      if (event.target.nodeName === 'IMG') {
+        this.showOriginImage(event.target.src)
+      }
+    },
+    showOriginImage(url) {
+
     },
     setRenderer() {
       this.renderer.image = (href, title, text) => {
