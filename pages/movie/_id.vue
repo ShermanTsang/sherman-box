@@ -63,7 +63,7 @@
     <div class="movie__header">
       <div class="movie__header__poster">
         <div class="movie__header__poster__image">
-          <img :src="$getImageUrl(data.movieItem.image)" cross-origin="anonymous">
+          <img :src="$getOssUrl(data.movieItem.image)" cross-origin="anonymous">
         </div>
         <blocker height="20px" />
         <div class="movie__header__poster__name">
@@ -87,12 +87,12 @@
       </div>
     </div>
     <blocker height="60px" />
-    <container class="movie__content" :max-width="960">
+    <container class="movie__content" :max-width="1060">
       <nameplate title="想法" sub-title="thinking" />
       <markdown :content="data.movieItem.comment || ''" />
     </container>
     <blocker height="40px" />
-    <container :max-width="960">
+    <container :max-width="1060">
       <comment :data="data.movieItem.comments" />
     </container>
     <blocker height="60px" />

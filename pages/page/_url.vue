@@ -4,7 +4,7 @@
 </style>
 
 <template>
-  <container class="page" :max-width="960">
+  <container class="page" :max-width="1060">
     <blocker height="40px" />
     <nameplate :title="data.pageItem.name" :sub-title="data.pageItem.url" />
     <blocker height="40px" />

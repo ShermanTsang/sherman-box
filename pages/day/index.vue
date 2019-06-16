@@ -1,11 +1,11 @@
 <style lang="scss">
-  .blog-list {
+  .day-list {
     &__item {
       margin-bottom: 20px;
     }
   }
 
-  .blog-card {
+  .day-card {
     position: relative;
     padding: 20px;
     overflow: hidden;
@@ -65,7 +65,7 @@
     }
 
     &:hover {
-      .blog-card__image {
+      .day-card__image {
         opacity: 1;
         transform: none;
       }
@@ -84,10 +84,10 @@
 <template>
   <container>
     <blocker height="40px" />
-    <div v-if="data.blogCollection" class="blog-list">
+    <div v-if="data.dayCollection" class="day-list">
       <a-row :gutter="16">
         <a-col
-          v-for="item in data.blogCollection"
+          v-for="item in data.dayCollection"
           :key="item.id"
           class="gutter-row"
           :md="24"
@@ -95,22 +95,9 @@
           :xl="12"
         >
           <card
-            class="blog-list__item blog-card"
+            class="day-list__item day-card"
           >
-            <div class="blog-card__main">
-              <div class="blog-card__main__title">
-                <nuxt-link :to="`/blog/${item.id}`">
-                  {{ item.name }}
-                </nuxt-link>
-              </div>
-              <div class="blog-card__main__description">
-                {{ item.description }}
-                <blocker height="10px" />
-                <small>{{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}</small>
-              </div>
-            </div>
-            <div v-lazy:background-image="$getOssUrl(item.image)" class="blog-card__image">
-            </div>
+            {{ item }}
           </card>
         </a-col>
       </a-row>
@@ -127,14 +114,14 @@ export default {
     return {}
   },
   async asyncData({ $axios, query }) {
-    const { data: blogCollection, meta } = await $axios.$get(`/api/blogs`, {
+    const { data: dayCollection, meta } = await $axios.$get(`/api/days`, {
       params: {
         page: query.page
       }
     })
     return {
       data: {
-        blogCollection
+        dayCollection
       },
       meta
     }
@@ -143,7 +130,7 @@ export default {
   },
   methods: {
     changePage(currentPage) {
-      this.$router.push({ name: 'blog', query: { page: parseInt(currentPage) } })
+      this.$router.push({ name: 'day', query: { page: parseInt(currentPage) } })
     }
   },
   watchQuery: ['page']

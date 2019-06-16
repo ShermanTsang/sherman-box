@@ -16,16 +16,16 @@ export default {
   name: 'Pagination',
   props: {
     page: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
     size: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
     total: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     }
   },
   mounted() {

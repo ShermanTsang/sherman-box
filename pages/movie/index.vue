@@ -140,7 +140,7 @@
             class="movie-list__item movie-card"
           >
             <div class="movie-card__poster">
-              <img v-lazy="$getImageUrl(item.image)">
+              <img v-lazy="$getOssUrl(item.image)">
               <div class="movie-card__poster__score">
                 {{ item.score }}
               </div>
@@ -198,7 +198,7 @@ export default {
   },
   methods: {
     changePage(currentPage) {
-      this.$router.push({ name: 'movie', query: { page: currentPage } })
+      this.$router.push({ name: 'movie', query: { page: parseInt(currentPage) } })
     }
   },
   watchQuery: ['page']

@@ -15,6 +15,7 @@
         z-index: 1;
 
         img {
+          opacity: .5;
           transform: scale(1.15);
           filter: blur(6px);
           width: 100%;
@@ -60,7 +61,7 @@
   <div class="blog">
     <div class="blog__header">
       <div class="blog__header__image">
-        <img v-lazy="$getImageUrl(data.blogItem.image)">
+        <img v-lazy="$getOssUrl(data.blogItem.image)">
       </div>
       <div class="blog__header__text">
         <div class="blog__header__text__title">
@@ -73,11 +74,11 @@
       </div>
     </div>
     <blocker height="60px" />
-    <container class="blog__content" :max-width="960">
+    <container class="blog__content" :max-width="1060">
       <markdown :content="data.blogItem.content" />
     </container>
     <blocker height="60px" />
-    <container :max-width="960">
+    <container :max-width="1060">
       <comment :data="data.blogItem.comments" />
     </container>
     <blocker height="60px" />

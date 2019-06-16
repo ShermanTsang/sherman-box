@@ -7,7 +7,7 @@ export default function () {
     return `${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/${url}`
   }
 
-  function getImageUrl(url) {
+  function getOssUrl(url) {
     const isWithDomain = url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
     const is3rdResource = url.indexOf('cdn.share-man.com') === -1 && url.indexOf('sharemancdn.ochase.com') === -1
     return isWithDomain
@@ -28,6 +28,6 @@ export default function () {
   }
 
   Vue.prototype.$getApiUrl = getApiUrl
-  Vue.prototype.$getImageUrl = getImageUrl
+  Vue.prototype.$getOssUrl = getOssUrl
   Vue.prototype.$getAvatarUrl = getAvatarUrl
 }

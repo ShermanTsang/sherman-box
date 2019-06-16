@@ -105,7 +105,7 @@
           >
             <nuxt-link :to="`/project/${item.id}`">
               <div class="project-card__image">
-                <img v-lazy="$getImageUrl(item.image)">
+                <img v-lazy="$getOssUrl(item.image)">
               </div>
               <div class="project-card__overlay"></div>
               <div class="project-card__header">
@@ -118,8 +118,8 @@
                 </div>
               </div>
               <div class="project-card__footer">
-                <icon name="status" /> {{ item.status }}{{ item.progress !== 100 ? `(${item.progress}%)` : '' }}
-                <span class="right"><icon name="clock" /> {{ $time(item.datetime_start).fromNow() }}</span>
+                {{ item.status }}{{ item.progress !== 100 ? `（${item.progress}%）` : '' }}
+                <span class="right"> · {{ $time(item.datetime_start).format('YYYY-MM-DD') }} {{ $time(item.datetime_start).fromNow() }}</span>
               </div>
             </nuxt-link>
           </card>
@@ -154,7 +154,7 @@ export default {
   },
   methods: {
     changePage(currentPage) {
-      this.$router.push({ name: 'project', query: { page: currentPage } })
+      this.$router.push({ name: 'project', query: { page: parseInt(currentPage) } })
     }
   },
   watchQuery: ['page']

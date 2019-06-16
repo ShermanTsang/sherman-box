@@ -3,6 +3,7 @@
     cursor: default;
     font-size: 1.8rem;
     letter-spacing: 4px;
+    color: #333;
 
     span {
       font-size: 1.2rem;
@@ -16,6 +17,7 @@
 <template>
   <div class="nameplate">
     {{ title }} <span>{{ subTitle }}</span>
+    <blocker height="20px" />
   </div>
 </template>
 
