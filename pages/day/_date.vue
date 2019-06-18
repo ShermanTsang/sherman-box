@@ -1,24 +1,58 @@
 <style lang="scss">
   .day {
+
+    &__card {
+      display: flex;
+      flex-flow: row nowrap;
+      height: 600px;
+      overflow: hidden;
+
+      &__banner {
+        flex: 0 0 40%;
+        overflow: hidden;
+
+        &__image {
+          width: 100%;
+          height: 100%;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      &__main {
+        flex: 0 0 60%;
+      }
+    }
   }
 </style>
 
 <template>
   <div class="day">
-    <div class="day__header">
-      <div class="day__header__image">
-        <img v-lazy="$getOssUrl(data.dayItem.image)">
-      </div>
-      <div class="day__header__text">
-        <div class="day__header__text__title">
-          {{ data.dayItem.name }}
+    <blocker height="40px" />
+    <container :max-width="1060">
+      <card class="day__card">
+        <div class="day__card__banner">
+          <div class="day__card__banner__image">
+            <img v-lazy="$getOssUrl(data.dayItem.image)">
+          </div>
+          <div class="day__card__banner__text">
+            <div class="day__card__banner__text__title">
+              {{ data.dayItem.name }}
+            </div>
+            <blocker height="20px" />
+            <div class="day__card__banner__text__info">
+              <icon name="clock" />
+              {{ $time(data.dayItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.dayItem.datetime).fromNow() }}
+            </div>
+          </div>
         </div>
-        <blocker height="20px" />
-        <div class="day__header__text__info">
-          <icon name="clock" /> {{ $time(data.dayItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.dayItem.datetime).fromNow() }}
-        </div>
-      </div>
-    </div>
+        <div class="day__card__main"></div>
+      </card>
+    </container>
     <blocker height="60px" />
     <container :max-width="1060">
       <comment :data="data.dayItem.comments" />

@@ -29,7 +29,7 @@
         border-bottom: 2px solid #efefef;
       }
 
-      &__description {
+      &__info {
         color: #999999;
         font-size: .9rem;
         margin-top: 5px;
@@ -43,7 +43,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      width: 240px;
+      width: 300px;
       height: 100%;
       background-position: center center;
       background-size: cover;
@@ -72,9 +72,9 @@
     }
 
     @media only screen and (max-width: 600px) {
-      flex: 0 0 80%;
+      flex: 0 0 75%;
       &__image {
-        flex: 0 0 20%;
+        flex: 0 0 25%;
         width: 180px;
       }
     }
@@ -97,7 +97,19 @@
           <card
             class="day-list__item day-card"
           >
-            {{ item }}
+            <div class="day-card__main">
+              <div class="day-card__main__title">
+                <nuxt-link :to="`/day/${ $time(item.date).format('YYYY-MM-DD') }`">
+                  {{ $time(item.date).format('YYYY年MM月DD日') }} <small>{{ $time(item.date).format('dddd') }}</small>
+                </nuxt-link>
+              </div>
+              <div class="day-card__main__info">
+                <blocker height="10px" />
+                {{ $time(item.date).format('YY') }}年的第 {{ $time(item.date).format('DDD') }} 天（{{ Math.ceil($time(item.date).format('DDD')/365*100) }}%）
+              </div>
+            </div>
+            <div v-lazy:background-image="$getOssUrl(item.image)" class="day-card__image">
+            </div>
           </card>
         </a-col>
       </a-row>

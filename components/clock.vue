@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      timeValue: this.$slots.default[0].text
+      timeValue: this.$slots.default[0].text || ''
     }
   }
 }
