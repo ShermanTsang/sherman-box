@@ -1,7 +1,6 @@
 <style lang="scss">
   .container {
     margin: 0 auto;
-    overflow: hidden;
   }
 </style>
 

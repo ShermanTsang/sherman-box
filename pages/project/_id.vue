@@ -38,7 +38,6 @@
         &__description {
           display: block;
           color: #ffffff;
-          text-indent: 2em;
           padding: 10px;
           font-size: 1rem;
           line-height: 1.5;

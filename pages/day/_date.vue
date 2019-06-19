@@ -8,17 +8,30 @@
       overflow: hidden;
 
       &__banner {
+        position: relative;
         flex: 0 0 40%;
         overflow: hidden;
 
         &__image {
           width: 100%;
           height: 100%;
+          background-size: cover;
+          background-position: center center;
+          background-attachment: fixed;
+        }
 
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        &__text {
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
+          color: #fff;
+          line-height: 1.5;
+          font-size: 1.8rem;
+          font-weight: bold;
+          text-shadow: 1px 1px 6px rgba(0, 0, 0, .5);
+
+          a {
+            color: #fff;
           }
         }
       }
@@ -33,21 +46,17 @@
 <template>
   <div class="day">
     <blocker height="40px" />
-    <container :max-width="1060">
+    <container :max-width="1260">
       <card class="day__card">
         <div class="day__card__banner">
-          <div class="day__card__banner__image">
-            <img v-lazy="$getOssUrl(data.dayItem.image)">
-          </div>
+          <div v-lazy:background-image="$getOssUrl(data.dayItem.image)" class="day__card__banner__image"></div>
           <div class="day__card__banner__text">
-            <div class="day__card__banner__text__title">
-              {{ data.dayItem.name }}
-            </div>
-            <blocker height="20px" />
-            <div class="day__card__banner__text__info">
-              <icon name="clock" />
-              {{ $time(data.dayItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.dayItem.datetime).fromNow() }}
-            </div>
+            <clock format="YYYY/MM/DD">
+              {{ data.dayItem.date }}
+            </clock>
+            <clock format="ddd">
+              {{ data.dayItem.date }}
+            </clock>
           </div>
         </div>
         <div class="day__card__main"></div>

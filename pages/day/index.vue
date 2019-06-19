@@ -49,7 +49,7 @@
       background-size: cover;
       -webkit-transition: all 200ms ease-in;
       transition: all 200ms ease-in;
-      opacity: .3;
+      opacity: .5;
 
       &::after {
         content: '';

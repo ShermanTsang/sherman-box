@@ -3,7 +3,7 @@
     &__header {
       position: relative;
       width: 100%;
-      height: 300px;
+      height: 400px;
       overflow: hidden;
 
       &__image {
@@ -13,15 +13,15 @@
         right: 0;
         bottom: 0;
         z-index: 1;
-
-        img {
-          opacity: .5;
-          transform: scale(1.15);
-          filter: blur(6px);
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+        opacity: .8;
+        transform:  scale(1.2);
+        filter: blur(4px);
+        width: 100%;
+        height: 100%;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center center;
+        box-shadow: 0 -20px 20px 40px rgb(255,255,255) inset;
       }
 
       &__text {
@@ -60,8 +60,7 @@
 <template>
   <div class="blog">
     <div class="blog__header">
-      <div class="blog__header__image">
-        <img v-lazy="$getOssUrl(data.blogItem.image)">
+      <div v-lazy:background-image="$getOssUrl(data.blogItem.image)" class="blog__header__image">
       </div>
       <div class="blog__header__text">
         <div class="blog__header__text__title">
