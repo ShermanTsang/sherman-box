@@ -1,16 +1,23 @@
 <style lang="scss">
   .tag {
-    display: inline-block;
 
     &__item {
-      padding: 4px 8px;
-      line-height: 2.5;
-      letter-spacing: 1px;
-      border: 1px solid #ccc;
+      display: inline-block;
+      overflow: hidden;
+      position: relative;
       cursor: default;
+      font-size: .9rem;
+      margin: 1px;
+      padding: 6px 10px;
+      white-space: nowrap;
+      color: #666;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      letter-spacing: 1px;
+      transition: all .2s ease-in;
 
       &:not(:last-child) {
-        margin-right: 10px;
+        margin-right: 5px;
       }
     }
   }

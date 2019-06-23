@@ -38,7 +38,7 @@
         color: #fff;
         cursor: default;
         padding: 0 20px;
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
 
         &__title {
           letter-spacing: 2px;
@@ -72,7 +72,7 @@
         </div>
       </div>
     </div>
-    <blocker height="60px" />
+    <blocker height="20px" />
     <container class="blog__content" :max-width="1060">
       <markdown :content="data.blogItem.content" />
     </container>

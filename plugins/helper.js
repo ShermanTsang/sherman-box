@@ -8,6 +8,9 @@ export default function () {
   }
 
   function getOssUrl(url) {
+    if (!url) {
+      return ''
+    }
     const isWithDomain = url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
     const is3rdResource = url.indexOf('cdn.share-man.com') === -1 && url.indexOf('sharemancdn.ochase.com') === -1
     return isWithDomain
