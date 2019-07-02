@@ -17,14 +17,15 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'generator-star-spacing': 'off',
     'vue/no-v-html': 'off',
-    "vue/html-self-closing": ["error", {
-      "html": {
-        "void": "never",
-        "normal": "any",
-        "component": "any"
+    'camelcase': ['error', {'allow': ['aa_bb']}],
+    'vue/html-self-closing': ['error', {
+      'html': {
+        'void': 'never',
+        'normal': 'any',
+        'component': 'any'
       },
-      "svg": "always",
-      "math": "always"
+      'svg': 'always',
+      'math': 'always'
     }]
   }
 }

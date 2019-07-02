@@ -75,6 +75,9 @@
         <div v-if="data.movieItem.type" class="movie__header__main__item">
           <icon name="category" /> {{ data.movieItem.type }}
         </div>
+        <div v-if="data.movieItem.score" class="movie__header__main__item">
+          <icon name="star" /> {{ data.movieItem.score }}分
+        </div>
         <div v-if="data.movieItem.people" class="movie__header__main__item">
           <icon name="user" /> {{ data.movieItem.people }}
         </div>
@@ -86,6 +89,13 @@
         </div>
       </div>
     </div>
+    <template v-if="data.movieItem.schedule">
+      <blocker height="60px" />
+      <container class="movie__content" :max-width="1060">
+        <nameplate title="追剧" sub-title="binge" />
+        <tag>{{ data.movieItem.schedule }}</tag>
+      </container>
+    </template>
     <blocker height="60px" />
     <container class="movie__content" :max-width="1060">
       <nameplate title="想法" sub-title="thinking" />

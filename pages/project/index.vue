@@ -98,7 +98,7 @@
           :sm="24"
           :md="12"
           :lg="12"
-          :xl="8"
+          :xl="12"
         >
           <card
             class="project-list__item project-card"
@@ -127,7 +127,7 @@
       </a-row>
     </div>
     <blocker height="40px" />
-    <pagination :page="meta.current_page" :total="meta.total" :size="meta.per_page" @change="changePage" />
+    <pagination :page="parseInt(meta.current_page)" :total="parseInt(meta.total)" :size="parseInt(meta.per_page)" @change="changePage" />
     <blocker height="40px" />
   </container>
 </template>

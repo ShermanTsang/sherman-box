@@ -22,19 +22,18 @@
 
       &__score {
         position: absolute;
-        bottom: 5px;
-        right: 5px;
-        border-radius: 50%;
+        bottom: 10px;
+        right: 10px;
+        border-radius: 6px;
         text-align: center;
-        font-size: 1.1rem;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
+        font-size: 1rem;
         color: #fff;
         z-index: 50;
-        box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
+        padding: 2px 6px;
+        box-sizing: border-box;
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
+        border: 2px solid rgba(255,255,255,.6);
         opacity: .8;
-        background-color: #08AEEA;
         transition: all .3s ease-in-out;
       }
 
@@ -108,7 +107,6 @@
 
           &__score {
             background: none;
-            font-size: 1.1rem;
             font-weight: 800;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, .9);
           }
@@ -170,7 +168,7 @@
       </a-row>
     </div>
     <blocker height="40px" />
-    <pagination :page="meta.current_page" :total="meta.total" :size="meta.per_page" @change="changePage" />
+    <pagination :page="parseInt(meta.current_page)" :total="parseInt(meta.total)" :size="parseInt(meta.per_page)" @change="changePage" />
     <blocker height="40px" />
   </container>
 </template>
@@ -183,7 +181,7 @@ export default {
   async asyncData({ $axios, query }) {
     const { data: movieCollection, meta } = await $axios.$get(`/api/movies`, {
       params: {
-        page_size: 12,
+        pageSize: 12,
         page: query.page
       }
     })
