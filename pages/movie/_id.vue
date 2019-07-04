@@ -9,13 +9,14 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 8px #f0f1f2;
+      background-image: linear-gradient( 135deg, rgb(130,130,130) 0%,rgb(103,103,103) 75% );
 
       &__poster {
         &__image {
           overflow: hidden;
           max-height: 405px;
           max-width: 270px;
-          border-radius: 6px;
+          border-radius: 10px 10px 0 0;
           box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
 
           img {
@@ -127,7 +128,11 @@ export default {
   },
   methods: {
     renderGradientColor(selector) {
-      this.$grade(document.querySelectorAll(selector))
+      try {
+        this.$grade(document.querySelectorAll(selector))
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }

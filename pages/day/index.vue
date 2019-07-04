@@ -105,7 +105,7 @@
               </div>
               <div class="day-card__main__info">
                 <blocker height="10px" />
-                {{ $time(item.date).format('YY') }}年的第 {{ $time(item.date).format('DDD') }} 天（{{ Math.ceil($time(item.date).format('DDD')/365*100) }}%）
+                {{ $time(item.date).format('YY') }}年的第{{ $time(item.date).format('DDD') }}天（{{ Math.ceil($time(item.date).format('DDD')/365*100) }}%）
               </div>
             </div>
             <div v-if="item.image" v-lazy:background-image="$getOssUrl(item.image)" class="day-card__image">

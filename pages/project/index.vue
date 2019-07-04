@@ -44,12 +44,13 @@
 
     &__footer {
       position: absolute;
-      width: 100%;
+      right: 0;
       bottom: 0;
-      padding: 10px;
+      left: 0;
+      padding: 60px 10px 10px 10px;
       z-index: 50;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
-      font-size: .8rem;
+      font-size: .9rem;
       word-wrap: break-word;
       color: #dddddd;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0, transparent 100%);
@@ -57,7 +58,7 @@
 
     &__image {
       overflow: hidden;
-      height: 280px;
+      height: 340px;
       transition: all .3s ease-in;
       img{
         width: 100%;

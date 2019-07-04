@@ -6,24 +6,36 @@
   }
 
   .blog-card {
+    height: 400px;
     position: relative;
-    padding: 20px;
     overflow: hidden;
     transition-duration: 0.2s;
     line-height: 1.5;
     text-overflow: ellipsis;
     letter-spacing: 1px;
     font-size: 1rem;
-    display: flex;
-    flex-flow: row nowrap;
+
+    &__image {
+      height: 240px;
+      background-position: center center;
+      background-size: cover;
+      transition: all 200ms ease-in;
+      opacity: .6;
+      transform: scale(1.25);
+      box-shadow: 0 -20px 20px 40px rgb(255,255,255) inset;
+    }
 
     &__main {
-      flex: 0 0 60%;
-      height: 140px;
+      position: absolute;
+      top: 190px;
+      left: 0;
+      right: 0;
+      margin-top: 20px;
+      padding: 20px;
 
       &__title {
         display: inline-block;
-        font-size: 1rem;
+        font-size: 1.2rem;
         letter-spacing: 2px;
         padding-bottom: 5px;
         border-bottom: 2px solid #efefef;
@@ -31,51 +43,20 @@
 
       &__description {
         color: #999999;
-        font-size: .9rem;
-        margin-top: 5px;
+        margin-top: 10px;
+        font-size: .95rem;
         overflow: hidden;
-      }
-    }
-
-    &__image {
-      flex: 0 0 40%;
-      transform: translateX(10px);
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 240px;
-      height: 100%;
-      background-position: center center;
-      background-size: cover;
-      -webkit-transition: all 200ms ease-in;
-      transition: all 200ms ease-in;
-      opacity: .4;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: -34px;
-        bottom: 0;
-        left: -2px;
-        width: 0;
-        height: 0;
-        border-top: 240px solid transparent;
-        border-left: 50px solid #fff;
       }
     }
 
     &:hover {
       .blog-card__image {
         opacity: 1;
-        transform: none;
       }
     }
 
     @media only screen and (max-width: 600px) {
-      flex: 0 0 80%;
       &__image {
-        flex: 0 0 20%;
-        width: 180px;
       }
     }
   }
@@ -92,11 +73,13 @@
           class="gutter-row"
           :md="24"
           :lg="12"
-          :xl="12"
+          :xl="8"
         >
           <card
             class="blog-list__item blog-card"
           >
+            <div v-lazy:background-image="$getOssUrl(item.image)" class="blog-card__image">
+            </div>
             <div class="blog-card__main">
               <div class="blog-card__main__title">
                 <nuxt-link :to="`/blog/${item.id}`">
@@ -108,8 +91,6 @@
                 <blocker height="10px" />
                 <small>{{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}</small>
               </div>
-            </div>
-            <div v-lazy:background-image="$getOssUrl(item.image)" class="blog-card__image">
             </div>
           </card>
         </a-col>

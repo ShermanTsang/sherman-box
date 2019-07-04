@@ -14,14 +14,14 @@
         bottom: 0;
         z-index: 1;
         opacity: .8;
-        transform:  scale(1.2);
+        transform: scale(1.2);
         filter: blur(4px);
         width: 100%;
         height: 100%;
         background-attachment: fixed;
         background-size: cover;
         background-position: center center;
-        box-shadow: 0 -20px 20px 40px rgb(255,255,255) inset;
+        box-shadow: 0 -20px 20px 40px rgb(255, 255, 255) inset;
       }
 
       &__text {
@@ -68,7 +68,8 @@
         </div>
         <blocker height="20px" />
         <div class="blog__header__text__info">
-          <icon name="clock" /> {{ $time(data.blogItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.blogItem.datetime).fromNow() }}
+          <icon name="clock" />
+          {{ $time(data.blogItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.blogItem.datetime).fromNow() }}
         </div>
       </div>
     </div>
