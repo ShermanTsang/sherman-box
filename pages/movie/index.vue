@@ -22,9 +22,8 @@
 
       &__score {
         position: absolute;
-        bottom: 10px;
-        right: 10px;
-        border-radius: 6px;
+        bottom: 6px;
+        right: 6px;
         text-align: center;
         font-size: 1rem;
         color: #fff;
@@ -32,7 +31,6 @@
         padding: 2px 6px;
         box-sizing: border-box;
         text-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
-        border: 2px solid rgba(255,255,255,.6);
         opacity: .8;
         transition: all .3s ease-in-out;
       }

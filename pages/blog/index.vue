@@ -16,13 +16,14 @@
     font-size: 1rem;
 
     &__image {
+      cursor: pointer;
       height: 240px;
       background-position: center center;
       background-size: cover;
       transition: all 200ms ease-in;
-      opacity: .6;
+      opacity: .8;
       transform: scale(1.25);
-      box-shadow: 0 -20px 20px 40px rgb(255,255,255) inset;
+      box-shadow: 0 -20px 20px 30px rgb(255, 255, 255) inset;
     }
 
     &__main {
@@ -44,6 +45,7 @@
       &__description {
         color: #999999;
         margin-top: 10px;
+        line-height: 2;
         font-size: .95rem;
         overflow: hidden;
       }
@@ -78,8 +80,10 @@
           <card
             class="blog-list__item blog-card"
           >
-            <div v-lazy:background-image="$getOssUrl(item.image)" class="blog-card__image">
-            </div>
+            <nuxt-link :to="`/blog/${item.id}`">
+              <div v-lazy:background-image="$getOssUrl(item.image)" :to="`/blog/${item.id}`" class="blog-card__image">
+              </div>
+            </nuxt-link>
             <div class="blog-card__main">
               <div class="blog-card__main__title">
                 <nuxt-link :to="`/blog/${item.id}`">
@@ -87,8 +91,10 @@
                 </nuxt-link>
               </div>
               <div class="blog-card__main__description">
-                {{ item.description }}
-                <blocker height="10px" />
+                <template v-if="item.description">
+                  {{ item.description.length > 40 ? `${item.description.substring(0,40)}...` : item.description }}
+                </template>
+                <blocker height="6px" />
                 <small>{{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}</small>
               </div>
             </div>
@@ -97,7 +103,12 @@
       </a-row>
     </div>
     <blocker height="40px" />
-    <pagination :page="parseInt(meta.current_page)" :total="parseInt(meta.total)" :size="parseInt(meta.per_page)" @change="changePage" />
+    <pagination
+      :page="parseInt(meta.current_page)"
+      :total="parseInt(meta.total)"
+      :size="parseInt(meta.per_page)"
+      @change="changePage"
+    />
     <blocker height="40px" />
   </container>
 </template>

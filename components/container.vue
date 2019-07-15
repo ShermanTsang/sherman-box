@@ -17,12 +17,17 @@ export default {
     maxWidth: {
       type: Number,
       default: 1448
+    },
+    padding: {
+      type: String,
+      default: '0'
     }
   },
   computed: {
     style() {
       return {
-        'max-width': this.maxWidth + 'px'
+        'max-width': this.maxWidth + 'px',
+        'padding': this.padding
       }
     }
   }

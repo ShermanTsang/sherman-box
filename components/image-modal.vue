@@ -41,7 +41,7 @@
         margin: 0 auto;
         max-width: 100%;
         max-height: 100%;
-        box-shadow: 0 0 10px rgba(0,0,0,.4);
+        box-shadow: 0 0 30px rgba(0,0,0,.2);
       }
     }
   }
@@ -70,10 +70,10 @@ export default {
       imageUrl: this.url
     }
   },
-  computed: {},
   watch: {
-    url(val) {
-      this.imageUrl = val
+    url(url) {
+      this.imageUrl = url
+      this.$emit('update:url', url)
     }
   },
   mounted() {
@@ -81,7 +81,8 @@ export default {
   methods: {
     handleClick(event) {
       if (event.target.nodeName !== 'IMG') {
-        this.imageUrl = ''
+        this.imageUrl = null
+        this.$emit('update:url', this.imageUrl)
       }
     }
   }

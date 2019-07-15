@@ -1,8 +1,9 @@
 <style lang="scss">
   .markdown {
+
     article {
-      font-size: 1rem;
-      line-height: 2em;
+      font-size: 1.05em;
+      line-height: 2;
       counter-reset: h1;
       color: #666;
       letter-spacing: 2px;
@@ -96,7 +97,7 @@
     >
       <slot></slot>
     </article>
-    <image-modal v-if="imageModalUrl" :url.sync="imageModalUrl" />
+    <image-modal :url.sync="imageModalUrl" />
   </div>
 </template>
 
@@ -114,7 +115,7 @@ export default {
   data() {
     return {
       renderer: new Marked.Renderer(),
-      imageModalUrl: ''
+      imageModalUrl: null
     }
   },
   computed: {

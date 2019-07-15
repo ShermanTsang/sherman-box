@@ -150,6 +150,15 @@
           </small>
         </div>
         <div class="day__card__main">
+          <div v-if="data.dayItem.event" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <icon name="calendar" />
+              事件
+            </div>
+            <div class="day__card__main__item__content">
+              <tag>{{ data.dayItem.event }}</tag>
+            </div>
+          </div>
           <div v-if="data.dayItem.time_sleep && data.dayItem.time_wakeup" class="day__card__main__item">
             <div class="day__card__main__item__name">
               <icon name="sleep" />
@@ -188,6 +197,15 @@
             </div>
             <div class="day__card__main__item__content">
               <tag>{{ data.dayItem.weight }}斤</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.movement" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <icon name="schedule" />
+              活动
+            </div>
+            <div class="day__card__main__item__content">
+              <tag>{{ data.dayItem.movement }}</tag>
             </div>
           </div>
           <div v-if="data.dayItem.mood" class="day__card__main__item">

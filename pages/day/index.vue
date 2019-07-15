@@ -19,7 +19,7 @@
 
     &__main {
       flex: 0 0 60%;
-      height: 140px;
+      height: 180px;
 
       &__title {
         display: inline-block;
@@ -27,13 +27,37 @@
         letter-spacing: 2px;
         padding-bottom: 5px;
         border-bottom: 2px solid #efefef;
+        small{
+          color: #999;
+        }
       }
 
       &__info {
         color: #999999;
         font-size: .9rem;
-        margin-top: 5px;
+        margin-top: 10px;
         overflow: hidden;
+
+        &__detail {
+
+          &__item {
+            display: inline-flex;
+            width: 30%;
+            flex-flow: row nowrap;
+            align-items: center;
+            cursor: default;
+            font-size: .95rem;
+            margin: 6px 0;
+            justify-content: left;
+
+            i{
+              font-size: 1rem;
+              margin-right: 6px;
+              color: #ccc;
+            }
+
+          }
+        }
       }
     }
 
@@ -59,7 +83,7 @@
         left: -2px;
         width: 0;
         height: 0;
-        border-top: 240px solid transparent;
+        border-top: 260px solid transparent;
         border-left: 50px solid #fff;
       }
     }
@@ -100,22 +124,56 @@
             <div class="day-card__main">
               <div class="day-card__main__title">
                 <nuxt-link :to="`/day/${ $time(item.date).format('YYYY-MM-DD') }`">
-                  {{ $time(item.date).format('YYYY年MM月DD日') }} <small>{{ $time(item.date).format('dddd') }}</small>
+                  {{ $time(item.date).format('YYYY年MM月DD日') }} {{ $time(item.date).format('dddd') }}
+                  <br>
+                  <small>{{ $time(item.date).format('YY') }}年的第{{ $time(item.date).format('DDD') }}天（{{
+                    Math.ceil($time(item.date).format('DDD')/365*100) }}%）</small>
                 </nuxt-link>
               </div>
               <div class="day-card__main__info">
-                <blocker height="10px" />
-                {{ $time(item.date).format('YY') }}年的第{{ $time(item.date).format('DDD') }}天（{{ Math.ceil($time(item.date).format('DDD')/365*100) }}%）
+                <div class="day-card__main__info__detail">
+                  <div v-if="item.event" class="day-card__main__info__detail__item">
+                    <icon name="calendar" /> {{ $getStringCount(item.event) }}件
+                  </div>
+                  <div v-if="item.step" class="day-card__main__info__detail__item">
+                    <icon name="run" /> {{ item.step }}步
+                  </div>
+                  <div v-if="item.weight" class="day-card__main__info__detail__item">
+                    <icon name="weight" /> {{ item.weight }}斤
+                  </div>
+                  <div v-if="item.movement" class="day-card__main__info__detail__item">
+                    <icon name="schedule" /> {{ $getStringCount(item.movement) }}项
+                  </div>
+                  <div v-if="item.people" class="day-card__main__info__detail__item">
+                    <icon name="user" /> {{ $getStringCount(item.people) }}人
+                  </div>
+                  <div v-if="item.food" class="day-card__main__info__detail__item">
+                    <icon name="food" /> {{ $getStringCount(item.food) }}类
+                  </div>
+                  <div v-if="item.location" class="day-card__main__info__detail__item">
+                    <icon name="location" /> {{ $getStringCount(item.location) }}处
+                  </div>
+                  <div v-if="item.mood" class="day-card__main__info__detail__item">
+                    <icon name="mood" /> {{ $getStringCount(item.mood) }}种
+                  </div>
+                </div>
               </div>
             </div>
-            <div v-if="item.image" v-lazy:background-image="$getOssUrl(item.image)" class="day-card__image">
-            </div>
+            <nuxt-link :to="`/day/${ $time(item.date).format('YYYY-MM-DD') }`">
+              <div v-if="item.image" v-lazy:background-image="$getOssUrl(item.image)" class="day-card__image">
+              </div>
+            </nuxt-link>
           </card>
         </a-col>
       </a-row>
     </div>
     <blocker height="40px" />
-    <pagination :page="parseInt(meta.current_page)" :total="parseInt(meta.total)" :size="parseInt(meta.per_page)" @change="changePage" />
+    <pagination
+      :page="parseInt(meta.current_page)"
+      :total="parseInt(meta.total)"
+      :size="parseInt(meta.per_page)"
+      @change="changePage"
+    />
     <blocker height="40px" />
   </container>
 </template>

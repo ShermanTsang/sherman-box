@@ -33,18 +33,16 @@
         z-index: 2;
         display: flex;
         flex-flow: column nowrap;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         color: #fff;
         cursor: default;
         padding: 0 20px;
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+        text-shadow: 0 0 8px rgba(0,0,0,.8);
 
         &__title {
           letter-spacing: 2px;
           font-size: 1.6rem;
-          padding: 10px;
-          background-color: rgba(0, 0, 0, .4);
         }
 
         &__info {
@@ -62,7 +60,7 @@
     <div class="blog__header">
       <div v-lazy:background-image="$getOssUrl(data.blogItem.image)" class="blog__header__image">
       </div>
-      <div class="blog__header__text">
+      <container :max-width="1060" class="blog__header__text">
         <div class="blog__header__text__title">
           {{ data.blogItem.name }}
         </div>
@@ -71,7 +69,7 @@
           <icon name="clock" />
           {{ $time(data.blogItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.blogItem.datetime).fromNow() }}
         </div>
-      </div>
+      </container>
     </div>
     <blocker height="20px" />
     <container class="blog__content" :max-width="1060">

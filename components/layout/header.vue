@@ -24,13 +24,21 @@
         flex-flow: row nowrap;
         align-items: center;
         justify-content: right;
+
         &__item {
           cursor: pointer;
           flex: 1 0 auto;
           padding: 0 20px;
           font-size: 1rem;
           letter-spacing: 2px;
-          a{color: #666;}
+
+          a {
+            color: #666;
+          }
+
+          i {
+            color: #aaa;
+          }
         }
       }
     }
@@ -46,6 +54,7 @@
       <div class="header__container__menu">
         <div v-for="(item,index) in $store.getters.moduleCollection" :key="index" class="header__container__menu__item">
           <nuxt-link :to="`/${item.url}`">
+            <icon :name="item.icon" />
             {{ item.name }}
           </nuxt-link>
         </div>
@@ -58,12 +67,10 @@
 export default {
   name: 'LayoutHeader',
   data() {
-    return {
-    }
+    return {}
   },
   mounted() {
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>

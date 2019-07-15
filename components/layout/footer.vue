@@ -1,6 +1,6 @@
 <style lang="scss">
   .footer {
-    padding: 30px 0;
+    padding: 30px 20px;
     border-top: 1px solid #eee;
     box-shadow: 0 0 6px rgba(0, 0, 0, .1);
 

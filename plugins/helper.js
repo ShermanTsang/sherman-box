@@ -30,7 +30,24 @@ export default function () {
     }
   }
 
+  function getStringCount(string) {
+    if (!string) {
+      return 0
+    }
+    try {
+      const hasMany = string.indexOf(',') !== -1
+      if (hasMany) {
+        const tagArray = string.split(',')
+        return tagArray.length
+      }
+      return 1
+    } catch (e) {
+      return 1
+    }
+  }
+
   Vue.prototype.$getApiUrl = getApiUrl
   Vue.prototype.$getOssUrl = getOssUrl
   Vue.prototype.$getAvatarUrl = getAvatarUrl
+  Vue.prototype.$getStringCount = getStringCount
 }

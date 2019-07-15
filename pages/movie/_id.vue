@@ -16,7 +16,6 @@
           overflow: hidden;
           max-height: 405px;
           max-width: 270px;
-          border-radius: 10px 10px 0 0;
           box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
 
           img {
