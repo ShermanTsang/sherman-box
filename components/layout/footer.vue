@@ -13,7 +13,7 @@
         &__item {
           cursor: pointer;
           display: inline-block;
-          font-size: .9rem;
+          font-size: .95rem;
           a{
             color: #666;
           }
@@ -26,7 +26,8 @@
       }
 
       &__info {
-
+        color: #999;
+        font-size: .95rem;
       }
     }
   }
@@ -43,6 +44,7 @@
         </div>
       </div>
       <div class="footer__container__info">
+        {{ $getConfig('site.icp') }}
       </div>
     </container>
   </footer>

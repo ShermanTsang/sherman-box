@@ -102,7 +102,7 @@
               <div class="project-card__overlay"></div>
               <div class="project-card__text">
                 <span style="font-size: .95rem;">
-                  {{ item.type }} / {{ item.category }}
+                  {{ item.category.name }} / {{ item.type }}
                 </span>
                 <blocker height="4px" />
                 <span style="font-size: 1.2rem;">

@@ -4,11 +4,15 @@
     display: inline-flex;
     cursor: pointer;
     font-size: 1.2rem;
+
+    img {
+      height: 34px;
+    }
   }
 </style>
 
 <template>
   <nuxt-link to="/" class="logo">
-    LOGO
+    <img :src="$getImageAsset('logo')" alt="logo">
   </nuxt-link>
 </template>

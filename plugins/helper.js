@@ -46,6 +46,51 @@ export default function () {
     }
   }
 
+  function getConfig(key, returnType = 'value') {
+    if (!key) {
+      return '[ key is null ]'
+    }
+    const configurationCollection = this.$store.getters.configurationCollection || []
+    const configurationTarget = configurationCollection.find((item) => {
+      return item.name === key || item.id === key
+    })
+    if (!configurationTarget) {
+      return `[ configuration ${key} not found ]`
+    }
+    return returnType === 'object' ? configurationTarget : configurationTarget.value || ''
+  }
+
+  function getImageAsset(key, returnType = 'value') {
+    if (!key) {
+      return '[ key is null ]'
+    }
+    const imageAssetCollection = this.$store.getters.imageAssetCollection || []
+    const imageAssetTarget = imageAssetCollection.find((item) => {
+      return item.key === key || item.id === key
+    })
+    if (!imageAssetTarget) {
+      return `[ imageAsset ${key} not found ]`
+    }
+    return returnType === 'object' ? imageAssetTarget : this.$getOssUrl(imageAssetTarget.url) || ''
+  }
+
+  function getFileAsset(key, returnType = 'value') {
+    if (!key) {
+      return '[ key is null ]'
+    }
+    const fileAssetCollection = this.$store.getters.fileAssetCollection || []
+    const fileAssetTarget = fileAssetCollection.find((item) => {
+      return item.key === key || item.id === key
+    })
+    if (!fileAssetTarget) {
+      return `[ fileAsset ${key} not found ]`
+    }
+    return returnType === 'object' ? fileAssetTarget : this.$getOssUrl(fileAssetTarget.url) || ''
+  }
+
+  Vue.prototype.$getConfig = getConfig
+  Vue.prototype.$getFileAsset = getFileAsset
+  Vue.prototype.$getImageAsset = getImageAsset
   Vue.prototype.$getApiUrl = getApiUrl
   Vue.prototype.$getOssUrl = getOssUrl
   Vue.prototype.$getAvatarUrl = getAvatarUrl

@@ -150,7 +150,7 @@
             <icon name="category" /> 项目类型
           </div>
           <div class="project__detail__item__info">
-            <tag>{{ data.projectItem.category }}</tag>
+            <tag>{{ data.projectItem.category.name }}</tag>
           </div>
         </div>
         <div v-if="data.projectItem.tags" class="project__detail__item">

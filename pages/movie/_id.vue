@@ -92,7 +92,7 @@
     <template v-if="data.movieItem.schedule">
       <blocker height="60px" />
       <container class="movie__content" :max-width="1060">
-        <nameplate title="追剧" sub-title="binge" />
+        <nameplate title="追剧" sub-title="binge-watching" />
         <tag>{{ data.movieItem.schedule }}</tag>
       </container>
     </template>

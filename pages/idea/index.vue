@@ -19,8 +19,8 @@
       line-height: 1.5;
 
       &:first-letter {
-        font-size: 1.6rem;
-        padding-right: 0.1em;
+        font-size: 1.8rem;
+        padding-right: 0.2em;
       }
     }
 

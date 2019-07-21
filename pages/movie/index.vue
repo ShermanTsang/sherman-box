@@ -146,7 +146,7 @@
             </div>
             <div class="movie-card__content">
               <div class="movie-card__content__name">
-                <small>{{ item.type }}</small>
+                <small>{{ item.category.name }}</small>
                 <br>
                 <nuxt-link :to="`/movie/${item.id}`">
                   {{ item.name }}{{ item.memo ? ` ${item.memo}` : '' }}
