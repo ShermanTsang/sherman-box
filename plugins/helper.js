@@ -1,7 +1,27 @@
 import Vue from 'vue'
 import Gravatar from 'gravatar-url'
+import Config from '../config'
 
 export default function () {
+  function getConfigItem(key) {
+    return key ? Config[key] : `[!${key}]`
+  }
+
+  function getConfigList(keyword) {
+    if (!keyword) {
+      return Config
+    } else {
+      const filterConfigKey = Object.keys(Config).filter((item) => {
+        return item.indexOf(keyword) !== -1
+      })
+      const filterConfigObject = {}
+      filterConfigKey.forEach((item) => {
+        filterConfigObject[item] = Config[item]
+      })
+      return filterConfigObject
+    }
+  }
+
   function getApiUrl(url) {
     const config = this.$configList('api')
     return `${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/${url}`
@@ -88,6 +108,8 @@ export default function () {
     return returnType === 'object' ? fileAssetTarget : this.$getOssUrl(fileAssetTarget.url) || ''
   }
 
+  Vue.prototype.$config = getConfigItem
+  Vue.prototype.$configList = getConfigList
   Vue.prototype.$getConfig = getConfig
   Vue.prototype.$getFileAsset = getFileAsset
   Vue.prototype.$getImageAsset = getImageAsset

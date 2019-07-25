@@ -1,4 +1,5 @@
 import pkg from './package'
+import config from './config'
 
 export default {
   mode: 'universal',
@@ -21,14 +22,13 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#08AEEA' },
+  loading: { color: '#0a84ea' },
 
   /*
   ** Global CSS
   */
   css: [
     'normalize.css',
-    // 'ant-design-vue/dist/antd.css',
     '@/assets/scss/global.scss',
     '@/assets/scss/variables.scss',
     '@/assets/scss/override.scss',
@@ -39,13 +39,12 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '@/plugins/config', ssr: true },
     { src: '@/plugins/helper', ssr: true },
     { src: '@/plugins/antd-ui', ssr: true },
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/components', ssr: true },
     { src: '@/plugins/moment', ssr: true },
-    { src: '@/plugins/gradient-color', ssr: true },
+    { src: '@/plugins/gradient-color', ssr: false },
     { src: '@/plugins/vue-lazyload', ssr: false }
   ],
 
@@ -60,16 +59,12 @@ export default {
   ** Nuxt.js modules axios configuration
   */
   axios: {
-    // https: true,
-    // host: 'api.share-man.com',
-    // prefix: 'v1'
-    // proxyHeaders: false
     proxy: true
   },
 
   proxy: {
-    '/api/': { target: 'https://api.share-man.com', pathRewrite: { '^/api/': 'v1/' } },
-    '/oss/': { target: 'https://cdn.share-man.com', pathRewrite: { '^/oss/': '/' } }
+    '/api/': { target: `${config['api.protocol']}://${config['api.domain']}`, pathRewrite: { '^/api/': 'v1/' } },
+    '/oss/': { target: `${config['oss.protocol']}://${config['oss.domain.https']}`, pathRewrite: { '^/oss/': '/' } }
   },
 
   /*

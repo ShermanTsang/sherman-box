@@ -9,30 +9,6 @@
       padding: 10px;
     }
   }
-
-  .idea-card {
-    padding: 16px;
-
-    &__content {
-      letter-spacing: 2px;
-      color: #666;
-      line-height: 1.5;
-
-      &:first-letter {
-        font-size: 1.8rem;
-        padding-right: 0.2em;
-      }
-    }
-
-    &__info {
-      letter-spacing: 1px;
-      margin-top: 10px;
-      padding-top: 10px;
-      line-height: 1.5;
-      border-top: 1px dotted #dddddd;
-      color: #999;
-    }
-  }
 </style>
 
 <template>
@@ -44,20 +20,7 @@
         :key="item.id"
         class="idea-list__item"
       >
-        <nuxt-link :to="`/idea/${item.id}`">
-          <card class="idea-card">
-            <div class="idea-card__content">
-              {{ item.content }}
-            </div>
-            <div class="idea-card__info">
-              {{ item.name }}
-              <br>
-              <small>
-                {{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}
-              </small>
-            </div>
-          </card>
-        </nuxt-link>
+        <item-idea :item="item" />
       </div>
     </div>
     <blocker height="40px" />
