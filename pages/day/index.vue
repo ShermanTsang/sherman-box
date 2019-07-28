@@ -39,6 +39,14 @@ export default {
   data() {
     return {}
   },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `日迹`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '日迹列表') }
+      ]
+    }
+  },
   async asyncData({ $axios, query }) {
     const { data: dayCollection, meta } = await $axios.$get(`/api/days`, {
       params: {

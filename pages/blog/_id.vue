@@ -67,7 +67,9 @@
         <blocker height="20px" />
         <div class="blog__header__text__info">
           <icon name="clock" />
-          {{ $time(data.blogItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.blogItem.datetime).fromNow() }}
+          <clock format="YYYY-MM-DD" from-now>
+            {{ data.blogItem.datetime }}
+          </clock>
         </div>
       </container>
     </div>
@@ -87,6 +89,14 @@
 export default {
   validate({ params }) {
     return /^\d+$/.test(params.id)
+  },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `${this.data.blogItem.name} - ${this.data.blogItem.category.name} - 博文`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.blogItem.description || ''}`) }
+      ]
+    }
   },
   async asyncData({ $axios, params }) {
     const { data: blogItem } = await $axios.$get(`/api/blogs/${params.id}`)

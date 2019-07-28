@@ -9,9 +9,9 @@
 </style>
 
 <template>
-  <nuxt-link :to="`/day/${$time(timeValue).format('YYYY-MM-DD')}`" class="clock">
+  <nuxt-link v-if="$slots.default[0]" :to="`/day/${$time(timeValue).format('YYYY-MM-DD')}`" class="clock">
     {{ $time(timeValue).format(format) }}
-    <span v-if="fromNow">{{ $time(timeValue).fromNow() }}</span>
+    <small v-if="fromNow">{{ $time(timeValue).fromNow() }}</small>
   </nuxt-link>
 </template>
 

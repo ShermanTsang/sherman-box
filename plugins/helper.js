@@ -108,6 +108,18 @@ export default function () {
     return returnType === 'object' ? fileAssetTarget : this.$getOssUrl(fileAssetTarget.url) || ''
   }
 
+  function getSeoInfo(type, value) {
+    const config = {
+      title: {
+        value: `${value} - ${getConfigItem('site.name')}`
+      },
+      description: {
+        value: `${value} - ${getConfigItem('site.description')}`
+      }
+    }
+    return config[type].value || ''
+  }
+
   Vue.prototype.$config = getConfigItem
   Vue.prototype.$configList = getConfigList
   Vue.prototype.$getConfig = getConfig
@@ -117,4 +129,5 @@ export default function () {
   Vue.prototype.$getOssUrl = getOssUrl
   Vue.prototype.$getAvatarUrl = getAvatarUrl
   Vue.prototype.$getStringCount = getStringCount
+  Vue.prototype.$getSeoInfo = getSeoInfo
 }

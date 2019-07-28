@@ -49,8 +49,12 @@
           text-shadow: 0 0 6px rgba(0, 0, 0, .8);
 
           &__date {
+            display: block;
             font-weight: bolder;
             letter-spacing: 1px;
+            width: 200px;
+            text-align: justify;
+            text-align-last: justify;
           }
 
           a {
@@ -61,6 +65,7 @@
 
       &__main {
         position: relative;
+        padding: 32px;
         margin: 10px;
         column-count: 3;
         column-gap: 20px;
@@ -80,7 +85,7 @@
             color: #666;
             letter-spacing: 2px;
             font-size: 1rem;
-            padding: 10px;
+            padding: 10px 0;
 
             i {
               margin-right: 20px;
@@ -91,7 +96,7 @@
           &__content {
             overflow: hidden;
             margin-top: 10px;
-            padding: 10px;
+            padding: 10px 0;
           }
         }
       }
@@ -123,6 +128,7 @@
   <div class="day">
     <blocker height="40px" />
     <container :max-width="1280">
+      <nameplate title="数据" sub-title="data" />
       <card class="day__card">
         <div v-if="data.dayItem.image" class="day__card__banner">
           <div v-lazy:background-image="$getOssUrl(data.dayItem.image)" class="day__card__banner__image"></div>
@@ -130,7 +136,6 @@
             <clock format="YYYY.MM.DD" class="day__card__banner__text__date">
               {{ data.dayItem.date }}
             </clock>
-            <br>
             <small>
               <clock format="ddd">
                 {{ data.dayItem.date }}
@@ -256,8 +261,13 @@
         </div>
       </card>
     </container>
+    <blocker height="40px" />
+    <container :max-width="1280">
+      <nameplate title="记录" sub-title="record" />
+      <item-common v-for="item in allItem" :key="item.id" :item="item"></item-common>
+    </container>
     <blocker height="60px" />
-    <container :max-width="1060">
+    <container :max-width="1280">
       <comment :data="data.dayItem.comments" />
     </container>
     <blocker height="60px" />
@@ -268,6 +278,14 @@
 export default {
   validate({ params }) {
     return /^(\d{4})(-)(\d{2})(-)(\d{2})$/.test(params.date)
+  },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `${this.data.dayItem.date.substring(0, 11)} - 日迹`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.dayItem.date.substring(0, 11)}日迹`) }
+      ]
+    }
   },
   computed: {
     sleepHour() {
@@ -280,13 +298,24 @@ export default {
         return wakeupTimeFormatted.diff(sleepTimeFormatted, 'hours') + '时'
       }
       return '不详'
+    },
+    allItem() {
+      const { movieCollection, ideaCollection, blogCollection, projectCollection, mailboxCollection, planCollection } = this.data
+      const allItem = []
+      return allItem.concat(movieCollection, ideaCollection, blogCollection, projectCollection, mailboxCollection, planCollection)
     }
   },
   async asyncData({ $axios, params }) {
-    const { data: dayItem } = await $axios.$get(`/api/days/${params.date}`)
+    const { data: { dayItem, movieCollection, ideaCollection, blogCollection, projectCollection, mailboxCollection, planCollection } } = await $axios.$get(`/api/days/${params.date}`)
     return {
       data: {
-        dayItem
+        dayItem,
+        movieCollection,
+        ideaCollection,
+        blogCollection,
+        projectCollection,
+        mailboxCollection,
+        planCollection
       }
     }
   },

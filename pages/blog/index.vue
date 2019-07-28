@@ -39,6 +39,14 @@ export default {
   data() {
     return {}
   },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `博文`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '博文列表') }
+      ]
+    }
+  },
   async asyncData({ $axios, query }) {
     const { data: blogCollection, meta } = await $axios.$get(`/api/blogs`, {
       params: {

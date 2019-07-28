@@ -1,14 +1,14 @@
 <style lang="scss">
   .idea-item {
-    padding: 16px;
+    padding: 32px;
 
     &__content {
       letter-spacing: 2px;
       color: #666;
-      line-height: 1.5;
+      line-height: 1.6;
 
       &:first-letter {
-        font-size: 1.8rem;
+        font-size: 1.85rem;
         padding-right: 0.2em;
       }
     }

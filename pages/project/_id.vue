@@ -268,6 +268,14 @@ export default {
   validate({ params }) {
     return /^\d+$/.test(params.id)
   },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `${this.data.projectItem.name} - ${this.data.projectItem.category.name} - 项目`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.projectItem.description || ''}`) }
+      ]
+    }
+  },
   async asyncData({ $axios, params }) {
     const { data: projectItem } = await $axios.$get(`/api/projects/${params.id}`)
     return {

@@ -17,6 +17,14 @@ export default {
   validate({ params }) {
     return params.url
   },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `${this.data.pageItem.name} - 页面`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', this.data.pageItem.description || '') }
+      ]
+    }
+  },
   async asyncData({ $axios, params }) {
     const { data: pageItem } = await $axios.$get(`/api/pages/${params.url}`)
     return {

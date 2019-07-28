@@ -39,6 +39,14 @@ export default {
   data() {
     return {}
   },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `想法`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '想法列表') }
+      ]
+    }
+  },
   async asyncData({ $axios, query }) {
     const { data: ideaCollection, meta } = await $axios.$get(`/api/ideas`, {
       params: {

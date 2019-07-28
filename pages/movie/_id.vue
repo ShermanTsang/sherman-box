@@ -85,7 +85,9 @@
           <icon name="location" /> {{ data.movieItem.site }}
         </div>
         <div v-if="data.movieItem.datetime" class="movie__header__main__item">
-          <icon name="clock" /> {{ $time(data.movieItem.datetime).format('YYYY-MM-DD') }} / {{ $time(data.movieItem.datetime).fromNow() }}
+          <icon name="clock" /> <clock format="YYYY-MM-DD" from-now>
+            {{ data.movieItem.datetime }}
+          </clock>
         </div>
       </div>
     </div>
@@ -113,6 +115,14 @@
 export default {
   validate({ params }) {
     return /^\d+$/.test(params.id)
+  },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `${this.data.movieItem.name} - ${this.data.movieItem.category.name} - 观影`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.movieItem.description || ''}`) }
+      ]
+    }
   },
   async asyncData({ $axios, params }) {
     const { data: movieItem } = await $axios.$get(`/api/movies/${params.id}`)

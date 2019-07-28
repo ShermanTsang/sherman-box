@@ -36,6 +36,14 @@ export default {
   data() {
     return {}
   },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `项目`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '项目列表') }
+      ]
+    }
+  },
   async asyncData({ $axios, query }) {
     const { data: projectCollection, meta } = await $axios.$get(`/api/projects`, {
       params: {

@@ -16,8 +16,8 @@
       background-size: cover;
       transition: all 200ms ease-in;
       opacity: .8;
-      transform: scale(1.25);
-      box-shadow: 0 -20px 20px 30px rgb(255, 255, 255) inset;
+      transform: scale(1.3);
+      box-shadow: 0 -20px 20px 40px rgb(255, 255, 255) inset;
     }
 
     &__main {
@@ -51,10 +51,6 @@
       }
     }
 
-    @media only screen and (max-width: 600px) {
-      &__image {
-      }
-    }
   }
 </style>
 
@@ -76,7 +72,9 @@
             {{ item.description.length > 40 ? `${item.description.substring(0,40)}...` : item.description }}
           </template>
           <blocker height="6px" />
-          <small>{{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}</small>
+          <clock format="YYYY-MM-DD" from-now>
+            {{ item.datetime }}
+          </clock>
         </div>
       </div>
     </nuxt-link>

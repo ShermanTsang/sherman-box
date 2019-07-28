@@ -1,4 +1,3 @@
-import pkg from './package'
 import config from './config'
 
 export default {
@@ -8,11 +7,15 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: pkg.title,
+    title: config['site.name'],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: config['site.description'] },
+      { hid: 'keywords', name: 'keywords', content: config['site.keywords'] }
+    ],
+    script: [
+      { src: `https://hm.baidu.com/hm.js?${config['3rd.baiduAnalyze.id']}` }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -40,12 +43,13 @@ export default {
   */
   plugins: [
     { src: '@/plugins/helper', ssr: true },
-    { src: '@/plugins/antd-ui', ssr: true },
+    { src: '@/plugins/antdUI', ssr: true },
     { src: '@/plugins/axios', ssr: true },
-    { src: '@/plugins/components', ssr: true },
+    { src: '@/plugins/autoComponents', ssr: true },
     { src: '@/plugins/moment', ssr: true },
-    { src: '@/plugins/gradient-color', ssr: false },
-    { src: '@/plugins/vue-lazyload', ssr: false }
+    { src: '@/plugins/gradientColor', ssr: true },
+    { src: '@/plugins/vue-lazyload', ssr: true },
+    { src: '@/plugins/3rdAnalyze', ssr: true }
   ],
 
   /*

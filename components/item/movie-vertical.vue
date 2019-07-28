@@ -1,12 +1,10 @@
 <style lang="scss">
   .movie-item {
     overflow: hidden;
-    display: flex;
-    flex-flow: row nowrap;
 
     &__poster {
       position: relative;
-      width: 200px;
+      height: 280px;
       overflow: hidden;
 
       img {
@@ -49,12 +47,12 @@
     &__content {
       overflow: hidden;
       position: relative;
-      padding: 32px;
+      padding: 10px 20px;
 
       &__name {
         overflow: hidden;
         line-height: 1.4;
-        font-size: 1.1rem;
+        font-size: 1rem;
         letter-spacing: 2px;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -72,9 +70,9 @@
       &__info {
         letter-spacing: 1px;
         color: #999999;
-        font-size: .9rem;
+        font-size: .8rem;
         overflow: hidden;
-        line-height: 2.2;
+        line-height: 1.5;
         padding-left: 1px;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -128,19 +126,18 @@
     </div>
     <div class="movie-item__content">
       <div class="movie-item__content__name">
+        <small>{{ item.category.name }}</small>
+        <br>
         <nuxt-link :to="`/movie/${item.id}`">
           {{ item.name }}{{ item.memo ? ` ${item.memo}` : '' }}
         </nuxt-link>
       </div>
       <blocker height="20px" divider />
       <div class="movie-item__content__info">
-        <icon name="category" size=".9rem" />
-        {{ item.category.name }}
-        <br>
-        <icon name="user" size=".9rem" />
+        <icon name="user" size=".8rem" />
         {{ item.people }}
         <br>
-        <icon name="clock" size=".9rem" />
+        <icon name="clock" size=".8rem" />
         {{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}
       </div>
     </div>
@@ -149,7 +146,7 @@
 
 <script>
 export default {
-  name: 'ItemMovie',
+  name: 'ItemMovieVertical',
   props: {
     item: {
       type: Object,

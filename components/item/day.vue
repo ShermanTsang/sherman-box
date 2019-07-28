@@ -1,7 +1,7 @@
 <style lang="scss">
   .day-item {
     position: relative;
-    padding: 20px;
+    padding: 32px;
     overflow: hidden;
     transition-duration: 0.2s;
     line-height: 1.5;
@@ -15,7 +15,7 @@
       flex: 0 0 60%;
       height: 180px;
 
-      &__title {
+      &__name {
         display: inline-block;
         font-size: 1rem;
         letter-spacing: 2px;
@@ -72,7 +72,7 @@
       &::after {
         content: '';
         position: absolute;
-        top: -34px;
+        top: -10px;
         bottom: 0;
         left: -2px;
         width: 0;
@@ -104,7 +104,7 @@
     class="day-list__item day-item"
   >
     <div class="day-item__main">
-      <div class="day-item__main__title">
+      <div class="day-item__main__name">
         <nuxt-link :to="`/day/${ $time(item.date).format('YYYY-MM-DD') }`">
           {{ $time(item.date).format('YYYY年MM月DD日') }} {{ $time(item.date).format('dddd') }}
           <br>

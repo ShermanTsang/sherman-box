@@ -15,11 +15,11 @@
           v-for="item in data.movieCollection"
           :key="item.id"
           class="gutter-row"
-          :xs="12"
+          :xs="24"
           :sm="12"
-          :md="8"
-          :lg="6"
-          :xl="4"
+          :md="12"
+          :lg="12"
+          :xl="8"
         >
           <item-movie :item="item" />
         </a-col>
@@ -35,6 +35,14 @@
 export default {
   data() {
     return {}
+  },
+  head() {
+    return {
+      title: this.$getSeoInfo('title', `观影`),
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '观影列表') }
+      ]
+    }
   },
   async asyncData({ $axios, query }) {
     const { data: movieCollection, meta } = await $axios.$get(`/api/movies`, {
