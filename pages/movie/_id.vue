@@ -63,7 +63,7 @@
     <div class="movie__header">
       <div class="movie__header__poster">
         <div class="movie__header__poster__image">
-          <img :src="$getOssUrl(data.movieItem.image)" cross-origin="anonymous">
+          <img :src="`/oss/${data.movieItem.image}`" cross-origin="anonymous">
         </div>
         <blocker height="20px" />
         <div class="movie__header__poster__name">
@@ -85,9 +85,7 @@
           <icon name="location" /> {{ data.movieItem.site }}
         </div>
         <div v-if="data.movieItem.datetime" class="movie__header__main__item">
-          <icon name="clock" /> <clock format="YYYY-MM-DD" from-now>
-            {{ data.movieItem.datetime }}
-          </clock>
+          <icon name="clock" /> <moment :time="data.movieItem.datetime" type="date" from-now />
         </div>
       </div>
     </div>

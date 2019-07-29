@@ -1,7 +1,7 @@
 <style lang="scss">
   .common-item {
     position: relative;
-    padding: 32px;
+    padding: 20px;
     margin: 20px 0;
     overflow: hidden;
     transition-duration: 0.2s;
@@ -105,14 +105,10 @@
         </div>
       </nuxt-link>
       <div class="common-item__main__info">
-        <clock format="YYYY.MM.DD">
-          {{ date }}
-        </clock>
+        <moment format="YYYY.MM.DD" :time="date" />
         <template v-if="item.module === 'project' || item.module==='plan'">
           ~
-          <clock format="YYYY.MM.DD">
-            {{ item.datetime_end }}
-          </clock>
+          <moment format="YYYY.MM.DD" :time="item.datetime_end"/>
         </template>
       </div>
     </div>

@@ -5,6 +5,7 @@
       width: 100%;
       padding: 60px 0;
       overflow: hidden;
+      background-image: linear-gradient( 135deg, rgb(130,130,130) 0%,rgb(103,103,103) 75% );
 
       &__main {
         display: flex;
@@ -112,7 +113,7 @@
     <div class="project__header">
       <container class="project__header__main" :max-width="900">
         <div class="project__header__main__image">
-          <img :src="$getOssUrl(data.projectItem.image)" cross-origin="anonymous">
+          <img :src="`/oss/${data.projectItem.image}`" cross-origin="anonymous">
         </div>
         <blocker height="30px" />
         <div class="project__header__main__name">
@@ -134,14 +135,10 @@
           </div>
           <div class="project__detail__item__info">
             <tag>
-              始 <clock from-now>
-                {{ data.projectItem.datetime_start }}
-              </clock>
+              始 <moment from-now type="datetime" :time="data.projectItem.datetime_start" />
             </tag>
             <tag v-if="data.projectItem.datetime_end">
-              终 <clock from-now>
-                {{ data.projectItem.datetime_end }}
-              </clock>
+              终 <moment from-now type="datetime" :time="data.projectItem.datetime_end" />
             </tag>
           </div>
         </div>

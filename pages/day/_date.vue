@@ -133,25 +133,17 @@
         <div v-if="data.dayItem.image" class="day__card__banner">
           <div v-lazy:background-image="$getOssUrl(data.dayItem.image)" class="day__card__banner__image"></div>
           <div class="day__card__banner__text">
-            <clock format="YYYY.MM.DD" class="day__card__banner__text__date">
-              {{ data.dayItem.date }}
-            </clock>
+            <moment format="YYYY.MM.DD" class="day__card__banner__text__date" :time="data.dayItem.date" />
             <small>
-              <clock format="ddd">
-                {{ data.dayItem.date }}
-              </clock>
+              <moment format="ddd" :time="data.dayItem.date" />
             </small>
           </div>
         </div>
         <div v-else class="day__card__banner--plain">
-          <clock format="YYYY.MM.DD" class="day__card__banner--plain__date">
-            {{ data.dayItem.date }}
-          </clock>
+          <moment format="YYYY.MM.DD" class="day__card__banner--plain__date" :time="data.dayItem.date" />
           <br>
           <small>
-            <clock format="ddd">
-              {{ data.dayItem.date }}
-            </clock>
+            <moment format="ddd" :time="data.dayItem.date" />
           </small>
         </div>
         <div class="day__card__main">

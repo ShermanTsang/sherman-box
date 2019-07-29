@@ -46,9 +46,7 @@
       </div>
       <blocker height="10px" />
       <div class="idea__header__info">
-        <clock format="YYYY-MM-DD" from-now>
-          {{ data.ideaItem.datetime }}
-        </clock>
+        <moment format="YYYY-MM-DD" from-now :time="data.ideaItem.datetime" />
       </div>
       <div v-if="data.ideaItem.image" v-lazy:background-image="$getOssUrl(data.ideaItem.image)" class="idea__header__image">
       </div>

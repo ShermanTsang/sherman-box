@@ -67,9 +67,7 @@
         <blocker height="20px" />
         <div class="blog__header__text__info">
           <icon name="clock" />
-          <clock format="YYYY-MM-DD" from-now>
-            {{ data.blogItem.datetime }}
-          </clock>
+          <moment format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
         </div>
       </container>
     </div>

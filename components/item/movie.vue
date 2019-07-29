@@ -141,7 +141,7 @@
         {{ item.people }}
         <br>
         <icon name="clock" size=".9rem" />
-        {{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}
+        <moment from-now :time="item.datetime" type="date"/>
       </div>
     </div>
   </card>

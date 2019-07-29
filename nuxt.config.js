@@ -15,7 +15,7 @@ export default {
       { hid: 'keywords', name: 'keywords', content: config['site.keywords'] }
     ],
     script: [
-      { src: `https://hm.baidu.com/hm.js?${config['3rd.baiduAnalyze.id']}` }
+      // { src: `https://hm.baidu.com/hm.js?${config['3rd.baiduAnalyze.id']}` }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -47,7 +47,7 @@ export default {
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/autoComponents', ssr: true },
     { src: '@/plugins/moment', ssr: true },
-    { src: '@/plugins/gradientColor', ssr: true },
+    { src: '@/plugins/gradientColor', ssr: false },
     { src: '@/plugins/vue-lazyload', ssr: true },
     { src: '@/plugins/3rdAnalyze', ssr: true }
   ],
@@ -68,7 +68,7 @@ export default {
 
   proxy: {
     '/api/': { target: `${config['api.protocol']}://${config['api.domain']}`, pathRewrite: { '^/api/': 'v1/' } },
-    // '/oss/': { target: `${config['oss.protocol']}://${config['oss.domain.https']}`, pathRewrite: { '^/oss/': '/' } }
+    '/oss/': { target: `${config['oss.protocol']}://${config['oss.domain.https']}`, pathRewrite: { '^/oss/': '/' } }
   },
 
   /*

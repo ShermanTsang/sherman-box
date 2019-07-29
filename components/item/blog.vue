@@ -72,9 +72,7 @@
             {{ item.description.length > 40 ? `${item.description.substring(0,40)}...` : item.description }}
           </template>
           <blocker height="6px" />
-          <clock format="YYYY-MM-DD" from-now>
-            {{ item.datetime }}
-          </clock>
+          <moment format="YYYY-MM-DD" from-now :time="item.datetime"/>
         </div>
       </div>
     </nuxt-link>
