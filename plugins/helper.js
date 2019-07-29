@@ -1,22 +1,22 @@
 import Vue from 'vue'
 import Gravatar from 'gravatar-url'
-import Config from '../config'
+import config from '../config'
 
 export default function () {
   function getConfigItem(key) {
-    return key ? Config[key] : `[!${key}]`
+    return key ? config[key] : `[!${key}]`
   }
 
   function getConfigList(keyword) {
     if (!keyword) {
-      return Config
+      return config
     } else {
-      const filterConfigKey = Object.keys(Config).filter((item) => {
+      const filterConfigKey = Object.keys(config).filter((item) => {
         return item.indexOf(keyword) !== -1
       })
       const filterConfigObject = {}
       filterConfigKey.forEach((item) => {
-        filterConfigObject[item] = Config[item]
+        filterConfigObject[item] = config[item]
       })
       return filterConfigObject
     }
@@ -34,8 +34,8 @@ export default function () {
     const isWithDomain = url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
     const is3rdResource = url.indexOf('cdn.share-man.com') === -1 && url.indexOf('sharemancdn.ochase.com') === -1
     return isWithDomain
-      ? (is3rdResource ? url : `/oss/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
-      : `/oss/${url}`
+      ? (is3rdResource ? url : `https://${config['oss.domain.https']}/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
+      : `https://${config['oss.domain.https']}/${url}`
   }
 
   function getAvatarUrl(type, sign) {
@@ -109,15 +109,15 @@ export default function () {
   }
 
   function getSeoInfo(type, value) {
-    const config = {
+    const seoConfig = {
       title: {
-        value: `${value} - ${getConfigItem('site.name')}`
+        value: `${value} - ${config['site.name']}`
       },
       description: {
-        value: `${value} - ${getConfigItem('site.description')}`
+        value: `${value} - ${config['site.description']}`
       }
     }
-    return config[type].value || ''
+    return seoConfig[type].value || ''
   }
 
   Vue.prototype.$config = getConfigItem
