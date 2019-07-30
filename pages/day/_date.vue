@@ -312,12 +312,8 @@ export default {
     }
   },
   mounted() {
-    this.renderGradientColor('.day__background')
   },
   methods: {
-    renderGradientColor(selector) {
-      this.$grade(document.querySelectorAll(selector))
-    }
   }
 }
 </script>
