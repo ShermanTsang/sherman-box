@@ -113,7 +113,7 @@
     <div class="project__header">
       <container class="project__header__main" :max-width="900">
         <div class="project__header__main__image">
-          <img :src="`/oss/${data.projectItem.image}`" cross-origin="anonymous">
+          <img :src="`/oss/${data.projectItem.image}`" cross-origin="anonymous" @load="$gradientColor('.project__header')">
         </div>
         <blocker height="30px" />
         <div class="project__header__main__name">
@@ -282,12 +282,8 @@ export default {
     }
   },
   mounted() {
-    this.renderGradientColor('.project__header')
   },
   methods: {
-    renderGradientColor(selector) {
-      this.$grade(document.querySelectorAll(selector))
-    }
   }
 }
 </script>

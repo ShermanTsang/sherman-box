@@ -108,7 +108,7 @@
         <moment format="YYYY.MM.DD" :time="date" />
         <template v-if="item.module === 'project' || item.module==='plan'">
           ~
-          <moment format="YYYY.MM.DD" :time="item.datetime_end"/>
+          <moment format="YYYY.MM.DD" :time="item.datetime_end" />
         </template>
       </div>
     </div>

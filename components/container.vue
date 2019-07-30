@@ -3,7 +3,7 @@
     margin: 0 auto;
 
     @media screen and (max-width: 960px) {
-      padding: 16px;
+      width: 90%;
     }
   }
 </style>

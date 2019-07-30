@@ -141,7 +141,7 @@
         {{ item.people }}
         <br>
         <icon name="clock" size=".9rem" />
-        <moment from-now :time="item.datetime" type="date"/>
+        <moment from-now :time="item.datetime" type="date" />
       </div>
     </div>
   </card>
