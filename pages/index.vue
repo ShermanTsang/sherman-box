@@ -21,7 +21,7 @@ export default {
   layout: 'default',
   head() {
     return {
-      title: this.$getSeoInfo('title', '时间轴'),
+      title: '时间轴',
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '我的时间轴') }
       ]

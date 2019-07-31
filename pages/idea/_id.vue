@@ -70,7 +70,7 @@ export default {
   },
   head() {
     return {
-      title: this.$getSeoInfo('title', `${this.data.ideaItem.name} - ${this.data.ideaItem.category.name} - 想法`),
+      title: `${this.data.ideaItem.name} - ${this.data.ideaItem.category.name} - 想法`,
       meta: [
         {
           hid: 'index',

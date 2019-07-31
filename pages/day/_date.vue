@@ -273,7 +273,7 @@ export default {
   },
   head() {
     return {
-      title: this.$getSeoInfo('title', `${this.data.dayItem.date.substring(0, 11)} - 日迹`),
+      title: `${this.data.dayItem.date.substring(0, 11)} - 日迹`,
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.dayItem.date.substring(0, 11)}日迹`) }
       ]

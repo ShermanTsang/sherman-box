@@ -38,7 +38,7 @@ export default {
   },
   head() {
     return {
-      title: this.$getSeoInfo('title', `观影`),
+      title: `观影`,
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '观影列表') }
       ]

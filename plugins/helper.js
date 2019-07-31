@@ -110,11 +110,11 @@ export default function () {
 
   function getSeoInfo(type, value) {
     const seoConfig = {
-      title: {
-        value: `${value} - ${config['site.name']}`
-      },
       description: {
         value: `${value} - ${config['site.description']}`
+      },
+      keywords: {
+        value: `${value} - ${config['site.keywords']}`
       }
     }
     return seoConfig[type].value || ''

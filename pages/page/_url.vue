@@ -19,7 +19,7 @@ export default {
   },
   head() {
     return {
-      title: this.$getSeoInfo('title', `${this.data.pageItem.name} - 页面`),
+      title: `${this.data.pageItem.name} - 页面`,
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', this.data.pageItem.description || '') }
       ]

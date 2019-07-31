@@ -90,7 +90,7 @@ export default {
   },
   head() {
     return {
-      title: this.$getSeoInfo('title', `${this.data.blogItem.name} - ${this.data.blogItem.category.name} - 博文`),
+      title: `${this.data.blogItem.name} - ${this.data.blogItem.category.name} - 博文`,
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.blogItem.description || ''}`) }
       ]

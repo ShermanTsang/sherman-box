@@ -1,9 +1,11 @@
 export default ({ app: { router }, store }) => {
   router.afterEach((to, from) => {
-    try {
-      window._hmt = window._hmt || []
-      window._hmt.push(['_trackPageview', to.fullPath])
-    } catch (e) {
+    if (process.BROWSER_BUILD && process.env.NODE_ENV === 'production') {
+      try {
+        window._hmt = window._hmt || []
+        window._hmt.push(['_trackPageview', to.fullPath])
+      } catch (e) {
+      }
     }
   })
 }

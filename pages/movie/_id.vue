@@ -116,7 +116,7 @@ export default {
   },
   head() {
     return {
-      title: this.$getSeoInfo('title', `${this.data.movieItem.name} - ${this.data.movieItem.category.name} - 观影`),
+      title: `${this.data.movieItem.name} - ${this.data.movieItem.category.name} - 观影`,
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.movieItem.description || ''}`) }
       ]

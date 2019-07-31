@@ -3,11 +3,15 @@ import config from './config'
 export default {
   mode: 'universal',
 
+  server: {
+    port: config['server.port'],
+    host: config['server.host']
+  },
   /*
   ** Headers of the page
   */
   head: {
-    title: config['site.name'],
+    titleTemplate: `%s - ${config['site.name']}`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -15,10 +19,11 @@ export default {
       { hid: 'keywords', name: 'keywords', content: config['site.keywords'] }
     ],
     script: [
-      // { src: `https://hm.baidu.com/hm.js?${config['3rd.baiduAnalyze.id']}` }
+      process.BROWSER_BUILD && process.env.NODE_ENV === 'production' ? { src: `https://hm.baidu.com/hm.js?${config['3rd.baiduAnalyze.id']}` } : {}
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'favicon', href: '/favicon.ico' }
     ]
   },
 
@@ -46,10 +51,10 @@ export default {
     { src: '@/plugins/antdUI', ssr: true },
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/autoComponents', ssr: true },
-    { src: '@/plugins/moment', ssr: true },
+    { src: '@/plugins/moment', ssr: false },
     { src: '@/plugins/gradientColor', ssr: false },
-    { src: '@/plugins/vue-lazyload', ssr: true },
-    { src: '@/plugins/3rdAnalyze', ssr: true }
+    { src: '@/plugins/vue-lazyload', ssr: false },
+    { src: '@/plugins/3rdAnalyze', ssr: false }
   ],
 
   /*

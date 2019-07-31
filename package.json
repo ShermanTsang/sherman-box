@@ -1,7 +1,7 @@
 {
   "name": "shareman-box-v3",
   "title": "曾小满的盒子 ShareMan's Box",
-  "version": "1.0.0",
+  "version": "3.0.1",
   "description": "ShareManBox front-end version 3 with nuxt.js.",
   "author": "ShareManT",
   "private": true,

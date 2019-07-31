@@ -267,7 +267,7 @@ export default {
   },
   head() {
     return {
-      title: this.$getSeoInfo('title', `${this.data.projectItem.name} - ${this.data.projectItem.category.name} - 项目`),
+      title: `${this.data.projectItem.name} - ${this.data.projectItem.category.name} - 项目`,
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.projectItem.description || ''}`) }
       ]
