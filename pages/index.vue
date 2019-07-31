@@ -7,7 +7,7 @@
     <nameplate title="告示" sub-title="announce" />
     <markdown
       content="您现在看到的是曾小满的盒子第三版，网站近期已基于新的技术栈进行重构，部分调整还在进行中。
-    目前访问可能会出现较多的问题，新版本更新完全后会有较大的改善。(WEBHOOK DEPLOY TEST)"
+    目前访问可能会出现较多的问题，新版本更新完全后会有较大的改善。(WEBHOOK DEPLOY TEST 2019-07-31)"
     ></markdown>
     <blocker height="40px" />
     <nameplate title="时间轴" sub-title="timeline" />
