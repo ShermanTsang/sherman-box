@@ -2,8 +2,8 @@
   .markdown {
 
     article {
-      font-size: 1.05em;
-      line-height: 2;
+      font-size: 1.05rem;
+      line-height: 1.6;
       counter-reset: h1;
       color: #666;
       letter-spacing: 2px;

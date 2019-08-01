@@ -10,7 +10,7 @@
 </style>
 
 <template>
-  <nuxt-link v-if="timeValue" :to="`/day/${timeValue.format('YYYY-MM-DD')}`" class="moment">
+  <nuxt-link v-if="timeValue" :to="{path:`/day/${timeValue.format('YYYY-MM-DD')}`}" class="moment">
     {{ timeValue.format(format) }}
     <small v-if="fromNow">{{ timeValue.fromNow() }}</small>
   </nuxt-link>

@@ -2,7 +2,7 @@
   .nameplate {
     cursor: default;
     font-size: 1.8rem;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     color: #333;
 
     span {
