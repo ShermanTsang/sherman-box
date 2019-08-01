@@ -53,7 +53,7 @@ export default {
     { src: '@/plugins/autoComponents', ssr: true },
     { src: '@/plugins/moment', ssr: true },
     { src: '@/plugins/gradientColor', ssr: false },
-    { src: '@/plugins/vue-lazyload', ssr: false },
+    { src: '@/plugins/vueLazyload', ssr: false },
     { src: '@/plugins/3rdAnalyze', ssr: false }
   ],
 

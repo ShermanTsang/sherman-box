@@ -1,7 +1,7 @@
 <style lang="scss">
   .common-item {
     position: relative;
-    padding: 20px;
+    padding: 16px;
     margin: 20px 0;
     overflow: hidden;
     transition-duration: 0.2s;

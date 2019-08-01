@@ -1,6 +1,6 @@
 export default ({ app: { router }, store }) => {
   router.afterEach((to, from) => {
-    if (process.BROWSER_BUILD && process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
       try {
         window._hmt = window._hmt || []
         window._hmt.push(['_trackPageview', to.fullPath])
