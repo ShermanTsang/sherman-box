@@ -1,5 +1,5 @@
 <style lang="scss">
-  .imageBox {
+  .image-box {
     z-index: 996;
     position: fixed;
     top: 0;
@@ -48,9 +48,9 @@
 </style>
 
 <template>
-  <div v-if="imageUrl" class="imageBox" @click="handleClick($event)">
-    <div class="imageBox__overlay"></div>
-    <div class="imageBox__image">
+  <div v-if="imageUrl" v-transfer-dom class="image-box" @click="handleClick($event)">
+    <div class="image-box__overlay"></div>
+    <div class="image-box__image">
       <img :src="$getOssUrl(imageUrl)">
     </div>
   </div>

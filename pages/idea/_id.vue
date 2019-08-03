@@ -39,8 +39,8 @@
 
 <template>
   <div class="idea">
-    <container :max-width="1060" class="idea__header">
-      <blocker height="40px" />
+    <layout-container :max-width="1060" class="idea__header">
+      <blocker height="60px" />
       <div class="idea__header__title">
         {{ data.ideaItem.name }}
       </div>
@@ -48,17 +48,21 @@
       <div class="idea__header__info">
         <moment format="YYYY-MM-DD" from-now :time="data.ideaItem.datetime" />
       </div>
-      <div v-if="data.ideaItem.image" v-lazy:background-image="$getOssUrl(data.ideaItem.image)" class="idea__header__image">
+      <div
+        v-if="data.ideaItem.image"
+        v-lazy:background-image="$getOssUrl(data.ideaItem.image)"
+        class="idea__header__image"
+      >
       </div>
-    </container>
+    </layout-container>
     <blocker height="20px" />
-    <container class="idea__content" :max-width="1060">
+    <layout-container class="idea__content" :max-width="1060">
       <markdown :content="data.ideaItem.content" />
-    </container>
+    </layout-container>
     <blocker height="60px" />
-    <container :max-width="1060">
+    <layout-container :max-width="1060">
       <comment :data="data.ideaItem.comments" />
-    </container>
+    </layout-container>
     <blocker height="60px" />
   </div>
 </template>

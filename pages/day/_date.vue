@@ -127,7 +127,7 @@
 <template>
   <div class="day">
     <blocker height="40px" />
-    <container :max-width="1280">
+    <layout-container :max-width="1280">
       <nameplate title="数据" sub-title="data" />
       <card class="day__card">
         <div v-if="data.dayItem.image" class="day__card__banner">
@@ -252,16 +252,16 @@
           </div>
         </div>
       </card>
-    </container>
+    </layout-container>
     <blocker height="40px" />
-    <container :max-width="1280">
+    <layout-container :max-width="1280">
       <nameplate title="记录" sub-title="record" />
       <item-common v-for="item in allItem" :key="item.id" :item="item"></item-common>
-    </container>
+    </layout-container>
     <blocker height="60px" />
-    <container :max-width="1280">
+    <layout-container :max-width="1280">
       <comment :data="data.dayItem.comments" />
-    </container>
+    </layout-container>
     <blocker height="60px" />
   </div>
 </template>
@@ -275,7 +275,11 @@ export default {
     return {
       title: `${this.data.dayItem.date.substring(0, 11)} - 日迹`,
       meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.dayItem.date.substring(0, 11)}日迹`) }
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${this.data.dayItem.date.substring(0, 11)}日迹`)
+        }
       ]
     }
   },
@@ -313,7 +317,6 @@ export default {
   },
   mounted() {
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>

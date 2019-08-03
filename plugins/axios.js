@@ -12,9 +12,11 @@ export default function ({ $axios, redirect }) {
     }
   })
 
-  // $axios.onRequestError((error) => {
-  // })
+  $axios.onRequestError((error) => {
+    console.log(error)
+  })
 
-  // $axios.onResponseError((error) => {
-  // })
+  $axios.onResponseError((error) => {
+    console.log(error)
+  })
 }

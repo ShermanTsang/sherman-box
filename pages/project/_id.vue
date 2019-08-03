@@ -5,7 +5,7 @@
       width: 100%;
       padding: 60px 0;
       overflow: hidden;
-      background-image: linear-gradient( 135deg, rgb(130,130,130) 0%,rgb(103,103,103) 75% );
+      background-image: linear-gradient(135deg, rgb(130, 130, 130) 0%, rgb(103, 103, 103) 75%);
 
       &__main {
         display: flex;
@@ -100,7 +100,7 @@
           }
         }
 
-        &:hover{
+        &:hover {
           box-shadow: 0 0 20px rgba(0, 0, 0, .1) inset;
         }
       }
@@ -111,9 +111,13 @@
 <template>
   <div class="project">
     <div class="project__header">
-      <container class="project__header__main" :max-width="900">
+      <layout-container class="project__header__main" :max-width="900">
         <div class="project__header__main__image">
-          <img :src="`/oss/${data.projectItem.image}`" cross-origin="anonymous" @load="$gradientColor('.project__header')">
+          <img
+            :src="`/oss/${data.projectItem.image}`"
+            cross-origin="anonymous"
+            @load="$gradientColor('.project__header')"
+          >
         </div>
         <blocker height="30px" />
         <div class="project__header__main__name">
@@ -123,28 +127,32 @@
         <div class="project__header__main__description">
           {{ data.projectItem.description || '暂无项目介绍' }}
         </div>
-      </container>
+      </layout-container>
     </div>
     <blocker height="60px" />
-    <container :max-width="1060">
+    <layout-container :max-width="1060">
       <nameplate title="详情" sub-title="Detail" />
       <div class="project__detail">
         <div v-if="data.projectItem.datetime_start" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="clock" /> 项目时间
+            <icon name="clock" />
+            项目时间
           </div>
           <div class="project__detail__item__info">
             <tag>
-              始 <moment from-now type="datetime" :time="data.projectItem.datetime_start" />
+              始
+              <moment from-now type="datetime" :time="data.projectItem.datetime_start" />
             </tag>
             <tag v-if="data.projectItem.datetime_end">
-              终 <moment from-now type="datetime" :time="data.projectItem.datetime_end" />
+              终
+              <moment from-now type="datetime" :time="data.projectItem.datetime_end" />
             </tag>
           </div>
         </div>
         <div v-if="data.projectItem.category" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="category" /> 项目类型
+            <icon name="category" />
+            项目类型
           </div>
           <div class="project__detail__item__info">
             <tag>{{ data.projectItem.category.name }}</tag>
@@ -152,7 +160,8 @@
         </div>
         <div v-if="data.projectItem.tags" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="hashtag" /> 项目标签
+            <icon name="hashtag" />
+            项目标签
           </div>
           <div class="project__detail__item__info">
             <tag>{{ data.projectItem.tags }}</tag>
@@ -160,7 +169,8 @@
         </div>
         <div v-if="data.projectItem.status" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="status" /> 项目状态
+            <icon name="status" />
+            项目状态
           </div>
           <div class="project__detail__item__info">
             <tag>{{ data.projectItem.status }}</tag>
@@ -171,7 +181,8 @@
         </div>
         <div v-if="data.projectItem.role" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="role" /> 我的角色
+            <icon name="role" />
+            我的角色
           </div>
           <div class="project__detail__item__info">
             <tag>{{ data.projectItem.role }}</tag>
@@ -179,7 +190,8 @@
         </div>
         <div v-if="data.projectItem.client" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="user-require" /> 需求委托方
+            <icon name="user-require" />
+            需求委托方
           </div>
           <div class="project__detail__item__info">
             <tag>{{ data.projectItem.client }}</tag>
@@ -187,7 +199,8 @@
         </div>
         <div v-if="data.projectItem.coworker" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="user-helper" /> 项目协作者
+            <icon name="user-helper" />
+            项目协作者
           </div>
           <div class="project__detail__item__info">
             <tag>{{ data.projectItem.coworker }}</tag>
@@ -195,7 +208,8 @@
         </div>
         <div v-if="data.projectItem.url" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="link" /> 预览地址
+            <icon name="link" />
+            预览地址
           </div>
           <div class="project__detail__item__info">
             <tag><a :href="data.projectItem.url" target="_blank">点击进入</a></tag>
@@ -203,7 +217,8 @@
         </div>
         <div v-if="data.projectItem.github" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="github" /> Github仓库
+            <icon name="github" />
+            Github仓库
           </div>
           <div class="project__detail__item__info">
             <tag><a :href="data.projectItem.github" target="_blank">点击进入</a></tag>
@@ -211,30 +226,31 @@
         </div>
         <div v-if="data.projectItem.qrcode" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="github" /> 预览地址
+            <icon name="github" />
+            预览地址
           </div>
           <div class="project__detail__item__info">
             <img v-lazy="$getOssUrl(data.projectItem.qrcode)">
           </div>
         </div>
       </div>
-    </container>
+    </layout-container>
     <template v-if="data.projectItem.content">
       <blocker height="60px" />
-      <container :max-width="1060">
+      <layout-container :max-width="1060">
         <nameplate title="预览" sub-title="Preview" />
         <markdown :content="data.projectItem.content || ''" />
-      </container>
+      </layout-container>
     </template>
     <template v-if="data.projectItem.logs">
       <blocker height="60px" />
-      <container :max-width="1060">
+      <layout-container :max-width="1060">
         <nameplate title="日志" sub-title="Log" />
         <markdown :content="data.projectItem.logs || ''" />
-      </container>
+      </layout-container>
     </template>
     <blocker height="40px" />
-    <container v-if="data.projectItem.file" :max-width="1060">
+    <layout-container v-if="data.projectItem.file" :max-width="1060">
       <nameplate title="文件" sub-title="file" />
       <iframe
         v-if="data.projectItem.file.indexOf('.ppt') !== -1 || data.projectItem.file.indexOf('.doc') !== -1"
@@ -242,8 +258,8 @@
         width="100%"
         height="600px"
       ></iframe>
-    </container>
-    <container v-if="data.projectItem.video" :max-width="1060">
+    </layout-container>
+    <layout-container v-if="data.projectItem.video" :max-width="1060">
       <nameplate title="视频" sub-title="video" />
       <iframe
         height="500"
@@ -251,11 +267,11 @@
         :src="data.projectItem.video"
         allowfullscreen
       ></iframe>
-    </container>
+    </layout-container>
     <blocker height="60px" />
-    <container :max-width="1060">
+    <layout-container :max-width="1060">
       <comment :data="data.projectItem.comments" />
-    </container>
+    </layout-container>
     <blocker height="60px" />
   </div>
 </template>
@@ -269,7 +285,11 @@ export default {
     return {
       title: `${this.data.projectItem.name} - ${this.data.projectItem.category.name} - 项目`,
       meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.projectItem.description || ''}`) }
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${this.data.projectItem.description || ''}`)
+        }
       ]
     }
   },
@@ -283,7 +303,6 @@ export default {
   },
   mounted() {
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>

@@ -9,7 +9,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 8px #f0f1f2;
-      background-image: linear-gradient( 135deg, rgb(130,130,130) 0%,rgb(103,103,103) 75% );
+      background-image: linear-gradient(135deg, rgb(130, 130, 130) 0%, rgb(103, 103, 103) 75%);
 
       &__poster {
         &__image {
@@ -73,38 +73,43 @@
       <blocker width="100px" />
       <div class="movie__header__main">
         <div v-if="data.movieItem.type" class="movie__header__main__item">
-          <icon name="category" /> {{ data.movieItem.type }}
+          <icon name="category" />
+          {{ data.movieItem.type }}
         </div>
         <div v-if="data.movieItem.score" class="movie__header__main__item">
-          <icon name="star" /> {{ data.movieItem.score }}分
+          <icon name="star" />
+          {{ data.movieItem.score }}分
         </div>
         <div v-if="data.movieItem.people" class="movie__header__main__item">
-          <icon name="user" /> {{ data.movieItem.people }}
+          <icon name="user" />
+          {{ data.movieItem.people }}
         </div>
         <div v-if="data.movieItem.site" class="movie__header__main__item">
-          <icon name="location" /> {{ data.movieItem.site }}
+          <icon name="location" />
+          {{ data.movieItem.site }}
         </div>
         <div v-if="data.movieItem.datetime" class="movie__header__main__item">
-          <icon name="clock" /> <moment :time="data.movieItem.datetime" type="date" from-now />
+          <icon name="clock" />
+          <moment :time="data.movieItem.datetime" type="date" from-now />
         </div>
       </div>
     </div>
     <template v-if="data.movieItem.schedule">
       <blocker height="60px" />
-      <container class="movie__content" :max-width="1060">
+      <layout-container class="movie__content" :max-width="1060">
         <nameplate title="追剧" sub-title="binge-watching" />
         <tag>{{ data.movieItem.schedule }}</tag>
-      </container>
+      </layout-container>
     </template>
     <blocker height="60px" />
-    <container class="movie__content" :max-width="1060">
+    <layout-container class="movie__content" :max-width="1060">
       <nameplate title="想法" sub-title="thinking" />
       <markdown :content="data.movieItem.comment || ''" />
-    </container>
+    </layout-container>
     <blocker height="40px" />
-    <container :max-width="1060">
+    <layout-container :max-width="1060">
       <comment :data="data.movieItem.comments" />
-    </container>
+    </layout-container>
     <blocker height="60px" />
   </div>
 </template>
@@ -118,7 +123,11 @@ export default {
     return {
       title: `${this.data.movieItem.name} - ${this.data.movieItem.category.name} - 观影`,
       meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.movieItem.description || ''}`) }
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${this.data.movieItem.description || ''}`)
+        }
       ]
     }
   },
@@ -132,7 +141,6 @@ export default {
   },
   mounted() {
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>

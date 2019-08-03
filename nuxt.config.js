@@ -48,13 +48,13 @@ export default {
   */
   plugins: [
     { src: '@/plugins/helper', ssr: true },
-    { src: '@/plugins/antdUI', ssr: true },
     { src: '@/plugins/axios', ssr: true },
-    { src: '@/plugins/autoComponents', ssr: true },
+    { src: '@/plugins/transfer-dom', ssr: true },
+    { src: '@/plugins/auto-components', ssr: true },
     { src: '@/plugins/moment', ssr: true },
-    { src: '@/plugins/gradientColor', ssr: false },
-    { src: '@/plugins/vueLazyload', ssr: false },
-    { src: '@/plugins/3rdAnalyze', ssr: false }
+    { src: '@/plugins/gradient-color', ssr: false },
+    { src: '@/plugins/vue-lazyload', ssr: false },
+    { src: '@/plugins/3rd-analyze', ssr: false }
   ],
 
   /*
@@ -80,6 +80,7 @@ export default {
   ** Build configuration
   */
   build: {
+    analyze: false,
     maxChunkSize: 300000,
     /*
     ** You can extend webpack config here

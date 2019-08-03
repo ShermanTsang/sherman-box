@@ -35,7 +35,7 @@
 
 <template>
   <footer class="footer">
-    <container class="footer__container">
+    <layout-container class="footer__container">
       <div class="footer__container__page">
         <div v-for="item in $store.getters.pageCollection" :key="item.id" class="footer__container__page__item">
           <nuxt-link :to="{name:`page-url`,params:{type:'page',id:item.id,url:item.url}}">
@@ -46,7 +46,7 @@
       <div class="footer__container__info">
         {{ $getConfig('site.icp') }}
       </div>
-    </container>
+    </layout-container>
   </footer>
 </template>
 

@@ -2,18 +2,16 @@
 </style>
 
 <template>
-  <container>
+  <layout-container>
     404
-  </container>
+  </layout-container>
 </template>
 
 <script>
 export default {
   layout: 'default',
   asyncData({ params }) {
-    return {
-
-    }
+    return {}
   }
 }
 </script>

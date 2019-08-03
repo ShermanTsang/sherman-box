@@ -38,7 +38,7 @@
         color: #fff;
         cursor: default;
         padding: 0 20px;
-        text-shadow: 0 0 8px rgba(0,0,0,.8);
+        text-shadow: 0 0 8px rgba(0, 0, 0, .8);
 
         &__title {
           letter-spacing: 2px;
@@ -60,7 +60,7 @@
     <div class="blog__header">
       <div v-lazy:background-image="$getOssUrl(data.blogItem.image)" class="blog__header__image">
       </div>
-      <container :max-width="1060" class="blog__header__text">
+      <layout-container :max-width="1060" class="blog__header__text">
         <div class="blog__header__text__title">
           {{ data.blogItem.name }}
         </div>
@@ -69,16 +69,16 @@
           <icon name="clock" />
           <moment format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
         </div>
-      </container>
+      </layout-container>
     </div>
     <blocker height="20px" />
-    <container class="blog__content" :max-width="1060">
+    <layout-container class="blog__content" :max-width="1060">
       <markdown :content="data.blogItem.content" />
-    </container>
+    </layout-container>
     <blocker height="60px" />
-    <container :max-width="1060">
+    <layout-container :max-width="1060">
       <comment :data="data.blogItem.comments" />
-    </container>
+    </layout-container>
     <blocker height="60px" />
   </div>
 </template>
@@ -92,7 +92,11 @@ export default {
     return {
       title: `${this.data.blogItem.name} - ${this.data.blogItem.category.name} - 博文`,
       meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', `${this.data.blogItem.description || ''}`) }
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${this.data.blogItem.description || ''}`)
+        }
       ]
     }
   },

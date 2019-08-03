@@ -4,12 +4,12 @@
 </style>
 
 <template>
-  <container class="page" :max-width="1060">
+  <layout-container class="page" :max-width="1060">
     <blocker height="40px" />
     <nameplate :title="data.pageItem.name" :sub-title="data.pageItem.url" />
     <blocker height="40px" />
     <markdown :content="data.pageItem.content" />
-  </container>
+  </layout-container>
 </template>
 
 <script>
@@ -21,7 +21,11 @@ export default {
     return {
       title: `${this.data.pageItem.name} - 页面`,
       meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', this.data.pageItem.description || '') }
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', this.data.pageItem.description || '')
+        }
       ]
     }
   },

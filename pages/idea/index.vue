@@ -12,7 +12,7 @@
 </style>
 
 <template>
-  <container>
+  <layout-container>
     <blocker height="40px" />
     <div v-if="data.ideaCollection" class="idea-list">
       <div
@@ -31,7 +31,7 @@
       @change="changePage"
     />
     <blocker height="40px" />
-  </container>
+  </layout-container>
 </template>
 
 <script>

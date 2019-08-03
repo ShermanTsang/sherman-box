@@ -1,5 +1,5 @@
 <style lang="scss">
-  .container {
+  .layout-container {
     margin: 0 auto;
 
     @media screen and (max-width: 960px) {
@@ -9,14 +9,14 @@
 </style>
 
 <template>
-  <div class="container" :style="style">
+  <div class="layout-container" :style="style">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Container',
+  name: 'LayoutContainer',
   props: {
     maxWidth: {
       type: Number,

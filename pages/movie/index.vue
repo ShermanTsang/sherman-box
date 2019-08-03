@@ -7,28 +7,32 @@
 </style>
 
 <template>
-  <container>
+  <layout-container>
     <blocker height="40px" />
     <div v-if="data.movieCollection" class="movie-list">
-      <a-row :gutter="16">
-        <a-col
+      <layout-row :gutter="16">
+        <layout-col
           v-for="item in data.movieCollection"
           :key="item.id"
-          class="gutter-row"
-          :xs="24"
-          :sm="12"
-          :md="12"
-          :lg="12"
-          :xl="8"
+          :xs="{span:24}"
+          :sm="{span:12}"
+          :md="{span:12}"
+          :lg="{span:12}"
+          :xl="{span:8}"
         >
           <item-movie :item="item" />
-        </a-col>
-      </a-row>
+        </layout-col>
+      </layout-row>
     </div>
     <blocker height="40px" />
-    <pagination :page="parseInt(meta.current_page)" :total="parseInt(meta.total)" :size="parseInt(meta.per_page)" @change="changePage" />
+    <pagination
+      :page="parseInt(meta.current_page)"
+      :total="parseInt(meta.total)"
+      :size="parseInt(meta.per_page)"
+      @change="changePage"
+    />
     <blocker height="40px" />
-  </container>
+  </layout-container>
 </template>
 
 <script>

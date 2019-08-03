@@ -7,21 +7,19 @@
 </style>
 
 <template>
-  <container>
+  <layout-container>
     <blocker height="40px" />
     <div v-if="data.dayCollection" class="day-list">
-      <a-row :gutter="16">
-        <a-col
+      <layout-row :gutter="16">
+        <layout-col
           v-for="item in data.dayCollection"
           :key="item.id"
-          class="gutter-row"
-          :md="24"
-          :lg="12"
-          :xl="12"
+          :md="{span:24}"
+          :lg="{span:12}"
         >
           <item-day :item="item" />
-        </a-col>
-      </a-row>
+        </layout-col>
+      </layout-row>
     </div>
     <blocker height="40px" />
     <pagination
@@ -31,7 +29,7 @@
       @change="changePage"
     />
     <blocker height="40px" />
-  </container>
+  </layout-container>
 </template>
 
 <script>

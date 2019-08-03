@@ -7,28 +7,29 @@
 </style>
 
 <template>
-  <container>
+  <layout-container>
     <blocker height="40px" />
     <div v-if="data.projectCollection" class="project-list">
-      <a-row :gutter="16">
-        <a-col
+      <layout-row :gutter="16">
+        <layout-col
           v-for="item in data.projectCollection"
           :key="item.id"
-          class="gutter-row"
-          :xs="24"
-          :sm="24"
-          :md="12"
-          :lg="12"
-          :xl="12"
+          :md="{span:24}"
+          :lg="{span:12}"
         >
           <item-project :item="item" />
-        </a-col>
-      </a-row>
+        </layout-col>
+      </layout-row>
     </div>
     <blocker height="40px" />
-    <pagination :page="parseInt(meta.current_page)" :total="parseInt(meta.total)" :size="parseInt(meta.per_page)" @change="changePage" />
+    <pagination
+      :page="parseInt(meta.current_page)"
+      :total="parseInt(meta.total)"
+      :size="parseInt(meta.per_page)"
+      @change="changePage"
+    />
     <blocker height="40px" />
-  </container>
+  </layout-container>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 {
   "name": "shareman-box-v3",
   "title": "曾小满的盒子 ShareMan's Box",
-  "version": "3.0.1",
+  "version": "3.0.6",
   "description": "ShareManBox front-end version 3 with nuxt.js.",
   "author": "ShareManT",
   "private": true,
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",
-    "ant-design-vue": "^1.1.10",
     "cross-env": "^5.2.0",
     "grade-js": "^1.0.10",
     "gravatar-url": "^3.0.1",

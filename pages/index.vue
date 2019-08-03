@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <container :max-width="1060">
+  <layout-container :max-width="1060">
     <blocker height="40px" />
     <nameplate title="告示" sub-title="announce" />
     <markdown
@@ -13,7 +13,7 @@
     <nameplate title="时间轴" sub-title="timeline" />
     <item-common v-for="item in data.timeline" :key="`${item.module}-${item.id}`" :item="item">
     </item-common>
-  </container>
+  </layout-container>
 </template>
 
 <script>
