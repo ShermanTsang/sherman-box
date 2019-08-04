@@ -9,6 +9,8 @@
 <template>
   <layout-container>
     <blocker height="40px" />
+    <category-box module="project" />
+    <blocker height="40px" />
     <div v-if="data.projectCollection" class="project-list">
       <layout-row :gutter="16">
         <layout-col
@@ -48,7 +50,8 @@ export default {
   async asyncData({ $axios, query }) {
     const { data: projectCollection, meta } = await $axios.$get(`/api/projects`, {
       params: {
-        page: query.page
+        page: query.page,
+        categoryId: query.categoryId || ''
       }
     })
     return {
@@ -65,6 +68,6 @@ export default {
       this.$router.push({ name: 'project', query: { page: parseInt(currentPage) } })
     }
   },
-  watchQuery: ['page']
+  watchQuery: ['page', 'categoryId']
 }
 </script>

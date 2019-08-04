@@ -19,11 +19,16 @@ export default {
     const { data } = await this.$axios.$get('/api/pages')
     commit('pageCollection', data)
   },
+  async GET_CATEGORY_COLLECTION({ commit }) {
+    const { data } = await this.$axios.$get('/api/categories')
+    commit('categoryCollection', data)
+  },
   async nuxtServerInit({ dispatch }) {
     await dispatch('GET_CONFIGURATION_COLLECTION')
     await dispatch('GET_FILE_ASSET_COLLECTION')
     await dispatch('GET_IMAGE_ASSET_COLLECTION')
     await dispatch('GET_MODULE_COLLECTION')
     await dispatch('GET_PAGE_COLLECTION')
+    await dispatch('GET_CATEGORY_COLLECTION')
   }
 }

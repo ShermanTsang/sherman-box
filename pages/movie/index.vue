@@ -9,6 +9,8 @@
 <template>
   <layout-container>
     <blocker height="40px" />
+    <category-box module="movie" />
+    <blocker height="40px" />
     <div v-if="data.movieCollection" class="movie-list">
       <layout-row :gutter="16">
         <layout-col
@@ -51,8 +53,9 @@ export default {
   async asyncData({ $axios, query }) {
     const { data: movieCollection, meta } = await $axios.$get(`/api/movies`, {
       params: {
-        pageSize: 12,
-        page: query.page
+        pageSize: 9,
+        page: query.page,
+        categoryId: query.categoryId || ''
       }
     })
     return {
@@ -69,6 +72,6 @@ export default {
       this.$router.push({ name: 'movie', query: { page: parseInt(currentPage) } })
     }
   },
-  watchQuery: ['page']
+  watchQuery: ['page', 'categoryId']
 }
 </script>

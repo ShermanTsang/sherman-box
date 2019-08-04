@@ -8,6 +8,7 @@
     right: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0,0,0,.6);
 
     &__overlay {
       z-index: 998;
@@ -17,8 +18,7 @@
       right: 0;
       width: 100%;
       height: 100%;
-      opacity: .87;
-      transition-timing-function: cubic-bezier(.22,.61,.36,1);
+      opacity: .5;
       background: rgba(0,0,0,.6);
     }
 
@@ -48,10 +48,9 @@
 </style>
 
 <template>
-  <div v-if="imageUrl" v-transfer-dom class="image-box" @click="handleClick($event)">
-    <div class="image-box__overlay"></div>
+  <div v-if="imageUrl" class="image-box" @click="handleClick($event)">
     <div class="image-box__image">
-      <img :src="$getOssUrl(imageUrl)">
+      <img :src="$getOssUrl(imageUrl,true)" cross-origin="anonymous" @load="$gradientColor('.image-box')">
     </div>
   </div>
 </template>
@@ -75,8 +74,6 @@ export default {
       this.imageUrl = url
       this.$emit('update:url', url)
     }
-  },
-  mounted() {
   },
   methods: {
     handleClick(event) {

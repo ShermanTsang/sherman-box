@@ -71,7 +71,6 @@ export default {
   },
   data() {
     return {
-      currentPath: this.$route.path || '',
       currentPage: parseInt(this.$route.query.page) || 1
     }
   },
@@ -107,7 +106,11 @@ export default {
     },
     jumpPage(pageNumber) {
       if (pageNumber !== 0) {
-        this.$router.push(`${this.currentPath}?page=${pageNumber}`)
+        const path = this.$route.path || ''
+        const query = this.$route.query || {}
+        const newQuery = JSON.parse(JSON.stringify(query))
+        newQuery.page = pageNumber
+        this.$router.push({ path, query: newQuery })
         this.currentPage = pageNumber
       }
     }

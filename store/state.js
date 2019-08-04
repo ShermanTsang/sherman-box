@@ -3,5 +3,6 @@ export default () => ({
   fileAssetCollection: [],
   imageAssetCollection: [],
   moduleCollection: [],
-  pageCollection: []
+  pageCollection: [],
+  categoryCollection: []
 })

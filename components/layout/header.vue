@@ -20,6 +20,7 @@
       }
 
       &__menu {
+        height: 100%;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
@@ -40,6 +41,31 @@
             color: #aaa;
           }
         }
+
+        &__item--active {
+          position: relative;
+
+          a {
+            color: #08AEEA;
+          }
+
+          i {
+            color: #08AEEA;
+          }
+
+          &:after {
+            position: absolute;
+            content: '';
+            bottom: -27px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background-color: #08AEEA;
+            height: 2px;
+          }
+        ;
+        }
+
       }
     }
   }
@@ -52,7 +78,12 @@
         <logo></logo>
       </div>
       <div class="header__container__menu">
-        <div v-for="(item,index) in $store.getters.moduleCollection" :key="index" class="header__container__menu__item">
+        <div
+          v-for="(item,index) in $store.getters.moduleCollection"
+          :key="index"
+          class="header__container__menu__item"
+          :class="{'header__container__menu__item--active': isActiveMenu(item)}"
+        >
           <nuxt-link :to="`/${item.url}`">
             <icon :name="item.icon" />
             {{ item.name }}
@@ -71,6 +102,11 @@ export default {
   },
   mounted() {
   },
-  methods: {}
+  methods: {
+    isActiveMenu(menuItem) {
+      const { url } = menuItem
+      return this.$route.path.indexOf(url) > 0
+    }
+  }
 }
 </script>

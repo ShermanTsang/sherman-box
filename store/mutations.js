@@ -13,5 +13,8 @@ export default {
   },
   pageCollection(state, data) {
     state.pageCollection = data
+  },
+  categoryCollection(state, data) {
+    state.categoryCollection = data
   }
 }

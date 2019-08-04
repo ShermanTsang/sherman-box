@@ -14,6 +14,8 @@
 <template>
   <layout-container>
     <blocker height="40px" />
+    <category-box module="idea" />
+    <blocker height="40px" />
     <div v-if="data.ideaCollection" class="idea-list">
       <div
         v-for="item in data.ideaCollection"
@@ -50,7 +52,8 @@ export default {
   async asyncData({ $axios, query }) {
     const { data: ideaCollection, meta } = await $axios.$get(`/api/ideas`, {
       params: {
-        page: query.page
+        page: query.page,
+        categoryId: query.categoryId || ''
       }
     })
     return {
@@ -64,9 +67,12 @@ export default {
   },
   methods: {
     changePage(currentPage) {
-      this.$router.push({ name: 'idea', query: { page: parseInt(currentPage) } })
+      this.$router.push({ name: 'idea',
+        query: {
+          page: parseInt(currentPage)
+        } })
     }
   },
-  watchQuery: ['page']
+  watchQuery: ['page', 'categoryId']
 }
 </script>

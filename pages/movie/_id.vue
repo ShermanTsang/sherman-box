@@ -63,7 +63,7 @@
     <div class="movie__header">
       <div class="movie__header__poster">
         <div class="movie__header__poster__image">
-          <img :src="`/oss/${data.movieItem.image}`" cross-origin="anonymous" @load="$gradientColor('.movie__header')">
+          <img :src="$getOssUrl(data.movieItem.image,true)" cross-origin="anonymous" @load="$gradientColor('.movie__header')">
         </div>
         <blocker height="20px" />
         <div class="movie__header__poster__name">

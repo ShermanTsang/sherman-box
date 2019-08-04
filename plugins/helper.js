@@ -27,15 +27,16 @@ export default function () {
     return `${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/${url}`
   }
 
-  function getOssUrl(url) {
+  function getOssUrl(url, isProxy = false) {
     if (!url) {
       return ''
     }
     const isWithDomain = url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
     const is3rdResource = url.indexOf('cdn.share-man.com') === -1 && url.indexOf('sharemancdn.ochase.com') === -1
+    const resourceDomain = isProxy ? '/oss/' : `https://${config['oss.domain.https']}`
     return isWithDomain
-      ? (is3rdResource ? url : `https://${config['oss.domain.https']}/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
-      : `https://${config['oss.domain.https']}/${url}`
+      ? (is3rdResource ? url : `${resourceDomain}/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
+      : `${resourceDomain}/${url}`
   }
 
   function getAvatarUrl(type, sign) {

@@ -3,10 +3,9 @@
 
     article {
       font-size: 1.05rem;
-      line-height: 1.6;
       counter-reset: h1;
       color: #666;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
 
       h1, h2, h3, h4, h5 {
         font-weight: normal;
@@ -66,6 +65,8 @@
         -webkit-margin-after: 0.5em;
         -webkit-margin-start: 0;
         -webkit-margin-end: 0;
+        text-indent: 2em;
+        line-height: 1.8;
       }
 
       code {
@@ -120,8 +121,8 @@ export default {
   },
   computed: {
     compiledMarkdown() {
-      this.setOption()
-      this.setRenderer()
+      this.setMarkdownOption()
+      this.setMarkdownRenderer()
       return Marked(this.content)
     }
   },
@@ -130,13 +131,10 @@ export default {
   methods: {
     handleClick(event) {
       if (event.target.nodeName === 'IMG') {
-        this.showOriginImage(event.target.src)
+        this.imageModalUrl = event.target.src
       }
     },
-    showOriginImage(url) {
-      this.imageModalUrl = url
-    },
-    setRenderer() {
+    setMarkdownRenderer() {
       this.renderer.image = (href, title, text) => {
         return `<img data-src="${this.$getOssUrl(href)}">`
       }
@@ -145,7 +143,7 @@ export default {
         return `<a href="${href}"  ${titleOutput} target="_blank">${text}</a>`
       }
     },
-    setOption() {
+    setMarkdownOption() {
       Marked.setOptions({
         renderer: this.renderer,
         gfm: true,
