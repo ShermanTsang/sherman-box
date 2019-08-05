@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <layout-container :max-width="1060">
+  <layout-container>
     <blocker height="40px" />
     <nameplate title="告示" sub-title="announce" />
     <markdown

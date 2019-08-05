@@ -4,7 +4,7 @@
     padding: 10px 20px;
     border-bottom: 1px solid #eee;
     overflow: hidden;
-    box-shadow: 0 2px 8px #f0f1f2;
+    transition: all .2s ease-in-out;
 
     &__container {
       margin: 0 auto;
@@ -67,6 +67,10 @@
         }
 
       }
+    }
+
+    &:hover {
+      box-shadow: 0 2px 8px #f0f1f2;
     }
   }
 </style>

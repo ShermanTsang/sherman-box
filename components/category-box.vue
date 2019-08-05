@@ -2,12 +2,12 @@
   .category-box {
     color: #999;
     padding: 10px 10px 20px 10px;
-    border-bottom: 1px solid #ddd;
 
     &__item {
       display: inline-block;
       letter-spacing: 4px;
       font-size: 1rem;
+      padding-bottom: 8px;
 
       &:not(:last-child) {
         margin-right: 24px;
@@ -16,6 +16,7 @@
 
     &__item--active {
       color: #08AEEA;
+      border-bottom: 1px solid #0a84ea;
     }
 
   }
@@ -23,7 +24,7 @@
 
 <template>
   <div class="category-box" :style="style">
-    <nuxt-link :to="$route.path" class="category-box__item">
+    <nuxt-link :to="$route.path" class="category-box__item" :class="{'category-box__item--active': !$route.query.categoryId}">
       全部
     </nuxt-link>
     <nuxt-link v-for="item in categoryCollection" :key="item.id" :to="`${$route.path}?categoryId=${item.id}&page=1`" class="category-box__item" :class="{'category-box__item--active':isActiveCategory(item)}">
