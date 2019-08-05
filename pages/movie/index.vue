@@ -10,7 +10,7 @@
   <layout-container>
     <blocker height="40px" />
     <category-box module="movie" />
-    <blocker height="40px" />
+    <blocker height="20px" />
     <div v-if="data.movieCollection" class="movie-list">
       <layout-row :gutter="16">
         <layout-col

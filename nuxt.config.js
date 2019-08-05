@@ -38,7 +38,6 @@ export default {
   css: [
     'normalize.css',
     '@/assets/scss/global.scss',
-    '@/assets/scss/variables.scss',
     '@/assets/scss/override.scss',
     '@/assets/iconfont/iconfont.css'
   ],
@@ -95,6 +94,20 @@ export default {
           exclude: /(node_modules)/
         })
       }
+      // Add scss variables
+      config.module.rules.forEach((rule) => {
+        if (/scss/.test(rule.test.toString())) {
+          rule.oneOf.forEach((item) => {
+            item.use.push({
+              loader: 'sass-loader',
+              options: {
+                sourceMap: false,
+                data: '@import "@/assets/scss/variables.scss";'
+              }
+            })
+          })
+        }
+      })
     }
   }
 }

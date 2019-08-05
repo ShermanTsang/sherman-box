@@ -14,7 +14,7 @@
       }
     }
 
-    @media (max-width: 575px) {
+    @media ($screen-size-xs) {
       $class-prefix: col-xs-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -29,7 +29,7 @@
       }
     }
 
-    @media (min-width: 576px) {
+    @media ($screen-size-sm) {
       $class-prefix: col-sm-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -44,7 +44,7 @@
       }
     }
 
-    @media (min-width: 768px) { // 770
+    @media ($screen-size-md) { // 770
       $class-prefix: col-md-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -59,7 +59,7 @@
       }
     }
 
-    @media (min-width: 992px) {
+    @media ($screen-size-lg) {
       $class-prefix: col-lg-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -74,7 +74,7 @@
       }
     }
 
-    @media (min-width: 1200px) {
+    @media ($screen-size-xl) {
       $class-prefix: col-xl-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -89,7 +89,7 @@
       }
     }
 
-    @media (min-width: 1600px) {
+    @media ($screen-size-xxl) {
       $class-prefix: col-xxl-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {

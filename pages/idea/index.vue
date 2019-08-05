@@ -15,7 +15,7 @@
   <layout-container>
     <blocker height="40px" />
     <category-box module="idea" />
-    <blocker height="40px" />
+    <blocker height="20px" />
     <div v-if="data.ideaCollection" class="idea-list">
       <div
         v-for="item in data.ideaCollection"

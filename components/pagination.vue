@@ -5,19 +5,18 @@
 
     &__item {
       display: inline-block;
-      padding: 6px 4px;
+      padding: 6px 10px;
       color: #999;
       font-size: 1rem;
-      width: 40px;
       margin: 0 2px;
       cursor: pointer;
       border-radius: 2px;
     }
 
     &__item--active {
-      border-color: #08AEEA;
-      color: #08AEEA;
-      border-bottom: 2px solid #08AEEA;
+      border-color: $theme-color;
+      color: $theme-color;
+      border-bottom: 2px solid $theme-color;
     }
 
     &__item--action {
@@ -36,7 +35,7 @@
       v-for="item in displayPageList"
       :key="item"
       class="pagination__item"
-      :class="{'pagination__item--active': currentPage === item}"
+      :class="{'pagination__item--active': parseInt(currentPage) === parseInt(item) }"
       @click="jumpPage(item)"
     >
       <template v-if="item === 0">
@@ -98,6 +97,11 @@ export default {
         return [1, 0, pageNum - 2, pageNum - 1, pageNum]
       }
       return [1, 0, index - 1, index, index + 1, 0, pageNum]
+    }
+  },
+  watch: {
+    '$route.query.page'(value) {
+      this.currentPage = value
     }
   },
   methods: {

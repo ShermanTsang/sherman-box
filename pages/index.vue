@@ -11,8 +11,17 @@
     ></markdown>
     <blocker height="40px" />
     <nameplate title="时间轴" sub-title="timeline" />
-    <item-common v-for="item in data.timeline" :key="`${item.module}-${item.id}`" :item="item">
-    </item-common>
+    <layout-row :gutter="16">
+      <layout-col
+        v-for="item in data.timeline"
+        :key="`${item.module}-${item.id}`"
+        :sm="{span : 24}"
+        :md="{span : 12}"
+      >
+        <item-common :item="item">
+        </item-common>
+      </layout-col>
+    </layout-row>
   </layout-container>
 </template>
 

@@ -15,6 +15,7 @@
         max-width: 600px;
         letter-spacing: 1px;
         font-size: 1rem;
+        color: #999;
       }
 
       &__image {
@@ -44,7 +45,7 @@
       <div class="idea__header__title">
         {{ data.ideaItem.name }}
       </div>
-      <blocker height="10px" />
+      <blocker height="20px" />
       <div class="idea__header__info">
         <moment format="YYYY-MM-DD" from-now :time="data.ideaItem.datetime" />
       </div>

@@ -8,13 +8,14 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
+      font-size: .95rem;
 
       &__page {
         &__item {
           cursor: pointer;
           display: inline-block;
-          font-size: .95rem;
-          a{
+
+          a {
             color: #666;
           }
 
@@ -22,14 +23,33 @@
             margin-right: 20px;
           }
         }
-
       }
 
       &__info {
         color: #999;
-        font-size: .95rem;
       }
     }
+
+    @media ($screen-size-xs) {
+      &__container {
+        flex-flow: column nowrap;
+        align-items: center;
+        font-size: .9rem;
+
+        &__page {
+          &__item {
+            &:not(:last-child) {
+              margin-right: 14px;
+            }
+          }
+        }
+
+        &__info {
+          margin-top: 10px;
+        }
+      }
+    }
+
   }
 </style>
 

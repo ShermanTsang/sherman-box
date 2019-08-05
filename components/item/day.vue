@@ -1,7 +1,6 @@
 <style lang="scss">
   .day-item {
     position: relative;
-    padding: 32px;
     overflow: hidden;
     transition-duration: 0.2s;
     line-height: 1.5;
@@ -13,7 +12,8 @@
 
     &__main {
       flex: 0 0 60%;
-      height: 180px;
+      padding: 32px;
+      height: 260px;
 
       &__name {
         display: inline-block;
@@ -21,7 +21,8 @@
         letter-spacing: 2px;
         padding-bottom: 5px;
         border-bottom: 2px solid #efefef;
-        small{
+
+        small {
           color: #999;
         }
       }
@@ -44,7 +45,7 @@
             margin: 6px 0;
             justify-content: left;
 
-            i{
+            i {
               font-size: 1rem;
               margin-right: 6px;
               color: #ccc;
@@ -69,7 +70,7 @@
       transition: all 200ms ease-in;
       opacity: .5;
 
-      &::after {
+      &:after {
         content: '';
         position: absolute;
         top: -10px;
@@ -77,7 +78,7 @@
         left: -2px;
         width: 0;
         height: 0;
-        border-top: 260px solid transparent;
+        border-top: 280px solid transparent;
         border-left: 50px solid #fff;
       }
     }
@@ -89,13 +90,32 @@
       }
     }
 
-    @media only screen and (max-width: 600px) {
-      flex: 0 0 75%;
+    @media ($screen-size-xs) {
+      flex-flow: column nowrap;
+
+      &__main {
+        height: auto;
+        padding: 16px;
+
+        &__info {
+          font-size: .85rem;
+        }
+      }
+
       &__image {
-        flex: 0 0 25%;
-        width: 180px;
+        position: relative;
+        width: 100%;
+        height: 100px;
+        opacity: 1;
+        transform: none;
+        order: -1;
+
+        &:after {
+          display: none;
+        }
       }
     }
+
   }
 </style>
 
@@ -115,28 +135,36 @@
       <div class="day-item__main__info">
         <div class="day-item__main__info__detail">
           <div v-if="item.event" class="day-item__main__info__detail__item">
-            <icon name="calendar" /> {{ $getStringCount(item.event) }}件
+            <icon name="calendar" />
+            {{ $getStringCount(item.event) }}件
           </div>
           <div v-if="item.step" class="day-item__main__info__detail__item">
-            <icon name="run" /> {{ item.step }}步
+            <icon name="run" />
+            {{ item.step }}步
           </div>
           <div v-if="item.weight" class="day-item__main__info__detail__item">
-            <icon name="weight" /> {{ item.weight }}斤
+            <icon name="weight" />
+            {{ item.weight }}斤
           </div>
           <div v-if="item.movement" class="day-item__main__info__detail__item">
-            <icon name="schedule" /> {{ $getStringCount(item.movement) }}项
+            <icon name="schedule" />
+            {{ $getStringCount(item.movement) }}项
           </div>
           <div v-if="item.people" class="day-item__main__info__detail__item">
-            <icon name="user" /> {{ $getStringCount(item.people) }}人
+            <icon name="user" />
+            {{ $getStringCount(item.people) }}人
           </div>
           <div v-if="item.food" class="day-item__main__info__detail__item">
-            <icon name="food" /> {{ $getStringCount(item.food) }}类
+            <icon name="food" />
+            {{ $getStringCount(item.food) }}类
           </div>
           <div v-if="item.location" class="day-item__main__info__detail__item">
-            <icon name="location" /> {{ $getStringCount(item.location) }}处
+            <icon name="location" />
+            {{ $getStringCount(item.location) }}处
           </div>
           <div v-if="item.mood" class="day-item__main__info__detail__item">
-            <icon name="mood" /> {{ $getStringCount(item.mood) }}种
+            <icon name="mood" />
+            {{ $getStringCount(item.mood) }}种
           </div>
         </div>
       </div>

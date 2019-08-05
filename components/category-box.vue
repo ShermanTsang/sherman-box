@@ -6,7 +6,7 @@
     &__item {
       display: inline-block;
       letter-spacing: 4px;
-      font-size: 1rem;
+      font-size: 1.05rem;
       padding-bottom: 8px;
 
       &:not(:last-child) {
@@ -15,8 +15,8 @@
     }
 
     &__item--active {
-      color: #08AEEA;
-      border-bottom: 1px solid #0a84ea;
+      color: $theme-color;
+      border-bottom: 2px solid $theme-color;
     }
 
   }

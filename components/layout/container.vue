@@ -2,9 +2,10 @@
   .layout-container {
     margin: 0 auto;
 
-    @media screen and (max-width: 960px) {
-      width: 96%;
+    @media ($screen-size-xs), ($screen-size-sm) {
+      width: 95%;
     }
+
   }
 </style>
 

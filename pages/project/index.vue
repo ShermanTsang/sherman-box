@@ -10,7 +10,7 @@
   <layout-container>
     <blocker height="40px" />
     <category-box module="project" />
-    <blocker height="40px" />
+    <blocker height="20px" />
     <div v-if="data.projectCollection" class="project-list">
       <layout-row :gutter="16">
         <layout-col

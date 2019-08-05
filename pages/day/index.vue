@@ -15,7 +15,8 @@
           v-for="item in data.dayCollection"
           :key="item.id"
           :md="{span:24}"
-          :lg="{span:12}"
+          :lg="{span:24}"
+          :xl="{span:12}"
         >
           <item-day :item="item" />
         </layout-col>

@@ -46,11 +46,11 @@
           position: relative;
 
           a {
-            color: #08AEEA;
+            color: $theme-color;
           }
 
           i {
-            color: #08AEEA;
+            color: $theme-color;
           }
 
           &:after {
@@ -60,7 +60,7 @@
             left: 0;
             right: 0;
             width: 100%;
-            background-color: #08AEEA;
+            background-color: $theme-color;
             height: 2px;
           }
         ;
@@ -71,6 +71,31 @@
 
     &:hover {
       box-shadow: 0 2px 8px #f0f1f2;
+    }
+
+    @media ($screen-size-xs) {
+      height: auto;
+      padding: 16px;
+      &__container {
+        flex-flow: column nowrap;
+        align-items: flex-start;
+
+        &__menu {
+          display: block;
+          margin-top: 20px;
+          white-space: nowrap;
+          overflow-x: scroll;
+
+          &__item {
+            display:inline-block;
+            padding: 0;
+
+            &:not(:last-child) {
+              margin-right: 16px;
+            }
+          }
+        }
+      }
     }
   }
 </style>

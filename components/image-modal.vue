@@ -50,7 +50,7 @@
 <template>
   <div v-if="imageUrl" class="image-box" @click="handleClick($event)">
     <div class="image-box__image">
-      <img :src="$getOssUrl(imageUrl,true)" cross-origin="anonymous" @load="$gradientColor('.image-box')">
+      <img :src="$getOssUrl(imageUrl)">
     </div>
   </div>
 </template>

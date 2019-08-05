@@ -102,6 +102,36 @@
       }
     }
 
+    @media ($screen-size-xs) {
+      &__card {
+        &__banner {
+          height: 300px;
+
+          &__image {
+            &:after {
+              display: none;
+            }
+          }
+
+          &__text {
+            bottom: 20px;
+            left: 20px;
+          }
+        }
+
+        &__main {
+          padding: 16px;
+          margin: 0;
+          column-count: 1;
+          column-gap: 10px;
+
+          &__item {
+            margin-bottom: 10px !important;
+          }
+        }
+      }
+    }
+
   }
 
   @keyframes imageMove {

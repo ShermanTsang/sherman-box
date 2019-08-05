@@ -10,7 +10,7 @@
   <layout-container>
     <blocker height="40px" />
     <category-box module="blog" />
-    <blocker height="40px" />
+    <blocker height="20px" />
     <div v-if="data.blogCollection" class="blog-list">
       <layout-row :gutter="16">
         <layout-col
