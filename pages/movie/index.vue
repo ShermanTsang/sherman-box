@@ -8,7 +8,7 @@
 
 <template>
   <layout-container>
-    <blocker height="40px" />
+    <blocker height="20px" />
     <category-box module="movie" />
     <blocker height="20px" />
     <div v-if="data.movieCollection" class="movie-list">

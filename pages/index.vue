@@ -3,7 +3,7 @@
 
 <template>
   <layout-container>
-    <blocker height="40px" />
+    <blocker height="20px" />
     <nameplate title="告示" sub-title="announce" />
     <markdown
       content="您现在看到的是曾小满的盒子第三版，网站近期已基于新的技术栈进行重构，部分调整还在进行中。

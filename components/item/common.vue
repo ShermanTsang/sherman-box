@@ -1,7 +1,6 @@
 <style lang="scss">
   .common-item {
     position: relative;
-    padding: 16px;
     margin: 20px 0;
     overflow: hidden;
     transition-duration: 0.2s;
@@ -12,8 +11,10 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    height: 110px;
 
     &__main {
+      padding: 16px;
       flex: 0 0 60%;
 
       &__name {
@@ -68,8 +69,8 @@
     }
 
     &__image {
-      height: 80px;
-      width: 80px;
+      height: 110px;
+      width: 110px;
       opacity: .5;
       transition: all .2s ease-in-out;
 

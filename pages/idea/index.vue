@@ -8,12 +8,17 @@
       break-inside: avoid;
       padding: 10px;
     }
+
+    @media ($screen-size-xs) {
+      column-count: 1;
+    }
+
   }
 </style>
 
 <template>
   <layout-container>
-    <blocker height="40px" />
+    <blocker height="20px" />
     <category-box module="idea" />
     <blocker height="20px" />
     <div v-if="data.ideaCollection" class="idea-list">

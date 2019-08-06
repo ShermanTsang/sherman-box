@@ -21,6 +21,11 @@
       border-top: 1px dotted #dddddd;
       color: #999;
     }
+
+    @media ($screen-size-xs) {
+      padding: 20px;
+    }
+
   }
 </style>
 

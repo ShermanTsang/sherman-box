@@ -65,7 +65,6 @@
         -webkit-margin-after: 0.5em;
         -webkit-margin-start: 0;
         -webkit-margin-end: 0;
-        text-indent: 2em;
         line-height: 1.8;
       }
 

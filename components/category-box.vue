@@ -1,13 +1,18 @@
 <style lang="scss">
   .category-box {
     color: #999;
-    padding: 10px 10px 20px 10px;
+    padding: 10px;
+    display: -webkit-box;
+    overflow-x: scroll;
+    overflow-scrolling: touch;
+    white-space: nowrap;
 
     &__item {
       display: inline-block;
-      letter-spacing: 4px;
+      letter-spacing: 1px;
       font-size: 1.05rem;
-      padding-bottom: 8px;
+      padding-bottom: 4px;
+      line-height: 2.5;
 
       &:not(:last-child) {
         margin-right: 24px;
@@ -17,6 +22,12 @@
     &__item--active {
       color: $theme-color;
       border-bottom: 2px solid $theme-color;
+    }
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
     }
 
   }

@@ -63,7 +63,6 @@
             background-color: $theme-color;
             height: 2px;
           }
-        ;
         }
 
       }
@@ -76,15 +75,18 @@
     @media ($screen-size-xs) {
       height: auto;
       padding: 16px;
+
       &__container {
         flex-flow: column nowrap;
         align-items: flex-start;
+        white-space: nowrap;
 
         &__menu {
-          display: block;
+          width: 100%;
           margin-top: 20px;
-          white-space: nowrap;
+          display: -webkit-box;
           overflow-x: scroll;
+          overflow-scrolling: touch;
 
           &__item {
             display:inline-block;
@@ -94,6 +96,13 @@
               margin-right: 16px;
             }
           }
+
+          &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+          }
+
         }
       }
     }

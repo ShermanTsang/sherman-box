@@ -1,5 +1,6 @@
 <style lang="scss">
   .movie {
+
     &__header {
       position: relative;
       padding: 80px 0;
@@ -53,6 +54,27 @@
             border-top: 1px solid rgba(255, 255, 255, .2);
           }
         }
+      }
+
+    }
+
+    @media ($screen-size-xs) {
+      &__header {
+        flex-flow: column nowrap;
+        padding: 20px 0;
+
+        &__poster {
+          &__image {
+            transform: scale(.9);
+          }
+
+          &__name {
+            font-size: 1.3rem;
+            opacity: .8;
+            margin-bottom: 30px;
+          }
+        }
+
       }
     }
   }

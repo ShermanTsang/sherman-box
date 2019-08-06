@@ -2,6 +2,7 @@
   .moment {
     transition: all .3s ease-in-out;
     color: unset !important;
+
     &:hover {
       text-decoration: underline;
       text-decoration-color: inherit;

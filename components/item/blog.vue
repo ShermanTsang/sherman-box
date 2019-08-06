@@ -29,11 +29,13 @@
       padding: 20px;
 
       &__title {
-        display: inline-block;
         font-size: 1.2rem;
         letter-spacing: 2px;
         padding-bottom: 5px;
         border-bottom: 2px solid #efefef;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       &__description {
@@ -68,11 +70,11 @@
           </nuxt-link>
         </div>
         <div class="blog-item__main__description">
+          <moment format="YYYY-MM-DD" from-now :time="item.datetime" />
+          <br>
           <template v-if="item.description">
             {{ item.description.length > 40 ? `${item.description.substring(0,40)}...` : item.description }}
           </template>
-          <blocker height="6px" />
-          <moment format="YYYY-MM-DD" from-now :time="item.datetime" />
         </div>
       </div>
     </nuxt-link>

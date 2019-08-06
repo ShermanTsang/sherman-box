@@ -96,6 +96,7 @@
       &__main {
         height: auto;
         padding: 16px;
+        order: 2;
 
         &__info {
           font-size: .85rem;
@@ -109,6 +110,7 @@
         opacity: 1;
         transform: none;
         order: -1;
+        background-attachment: fixed;
 
         &:after {
           display: none;
