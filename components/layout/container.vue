@@ -20,8 +20,8 @@ export default {
   name: 'LayoutContainer',
   props: {
     maxWidth: {
-      type: Number,
-      default: 1448
+      type: String,
+      default: '1600px'
     },
     padding: {
       type: String,
@@ -31,7 +31,7 @@ export default {
   computed: {
     style() {
       return {
-        'max-width': this.maxWidth + 'px',
+        'max-width': this.maxWidth,
         'padding': this.padding
       }
     }

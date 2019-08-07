@@ -1,7 +1,7 @@
 <style lang="scss">
   .common-item {
     position: relative;
-    margin: 20px 0;
+    margin: 10px 0;
     overflow: hidden;
     transition-duration: 0.2s;
     line-height: 1.5;
@@ -15,7 +15,7 @@
 
     &__main {
       padding: 16px;
-      flex: 0 0 60%;
+      flex: 1 0;
 
       &__name {
         display: inline-block;

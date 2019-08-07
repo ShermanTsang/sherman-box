@@ -118,18 +118,18 @@
     </div>
     <template v-if="data.movieItem.schedule">
       <blocker height="60px" />
-      <layout-container class="movie__content" :max-width="1060">
+      <layout-container class="movie__content" max-width="1060px">
         <nameplate title="追剧" sub-title="binge-watching" />
         <tag>{{ data.movieItem.schedule }}</tag>
       </layout-container>
     </template>
     <blocker height="60px" />
-    <layout-container class="movie__content" :max-width="1060">
+    <layout-container class="movie__content" max-width="1060px">
       <nameplate title="想法" sub-title="thinking" />
       <markdown :content="data.movieItem.comment || ''" />
     </layout-container>
     <blocker height="40px" />
-    <layout-container :max-width="1060">
+    <layout-container max-width="1060px">
       <comment :data="data.movieItem.comments" />
     </layout-container>
     <blocker height="60px" />

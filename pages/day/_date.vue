@@ -157,7 +157,7 @@
 <template>
   <div class="day">
     <blocker height="40px" />
-    <layout-container :max-width="1280">
+    <layout-container max-width="1280px">
       <nameplate title="数据" sub-title="data" />
       <card class="day__card">
         <div v-if="data.dayItem.image" class="day__card__banner">
@@ -284,12 +284,12 @@
       </card>
     </layout-container>
     <blocker height="40px" />
-    <layout-container :max-width="1280">
+    <layout-container max-width="1280px">
       <nameplate title="记录" sub-title="record" />
       <item-common v-for="item in allItem" :key="item.id" :item="item"></item-common>
     </layout-container>
     <blocker height="60px" />
-    <layout-container :max-width="1280">
+    <layout-container max-width="1280px">
       <comment :data="data.dayItem.comments" />
     </layout-container>
     <blocker height="60px" />

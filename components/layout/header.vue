@@ -90,7 +90,7 @@
 
           &__item {
             display:inline-block;
-            padding: 0;
+            padding: 0 10px;
 
             &:not(:last-child) {
               margin-right: 16px;
