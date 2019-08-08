@@ -8,6 +8,7 @@
     white-space: nowrap;
 
     &__item {
+      position: relative;
       display: inline-block;
       letter-spacing: 1px;
       font-size: 1.05rem;
@@ -21,7 +22,16 @@
 
     &__item--active {
       color: $theme-color;
-      border-bottom: 2px solid $theme-color;
+
+      &:after {
+        content: '';
+        height: 4px;
+        width: 20px;
+        left: calc(50% - 10px);
+        bottom: 0;
+        position: absolute;
+        @include gradient-background;
+      }
     }
 
     &::-webkit-scrollbar {
@@ -35,10 +45,20 @@
 
 <template>
   <div class="category-box" :style="style">
-    <nuxt-link :to="$route.path" class="category-box__item" :class="{'category-box__item--active': !$route.query.categoryId}">
+    <nuxt-link
+      :to="$route.path"
+      class="category-box__item"
+      :class="{'category-box__item--active': !$route.query.categoryId}"
+    >
       全部
     </nuxt-link>
-    <nuxt-link v-for="item in categoryCollection" :key="item.id" :to="`${$route.path}?categoryId=${item.id}&page=1`" class="category-box__item" :class="{'category-box__item--active':isActiveCategory(item)}">
+    <nuxt-link
+      v-for="item in categoryCollection"
+      :key="item.id"
+      :to="`${$route.path}?categoryId=${item.id}&page=1`"
+      class="category-box__item"
+      :class="{'category-box__item--active':isActiveCategory(item)}"
+    >
       {{ item.name }}
     </nuxt-link>
   </div>

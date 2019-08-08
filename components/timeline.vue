@@ -1,20 +1,19 @@
 <style lang="scss">
   .timeline {
+    max-width: 1440px;
     position: relative;
-    width: calc(100% - 100px);
     margin: auto;
-    left: -5px;
     overflow: hidden;
 
     &:before {
       content: '';
       position: absolute;
-      top:0;
-      left:50%;
+      top: 0;
+      left: 50%;
       height: auto;
-      bottom:0;
-      transform:translateX(-50%);
-      width:4px;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 4px;
       background-color: #eee;
     }
 
@@ -30,30 +29,25 @@
       }
 
       &__date {
-        font-size: 1.2rem;
-        margin-bottom: 12px;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
         position: relative;
-        color: #666;
+        color: #999;
 
         &:before {
           content: '';
           position: absolute;
-          width: 8px;
-          height: 8px;
-          border: 4px solid #666;
-          background-color: #1D1D1D;
+          width: 10px;
+          height: 10px;
           border-radius: 100%;
           top: 50%;
           transform: translateY(-50%);
-          right: -73px;
+          right: -105px;
           z-index: 1000;
+          background-color: #eee;
         }
 
-        &.big:before {
-          width: 24px;
-          height: 24px;
-          transform: translate(8px, -50%);
-        }
       }
 
       &__body {
@@ -68,28 +62,48 @@
         text-align: left;
         float: right;
 
-        &__date {
-          &:before {
-            left: -63px;
-          }
-
-          &.big:before {
-            transform: translate(-8px, -50%);
+        .timeline {
+          &__item {
+            &__date {
+              &:before {
+                left: -105px;
+              }
+            }
           }
         }
       }
     }
+
+    @media ($screen-size-xs) {
+      &:before {
+        display: none;
+      }
+      &__item {
+        width: 96%;
+        padding: 0;
+        margin: 30px 0;
+
+        &:not(:first-child) {
+          margin-top: 0;
+        }
+
+        &__date {
+          margin-bottom: 14px;
+        }
+      }
+    }
+
   }
 </style>
 
 <template>
   <div class="timeline">
-    <div v-for="item in timeline" :key="`${item.module}-${item.id}`" class="timeline__item">
+    <div v-for="(item,index) in timeline" :key="`${item.module}-${item.id}`" class="timeline__item">
       <div class="timeline__item__date">
-        <moment from-now :time="item.date" type="date" />
+        <moment from-now :time="item[$getModuleConfig(item.module).date]" type="date" />
       </div>
       <div class="timeline__item__body">
-        <item-common :item="item"></item-common>
+        <item-common :item="item" :align="index % 2 === 0 ? 'right': 'left'"></item-common>
       </div>
     </div>
   </div>

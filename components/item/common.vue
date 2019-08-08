@@ -15,14 +15,17 @@
 
     &__main {
       padding: 16px;
+      overflow: hidden;
       flex: 1 0;
 
       &__name {
-        display: inline-block;
+        overflow: hidden;
         font-size: 1rem;
         letter-spacing: 2px;
         padding-bottom: 5px;
-        border-bottom: 2px solid #efefef;
+        border-bottom: 1px solid #efefef;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
         &__module {
           font-size: .95rem;
@@ -90,12 +93,24 @@
         }
       }
     }
+
   }
 
+  .common-item--right {
+    .common-item {
+      &__main {
+        order: 0;
+      }
+
+      &__image {
+        order: -1;
+      }
+    }
+  }
 </style>
 
 <template>
-  <card class="common-item">
+  <card class="common-item" :class="{'common-item--right':align === 'right'}">
     <div class="common-item__main">
       <nuxt-link :to="link" class="clock">
         <div class="common-item__main__name">
@@ -105,12 +120,20 @@
           {{ name }}
         </div>
       </nuxt-link>
-      <div class="common-item__main__info">
+      <div v-if="text === 'date'" class="common-item__main__info">
         <moment format="YYYY.MM.DD" :time="date" />
         <template v-if="item.module === 'project' || item.module==='plan'">
           ~
-          <moment format="YYYY.MM.DD" :time="item.datetime_end" />
+          <template v-if="item.datetime_end">
+            <moment format="YYYY.MM.DD" :time="item.datetime_end" />
+          </template>
+          <template>
+            至今
+          </template>
         </template>
+      </div>
+      <div v-else-if="text === 'detail'" class="common-item__main__info">
+        detail
       </div>
     </div>
     <div v-if="item.image" class="common-item__image">
@@ -130,33 +153,25 @@ export default {
       default: () => {
         return {}
       }
+    },
+    align: {
+      type: String,
+      validator(value) {
+        return ['left', 'right'].includes(value)
+      },
+      default: 'left'
+    },
+    text: {
+      type: String,
+      validator(value) {
+        return ['date', 'detail'].includes(value)
+      },
+      default: 'date'
     }
   },
   data() {
     return {
-      config: {
-        day: {
-          name: '日迹', date: 'date'
-        },
-        blog: {
-          name: '博文', date: 'datetime'
-        },
-        movie: {
-          name: '观影', date: 'datetime'
-        },
-        project: {
-          name: '项目', date: 'datetime_start'
-        },
-        plan: {
-          name: '计划', date: 'datetime'
-        },
-        idea: {
-          name: '想法', date: 'datetime'
-        },
-        mailbox: {
-          name: '邮局', date: 'datetime'
-        }
-      }
+      config: this.$getModuleConfig()
     }
   },
   computed: {

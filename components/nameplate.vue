@@ -3,10 +3,10 @@
     position: relative;
     cursor: default;
     font-size: 1.6rem;
-    padding-left: 20px;
+    padding-left: 10px;
     letter-spacing: 2px;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
     span {
       font-size: 1.1rem;
@@ -18,13 +18,12 @@
     &:after {
       position: absolute;
       content: '';
-      height: 100%;
-      width: 6px;
+      height: 6px;
+      width: 40px;
       border-radius: 4px;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      opacity: .4;
+      left: 10px;
+      bottom: -20px;
+      opacity: .8;
       @include gradient-background;
     }
 
@@ -33,7 +32,8 @@
 
 <template>
   <div class="nameplate">
-    {{ title }} <span>{{ subTitle }}</span>
+    {{ title }}
+    <span>{{ subTitle }}</span>
   </div>
 </template>
 

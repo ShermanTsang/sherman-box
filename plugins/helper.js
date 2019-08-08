@@ -121,6 +121,33 @@ export default function () {
     return seoConfig[type].value || ''
   }
 
+  function getModuleConfig(module) {
+    const configList = {
+      day: {
+        name: '日迹', date: 'date'
+      },
+      blog: {
+        name: '博文', date: 'datetime'
+      },
+      movie: {
+        name: '观影', date: 'datetime'
+      },
+      project: {
+        name: '项目', date: 'datetime_start'
+      },
+      plan: {
+        name: '计划', date: 'datetime'
+      },
+      idea: {
+        name: '想法', date: 'datetime'
+      },
+      mailbox: {
+        name: '邮局', date: 'datetime'
+      }
+    }
+    return module ? configList[module] : configList
+  }
+
   Vue.prototype.$config = getConfigItem
   Vue.prototype.$configList = getConfigList
   Vue.prototype.$getConfig = getConfig
@@ -131,4 +158,5 @@ export default function () {
   Vue.prototype.$getAvatarUrl = getAvatarUrl
   Vue.prototype.$getStringCount = getStringCount
   Vue.prototype.$getSeoInfo = getSeoInfo
+  Vue.prototype.$getModuleConfig = getModuleConfig
 }

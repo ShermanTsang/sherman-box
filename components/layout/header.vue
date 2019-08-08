@@ -5,10 +5,10 @@
     border-bottom: 1px solid #eee;
     overflow: hidden;
     transition: all .2s ease-in-out;
+    box-shadow: 0 2px 8px #f0f1f2;
 
     &__container {
       margin: 0 auto;
-      max-width: 1448px;
       height: 100%;
       display: flex;
       flex-flow: row nowrap;
@@ -68,10 +68,6 @@
       }
     }
 
-    &:hover {
-      box-shadow: 0 2px 8px #f0f1f2;
-    }
-
     @media ($screen-size-xs) {
       height: auto;
       padding: 16px;
@@ -111,7 +107,7 @@
 
 <template>
   <header class="header">
-    <layout-container class="header__container">
+    <div class="header__container">
       <div class="header__container__logo">
         <logo></logo>
       </div>
@@ -128,7 +124,7 @@
           </nuxt-link>
         </div>
       </div>
-    </layout-container>
+    </div>
   </header>
 </template>
 

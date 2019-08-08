@@ -6,7 +6,8 @@
     font-size: 1.2rem;
 
     img {
-      height: 34px;
+      height: 40px;
+      opacity: .8;
     }
   }
 </style>
