@@ -130,7 +130,7 @@
       </layout-container>
     </div>
     <blocker height="60px" />
-    <layout-container max-width="1060px">
+    <layout-container>
       <nameplate title="详情" sub-title="Detail" />
       <div class="project__detail">
         <div v-if="data.projectItem.datetime_start" class="project__detail__item">
@@ -237,20 +237,20 @@
     </layout-container>
     <template v-if="data.projectItem.content">
       <blocker height="60px" />
-      <layout-container max-width="1060px">
+      <layout-container>
         <nameplate title="预览" sub-title="Preview" />
         <markdown :content="data.projectItem.content || ''" />
       </layout-container>
     </template>
     <template v-if="data.projectItem.logs">
       <blocker height="60px" />
-      <layout-container max-width="1060px">
+      <layout-container>
         <nameplate title="日志" sub-title="Log" />
         <markdown :content="data.projectItem.logs || ''" />
       </layout-container>
     </template>
     <blocker height="40px" />
-    <layout-container v-if="data.projectItem.file" max-width="1060px">
+    <layout-container v-if="data.projectItem.file">
       <nameplate title="文件" sub-title="file" />
       <iframe
         v-if="data.projectItem.file.indexOf('.ppt') !== -1 || data.projectItem.file.indexOf('.doc') !== -1"
@@ -259,7 +259,7 @@
         height="600px"
       ></iframe>
     </layout-container>
-    <layout-container v-if="data.projectItem.video" max-width="1060px">
+    <layout-container v-if="data.projectItem.video">
       <nameplate title="视频" sub-title="video" />
       <iframe
         height="500"
@@ -269,7 +269,7 @@
       ></iframe>
     </layout-container>
     <blocker height="60px" />
-    <layout-container max-width="1060px">
+    <layout-container>
       <comment :data="data.projectItem.comments" />
     </layout-container>
     <blocker height="60px" />

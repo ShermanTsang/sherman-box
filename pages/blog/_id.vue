@@ -60,7 +60,7 @@
     <div class="blog__header">
       <div v-lazy:background-image="$getOssUrl(data.blogItem.image)" class="blog__header__image">
       </div>
-      <layout-container max-width="1060px" class="blog__header__text">
+      <layout-container class="blog__header__text">
         <div class="blog__header__text__title">
           {{ data.blogItem.name }}
         </div>
@@ -72,11 +72,11 @@
       </layout-container>
     </div>
     <blocker height="20px" />
-    <layout-container class="blog__content" max-width="1060px">
+    <layout-container class="blog__content">
       <markdown :content="data.blogItem.content" />
     </layout-container>
     <blocker height="60px" />
-    <layout-container max-width="1060px">
+    <layout-container>
       <comment :data="data.blogItem.comments" />
     </layout-container>
     <blocker height="60px" />

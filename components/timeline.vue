@@ -14,7 +14,7 @@
       bottom: 0;
       transform: translateX(-50%);
       width: 4px;
-      background-color: #eee;
+      background-color: #f1f1f1;
     }
 
     &__item {
@@ -35,17 +35,21 @@
         position: relative;
         color: #999;
 
-        &:before {
-          content: '';
+        &__icon {
           position: absolute;
-          width: 10px;
-          height: 10px;
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          justify-content: center;
+          width: 48px;
+          height: 48px;
           border-radius: 100%;
           top: 50%;
           transform: translateY(-50%);
-          right: -105px;
+          right: -125px;
+          box-shadow: 0 0 4px rgba(177,177,177,.4);
           z-index: 1000;
-          background-color: #eee;
+          background-color: white;
         }
 
       }
@@ -65,8 +69,8 @@
         .timeline {
           &__item {
             &__date {
-              &:before {
-                left: -105px;
+              &__icon {
+                left: -125px;
               }
             }
           }
@@ -74,10 +78,11 @@
       }
     }
 
-    @media ($screen-size-xs) {
+    @media ($screen-xs) {
       &:before {
-        display: none;
+        opacity: .5;
       }
+
       &__item {
         width: 96%;
         padding: 0;
@@ -88,7 +93,13 @@
         }
 
         &__date {
+          font-size: .95rem;
+          background-color: rgba(255,255,255,.5);
           margin-bottom: 14px;
+
+          &__icon {
+            display: none;
+          }
         }
       }
     }
@@ -101,6 +112,9 @@
     <div v-for="(item,index) in timeline" :key="`${item.module}-${item.id}`" class="timeline__item">
       <div class="timeline__item__date">
         <moment from-now :time="item[$getModuleConfig(item.module).date]" type="date" />
+        <div class="timeline__item__date__icon">
+          <icon :name="$getModuleConfig(item.module).icon" size="24px" color="#aaa"></icon>
+        </div>
       </div>
       <div class="timeline__item__body">
         <item-common :item="item" :align="index % 2 === 0 ? 'right': 'left'"></item-common>

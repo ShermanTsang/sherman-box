@@ -1,13 +1,20 @@
 $theme-color: #0a84ea;
 
-$screen-size-xs: "max-width: 575px";
-$screen-size-sm: "min-width: 576px";
-$screen-size-md: "min-width: 768px";
-$screen-size-lg: "min-width: 992px";
-$screen-size-xl: "min-width: 1200px";
-$screen-size-xxl: "min-width: 1600px";
+$screen-xs: "max-width: 575px";
+$screen-sm: "min-width: 576px";
+$screen-md: "min-width: 768px";
+$screen-lg: "min-width: 992px";
+$screen-xl: "min-width: 1200px";
+$screen-xxl: "min-width: 1600px";
 
 @mixin gradient-background {
   background-color: #51defe;
   background-image: linear-gradient(126deg, #51defe 0%, #1170f5 79%);
+  color: #ffffff;
+  a, i {
+    color: #ffffff;
+  }
+  span {
+    color: #f1f1f1;
+  }
 }

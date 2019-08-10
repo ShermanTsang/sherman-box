@@ -81,6 +81,14 @@ export default {
   build: {
     analyze: false,
     maxChunkSize: 300000,
+    postcss: {
+      plugins: {
+        'postcss-url': false
+      },
+      preset: {
+        autoprefixer: {}
+      }
+    },
     /*
     ** You can extend webpack config here
     */

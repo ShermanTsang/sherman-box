@@ -102,7 +102,7 @@
       }
     }
 
-    @media ($screen-size-xs) {
+    @media ($screen-xs) {
       &__card {
         &__banner {
           height: 300px;
@@ -157,7 +157,7 @@
 <template>
   <div class="day">
     <blocker height="40px" />
-    <layout-container max-width="1280px">
+    <layout-container>
       <nameplate title="数据" sub-title="data" />
       <card class="day__card">
         <div v-if="data.dayItem.image" class="day__card__banner">

@@ -9,7 +9,7 @@
       padding: 10px;
     }
 
-    @media ($screen-size-xs) {
+    @media ($screen-xs) {
       column-count: 1;
     }
 

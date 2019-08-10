@@ -1,17 +1,43 @@
 <style lang="scss">
-  #app {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+  .layout-sidebar {
+    display: none;
+    @media ($screen-sm) {
+      display: block;
+    }
+  }
+
+  .layout-header {
+    display: block;
+    @media ($screen-sm) {
+      display: none;
+    }
   }
 </style>
 
 <template>
   <div id="app">
-    <layout-header />
-    <layout-main>
-      <nuxt />
-    </layout-main>
-    <layout-footer />
+    <layout-sidebar class="layout-sidebar" />
+    <layout-header class="layout-header" />
+    <layout-view>
+      <layout-main>
+        <nuxt />
+      </layout-main>
+      <layout-footer />
+    </layout-view>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      status: {}
+    }
+  },
+  mounted() {
+    if (process.browser) {
+    }
+  },
+  methods: {}
+}
+</script>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Gravatar from 'gravatar-url'
 import config from '../config'
 
-export default function () {
+export default function ({ store }) {
   function getConfigItem(key) {
     return key ? config[key] : `[!${key}]`
   }
@@ -122,6 +122,7 @@ export default function () {
   }
 
   function getModuleConfig(module) {
+    const mainConfigList = store.getters.moduleCollection || []
     const configList = {
       day: {
         name: '日迹', date: 'date'
@@ -144,6 +145,13 @@ export default function () {
       mailbox: {
         name: '邮局', date: 'datetime'
       }
+    }
+    if (mainConfigList && mainConfigList.length > 0) {
+      mainConfigList.forEach((item) => {
+        if (configList[item.url]) {
+          configList[item.url] = Object.assign(configList[item.url], item)
+        }
+      })
     }
     return module ? configList[module] : configList
   }

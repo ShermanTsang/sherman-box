@@ -19,6 +19,7 @@
       flex: 1 0;
 
       &__name {
+        display:inline-block;
         overflow: hidden;
         font-size: 1rem;
         letter-spacing: 2px;

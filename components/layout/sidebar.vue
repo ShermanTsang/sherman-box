@@ -1,71 +1,71 @@
 <style lang="scss">
-  .header {
-    height: 74px;
-    padding: 10px 20px;
-    border-bottom: 1px solid #eee;
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #ffffff;
+    border-right: 1px solid #eee;
     overflow: hidden;
     transition: all .2s ease-in-out;
     box-shadow: 0 2px 8px #f0f1f2;
+
+    &:hover {
+      box-shadow: 0 2px 20px #f0f1f2;
+    }
 
     &__container {
       margin: 0 auto;
       height: 100%;
       display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      align-items: center;
+      flex-flow: column nowrap;
 
       &__logo {
-
+        padding: 20px 0;
+        text-align: center;
       }
 
       &__menu {
-        height: 100%;
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        justify-content: right;
+        margin-top: 20px;
 
         &__item {
+          line-height: 60px;
+          height: 60px;
           cursor: pointer;
           flex: 1 0 auto;
           padding: 0 20px;
-          font-size: 1rem;
-          letter-spacing: 2px;
+          font-size: 1.1rem;
+          letter-spacing: 4px;
+          color: #666;
 
-          a {
-            color: #666;
+          &:not(:last-child) {
+            border-bottom: 1px solid #eee;
           }
 
           i {
             color: #aaa;
+            margin-right: 10px;
+          }
+
+          span {
+            letter-spacing: 1px;
+            font-size: .8rem;
+            color: #999;
+            text-transform: capitalize;
           }
         }
 
         &__item--active {
+          border-bottom: none !important;
           position: relative;
-
-          a {
-            color: $theme-color;
-          }
-
-          i {
-            color: $theme-color;
-          }
-
-          &:after {
-            position: absolute;
-            content: '';
-            bottom: -27px;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: $theme-color;
-            height: 2px;
-          }
+          box-shadow: 0 0 1px $theme-color;
+          @include gradient-background;
         }
 
       }
+
     }
 
     @media ($screen-xs) {
@@ -85,7 +85,7 @@
           overflow-scrolling: touch;
 
           &__item {
-            display:inline-block;
+            display: inline-block;
             padding: 0 10px;
 
             &:not(:last-child) {
@@ -102,35 +102,40 @@
         }
       }
     }
+
+    &:hover {
+      box-shadow: 0 2px 8px #f0f1f2;
+    }
+
   }
 </style>
 
 <template>
-  <header class="header">
-    <div class="header__container">
-      <div class="header__container__logo">
+  <div class="sidebar">
+    <div class="sidebar__container">
+      <div class="sidebar__container__logo">
         <logo></logo>
       </div>
-      <div class="header__container__menu">
+      <div class="sidebar__container__menu">
         <div
           v-for="(item,index) in $store.getters.moduleCollection"
           :key="index"
-          class="header__container__menu__item"
-          :class="{'header__container__menu__item--active': isActiveMenu(item)}"
+          class="sidebar__container__menu__item"
+          :class="{'sidebar__container__menu__item--active': isActiveMenu(item)}"
+          @click="$router.push(`/${item.url}`)"
         >
-          <nuxt-link :to="`/${item.url}`">
-            <icon :name="item.icon" />
-            {{ item.name }}
-          </nuxt-link>
+          <icon :name="item.icon" size="1.2rem" />
+          {{ item.name }}
+          <span>{{ item.url }}</span>
         </div>
       </div>
     </div>
-  </header>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'LayoutHeader',
+  name: 'LayoutSidebar',
   data() {
     return {}
   },

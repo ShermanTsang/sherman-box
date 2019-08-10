@@ -23,7 +23,7 @@ export default {
   async asyncData({ $axios, query }) {
     const { data: timeline, meta } = await $axios.$get(`/api/common/timeline`, {
       params: {
-        pageSize: 12,
+        pageSize: 30,
         page: query.page
       }
     })

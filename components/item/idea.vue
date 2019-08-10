@@ -11,6 +11,7 @@
         font-size: 1.85rem;
         padding-right: 0.2em;
       }
+
     }
 
     &__info {
@@ -22,7 +23,7 @@
       color: #999;
     }
 
-    @media ($screen-size-xs) {
+    @media ($screen-xs) {
       padding: 20px;
     }
 

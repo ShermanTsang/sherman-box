@@ -2,8 +2,12 @@
   .layout-container {
     margin: 0 auto;
 
-    @media ($screen-size-xs), ($screen-size-sm) {
+    @media ($screen-xs) {
       width: 95%;
+    }
+
+    @media ($screen-sm) {
+      width: 90%;
     }
 
   }

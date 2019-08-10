@@ -3,12 +3,11 @@
 
     &__header {
       position: relative;
-      width: 100%;
       overflow: hidden;
 
       &__title {
         letter-spacing: 2px;
-        font-size: 1.6rem;
+        font-size: 1.45rem;
       }
 
       &__info {
@@ -23,10 +22,7 @@
         width: 100%;
         height: 400px;
         background-position: center center;
-
-        img {
-          object-fit: cover;
-        }
+        background-size: cover;
       }
 
     }
@@ -36,7 +32,7 @@
 
       &__main {
         &:first-letter {
-          font-size: 1.85rem;
+          font-size: 1.45rem;
           padding-right: 0.2em;
         }
       }
@@ -47,7 +43,7 @@
 
 <template>
   <div class="idea">
-    <layout-container max-width="1060px" class="idea__header">
+    <layout-container class="idea__header">
       <blocker height="60px" />
       <div class="idea__header__title">
         {{ data.ideaItem.name }}
@@ -64,11 +60,11 @@
       </div>
     </layout-container>
     <blocker height="20px" />
-    <layout-container class="idea__content" max-width="1060px">
+    <layout-container class="idea__content">
       <markdown :content="data.ideaItem.content" class="idea__content__main" />
     </layout-container>
     <blocker height="60px" />
-    <layout-container max-width="1060px">
+    <layout-container>
       <comment :data="data.ideaItem.comments" />
     </layout-container>
     <blocker height="60px" />

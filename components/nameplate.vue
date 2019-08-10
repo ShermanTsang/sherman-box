@@ -2,8 +2,7 @@
   .nameplate {
     position: relative;
     cursor: default;
-    font-size: 1.6rem;
-    padding-left: 10px;
+    font-size: 1.45rem;
     letter-spacing: 2px;
     color: #333;
     margin-bottom: 40px;
@@ -21,10 +20,17 @@
       height: 6px;
       width: 40px;
       border-radius: 4px;
-      left: 10px;
+      left: 0;
       bottom: -20px;
       opacity: .8;
       @include gradient-background;
+    }
+
+    @media ($screen-xs) {
+      &:after {
+        left: 10px;
+      }
+      padding-left: 10px;
     }
 
   }

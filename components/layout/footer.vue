@@ -1,19 +1,19 @@
 <style lang="scss">
   .footer {
+    background-color: #ffffff;
     padding: 30px 20px;
     border-top: 1px solid #eee;
-    box-shadow: 0 0 6px rgba(0, 0, 0, .1);
 
     &__container {
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
-      font-size: .95rem;
 
       &__page {
         &__item {
           cursor: pointer;
           display: inline-block;
+          font-size: .95rem;
 
           a {
             color: #666;
@@ -26,11 +26,12 @@
       }
 
       &__info {
-        color: #999;
+        font-size: .9rem;
+        color: #666;
       }
     }
 
-    @media ($screen-size-xs) {
+    @media ($screen-xs) {
       &__container {
         flex-flow: column nowrap;
         align-items: center;

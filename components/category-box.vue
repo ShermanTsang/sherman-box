@@ -25,10 +25,11 @@
 
       &:after {
         content: '';
-        height: 4px;
-        width: 20px;
-        left: calc(50% - 10px);
-        bottom: 0;
+        height: 6px;
+        width: 30px;
+        left: calc(50% - 15px);
+        border-radius: 4px;
+        bottom: -5px;
         position: absolute;
         @include gradient-background;
       }

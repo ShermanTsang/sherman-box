@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",
+    "autoprefixer": "^9.6.1",
     "cross-env": "^5.2.0",
     "grade-js": "^1.0.10",
     "gravatar-url": "^3.0.1",

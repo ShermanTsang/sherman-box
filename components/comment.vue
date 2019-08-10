@@ -24,6 +24,9 @@
         }
 
         &__main {
+          width: 100%;
+          overflow: hidden;
+
           &__username {
             color: #333333;
             font-size: 0.95rem;
