@@ -86,7 +86,10 @@ export default {
         'postcss-url': false
       },
       preset: {
-        autoprefixer: {}
+        autoprefixer: {
+          grid: true,
+          flexbox: true
+        }
       }
     },
     /*

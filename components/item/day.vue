@@ -1,6 +1,7 @@
 <style lang="scss">
   .day-item {
     position: relative;
+    margin: 16px 0;
     overflow: hidden;
     transition-duration: 0.2s;
     line-height: 1.5;
@@ -78,7 +79,7 @@
         left: -2px;
         width: 0;
         height: 0;
-        border-top: 280px solid transparent;
+        border-top: 360px solid transparent;
         border-left: 50px solid #fff;
       }
     }

@@ -9,7 +9,10 @@ export default {
     return state.imageAssetCollection
   },
   moduleCollection(state) {
-    return state.moduleCollection
+    const extraModule = [
+      { name: '轴线', url: 'timeline', icon: 'iconfont icon-schedule' }
+    ]
+    return extraModule.concat(state.moduleCollection)
   },
   pageCollection(state) {
     return state.pageCollection

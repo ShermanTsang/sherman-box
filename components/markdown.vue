@@ -65,7 +65,7 @@
         -webkit-margin-after: 0.5em;
         -webkit-margin-start: 0;
         -webkit-margin-end: 0;
-        line-height: 1.8;
+        line-height: 1.6;
       }
 
       code {

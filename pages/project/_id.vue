@@ -1,5 +1,6 @@
 <style lang="scss">
   .project {
+
     &__header {
       position: relative;
       width: 100%;
@@ -63,8 +64,8 @@
         font-size: .95rem;
         color: #666;
         height: 200px;
-        margin: 0;
-        float: left;
+        margin-left: -1px;
+        margin-bottom: -1px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -102,6 +103,44 @@
 
         &:hover {
           box-shadow: 0 0 20px rgba(0, 0, 0, .1) inset;
+        }
+      }
+    }
+
+    @media ($screen-xs) {
+      &__header {
+        &__main {
+          &__image {
+            width: 95%;
+            height: 260px;
+          }
+
+          &__description {
+            margin: 20px 20px 0 20px;
+            padding: 20px;
+          }
+        }
+      }
+      &__detail {
+        display: block;
+
+        &__item {
+          border: none;
+          padding: 20px 10px;
+          width: 100%;
+          height: auto;
+          display: block;
+
+          &__name {
+            margin: 0;
+          }
+
+          &__info {
+            padding: 10px 0 0 0;
+            text-align: left;
+             overflow-x: unset;
+             overflow-y: unset;
+          }
         }
       }
     }

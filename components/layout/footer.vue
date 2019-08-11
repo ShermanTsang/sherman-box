@@ -1,7 +1,7 @@
 <style lang="scss">
   .footer {
     background-color: #ffffff;
-    padding: 30px 20px;
+    padding: 30px 14px;
     border-top: 1px solid #eee;
 
     &__container {
@@ -16,7 +16,7 @@
           font-size: .95rem;
 
           a {
-            color: #666;
+            color: #999;
           }
 
           &:not(:last-child) {
@@ -27,14 +27,13 @@
 
       &__info {
         font-size: .9rem;
-        color: #666;
+        color: #999;
       }
     }
 
     @media ($screen-xs) {
       &__container {
         flex-flow: column nowrap;
-        align-items: center;
         font-size: .9rem;
 
         &__page {

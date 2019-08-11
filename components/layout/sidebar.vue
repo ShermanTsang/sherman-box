@@ -29,6 +29,7 @@
 
       &__menu {
         margin-top: 20px;
+        flex: 1 0;
 
         &__item {
           line-height: 60px;
@@ -39,6 +40,8 @@
           font-size: 1.1rem;
           letter-spacing: 4px;
           color: #666;
+          text-overflow: ellipsis;
+          overflow: hidden;
 
           &:not(:last-child) {
             border-bottom: 1px solid #eee;
@@ -87,6 +90,7 @@
           &__item {
             display: inline-block;
             padding: 0 10px;
+            overflow: hidden;
 
             &:not(:last-child) {
               margin-right: 16px;
@@ -144,7 +148,9 @@ export default {
   methods: {
     isActiveMenu(menuItem) {
       const { url } = menuItem
-      return this.$route.path.indexOf(url) > 0
+      const path = this.$route.path
+      const inIndexPage = url === 'timeline' && path === '/'
+      return path.indexOf(url) > 0 || inIndexPage
     }
   }
 }

@@ -5,9 +5,10 @@
       overflow: hidden;
 
       &__banner--plain {
-        padding: 20px;
+        padding: 20px 20px 0 20px;
         line-height: 1.2;
         font-size: 1.8rem;
+        color: #666;
 
         &__date {
           font-weight: bolder;
@@ -284,12 +285,12 @@
       </card>
     </layout-container>
     <blocker height="40px" />
-    <layout-container max-width="1280px">
+    <layout-container>
       <nameplate title="记录" sub-title="record" />
       <item-common v-for="item in allItem" :key="item.id" :item="item"></item-common>
     </layout-container>
     <blocker height="60px" />
-    <layout-container max-width="1280px">
+    <layout-container>
       <comment :data="data.dayItem.comments" />
     </layout-container>
     <blocker height="60px" />

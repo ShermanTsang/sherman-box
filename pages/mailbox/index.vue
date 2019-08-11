@@ -1,7 +1,7 @@
 <style lang="scss">
-  .movie-list {
+  .mailbox-list {
     &__item {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
   }
 </style>
@@ -9,20 +9,18 @@
 <template>
   <layout-container>
     <blocker height="20px" />
-    <category-box module="movie" />
+    <category-box module="mailbox" />
     <blocker height="20px" />
-    <div v-if="data.movieCollection" class="movie-list">
+    <div v-if="data.mailboxCollection" class="mailbox-list">
       <layout-row :gutter="16">
         <layout-col
-          v-for="item in data.movieCollection"
+          v-for="item in data.mailboxCollection"
           :key="item.id"
-          :xs="{span:24}"
-          :sm="{span:24}"
-          :md="{span:24}"
-          :lg="{span:12}"
-          :xl="{span:8}"
+          :sm="{span : 24}"
+          :md="{span : 12}"
+          :lg="{span : 8}"
         >
-          <item-movie :item="item" />
+          <item-mailbox :item="item" />
         </layout-col>
       </layout-row>
     </div>
@@ -44,23 +42,22 @@ export default {
   },
   head() {
     return {
-      title: `观影`,
+      title: '邮盒',
       meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '观影列表') }
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '邮盒列表') }
       ]
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: movieCollection, meta } = await $axios.$get(`/api/movies`, {
+    const { data: mailboxCollection, meta } = await $axios.$get(`/api/mailboxes`, {
       params: {
-        pageSize: 9,
         page: query.page,
         categoryId: query.categoryId || ''
       }
     })
     return {
       data: {
-        movieCollection
+        mailboxCollection
       },
       meta
     }
@@ -69,7 +66,7 @@ export default {
   },
   methods: {
     changePage(currentPage) {
-      this.$router.push({ name: 'movie', query: { page: parseInt(currentPage) } })
+      this.$router.push({ name: 'mailbox', query: { page: parseInt(currentPage) } })
     }
   },
   watchQuery: ['page', 'categoryId']
