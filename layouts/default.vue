@@ -1,15 +1,21 @@
 <style lang="scss">
   .layout-sidebar {
     display: none;
-    @media ($screen-sm) {
+    @media ($screen-md-min) {
       display: block;
     }
   }
 
   .layout-header {
     display: block;
-    @media ($screen-sm) {
+    @media ($screen-md-min) {
       display: none;
+    }
+  }
+
+  .layout-main {
+    @media ($screen-md-min) {
+      margin-left: 200px;
     }
   }
 </style>
@@ -19,7 +25,7 @@
     <layout-sidebar class="layout-sidebar" />
     <layout-header class="layout-header" />
     <layout-view>
-      <layout-main>
+      <layout-main class="layout-main">
         <nuxt />
       </layout-main>
       <layout-footer />

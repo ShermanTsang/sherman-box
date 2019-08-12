@@ -3,11 +3,6 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-
-    @media ($screen-sm) {
-      margin-left: 200px;
-    }
-
   }
 </style>
 

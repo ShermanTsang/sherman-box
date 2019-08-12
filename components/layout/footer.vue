@@ -31,7 +31,7 @@
       }
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       &__container {
         flex-flow: column nowrap;
         font-size: .9rem;

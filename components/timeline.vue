@@ -78,7 +78,7 @@
       }
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       &:before {
         opacity: .5;
       }

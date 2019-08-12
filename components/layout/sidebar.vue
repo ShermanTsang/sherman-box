@@ -23,7 +23,8 @@
       flex-flow: column nowrap;
 
       &__logo {
-        padding: 20px 0;
+        margin-top: 20px;
+        margin-bottom: 4px;
         text-align: center;
       }
 
@@ -71,7 +72,7 @@
 
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       height: auto;
       padding: 16px;
 

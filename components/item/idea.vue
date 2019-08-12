@@ -23,7 +23,7 @@
       color: #999;
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       padding: 20px;
     }
 

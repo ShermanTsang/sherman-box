@@ -103,7 +103,7 @@
       }
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       &__card {
         &__banner {
           height: 300px;

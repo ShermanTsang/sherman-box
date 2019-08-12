@@ -26,11 +26,11 @@
       @include gradient-background;
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       &:after {
-        left: 10px;
+        /*left: 10px;*/
       }
-      padding-left: 10px;
+      /*padding-left: 10px;*/
     }
 
   }

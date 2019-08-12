@@ -107,7 +107,7 @@
       }
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       &__header {
         &__main {
           &__image {

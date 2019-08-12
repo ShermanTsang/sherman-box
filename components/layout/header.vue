@@ -68,7 +68,7 @@
       }
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       height: auto;
       padding: 16px;
 

@@ -58,7 +58,7 @@
 
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       &__header {
         flex-flow: column nowrap;
         padding: 20px 0;

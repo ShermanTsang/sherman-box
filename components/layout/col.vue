@@ -14,7 +14,7 @@
       }
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       $class-prefix: col-xs-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -29,7 +29,7 @@
       }
     }
 
-    @media ($screen-sm) {
+    @media ($screen-sm-min) {
       $class-prefix: col-sm-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -44,7 +44,7 @@
       }
     }
 
-    @media ($screen-md) {
+    @media ($screen-md-min) {
       $class-prefix: col-md-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -59,7 +59,7 @@
       }
     }
 
-    @media ($screen-lg) {
+    @media ($screen-lg-min) {
       $class-prefix: col-lg-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -74,7 +74,7 @@
       }
     }
 
-    @media ($screen-xl) {
+    @media ($screen-xl-min) {
       $class-prefix: col-xl-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
@@ -89,7 +89,7 @@
       }
     }
 
-    @media ($screen-xxl) {
+    @media ($screen-xxl-min) {
       $class-prefix: col-xxl-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {

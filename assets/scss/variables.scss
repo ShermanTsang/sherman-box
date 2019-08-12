@@ -1,11 +1,18 @@
 $theme-color: #0a84ea;
 
-$screen-xs: "max-width: 575px";
-$screen-sm: "min-width: 576px";
-$screen-md: "min-width: 768px";
-$screen-lg: "min-width: 992px";
-$screen-xl: "min-width: 1200px";
-$screen-xxl: "min-width: 1600px";
+$screen-xs-min: "min-width: 575px";
+$screen-sm-min: "min-width: 576px";
+$screen-md-min: "min-width: 768px";
+$screen-lg-min: "min-width: 992px";
+$screen-xl-min: "min-width: 1200px";
+$screen-xxl-min: "min-width: 1600px";
+
+$screen-xs-max: "max-width: 575px";
+$screen-sm-max: "max-width: 576px";
+$screen-md-max: "max-width: 768px";
+$screen-lg-max: "max-width: 992px";
+$screen-xl-max: "max-width: 1200px";
+$screen-xxl-max: "max-width: 1600px";
 
 @mixin gradient-background {
   background-color: #51defe;

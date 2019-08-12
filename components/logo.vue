@@ -1,13 +1,14 @@
 <style lang="scss">
   .logo {
-    width: 120px;
+    width: 100%;
     cursor: pointer;
     font-size: 1.2rem;
 
     img {
-      height: 40px;
-      opacity: .8;
+      width: 85%;
+      max-width: 220px;
     }
+
   }
 </style>
 

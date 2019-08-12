@@ -91,7 +91,7 @@
       }
     }
 
-    @media ($screen-xs) {
+    @media ($screen-xs-max) {
       flex-flow: column nowrap;
 
       &__main {
