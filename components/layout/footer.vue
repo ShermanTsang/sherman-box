@@ -1,7 +1,8 @@
 <style lang="scss">
   .footer {
+    margin-left: 200px;
     background-color: #ffffff;
-    padding: 30px 14px;
+    padding: 30px 10px;
     border-top: 1px solid #eee;
 
     &__container {
@@ -32,6 +33,8 @@
     }
 
     @media ($screen-xs-max) {
+      margin-left: 0;
+
       &__container {
         flex-flow: column nowrap;
         font-size: .9rem;

@@ -1,5 +1,6 @@
 <style lang="scss">
   .comment {
+
     &__list {
       &__item {
         display: flex;
@@ -48,12 +49,16 @@
       }
     }
 
+    &__form {
+      display: none;
+    }
+
   }
 </style>
 
 <template>
   <div class="comment">
-    <nameplate title="评论" sub-title="Comment" />
+    <nameplate title="评论" sub-title="comment" />
     <div v-for="item in data" :key="item.id" class="comment__list">
       <div class="comment__list__item">
         <div class="comment__list__item__avatar">
@@ -82,7 +87,28 @@
         </div>
       </div>
     </div>
-    <div class="comment__input">
+    <div class="comment__form">
+      <div class="comment__form__item">
+        <label for="username">昵称</label>
+        <input id="username" v-model="form.username">
+      </div>
+      <div class="comment__form__item">
+        <label for="qq">QQ/微信</label>
+        <input id="qq" v-model="form.qq">
+      </div>
+      <div class="comment__form__item">
+        <label for="website">网站</label>
+        <input id="website" v-model="form.website">
+      </div>
+      <div class="comment__form__item">
+        <label for="comment">内容</label>
+        <input id="comment" v-model="form.comment">
+      </div>
+      <div class="comment__form__item">
+        <Button @click="submitSendComment()">
+          发送
+        </Button>
+      </div>
     </div>
   </div>
 </template>
@@ -91,6 +117,14 @@
 export default {
   name: 'Comment',
   props: {
+    module: {
+      type: String,
+      default: ''
+    },
+    id: {
+      type: [String, Number],
+      default: ''
+    },
     data: {
       type: Array,
       default: () => {
@@ -98,10 +132,26 @@ export default {
       }
     }
   },
-  computed: {},
+  data() {
+    return {
+      form: {}
+    }
+  },
   methods: {
     redirectByUrl(url) {
       window.open(url)
+    },
+    submitSendComment() {
+      const appendParams = { module: this.module, id: this.id }
+      const newComment = Object.assign(this.form, appendParams)
+      console.log(newComment)
+      this.$axios.$post('/api/comments', newComment)
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }

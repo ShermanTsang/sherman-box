@@ -291,7 +291,7 @@
     </layout-container>
     <blocker height="60px" />
     <layout-container>
-      <comment :data="data.dayItem.comments" />
+      <comment :id="data.dayItem.id" module="day" :data="data.dayItem.comments" />
     </layout-container>
     <blocker height="60px" />
   </div>

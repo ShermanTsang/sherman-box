@@ -77,7 +77,7 @@
     </layout-container>
     <blocker height="60px" />
     <layout-container>
-      <comment :data="data.blogItem.comments" />
+      <comment :id="data.blogItem.id" module="blog" :data="data.blogItem.comments" />
     </layout-container>
     <blocker height="60px" />
   </div>

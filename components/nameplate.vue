@@ -28,9 +28,9 @@
 
     @media ($screen-xs-max) {
       &:after {
-        /*left: 10px;*/
+        left: 10px;
       }
-      /*padding-left: 10px;*/
+      padding-left: 10px;
     }
 
   }

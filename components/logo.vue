@@ -3,17 +3,21 @@
     width: 100%;
     cursor: pointer;
     font-size: 1.2rem;
+    max-width: 180px;
 
     img {
       width: 85%;
-      max-width: 220px;
     }
 
   }
 </style>
 
 <template>
-  <nuxt-link to="/" class="logo">
-    <img :src="$getImageAsset('logo')" alt="logo">
-  </nuxt-link>
+  <img :src="$getImageAsset('logo')" alt="logo" class="logo" @click="$router.push('/')">
 </template>
+
+<script>
+export default {
+  name: 'Logo'
+}
+</script>
