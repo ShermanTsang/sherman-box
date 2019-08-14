@@ -309,7 +309,7 @@
     </layout-container>
     <blocker height="60px" />
     <layout-container>
-      <comment :id="data.projectItem.id" module="project" :sourceData="data.projectItem.comments" />
+      <comment :id="data.projectItem.id" module="project" :source-data="data.projectItem.comments" />
     </layout-container>
     <blocker height="60px" />
   </div>

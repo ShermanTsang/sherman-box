@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Gravatar from 'gravatar-url'
 import config from '../config'
+import defaultEmail from '@/assets/image/defaultImage.png'
 
 export default function ({ store }) {
   function getConfigItem(key) {
@@ -47,7 +48,7 @@ export default function ({ store }) {
       case 'qq':
         return `http://q2.qlogo.cn/headimg_dl?dst_uin=${sign}&spec=100`
       default:
-        return ''
+        return defaultEmail
     }
   }
 

@@ -77,7 +77,7 @@
     </layout-container>
     <blocker height="60px" />
     <layout-container>
-      <comment :id="data.mailboxItem.id" module="mailbox" :sourceData="data.mailboxItem.comments" />
+      <comment :id="data.mailboxItem.id" module="mailbox" :source-data="data.mailboxItem.comments" />
     </layout-container>
     <blocker height="60px" />
   </div>

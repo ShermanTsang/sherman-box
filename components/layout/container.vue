@@ -6,7 +6,11 @@
       width: 95%;
     }
 
-    @media ($screen-sm-max) {
+    @media ($screen-sm-min) {
+      width: 92%;
+    }
+
+    @media ($screen-md-min) {
       width: 90%;
     }
 

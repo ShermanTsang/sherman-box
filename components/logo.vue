@@ -3,7 +3,7 @@
     width: 100%;
     cursor: pointer;
     font-size: 1.2rem;
-    max-width: 180px;
+    max-width: 166px;
 
     img {
       width: 85%;

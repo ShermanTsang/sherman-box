@@ -130,7 +130,7 @@
     </layout-container>
     <blocker height="40px" />
     <layout-container>
-      <comment :id="data.movieItem.id" module="movie" :sourceData="data.movieItem.comments" />
+      <comment :id="data.movieItem.id" module="movie" :source-data="data.movieItem.comments" />
     </layout-container>
     <blocker height="60px" />
   </div>
