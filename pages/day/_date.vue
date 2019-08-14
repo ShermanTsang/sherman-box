@@ -291,7 +291,7 @@
     </layout-container>
     <blocker height="60px" />
     <layout-container>
-      <comment :id="data.dayItem.id" module="day" :sourceData="data.dayItem.comments" />
+      <comment :id="data.dayItem.id" module="day" :source-data="data.dayItem.comments" />
     </layout-container>
     <blocker height="60px" />
   </div>
@@ -333,17 +333,18 @@ export default {
     }
   },
   async asyncData({ $axios, params }) {
-    const { data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList } } = await $axios.$get(`/api/days/${params.date}`)
-    return {
+    const {
       data: {
-        dayItem,
-        movieList,
-        ideaList,
-        blogList,
-        projectList,
-        mailboxList,
-        planList
+        dayItem, movieCollection: movieList,
+        ideaCollection: ideaList,
+        blogCollection: blogList,
+        projectCollection: projectList,
+        mailboxCollection: mailboxList,
+        planCollection: planList
       }
+    } = await $axios.$get(`/api/days/${params.date}`)
+    return {
+      data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList }
     }
   },
   mounted() {
