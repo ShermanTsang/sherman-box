@@ -11,10 +11,10 @@
     <blocker height="20px" />
     <category-box module="blog" />
     <blocker height="20px" />
-    <div v-if="data.blogCollection" class="blog-list">
+    <div v-if="data.blogList" class="blog-list">
       <layout-row :gutter="16">
         <layout-col
-          v-for="item in data.blogCollection"
+          v-for="item in data.blogList"
           :key="item.id"
           :sm="{span : 24}"
           :md="{span : 12}"
@@ -49,7 +49,7 @@ export default {
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: blogCollection, meta } = await $axios.$get(`/api/blogs`, {
+    const { data: blogList, meta } = await $axios.$get(`/api/blogs`, {
       params: {
         page: query.page,
         categoryId: query.categoryId || ''
@@ -57,7 +57,7 @@ export default {
     })
     return {
       data: {
-        blogCollection
+        blogList
       },
       meta
     }

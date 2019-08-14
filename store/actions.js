@@ -1,27 +1,27 @@
 export default {
   async GET_CONFIGURATION_COLLECTION({ commit }) {
     const { data } = await this.$axios.$get('/api/configurations')
-    commit('configurationCollection', data)
+    commit('configurationList', data)
   },
   async GET_FILE_ASSET_COLLECTION({ commit }) {
     const { data } = await this.$axios.$get('/api/fileAssets')
-    commit('fileAssetCollection', data)
+    commit('fileAssetList', data)
   },
   async GET_IMAGE_ASSET_COLLECTION({ commit }) {
     const { data } = await this.$axios.$get('/api/imageAssets')
-    commit('imageAssetCollection', data)
+    commit('imageAssetList', data)
   },
   async GET_MODULE_COLLECTION({ commit }) {
     const { data } = await this.$axios.$get('/api/modules')
-    commit('moduleCollection', data)
+    commit('moduleList', data)
   },
   async GET_PAGE_COLLECTION({ commit }) {
     const { data } = await this.$axios.$get('/api/pages')
-    commit('pageCollection', data)
+    commit('pageList', data)
   },
   async GET_CATEGORY_COLLECTION({ commit }) {
     const { data } = await this.$axios.$get('/api/categories')
-    commit('categoryCollection', data)
+    commit('categoryList', data)
   },
   async nuxtServerInit({ dispatch }) {
     await dispatch('GET_CONFIGURATION_COLLECTION')

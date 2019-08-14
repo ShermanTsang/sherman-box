@@ -21,9 +21,9 @@
     <blocker height="20px" />
     <category-box module="idea" />
     <blocker height="20px" />
-    <div v-if="data.ideaCollection" class="idea-list">
+    <div v-if="data.ideaList" class="idea-list">
       <div
-        v-for="item in data.ideaCollection"
+        v-for="item in data.ideaList"
         :key="item.id"
         class="idea-list__item"
       >
@@ -55,7 +55,7 @@ export default {
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: ideaCollection, meta } = await $axios.$get(`/api/ideas`, {
+    const { data: ideaList, meta } = await $axios.$get(`/api/ideas`, {
       params: {
         page: query.page,
         categoryId: query.categoryId || ''
@@ -63,7 +63,7 @@ export default {
     })
     return {
       data: {
-        ideaCollection
+        ideaList
       },
       meta
     }

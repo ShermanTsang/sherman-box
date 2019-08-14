@@ -9,10 +9,10 @@
 <template>
   <layout-container>
     <blocker height="20px" />
-    <div v-if="data.dayCollection" class="day-list">
+    <div v-if="data.dayList" class="day-list">
       <layout-row :gutter="16">
         <layout-col
-          v-for="item in data.dayCollection"
+          v-for="item in data.dayList"
           :key="item.id"
           :md="{span:24}"
           :lg="{span:24}"
@@ -47,14 +47,14 @@ export default {
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: dayCollection, meta } = await $axios.$get(`/api/days`, {
+    const { data: dayList, meta } = await $axios.$get(`/api/days`, {
       params: {
         page: query.page
       }
     })
     return {
       data: {
-        dayCollection
+        dayList
       },
       meta
     }

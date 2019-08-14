@@ -60,7 +60,7 @@
   <footer class="footer">
     <layout-container class="footer__container">
       <div class="footer__container__page">
-        <div v-for="item in $store.getters.pageCollection" :key="item.id" class="footer__container__page__item">
+        <div v-for="item in $store.getters.pageList" :key="item.id" class="footer__container__page__item">
           <nuxt-link :to="{name:`page-url`,params:{type:'page',id:item.id,url:item.url}}">
             {{ item.name }}
           </nuxt-link>

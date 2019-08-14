@@ -1,8 +1,8 @@
 export default () => ({
-  configurationCollection: [],
-  fileAssetCollection: [],
-  imageAssetCollection: [],
-  moduleCollection: [],
-  pageCollection: [],
-  categoryCollection: []
+  configurationList: [],
+  fileAssetList: [],
+  imageAssetList: [],
+  moduleList: [],
+  pageList: [],
+  categoryList: []
 })

@@ -291,7 +291,7 @@
     </layout-container>
     <blocker height="60px" />
     <layout-container>
-      <comment :id="data.dayItem.id" module="day" :data="data.dayItem.comments" />
+      <comment :id="data.dayItem.id" module="day" :sourceData="data.dayItem.comments" />
     </layout-container>
     <blocker height="60px" />
   </div>
@@ -327,22 +327,22 @@ export default {
       return '不详'
     },
     allItem() {
-      const { movieCollection, ideaCollection, blogCollection, projectCollection, mailboxCollection, planCollection } = this.data
+      const { movieList, ideaList, blogList, projectList, mailboxList, planList } = this.data
       const allItem = []
-      return allItem.concat(movieCollection, ideaCollection, blogCollection, projectCollection, mailboxCollection, planCollection)
+      return allItem.concat(movieList, ideaList, blogList, projectList, mailboxList, planList)
     }
   },
   async asyncData({ $axios, params }) {
-    const { data: { dayItem, movieCollection, ideaCollection, blogCollection, projectCollection, mailboxCollection, planCollection } } = await $axios.$get(`/api/days/${params.date}`)
+    const { data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList } } = await $axios.$get(`/api/days/${params.date}`)
     return {
       data: {
         dayItem,
-        movieCollection,
-        ideaCollection,
-        blogCollection,
-        projectCollection,
-        mailboxCollection,
-        planCollection
+        movieList,
+        ideaList,
+        blogList,
+        projectList,
+        mailboxList,
+        planList
       }
     }
   },

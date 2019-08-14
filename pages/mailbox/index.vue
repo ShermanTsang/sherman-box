@@ -11,10 +11,10 @@
     <blocker height="20px" />
     <category-box module="mailbox" />
     <blocker height="20px" />
-    <div v-if="data.mailboxCollection" class="mailbox-list">
+    <div v-if="data.mailboxList" class="mailbox-list">
       <layout-row :gutter="16">
         <layout-col
-          v-for="item in data.mailboxCollection"
+          v-for="item in data.mailboxList"
           :key="item.id"
           :sm="{span : 24}"
           :md="{span : 12}"
@@ -49,7 +49,7 @@ export default {
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: mailboxCollection, meta } = await $axios.$get(`/api/mailboxes`, {
+    const { data: mailboxList, meta } = await $axios.$get(`/api/mailboxes`, {
       params: {
         page: query.page,
         categoryId: query.categoryId || ''
@@ -57,7 +57,7 @@ export default {
     })
     return {
       data: {
-        mailboxCollection
+        mailboxList
       },
       meta
     }

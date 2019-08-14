@@ -50,7 +50,38 @@
     }
 
     &__form {
-      display: none;
+      /*display: none;*/
+      &__item {
+        &:not(:first-child) {
+          margin-top: 16px;
+        }
+
+        label {
+          letter-spacing: 1px;
+          color: #666;
+          font-size: 1rem;
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        input {
+          width: 100%;
+          height: 34px;
+          font-size: 1rem;
+          line-height: 34px;
+          border: none;
+          border-bottom: 1px solid #ccc;
+        }
+
+        button {
+          width: 100%;
+          border: none;
+          line-height: 40px;
+          color: #fff;
+          letter-spacing: 2px;
+          @include gradient-background;
+        }
+      }
     }
 
   }
@@ -59,10 +90,10 @@
 <template>
   <div class="comment">
     <nameplate title="评论" sub-title="comment" />
-    <div v-for="item in data" :key="item.id" class="comment__list">
+    <div v-for="item in data.commentList" :key="item.id" class="comment__list">
       <div class="comment__list__item">
         <div class="comment__list__item__avatar">
-          <img :src="$getAvatarUrl(item.qq ? 'qq':'email',item.qq? item.qq: item.email)">
+          <img :src="$getAvatarUrl(item.qq ? 'qq': (item.email? 'email' : ''))">
         </div>
         <div class="comment__list__item__main">
           <div class="comment__list__item__main__username">
@@ -87,29 +118,39 @@
         </div>
       </div>
     </div>
-    <div class="comment__form">
-      <div class="comment__form__item">
-        <label for="username">昵称</label>
-        <input id="username" v-model="form.username">
-      </div>
-      <div class="comment__form__item">
-        <label for="qq">QQ/微信</label>
-        <input id="qq" v-model="form.qq">
-      </div>
-      <div class="comment__form__item">
-        <label for="website">网站</label>
-        <input id="website" v-model="form.website">
-      </div>
-      <div class="comment__form__item">
-        <label for="comment">内容</label>
-        <input id="comment" v-model="form.comment">
-      </div>
-      <div class="comment__form__item">
-        <Button @click="submitSendComment()">
-          发送
-        </Button>
-      </div>
-    </div>
+    <template v-if="test">
+      <layout-row>
+        <layout-col :xs="{span:24}" :sm="{span:24}" :md="{span:24}" :lg="{span:12}" :xl="{span:8}">
+          <div class="comment__form">
+            <div class="comment__form__item">
+              <label for="username">昵称</label>
+              <input id="username" v-model="form.username">
+            </div>
+            <div class="comment__form__item">
+              <label for="qq">QQ/微信</label>
+              <input id="qq" v-model="form.qq">
+            </div>
+            <div class="comment__form__item">
+              <label for="website">网站</label>
+              <input id="website" v-model="form.website">
+            </div>
+            <div class="comment__form__item">
+              <Button @click="submitSendComment()">
+                发送
+              </Button>
+            </div>
+          </div>
+        </layout-col>
+        <layout-col :xs="{span:24}" :sm="{span:24}" :md="{span:24}" :lg="{span:12}" :xl="{span:10}">
+          <div class="comment__form">
+            <div class="comment__form__item">
+              <label for="comment">内容</label>
+              <input id="comment" v-model="form.comment">
+            </div>
+          </div>
+        </layout-col>
+      </layout-row>
+    </template>
   </div>
 </template>
 
@@ -125,7 +166,7 @@ export default {
       type: [String, Number],
       default: ''
     },
-    data: {
+    sourceData: {
       type: Array,
       default: () => {
         return []
@@ -134,8 +175,15 @@ export default {
   },
   data() {
     return {
-      form: {}
+      test: false,
+      form: {},
+      data: {
+        commentList: []
+      }
     }
+  },
+  mounted() {
+    this.data.commentList = this.sourceData
   },
   methods: {
     redirectByUrl(url) {
@@ -144,10 +192,9 @@ export default {
     submitSendComment() {
       const appendParams = { module: this.module, id: this.id }
       const newComment = Object.assign(this.form, appendParams)
-      console.log(newComment)
       this.$axios.$post('/api/comments', newComment)
         .then((response) => {
-          console.log(response)
+          this.data.commentList.push(response.data)
         })
         .catch((error) => {
           console.log(error)

@@ -71,8 +71,8 @@ export default function ({ store }) {
     if (!key) {
       return '[ key is null ]'
     }
-    const configurationCollection = this.$store.getters.configurationCollection || []
-    const configurationTarget = configurationCollection.find((item) => {
+    const configurationList = this.$store.getters.configurationList || []
+    const configurationTarget = configurationList.find((item) => {
       return item.name === key || item.id === key
     })
     if (!configurationTarget) {
@@ -85,8 +85,8 @@ export default function ({ store }) {
     if (!key) {
       return '[ key is null ]'
     }
-    const imageAssetCollection = this.$store.getters.imageAssetCollection || []
-    const imageAssetTarget = imageAssetCollection.find((item) => {
+    const imageAssetList = this.$store.getters.imageAssetList || []
+    const imageAssetTarget = imageAssetList.find((item) => {
       return item.key === key || item.id === key
     })
     if (!imageAssetTarget) {
@@ -99,8 +99,8 @@ export default function ({ store }) {
     if (!key) {
       return '[ key is null ]'
     }
-    const fileAssetCollection = this.$store.getters.fileAssetCollection || []
-    const fileAssetTarget = fileAssetCollection.find((item) => {
+    const fileAssetList = this.$store.getters.fileAssetList || []
+    const fileAssetTarget = fileAssetList.find((item) => {
       return item.key === key || item.id === key
     })
     if (!fileAssetTarget) {
@@ -122,7 +122,7 @@ export default function ({ store }) {
   }
 
   function getModuleConfig(module) {
-    const mainConfigList = store.getters.moduleCollection || []
+    const mainConfigList = store.getters.moduleList || []
     const configList = {
       day: {
         name: '日迹', date: 'date'

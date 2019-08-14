@@ -1,23 +1,23 @@
 export default {
-  configurationCollection(state) {
-    return state.configurationCollection
+  configurationList(state) {
+    return state.configurationList
   },
-  fileAssetCollection(state) {
-    return state.fileAssetCollection
+  fileAssetList(state) {
+    return state.fileAssetList
   },
-  imageAssetCollection(state) {
-    return state.imageAssetCollection
+  imageAssetList(state) {
+    return state.imageAssetList
   },
-  moduleCollection(state) {
+  moduleList(state) {
     const extraModule = [
       { name: '轴线', url: 'timeline', icon: 'iconfont icon-schedule' }
     ]
-    return extraModule.concat(state.moduleCollection)
+    return extraModule.concat(state.moduleList)
   },
-  pageCollection(state) {
-    return state.pageCollection
+  pageList(state) {
+    return state.pageList
   },
-  categoryCollection(state) {
-    return state.categoryCollection
+  categoryList(state) {
+    return state.categoryList
   }
 }

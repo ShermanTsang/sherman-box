@@ -84,12 +84,6 @@ export default {
     postcss: {
       plugins: {
         'postcss-url': false
-      },
-      preset: {
-        autoprefixer: {
-          grid: true,
-          flexbox: true
-        }
       }
     },
     /*

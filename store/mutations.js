@@ -1,20 +1,20 @@
 export default {
-  configurationCollection(state, data) {
-    state.configurationCollection = data
+  configurationList(state, data) {
+    state.configurationList = data
   },
-  imageAssetCollection(state, data) {
-    state.imageAssetCollection = data
+  imageAssetList(state, data) {
+    state.imageAssetList = data
   },
-  fileAssetCollection(state, data) {
-    state.fileAssetCollection = data
+  fileAssetList(state, data) {
+    state.fileAssetList = data
   },
-  moduleCollection(state, data) {
-    state.moduleCollection = data
+  moduleList(state, data) {
+    state.moduleList = data
   },
-  pageCollection(state, data) {
-    state.pageCollection = data
+  pageList(state, data) {
+    state.pageList = data
   },
-  categoryCollection(state, data) {
-    state.categoryCollection = data
+  categoryList(state, data) {
+    state.categoryList = data
   }
 }

@@ -11,10 +11,10 @@
     <blocker height="20px" />
     <category-box module="movie" />
     <blocker height="20px" />
-    <div v-if="data.movieCollection" class="movie-list">
+    <div v-if="data.movieList" class="movie-list">
       <layout-row :gutter="16">
         <layout-col
-          v-for="item in data.movieCollection"
+          v-for="item in data.movieList"
           :key="item.id"
           :xs="{span:24}"
           :sm="{span:24}"
@@ -51,7 +51,7 @@ export default {
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: movieCollection, meta } = await $axios.$get(`/api/movies`, {
+    const { data: movieList, meta } = await $axios.$get(`/api/movies`, {
       params: {
         pageSize: 9,
         page: query.page,
@@ -60,7 +60,7 @@ export default {
     })
     return {
       data: {
-        movieCollection
+        movieList
       },
       meta
     }

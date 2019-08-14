@@ -113,7 +113,7 @@
       </div>
       <div class="header__container__menu">
         <div
-          v-for="(item,index) in $store.getters.moduleCollection"
+          v-for="(item,index) in $store.getters.moduleList"
           :key="index"
           class="header__container__menu__item"
           :class="{'header__container__menu__item--active': isActiveMenu(item)}"

@@ -54,7 +54,7 @@
       全部
     </nuxt-link>
     <nuxt-link
-      v-for="item in categoryCollection"
+      v-for="item in categoryList"
       :key="item.id"
       :to="`${$route.path}?categoryId=${item.id}&page=1`"
       class="category-box__item"
@@ -75,9 +75,9 @@ export default {
     }
   },
   computed: {
-    categoryCollection() {
-      const allCollection = this.$store.getters.categoryCollection || []
-      return allCollection.filter((item) => {
+    categoryList() {
+      const allList = this.$store.getters.categoryList || []
+      return allList.filter((item) => {
         return item.module === this.module
       })
     },
