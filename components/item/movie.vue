@@ -110,6 +110,13 @@
         }
       }
     }
+
+    @media ($screen-md-max) {
+      &__content {
+        padding: 20px;
+      }
+    }
+
   }
 </style>
 

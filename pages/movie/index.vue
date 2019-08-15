@@ -19,8 +19,9 @@
           :xs="{span:24}"
           :sm="{span:24}"
           :md="{span:24}"
-          :lg="{span:12}"
-          :xl="{span:8}"
+          :lg="{span:24}"
+          :xl="{span:12}"
+          :xxl="{span:8}"
         >
           <item-movie :item="item" />
         </layout-col>
@@ -53,7 +54,7 @@ export default {
   async asyncData({ $axios, query }) {
     const { data: movieList, meta } = await $axios.$get(`/api/movies`, {
       params: {
-        pageSize: 9,
+        pageSize: 8,
         page: query.page,
         categoryId: query.categoryId || ''
       }

@@ -5,7 +5,7 @@
 </style>
 
 <template>
-  <i v-if="name" :class="`iconfont icon-${name}`" :style="style" />
+  <i v-if="name" :class="`iconfont icon-${name}`" :style="style" @click="$emit('click')" />
 </template>
 
 <script>
