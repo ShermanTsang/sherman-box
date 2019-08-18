@@ -53,7 +53,8 @@ export default {
     { src: '@/plugins/moment', ssr: true },
     { src: '@/plugins/gradient-color', ssr: false },
     { src: '@/plugins/vue-lazyload', ssr: false },
-    { src: '@/plugins/3rd-analyze', ssr: false }
+    { src: '@/plugins/3rd-analyze', ssr: false },
+    { src: '@/plugins/vee-validate', ssr: false }
   ],
 
   /*

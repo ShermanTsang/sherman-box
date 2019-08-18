@@ -46,89 +46,8 @@
       }
     }
 
-    &__modal {
-      position: fixed;
-      background-color: rgba(0, 0, 0, .15);
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-
-      &__container {
-        width: 90%;
-        height: auto;
-        overflow: hidden;
-        max-width: 500px;
-        margin: 0 auto;
-        background-color: #fff;
-        border: 1px solid #efefef;
-        box-shadow: 0 0 30px rgba(0, 0, 0, .2);
-
-        &__header {
-          border-bottom: 1px solid #eee;
-          font-size: 1.15rem;
-          letter-spacing: 2px;
-          color: $theme-color;
-          padding: 20px;
-
-          &__close {
-            color: #999;
-            float: right;
-            transition: all .2s ease-in-out;
-            cursor: pointer;
-
-            &:hover {
-              transform: scale(1.1);
-            }
-          }
-        }
-
-        &__form {
-          padding: 20px;
-
-          &__item {
-            &:not(:first-child) {
-              margin-top: 16px;
-            }
-
-            label {
-              letter-spacing: 2px;
-              color: #666;
-              font-size: 1rem;
-              display: block;
-              margin-bottom: 10px;
-            }
-
-            input {
-              width: 100%;
-              font-size: 1rem;
-              padding: 0 10px;
-              line-height: 34px;
-              border: none;
-              border-bottom: 1px solid #ddd;
-            }
-
-          }
-        }
-
-        &__footer {
-          button {
-            cursor: pointer;
-            width: 100%;
-            height: 100%;
-            border: none;
-            line-height: 48px;
-            color: #fff;
-            letter-spacing: 2px;
-            @include gradient-background;
-          }
-        }
-      }
-
+    &__form {
+      padding: 20px;
     }
 
   }
@@ -159,50 +78,51 @@
         </div>
       </div>
     </div>
-    <div v-if="status.showModal" class="comment__modal">
-      <div class="comment__modal__container">
-        <div class="comment__modal__container__header">
-          <icon name="comment" size="30" />
-          写评论
-          <span class="comment__modal__container__header__close">
-            <icon name="close" @click="status.showModal = false" />
-          </span>
-        </div>
-        <div class="comment__modal__container__form">
-          <div class="comment__modal__container__form__item">
-            <label for="username">昵称</label>
-            <input id="username" v-model="form.username" required>
-          </div>
-          <div class="comment__modal__container__form__item">
-            <label for="qq">QQ/微信</label>
-            <input id="qq" v-model="form.qq">
-          </div>
-          <div class="comment__modal__container__form__item">
-            <label for="email">邮箱</label>
-            <input id="email" v-model="form.email">
-          </div>
-          <div class="comment__modal__container__form__item">
-            <label for="website">网站</label>
-            <input id="website" v-model="form.website">
-          </div>
-          <div class="comment__modal__container__form__item">
-            <label for="comment">内容</label>
-            <input
-              id="comment"
-              v-model="form.comment"
-              required
-              minlength="4"
-              maxlength="500"
-            >
-          </div>
-        </div>
-        <div class="comment__modal__container__footer">
-          <Button @click="submitSendComment()">
-            发送
-          </Button>
-        </div>
+    <modal v-model="status.showModal" title="写评论" icon="comment" width="500px" @onClose="form = {}">
+      <div class="comment__form">
+        <form-item
+          v-model="form.username"
+          validate="required|max:12"
+          label="昵称"
+          name="username"
+          type="input"
+          placeholder="该如何称呼你呢？"
+          @changeValidate="valid => status.validate.username = valid"
+        ></form-item>
+        <form-item
+          v-model="form.contact"
+          label="联系方式"
+          name="contact"
+          type="input"
+          validate="required|max:30"
+          placeholder="QQ / Wechat / Email"
+          @changeValidate="valid => status.validate.contact = valid"
+        >
+          <span v-if="contactType" slot="tip">使用 {{ contactType }} 作为联系方式</span>
+        </form-item>
+        <form-item
+          v-model="form.website"
+          label="个人网站"
+          name="website"
+          type="input"
+          validate="url|max:60"
+          placeholder="可填写你的网站、博客、微博或其他社媒地址"
+          @changeValidate="valid => status.validate.website = valid"
+        ></form-item>
+        <form-item
+          v-model="form.comment"
+          label="内容"
+          name="comment"
+          type="input"
+          validate="required|max:30"
+          placeholder="留下你的想法、疑问、评论或回忆"
+          @changeValidate="valid => status.validate.comment = valid"
+        ></form-item>
       </div>
-    </div>
+      <button slot="footer" @click="submitSendComment()">
+        发送
+      </button>
+    </modal>
   </div>
 </template>
 
@@ -228,12 +148,35 @@ export default {
   data() {
     return {
       status: {
-        showModal: false
+        showModal: false,
+        validate: {
+          username: false,
+          contact: false,
+          website: true,
+          comment: false
+        }
       },
       form: {},
+      formError: {},
       data: {
         commentList: []
       }
+    }
+  },
+  computed: {
+    contactType() {
+      const { contact = '' } = this.form
+      const contactTypeList = {
+        email: contact.indexOf('@') !== -1,
+        wechat: /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/.test(contact),
+        qq: /^[1-9][0-9]{4,9}$/gim.test(contact)
+      }
+      for (const key in contactTypeList) {
+        if (contactTypeList[key] === true) {
+          return key
+        }
+      }
+      return false
     }
   },
   mounted() {
@@ -243,18 +186,36 @@ export default {
     redirectByUrl(url) {
       window.open(url)
     },
+    checkValidate() {
+      const validateList = Object.values(this.status.validate) || {}
+      return !validateList.find(item => item === false)
+    },
     submitSendComment() {
-      const appendParams = { module: this.module, id: this.id, isDisplay: 1, fromUrl: this.$route.path }
+      const { contact } = this.form
+      const appendParams = {
+        module: this.module,
+        id: this.id,
+        isDisplay: 1,
+        fromUrl: this.$route.path,
+        wechat: this.contactType === 'wechat' ? contact : '',
+        qq: this.contactType === 'qq' ? contact : '',
+        email: this.contactType === 'email' ? contact : ''
+      }
       const newComment = Object.assign(this.form, appendParams)
-      this.$axios.$post('/api/comments', newComment)
-        .then((response) => {
-          this.data.commentList.push(response.data)
-          this.form = {}
-          this.status.showModal = false
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      if (this.checkValidate()) {
+        this.$axios.$post('/api/comments', newComment)
+          .then((response) => {
+            this.data.commentList.push(response.data)
+            this.form = {}
+            this.status.showModal = false
+            this.errors.clear()
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      } else {
+        alert('表单有错误')
+      }
     }
   }
 }

@@ -38,7 +38,7 @@
       button {
         cursor: pointer;
         border: 1px solid #ddd;
-        padding: 5px 10px;
+        padding: 8px 12px;
         letter-spacing: 1px;
         font-size: .95rem;
         transition: all .2s ease-in-out;
@@ -46,7 +46,7 @@
         background-color: #fff;
 
         &:hover {
-          @include gradient-background;
+          border-color: $theme-color;
         }
       }
     }
