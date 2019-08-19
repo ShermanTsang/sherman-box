@@ -139,7 +139,9 @@ export default {
   methods: {
     isActiveMenu(menuItem) {
       const { url } = menuItem
-      return this.$route.path.indexOf(url) > 0
+      const path = this.$route.path
+      const inIndexPage = url === 'timeline' && path === '/'
+      return path.indexOf(url) > 0 || inIndexPage
     }
   }
 }

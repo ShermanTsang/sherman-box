@@ -23,6 +23,7 @@
     }
 
     &__container {
+      position: relative;
       z-index: 999;
       height: auto;
       overflow: hidden;

@@ -11,13 +11,6 @@
         border-bottom: 1px solid #EEEEEE;
 
         &__avatar {
-          img {
-            width: 60px;
-            height: 60px;
-            background-color: #fff;
-            border-radius: 50%;
-          }
-
           margin-right: 20px;
         }
 
@@ -63,7 +56,7 @@
     <div v-for="item in data.commentList" :key="item.id" class="comment__list">
       <div class="comment__list__item">
         <div class="comment__list__item__avatar">
-          <img :src="$getAvatarUrl(item.qq ? 'qq': (item.email? 'email' : ''))">
+          <avatar :sign="item.qq || item.email" size="60px" />
         </div>
         <div class="comment__list__item__main">
           <div class="comment__list__item__main__username" @click="item.site ? redirectByUrl(item.site) : ''">
@@ -79,6 +72,9 @@
       </div>
     </div>
     <modal v-model="status.showModal" title="写评论" icon="comment" width="500px" @onClose="form = {}">
+      <loading v-if="status.isLoadingSubmit" :fix="true">
+        评论发送中
+      </loading>
       <div class="comment__form">
         <form-item
           v-model="form.username"
@@ -118,6 +114,14 @@
           placeholder="留下你的想法、疑问、评论或回忆"
           @changeValidate="valid => status.validate.comment = valid"
         ></form-item>
+        <form-item
+          v-if="['qq','email'].includes(contactType)"
+          label="显示头像"
+          name="avatar"
+          type="custom"
+        >
+          <avatar :sign="form.contact" size="60px" />
+        </form-item>
       </div>
       <button slot="footer" @click="submitSendComment()">
         发送
@@ -149,6 +153,7 @@ export default {
     return {
       status: {
         showModal: false,
+        isLoadingSubmit: false,
         validate: {
           username: false,
           contact: false,
@@ -191,23 +196,25 @@ export default {
       return !validateList.find(item => item === false)
     },
     submitSendComment() {
-      const { contact } = this.form
-      const appendParams = {
-        module: this.module,
-        id: this.id,
-        isDisplay: 1,
-        fromUrl: this.$route.path,
-        wechat: this.contactType === 'wechat' ? contact : '',
-        qq: this.contactType === 'qq' ? contact : '',
-        email: this.contactType === 'email' ? contact : ''
-      }
-      const newComment = Object.assign(this.form, appendParams)
       if (this.checkValidate()) {
+        this.status.isLoadingSubmit = true
+        const { contact } = this.form
+        const appendParams = {
+          module: this.module,
+          id: this.id,
+          isDisplay: 1,
+          fromUrl: this.$route.path,
+          wechat: this.contactType === 'wechat' ? contact : '',
+          qq: this.contactType === 'qq' ? contact : '',
+          email: this.contactType === 'email' ? contact : ''
+        }
+        const newComment = Object.assign(this.form, appendParams)
         this.$axios.$post('/api/comments', newComment)
           .then((response) => {
             this.data.commentList.push(response.data)
             this.form = {}
             this.status.showModal = false
+            this.status.isLoadingSubmit = false
             this.errors.clear()
           })
           .catch((error) => {

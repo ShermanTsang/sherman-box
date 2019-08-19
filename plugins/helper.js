@@ -1,7 +1,5 @@
 import Vue from 'vue'
-import Gravatar from 'gravatar-url'
 import config from '../config'
-import defaultEmail from '@/assets/image/defaultImage.png'
 
 export default function ({ store }) {
   function getConfigItem(key) {
@@ -38,18 +36,6 @@ export default function ({ store }) {
     return isWithDomain
       ? (is3rdResource ? url : `${resourceDomain}/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
       : `${resourceDomain}/${url}`
-  }
-
-  function getAvatarUrl(type, sign) {
-    switch (type) {
-      case 'email':
-        const originUrl = Gravatar(sign, { size: 200 })
-        return originUrl.replace('gravatar.com', 'cn.gravatar.com')
-      case 'qq':
-        return `http://q2.qlogo.cn/headimg_dl?dst_uin=${sign}&spec=100`
-      default:
-        return defaultEmail
-    }
   }
 
   function getStringCount(string) {
@@ -164,7 +150,6 @@ export default function ({ store }) {
   Vue.prototype.$getImageAsset = getImageAsset
   Vue.prototype.$getApiUrl = getApiUrl
   Vue.prototype.$getOssUrl = getOssUrl
-  Vue.prototype.$getAvatarUrl = getAvatarUrl
   Vue.prototype.$getStringCount = getStringCount
   Vue.prototype.$getSeoInfo = getSeoInfo
   Vue.prototype.$getModuleConfig = getModuleConfig

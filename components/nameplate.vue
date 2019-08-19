@@ -1,5 +1,6 @@
 <style lang="scss">
   .nameplate {
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
