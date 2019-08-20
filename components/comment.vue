@@ -193,7 +193,7 @@ export default {
     },
     checkValidate() {
       const validateList = Object.values(this.status.validate) || {}
-      return !validateList.find(item => item === false)
+      return validateList.find(item => item === false)
     },
     submitSendComment() {
       if (this.checkValidate()) {
