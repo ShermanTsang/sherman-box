@@ -17,7 +17,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'generator-star-spacing': 'off',
     'vue/no-v-html': 'off',
-    'camelcase': ['error', {'allow': ['aa_bb']}],
+    // 'camelcase': ['error', {'allow': ['aa_bb']}],
+    'camelcase': 'off',
     'vue/html-self-closing': ['error', {
       'html': {
         'void': 'never',

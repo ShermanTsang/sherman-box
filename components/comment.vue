@@ -49,9 +49,9 @@
 <template>
   <div class="comment">
     <nameplate title="评论" sub-title="comment">
-      <button @click="status.showModal = true">
+      <btn @click="status.showModal = true">
         写评论
-      </button>
+      </btn>
     </nameplate>
     <div v-for="item in data.commentList" :key="item.id" class="comment__list">
       <div class="comment__list__item">
@@ -123,9 +123,9 @@
           <avatar :sign="form.contact" size="60px" />
         </form-item>
       </div>
-      <button slot="footer" @click="submitSendComment()">
+      <btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitSendComment()">
         发送
-      </button>
+      </btn>
     </modal>
   </div>
 </template>

@@ -35,21 +35,6 @@
 
     &__action {
       float: right;
-
-      button {
-        cursor: pointer;
-        border: 1px solid #ddd;
-        padding: 8px 12px;
-        letter-spacing: 1px;
-        font-size: .95rem;
-        transition: all .2s ease-in-out;
-        color: #666;
-        background-color: #fff;
-
-        &:hover {
-          border-color: $theme-color;
-        }
-      }
     }
 
     @media ($screen-xs-max) {

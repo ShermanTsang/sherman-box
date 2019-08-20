@@ -30,7 +30,6 @@
       max-width: 95%;
       margin: 0 auto;
       background-color: #fff;
-      border: 1px solid #efefef;
       box-shadow: 0 0 30px rgba(0, 0, 0, .2);
 
       &__header {
@@ -61,16 +60,7 @@
       }
 
       &__footer {
-        button {
-          cursor: pointer;
-          width: 100%;
-          height: 100%;
-          border: none;
-          line-height: 48px;
-          color: #fff;
-          letter-spacing: 2px;
-          @include gradient-background;
-        }
+        width: 100%;
       }
 
     }
