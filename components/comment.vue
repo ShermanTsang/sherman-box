@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <modal v-model="status.showModal" title="写评论" icon="comment" width="500px" @onClose="form = {}">
+    <modal v-model="status.showModal" title="写评论" icon="comment" width="500px">
       <loading v-if="status.isLoadingSubmit" :fix="true">
         评论发送中
       </loading>
