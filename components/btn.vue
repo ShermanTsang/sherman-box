@@ -15,9 +15,8 @@
   }
 
   .btn--colorful {
-    &:hover {
-      @include gradient-background;
-    }
+    border: none;
+    @include gradient-background;
   }
 
   .btn--disabled {
