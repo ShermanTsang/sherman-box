@@ -56,7 +56,7 @@
       }
 
       &__content {
-
+        padding: 20px;
       }
 
       &__footer {

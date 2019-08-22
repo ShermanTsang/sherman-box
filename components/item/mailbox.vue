@@ -93,18 +93,18 @@
       </div>
       <div class="mail-item__content">
         <nuxt-link nuxt-link :to="`/mailbox/${item.id}`">
-          <span class="grey-text">From</span> {{ item.from }}
-          <span class="grey-text">To</span> {{ item.to }}
+          <span>From</span> {{ item.from }}
+          <span>To</span> {{ item.to }}
         </nuxt-link>
         <br>
         <div class="divider"></div>
-        <i class="iconfont icon-comment"></i> {{ item.category.name }} / {{ item.name }}
+        <icon name="comment" /> {{ item.category.name }} / {{ item.name }}
         <br>
-        <i class="iconfont icon-clock"></i>
+        <icon name="clock" />
         <moment format="YYYY-MM-DD" :time="item.datetime" />
       </div>
       <div v-if="item.password || item.hint" class="mail-item__pin">
-        <i class="iconfont icon-lock"></i>
+        <icon name="lock" />
       </div>
     </div>
   </card>

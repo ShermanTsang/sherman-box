@@ -10,13 +10,16 @@
 
     &:hover {
       color: $theme-color;
-      border: 1px solid $theme-color;
+      border-color: $theme-color;
     }
   }
 
   .btn--colorful {
     border: none;
     @include gradient-background;
+    &:hover {
+      color: #fff;
+    }
   }
 
   .btn--disabled {
@@ -36,6 +39,10 @@
 export default {
   name: 'Btn',
   props: {
+    width: {
+      type: String,
+      default: null
+    },
     size: {
       type: String,
       default: '48px'
@@ -61,8 +68,9 @@ export default {
     style() {
       const fullWidth = { width: '100%', height: '100%' }
       const height = { height: this.height }
+      const width = { width: this.width }
       return Object.assign(
-        this.fullWidth ? fullWidth : '', height
+        height, width, this.fullWidth ? fullWidth : ''
       )
     },
     classes() {

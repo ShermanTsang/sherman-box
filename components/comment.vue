@@ -39,10 +39,6 @@
       }
     }
 
-    &__form {
-      padding: 20px;
-    }
-
   }
 </style>
 
@@ -75,54 +71,52 @@
       <loading v-if="status.isLoadingSubmit" :fix="true">
         评论发送中
       </loading>
-      <div class="comment__form">
-        <form-item
-          v-model="form.username"
-          validate="required|max:12"
-          label="昵称"
-          name="username"
-          type="input"
-          placeholder="该如何称呼你呢？"
-          @changeValidate="valid => status.validate.username = valid"
-        ></form-item>
-        <form-item
-          v-model="form.contact"
-          label="联系方式"
-          name="contact"
-          type="input"
-          validate="required|max:30"
-          placeholder="QQ / Wechat / Email"
-          @changeValidate="valid => status.validate.contact = valid"
-        >
-          <span v-if="contactType" slot="tip">使用 {{ contactType }} 作为联系方式</span>
-        </form-item>
-        <form-item
-          v-model="form.website"
-          label="个人网站"
-          name="website"
-          type="input"
-          validate="url|max:60"
-          placeholder="可填写你的网站、博客、微博或其他社媒地址"
-          @changeValidate="valid => status.validate.website = valid"
-        ></form-item>
-        <form-item
-          v-model="form.comment"
-          label="内容"
-          name="comment"
-          type="input"
-          validate="required|max:30"
-          placeholder="留下你的想法、疑问、评论或回忆"
-          @changeValidate="valid => status.validate.comment = valid"
-        ></form-item>
-        <form-item
-          v-if="['qq','email'].includes(contactType)"
-          label="显示头像"
-          name="avatar"
-          type="custom"
-        >
-          <avatar :sign="form.contact" size="60px" />
-        </form-item>
-      </div>
+      <form-item
+        v-model="form.username"
+        validate="required|max:12"
+        label="昵称"
+        name="username"
+        type="input"
+        placeholder="该如何称呼你呢？"
+        @changeValidate="valid => status.validate.username = valid"
+      ></form-item>
+      <form-item
+        v-model="form.contact"
+        label="联系方式"
+        name="contact"
+        type="input"
+        validate="required|max:30"
+        placeholder="QQ / Wechat / Email"
+        @changeValidate="valid => status.validate.contact = valid"
+      >
+        <span v-if="contactType" slot="tip">使用 {{ contactType }} 作为联系方式</span>
+      </form-item>
+      <form-item
+        v-model="form.website"
+        label="个人网站"
+        name="website"
+        type="input"
+        validate="url|max:60"
+        placeholder="可填写你的网站、博客、微博或其他社媒地址"
+        @changeValidate="valid => status.validate.website = valid"
+      ></form-item>
+      <form-item
+        v-model="form.comment"
+        label="内容"
+        name="comment"
+        type="input"
+        validate="required|max:30|min:4"
+        placeholder="留下你的想法、疑问、评论或回忆"
+        @changeValidate="valid => status.validate.comment = valid"
+      ></form-item>
+      <form-item
+        v-if="['qq','email'].includes(contactType)"
+        label="显示头像"
+        name="avatar"
+        type="custom"
+      >
+        <avatar :sign="form.contact" size="60px" />
+      </form-item>
       <btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitSendComment()">
         发送
       </btn>
@@ -193,7 +187,8 @@ export default {
     },
     checkValidate() {
       const validateList = Object.values(this.status.validate) || {}
-      return validateList.find(item => item === false)
+      const falseItem = validateList.find(item => item === false)
+      return !!(falseItem || falseItem === undefined)
     },
     submitSendComment() {
       if (this.checkValidate()) {

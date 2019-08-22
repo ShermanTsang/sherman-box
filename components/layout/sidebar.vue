@@ -10,7 +10,7 @@
     border-right: 1px solid #eee;
     overflow: hidden;
     transition: all .2s ease-in-out;
-    box-shadow: 0 2px 8px #f0f1f2;
+    box-shadow: 0 2px 10px rgba(177,177,177,.2);
 
     &:hover {
       box-shadow: 0 2px 20px #f0f1f2;
