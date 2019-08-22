@@ -4,6 +4,7 @@
     &__image {
       width: 100%;
       height: 400px;
+      background-size: cover;
       background-position: center center;
     }
 
@@ -36,8 +37,8 @@
 
     &__locker {
       display: block;
-      margin: 20px auto;
-      border: 1px solid #eee;
+      margin: 40px auto;
+      border: 1px solid #ddd;
     }
 
   }
@@ -51,18 +52,17 @@
         <div class="mailbox__main__text__title">
           {{ data.mailboxItem.name }}
         </div>
-        <blocker height="20px" />
-        <div class="mailbox__main__text__info">
-          <icon name="clock" />
-          <moment format="YYYY-MM-DD" :time="data.mailboxItem.datetime" from-now />
-        </div>
         <div class="mailbox__main__text__info">
           <span>From</span> {{ data.mailboxItem.from }}
           <span>To</span> {{ data.mailboxItem.to }}
         </div>
+        <div class="mailbox__main__text__info">
+          <icon name="clock" />
+          <moment format="YYYY-MM-DD" :time="data.mailboxItem.datetime" from-now />
+        </div>
       </layout-container>
     </layout-container>
-    <btn v-if="data.mailboxItem.content === null" width="400px" class="mailbox__locker" @click="status.showModal = true">
+    <btn v-if="data.mailboxItem.content === null" width="300px" class="mailbox__locker" @click="status.showModal = true">
       <icon name="lock" /> 解锁
     </btn>
     <layout-container v-if="data.mailboxItem.content !== null" class="mailbox__content">
@@ -146,13 +146,19 @@ export default {
         const { id } = this.data.mailboxItem
         const { password } = this.form
         this.$axios.$post(`/api/mailboxes/${id}/check`, { password })
-          .then((response) => {
-            console.log(response)
+          .then(({ data, code }) => {
+            if (code === 200) {
+              this.data.mailboxItem = data
+            }
             this.status.showModal = false
             this.status.isLoadingSubmit = false
             this.errors.clear()
           })
           .catch((error) => {
+            alert('密码错误')
+            this.status.showModal = false
+            this.status.isLoadingSubmit = false
+            this.errors.clear()
             console.log(error)
           })
       } else {

@@ -47,6 +47,7 @@
         -webkit-transform: scale(1.0);
       }
     }
+
   }
 
   .loading--fixed {
@@ -67,7 +68,7 @@
       }
 
       &__text {
-        margin-top: 0;
+        margin-top: 30px;
         position: absolute;
         top: 60%;
         left: 50%;
