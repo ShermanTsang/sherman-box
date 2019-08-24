@@ -57,27 +57,27 @@
           <span>To</span> {{ data.mailboxItem.to }}
         </div>
         <div class="mailbox__main__text__info">
-          <icon name="clock" />
-          <moment format="YYYY-MM-DD" :time="data.mailboxItem.datetime" from-now />
+          <Icon name="clock" />
+          <Moment format="YYYY-MM-DD" :time="data.mailboxItem.datetime" from-now />
         </div>
       </layout-container>
     </layout-container>
-    <btn v-if="data.mailboxItem.content === null" width="300px" class="mailbox__locker" @click="status.showModal = true">
-      <icon name="lock" /> 解锁
-    </btn>
+    <Btn v-if="data.mailboxItem.content === null" width="300px" class="mailbox__locker" @click="status.showModal = true">
+      <Icon name="lock" /> 解锁
+    </Btn>
     <layout-container v-if="data.mailboxItem.content !== null" class="mailbox__content">
-      <markdown :content="data.mailboxItem.content" />
+      <Markdown :content="data.mailboxItem.content" />
     </layout-container>
-    <blocker height="60px" />
+    <Blocker height="60px" />
     <layout-container>
-      <comment :id="data.mailboxItem.id" module="mailbox" :source-data="data.mailboxItem.comments" />
+      <Comment :id="data.mailboxItem.id" module="mailbox" :source-data="data.mailboxItem.comments" />
     </layout-container>
-    <blocker height="60px" />
-    <modal v-model="status.showModal" title="解锁邮盒" icon="comment" width="500px">
-      <loading v-if="status.isLoadingSubmit" :fix="true">
+    <Blocker height="60px" />
+    <Modal v-model="status.showModal" title="解锁邮盒" icon="comment" width="500px">
+      <Loading v-if="status.isLoadingSubmit" :fix="true">
         密码校验中
-      </loading>
-      <form-item
+      </Loading>
+      <FormItem
         v-model="form.password"
         validate="required"
         label="密码"
@@ -87,11 +87,11 @@
         @changeValidate="valid => status.validate.password = valid"
       >
         <span v-if="data.mailboxItem.hint" slot="tip">提示：{{ data.mailboxItem.hint }}</span>
-      </form-item>
-      <btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitCheckPassword()">
+      </FormItem>
+      <Btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitCheckPassword()">
         校验
-      </btn>
-    </modal>
+      </Btn>
+    </Modal>
   </div>
 </template>
 

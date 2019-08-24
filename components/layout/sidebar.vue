@@ -119,7 +119,7 @@
   <div class="sidebar">
     <div class="sidebar__container">
       <div class="sidebar__container__logo">
-        <logo></logo>
+        <Logo></Logo>
       </div>
       <div class="sidebar__container__menu">
         <div
@@ -129,7 +129,7 @@
           :class="{'sidebar__container__menu__item--active': isActiveMenu(item)}"
           @click="$router.push(`/${item.url}`)"
         >
-          <icon :name="item.icon" size="1.2rem" />
+          <Icon :name="item.icon" size="1.2rem" />
           {{ item.name }}
           <span>{{ item.url }}</span>
         </div>

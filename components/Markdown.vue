@@ -97,7 +97,7 @@
     >
       <slot></slot>
     </article>
-    <image-modal :url.sync="imageModalUrl" />
+    <ImageModal :url.sync="imageModalUrl" />
   </div>
 </template>
 

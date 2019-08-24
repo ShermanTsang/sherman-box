@@ -29,7 +29,7 @@
 <template>
   <div class="pagination">
     <div class="pagination__item pagination__item--action" @click="jumpPage(currentPage - 1)">
-      <icon name="angle-left" />
+      <Icon name="angle-left" />
     </div>
     <div
       v-for="item in displayPageList"
@@ -46,7 +46,7 @@
       </template>
     </div>
     <div class="pagination__item pagination__item--action" @click="jumpPage(currentPage + 1)">
-      <icon name="angle-right" />
+      <Icon name="angle-right" />
     </div>
   </div>
 </template>

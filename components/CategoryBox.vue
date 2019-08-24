@@ -25,7 +25,7 @@
 
       &:after {
         content: '';
-        height: 6px;
+        height: 4px;
         width: 30px;
         left: calc(50% - 15px);
         border-radius: 4px;

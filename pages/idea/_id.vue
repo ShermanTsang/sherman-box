@@ -44,13 +44,13 @@
 <template>
   <div class="idea">
     <layout-container class="idea__header">
-      <blocker height="60px" />
+      <Blocker height="60px" />
       <div class="idea__header__title">
         {{ data.ideaItem.name }}
       </div>
-      <blocker height="20px" />
+      <Blocker height="20px" />
       <div class="idea__header__info">
-        <moment format="YYYY-MM-DD" from-now :time="data.ideaItem.datetime" />
+        <Moment format="YYYY-MM-DD" from-now :time="data.ideaItem.datetime" />
       </div>
       <div
         v-if="data.ideaItem.image"
@@ -59,15 +59,15 @@
       >
       </div>
     </layout-container>
-    <blocker height="20px" />
+    <Blocker height="20px" />
     <layout-container class="idea__content">
-      <markdown :content="data.ideaItem.content" class="idea__content__main" />
+      <Markdown :content="data.ideaItem.content" class="idea__content__main" />
     </layout-container>
-    <blocker height="60px" />
+    <Blocker height="60px" />
     <layout-container>
-      <comment :id="data.ideaItem.id" module="idea" :source-data="data.ideaItem.comments" />
+      <Comment :id="data.ideaItem.id" module="idea" :source-data="data.ideaItem.comments" />
     </layout-container>
-    <blocker height="60px" />
+    <Blocker height="60px" />
   </div>
 </template>
 

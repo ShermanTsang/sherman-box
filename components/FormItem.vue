@@ -1,5 +1,5 @@
 <style lang="scss">
-  .form-item {
+  .FormItem {
 
     &:not(:first-child) {
       margin-top: 16px;
@@ -46,11 +46,11 @@
 </style>
 
 <template>
-  <div class="form-item" :style="style">
-    <div class="form-item__name">
+  <div class="FormItem" :style="style">
+    <div class="FormItem__name">
       <label :for="name">{{ label }}</label><span v-if="isRequired">*</span>
     </div>
-    <div class="form-item__content">
+    <div class="FormItem__content">
       <input
         v-if="type === 'input'"
         :id="name"
@@ -61,10 +61,10 @@
       >
       <slot v-if="type === 'custom'"></slot>
     </div>
-    <div v-if="$slots.tip" class="form-item__tip">
+    <div v-if="$slots.tip" class="FormItem__tip">
       <slot name="tip"></slot>
     </div>
-    <div v-show="errors.has(name)" class="form-item__error">
+    <div v-show="errors.has(name)" class="FormItem__error">
       <span v-for="(item, index) in errors.collect(name)" :key="index">{{ item }}</span>
     </div>
   </div>

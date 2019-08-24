@@ -153,119 +153,119 @@
       <layout-container class="project__header__main" max-width="900px">
         <div class="project__header__main__image">
           <img
-            :src="$getOssUrl(data.projectItem.image,true)"
+            :src="$getOssUrl(data.projectItem.image)"
             cross-origin="anonymous"
             @load="$gradientColor('.project__header')"
           >
         </div>
-        <blocker height="30px" />
+        <Blocker height="30px" />
         <div class="project__header__main__name">
           {{ data.projectItem.name }}
         </div>
-        <blocker height="20px" />
+        <Blocker height="20px" />
         <div class="project__header__main__description">
           {{ data.projectItem.description || '暂无项目介绍' }}
         </div>
       </layout-container>
     </div>
-    <blocker height="60px" />
+    <Blocker height="60px" />
     <layout-container>
-      <nameplate title="详情" sub-title="Detail" />
+      <Nameplate title="详情" sub-title="Detail" />
       <div class="project__detail">
         <div v-if="data.projectItem.datetime_start" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="clock" />
+            <Icon name="clock" />
             项目时间
           </div>
           <div class="project__detail__item__info">
-            <tag>
+            <Tag>
               始
-              <moment from-now type="datetime" :time="data.projectItem.datetime_start" />
+              <Moment from-now type="datetime" :time="data.projectItem.datetime_start" />
             </tag>
-            <tag v-if="data.projectItem.datetime_end">
+            <Tag v-if="data.projectItem.datetime_end">
               终
-              <moment from-now type="datetime" :time="data.projectItem.datetime_end" />
+              <Moment from-now type="datetime" :time="data.projectItem.datetime_end" />
             </tag>
           </div>
         </div>
         <div v-if="data.projectItem.category" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="category" />
+            <Icon name="category" />
             项目类型
           </div>
           <div class="project__detail__item__info">
-            <tag>{{ data.projectItem.category.name }}</tag>
+            <Tag>{{ data.projectItem.category.name }}</tag>
           </div>
         </div>
         <div v-if="data.projectItem.tags" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="hashtag" />
+            <Icon name="hashtag" />
             项目标签
           </div>
           <div class="project__detail__item__info">
-            <tag>{{ data.projectItem.tags }}</tag>
+            <Tag>{{ data.projectItem.tags }}</tag>
           </div>
         </div>
         <div v-if="data.projectItem.status" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="status" />
+            <Icon name="status" />
             项目状态
           </div>
           <div class="project__detail__item__info">
-            <tag>{{ data.projectItem.status }}</tag>
-            <tag v-if="data.projectItem.hours">
+            <Tag>{{ data.projectItem.status }}</tag>
+            <Tag v-if="data.projectItem.hours">
               耗时约{{ data.projectItem.hours }}小时
             </tag>
           </div>
         </div>
         <div v-if="data.projectItem.role" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="role" />
+            <Icon name="role" />
             我的角色
           </div>
           <div class="project__detail__item__info">
-            <tag>{{ data.projectItem.role }}</tag>
+            <Tag>{{ data.projectItem.role }}</tag>
           </div>
         </div>
         <div v-if="data.projectItem.client" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="user-require" />
+            <Icon name="user-require" />
             需求委托方
           </div>
           <div class="project__detail__item__info">
-            <tag>{{ data.projectItem.client }}</tag>
+            <Tag>{{ data.projectItem.client }}</tag>
           </div>
         </div>
         <div v-if="data.projectItem.coworker" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="user-helper" />
+            <Icon name="user-helper" />
             项目协作者
           </div>
           <div class="project__detail__item__info">
-            <tag>{{ data.projectItem.coworker }}</tag>
+            <Tag>{{ data.projectItem.coworker }}</tag>
           </div>
         </div>
         <div v-if="data.projectItem.url" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="link" />
+            <Icon name="link" />
             预览地址
           </div>
           <div class="project__detail__item__info">
-            <tag><a :href="data.projectItem.url" target="_blank">点击进入</a></tag>
+            <Tag><a :href="data.projectItem.url" target="_blank">点击进入</a></tag>
           </div>
         </div>
         <div v-if="data.projectItem.github" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="github" />
+            <Icon name="github" />
             Github仓库
           </div>
           <div class="project__detail__item__info">
-            <tag><a :href="data.projectItem.github" target="_blank">点击进入</a></tag>
+            <Tag><a :href="data.projectItem.github" target="_blank">点击进入</a></tag>
           </div>
         </div>
         <div v-if="data.projectItem.qrcode" class="project__detail__item">
           <div class="project__detail__item__name">
-            <icon name="github" />
+            <Icon name="github" />
             预览地址
           </div>
           <div class="project__detail__item__info">
@@ -275,22 +275,22 @@
       </div>
     </layout-container>
     <template v-if="data.projectItem.content">
-      <blocker height="60px" />
+      <Blocker height="60px" />
       <layout-container>
-        <nameplate title="预览" sub-title="Preview" />
-        <markdown :content="data.projectItem.content || ''" />
+        <Nameplate title="预览" sub-title="Preview" />
+        <Markdown :content="data.projectItem.content || ''" />
       </layout-container>
     </template>
     <template v-if="data.projectItem.logs">
-      <blocker height="60px" />
+      <Blocker height="60px" />
       <layout-container>
-        <nameplate title="日志" sub-title="Log" />
-        <markdown :content="data.projectItem.logs || ''" />
+        <Nameplate title="日志" sub-title="Log" />
+        <Markdown :content="data.projectItem.logs || ''" />
       </layout-container>
     </template>
-    <blocker height="40px" />
+    <Blocker height="40px" />
     <layout-container v-if="data.projectItem.file">
-      <nameplate title="文件" sub-title="file" />
+      <Nameplate title="文件" sub-title="file" />
       <iframe
         v-if="data.projectItem.file.indexOf('.ppt') !== -1 || data.projectItem.file.indexOf('.doc') !== -1"
         :src="`https://view.officeapps.live.com/op/view.aspx?src=${$getOssUrl(data.projectItem.file)}`"
@@ -299,7 +299,7 @@
       ></iframe>
     </layout-container>
     <layout-container v-if="data.projectItem.video">
-      <nameplate title="视频" sub-title="video" />
+      <Nameplate title="视频" sub-title="video" />
       <iframe
         height="500"
         width="100%"
@@ -307,11 +307,11 @@
         allowfullscreen
       ></iframe>
     </layout-container>
-    <blocker height="60px" />
+    <Blocker height="60px" />
     <layout-container>
-      <comment :id="data.projectItem.id" module="project" :source-data="data.projectItem.comments" />
+      <Comment :id="data.projectItem.id" module="project" :source-data="data.projectItem.comments" />
     </layout-container>
-    <blocker height="60px" />
+    <Blocker height="60px" />
   </div>
 </template>
 

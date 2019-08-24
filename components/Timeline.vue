@@ -111,9 +111,9 @@
   <div class="timeline">
     <div v-for="(item,index) in timeline" :key="`${item.module}-${item.id}`" class="timeline__item">
       <div class="timeline__item__date">
-        <moment from-now :time="item[$getModuleConfig(item.module).date]" type="date" />
+        <Moment from-now :time="item[$getModuleConfig(item.module).date]" type="date" />
         <div class="timeline__item__date__icon">
-          <icon :name="$getModuleConfig(item.module).icon" size="24px" color="#aaa"></icon>
+          <Icon :name="$getModuleConfig(item.module).icon" size="24px" color="#aaa"></icon>
         </div>
       </div>
       <div class="timeline__item__body">

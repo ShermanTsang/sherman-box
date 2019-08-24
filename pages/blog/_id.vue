@@ -64,22 +64,22 @@
         <div class="blog__header__text__title">
           {{ data.blogItem.name }}
         </div>
-        <blocker height="20px" />
+        <Blocker height="20px" />
         <div class="blog__header__text__info">
-          <icon name="clock" />
-          <moment format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
+          <Icon name="clock" />
+          <Moment format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
         </div>
       </layout-container>
     </div>
-    <blocker height="20px" />
+    <Blocker height="20px" />
     <layout-container class="blog__content">
-      <markdown :content="data.blogItem.content" />
+      <Markdown :content="data.blogItem.content" />
     </layout-container>
-    <blocker height="60px" />
+    <Blocker height="60px" />
     <layout-container>
-      <comment :id="data.blogItem.id" module="blog" :source-data="data.blogItem.comments" />
+      <Comment :id="data.blogItem.id" module="blog" :source-data="data.blogItem.comments" />
     </layout-container>
-    <blocker height="60px" />
+    <Blocker height="60px" />
   </div>
 </template>
 

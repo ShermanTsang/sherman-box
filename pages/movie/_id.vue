@@ -85,54 +85,54 @@
     <div class="movie__header">
       <div class="movie__header__poster">
         <div class="movie__header__poster__image">
-          <img :src="$getOssUrl(data.movieItem.image,true)" cross-origin="anonymous" @load="$gradientColor('.movie__header')">
+          <img :src="$getOssUrl(data.movieItem.image)" cross-origin="*" @load="$gradientColor('.movie__header')">
         </div>
-        <blocker height="20px" />
+        <Blocker height="20px" />
         <div class="movie__header__poster__name">
           {{ data.movieItem.name }}{{ data.movieItem.memo ? ` ${data.movieItem.memo}` : '' }}
         </div>
       </div>
-      <blocker width="100px" />
+      <Blocker width="100px" />
       <div class="movie__header__main">
         <div v-if="data.movieItem.type" class="movie__header__main__item">
-          <icon name="category" />
+          <Icon name="category" />
           {{ data.movieItem.type }}
         </div>
         <div v-if="data.movieItem.score" class="movie__header__main__item">
-          <icon name="star" />
+          <Icon name="star" />
           {{ data.movieItem.score }}分
         </div>
         <div v-if="data.movieItem.people" class="movie__header__main__item">
-          <icon name="user" />
+          <Icon name="user" />
           {{ data.movieItem.people }}
         </div>
         <div v-if="data.movieItem.site" class="movie__header__main__item">
-          <icon name="location" />
+          <Icon name="location" />
           {{ data.movieItem.site }}
         </div>
         <div v-if="data.movieItem.datetime" class="movie__header__main__item">
-          <icon name="clock" />
-          <moment :time="data.movieItem.datetime" type="date" from-now />
+          <Icon name="clock" />
+          <Moment :time="data.movieItem.datetime" type="date" from-now />
         </div>
       </div>
     </div>
     <template v-if="data.movieItem.schedule">
-      <blocker height="60px" />
+      <Blocker height="60px" />
       <layout-container class="movie__content">
-        <nameplate title="追剧" sub-title="binge-watching" />
-        <tag>{{ data.movieItem.schedule }}</tag>
+        <Nameplate title="追剧" sub-title="binge-watching" />
+        <Tag>{{ data.movieItem.schedule }}</tag>
       </layout-container>
     </template>
-    <blocker height="60px" />
+    <Blocker height="60px" />
     <layout-container class="movie__content">
-      <nameplate title="想法" sub-title="thinking" />
-      <markdown :content="data.movieItem.comment || ''" />
+      <Nameplate title="想法" sub-title="thinking" />
+      <Markdown :content="data.movieItem.comment || ''" />
     </layout-container>
-    <blocker height="40px" />
+    <Blocker height="40px" />
     <layout-container>
-      <comment :id="data.movieItem.id" module="movie" :source-data="data.movieItem.comments" />
+      <Comment :id="data.movieItem.id" module="movie" :source-data="data.movieItem.comments" />
     </layout-container>
-    <blocker height="60px" />
+    <Blocker height="60px" />
   </div>
 </template>
 

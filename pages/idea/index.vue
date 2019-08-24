@@ -18,9 +18,9 @@
 
 <template>
   <layout-container>
-    <blocker height="20px" />
-    <category-box module="idea" />
-    <blocker height="20px" />
+    <Blocker height="20px" />
+    <CategoryBox module="idea" />
+    <Blocker height="20px" />
     <div v-if="data.ideaList" class="idea-list">
       <div
         v-for="item in data.ideaList"
@@ -30,14 +30,14 @@
         <item-idea :item="item" />
       </div>
     </div>
-    <blocker height="40px" />
-    <pagination
+    <Blocker height="40px" />
+    <Pagination
       :page="parseInt(meta.current_page)"
       :total="parseInt(meta.total)"
       :size="parseInt(meta.per_page)"
       @change="changePage"
     />
-    <blocker height="40px" />
+    <Blocker height="40px" />
   </layout-container>
 </template>
 

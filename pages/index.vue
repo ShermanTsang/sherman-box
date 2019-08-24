@@ -3,9 +3,9 @@
 
 <template>
   <layout-container>
-    <blocker height="40px" />
-    <nameplate title="时间轴" sub-title="timeline" />
-    <timeline :timeline="data.timeline" />
+    <Blocker height="40px" />
+    <Nameplate title="时间轴" sub-title="timeline" />
+    <Timeline :timeline="data.timeline" />
   </layout-container>
 </template>
 

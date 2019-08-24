@@ -5,10 +5,10 @@
 
 <template>
   <layout-container class="page">
-    <blocker height="40px" />
-    <nameplate :title="data.pageItem.name" :sub-title="data.pageItem.url" />
-    <blocker height="40px" />
-    <markdown :content="data.pageItem.content" />
+    <Blocker height="40px" />
+    <Nameplate :title="data.pageItem.name" :sub-title="data.pageItem.url" />
+    <Blocker height="40px" />
+    <Markdown :content="data.pageItem.content" />
   </layout-container>
 </template>
 

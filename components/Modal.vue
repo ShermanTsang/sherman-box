@@ -73,10 +73,10 @@
     <div class="modal__overlay" @click="toggleModalStatus()"></div>
     <div class="modal__container" :style="containerStyle">
       <div class="modal__container__header">
-        <icon v-if="icon" :name="icon" />
+        <Icon v-if="icon" :name="icon" />
         {{ title }}
         <span class="modal__container__header__close" @click="toggleModalStatus()">
-          <icon name="close" />
+          <Icon name="close" />
         </span>
       </div>
       <div class="modal__container__content">

@@ -44,15 +44,15 @@
 
 <template>
   <div class="comment">
-    <nameplate title="评论" sub-title="comment">
-      <btn @click="status.showModal = true">
+    <Nameplate title="评论" sub-title="comment">
+      <Btn @click="status.showModal = true">
         写评论
-      </btn>
-    </nameplate>
+      </Btn>
+    </Nameplate>
     <div v-for="item in data.commentList" :key="item.id" class="comment__list">
       <div class="comment__list__item">
         <div class="comment__list__item__avatar">
-          <avatar :sign="item.qq || item.email" size="60px" />
+          <Avatar :sign="item.qq || item.email" size="60px" />
         </div>
         <div class="comment__list__item__main">
           <div class="comment__list__item__main__username" @click="item.site ? redirectByUrl(item.site) : ''">
@@ -67,11 +67,11 @@
         </div>
       </div>
     </div>
-    <modal v-model="status.showModal" title="写评论" icon="comment" width="500px">
-      <loading v-if="status.isLoadingSubmit" :fix="true">
+    <Modal v-model="status.showModal" title="写评论" icon="comment" width="500px">
+      <Loading v-if="status.isLoadingSubmit" :fix="true">
         评论发送中
-      </loading>
-      <form-item
+      </Loading>
+      <FormItem
         v-model="form.username"
         validate="required|max:12"
         label="昵称"
@@ -79,8 +79,8 @@
         type="input"
         placeholder="该如何称呼你呢？"
         @changeValidate="valid => status.validate.username = valid"
-      ></form-item>
-      <form-item
+      ></FormItem>
+      <FormItem
         v-model="form.contact"
         label="联系方式"
         name="contact"
@@ -90,8 +90,8 @@
         @changeValidate="valid => status.validate.contact = valid"
       >
         <span v-if="contactType" slot="tip">使用 {{ contactType }} 作为联系方式</span>
-      </form-item>
-      <form-item
+      </FormItem>
+      <FormItem
         v-model="form.website"
         label="个人网站"
         name="website"
@@ -99,8 +99,8 @@
         validate="url|max:60"
         placeholder="可填写你的网站、博客、微博或其他社媒地址"
         @changeValidate="valid => status.validate.website = valid"
-      ></form-item>
-      <form-item
+      ></FormItem>
+      <FormItem
         v-model="form.comment"
         label="内容"
         name="comment"
@@ -108,19 +108,19 @@
         validate="required|max:30|min:4"
         placeholder="留下你的想法、疑问、评论或回忆"
         @changeValidate="valid => status.validate.comment = valid"
-      ></form-item>
-      <form-item
+      ></FormItem>
+      <FormItem
         v-if="['qq','email'].includes(contactType)"
         label="显示头像"
         name="avatar"
         type="custom"
       >
-        <avatar :sign="form.contact" size="60px" />
-      </form-item>
-      <btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitSendComment()">
+        <Avatar :sign="form.contact" size="60px" />
+      </FormItem>
+      <Btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitSendComment()">
         发送
-      </btn>
-    </modal>
+      </Btn>
+    </Modal>
   </div>
 </template>
 

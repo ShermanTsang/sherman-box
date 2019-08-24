@@ -109,7 +109,7 @@
   <header class="header">
     <div class="header__container">
       <div class="header__container__logo">
-        <logo></logo>
+        <Logo></Logo>
       </div>
       <div class="header__container__menu">
         <div
@@ -119,7 +119,7 @@
           :class="{'header__container__menu__item--active': isActiveMenu(item)}"
         >
           <nuxt-link :to="`/${item.url}`">
-            <icon :name="item.icon" />
+            <Icon :name="item.icon" />
             {{ item.name }}
           </nuxt-link>
         </div>
