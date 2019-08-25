@@ -88,7 +88,7 @@
       >
         <span v-if="data.mailboxItem.hint" slot="tip">提示：{{ data.mailboxItem.hint }}</span>
       </FormItem>
-      <Btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitCheckPassword()">
+      <Btn slot="footer" :full-width="true" height="64px" :colorful="true" @click="submitCheckPassword()">
         校验
       </Btn>
     </Modal>
@@ -134,14 +134,14 @@ export default {
       }
     }
   },
+  mounted() {
+    if (this.data.mailboxItem.content === null) {
+      this.$message.info('该邮盒需要密码解锁')
+    }
+  },
   methods: {
-    checkValidate() {
-      const validateList = Object.values(this.status.validate) || {}
-      const falseItem = validateList.find(item => item === false)
-      return !!(falseItem || falseItem === undefined)
-    },
     submitCheckPassword() {
-      if (this.checkValidate()) {
+      if (this.$checkFormValidate(this.status.validate)) {
         this.status.isLoadingSubmit = true
         const { id } = this.data.mailboxItem
         const { password } = this.form
@@ -155,14 +155,14 @@ export default {
             this.errors.clear()
           })
           .catch((error) => {
-            alert('密码错误')
+            this.$message.error('邮盒密码错误')
             this.status.showModal = false
             this.status.isLoadingSubmit = false
             this.errors.clear()
             console.log(error)
           })
       } else {
-        alert('表单有错误')
+        this.$message.error('表单有错误')
       }
     }
   }

@@ -143,6 +143,12 @@ export default function ({ store }) {
     return module ? configList[module] : configList
   }
 
+  function checkFormValidate(validateList = {}) {
+    const validateValueList = Object.values(validateList) || {}
+    const falseItem = validateValueList.find(item => item === false)
+    return !!(falseItem || falseItem === undefined)
+  }
+
   Vue.prototype.$config = getConfigItem
   Vue.prototype.$configList = getConfigList
   Vue.prototype.$getConfig = getConfig
@@ -153,4 +159,5 @@ export default function ({ store }) {
   Vue.prototype.$getStringCount = getStringCount
   Vue.prototype.$getSeoInfo = getSeoInfo
   Vue.prototype.$getModuleConfig = getModuleConfig
+  Vue.prototype.$checkFormValidate = checkFormValidate
 }

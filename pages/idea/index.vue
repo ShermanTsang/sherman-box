@@ -48,14 +48,14 @@ export default {
   },
   head() {
     return {
-      title: `想法`,
+      title: '想法',
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '想法列表') }
       ]
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: ideaList, meta } = await $axios.$get(`/api/ideas`, {
+    const { data: ideaList, meta } = await $axios.$get('/api/ideas', {
       params: {
         page: query.page,
         categoryId: query.categoryId || ''
@@ -72,10 +72,12 @@ export default {
   },
   methods: {
     changePage(currentPage) {
-      this.$router.push({ name: 'idea',
+      this.$router.push({
+        name: 'idea',
         query: {
           page: parseInt(currentPage)
-        } })
+        }
+      })
     }
   },
   watchQuery: ['page', 'categoryId']

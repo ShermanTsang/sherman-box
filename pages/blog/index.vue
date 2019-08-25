@@ -42,14 +42,14 @@ export default {
   },
   head() {
     return {
-      title: `博文`,
+      title: '博文',
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '博文列表') }
       ]
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: blogList, meta } = await $axios.$get(`/api/blogs`, {
+    const { data: blogList, meta } = await $axios.$get('/api/blogs', {
       params: {
         page: query.page,
         categoryId: query.categoryId || ''

@@ -45,14 +45,14 @@ export default {
   },
   head() {
     return {
-      title: `观影`,
+      title: '观影',
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '观影列表') }
       ]
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: movieList, meta } = await $axios.$get(`/api/movies`, {
+    const { data: movieList, meta } = await $axios.$get('/api/movies', {
       params: {
         pageSize: 8,
         page: query.page,

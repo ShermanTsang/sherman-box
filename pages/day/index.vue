@@ -40,14 +40,14 @@ export default {
   },
   head() {
     return {
-      title: `日迹`,
+      title: '日迹',
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '日迹列表') }
       ]
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: dayList, meta } = await $axios.$get(`/api/days`, {
+    const { data: dayList, meta } = await $axios.$get('/api/days', {
       params: {
         page: query.page
       }

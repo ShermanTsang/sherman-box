@@ -22,7 +22,6 @@
           height: 100%;
           object-fit: cover;
           transition: all .2s ease-in-out;
-          -webkit-filter: grayscale(40%) contrast(80%);
           filter: grayscale(40%) contrast(80%);
           border-radius: 8px 8px 0 0;
           box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1)

@@ -51,10 +51,11 @@ export default {
     { src: '@/plugins/transfer-dom', ssr: true },
     { src: '@/plugins/auto-components', ssr: true },
     { src: '@/plugins/moment', ssr: true },
-    { src: '@/plugins/gradient-color', ssr: false },
+    { src: '@/plugins/gradient-color', ssr: true },
     { src: '@/plugins/vue-lazyload', ssr: false },
     { src: '@/plugins/3rd-analyze', ssr: false },
-    { src: '@/plugins/vee-validate', ssr: false }
+    { src: '@/plugins/vee-validate', ssr: false },
+    { src: '@/plugins/message', ssr: false }
   ],
 
   /*
@@ -81,6 +82,8 @@ export default {
   */
   build: {
     analyze: false,
+    extractCSS: true,
+    resourceHints: false,
     maxChunkSize: 300000,
     postcss: {
       plugins: {

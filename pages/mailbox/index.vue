@@ -49,7 +49,7 @@ export default {
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: mailboxList, meta } = await $axios.$get(`/api/mailboxes`, {
+    const { data: mailboxList, meta } = await $axios.$get('/api/mailboxes', {
       params: {
         page: query.page,
         categoryId: query.categoryId || ''

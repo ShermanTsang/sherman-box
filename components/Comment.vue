@@ -117,7 +117,7 @@
       >
         <Avatar :sign="form.contact" size="60px" />
       </FormItem>
-      <Btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitSendComment()">
+      <Btn slot="footer" :full-width="true" height="64px" :colorful="true" @click="submitSendComment()">
         发送
       </Btn>
     </Modal>
@@ -185,13 +185,8 @@ export default {
     redirectByUrl(url) {
       window.open(url)
     },
-    checkValidate() {
-      const validateList = Object.values(this.status.validate) || {}
-      const falseItem = validateList.find(item => item === false)
-      return !!(falseItem || falseItem === undefined)
-    },
     submitSendComment() {
-      if (this.checkValidate()) {
+      if (this.$checkFormValidate(this.status.validate)) {
         this.status.isLoadingSubmit = true
         const { contact } = this.form
         const appendParams = {
@@ -216,7 +211,7 @@ export default {
             console.log(error)
           })
       } else {
-        alert('表单有错误')
+        this.$message.error('表单有错误')
       }
     }
   }

@@ -153,8 +153,8 @@
       <layout-container class="project__header__main" max-width="900px">
         <div class="project__header__main__image">
           <img
-            :src="$getOssUrl(data.projectItem.image)"
-            cross-origin="anonymous"
+            :src="$getOssUrl(data.projectItem.image, true)"
+            crossorigin="anonymous"
             @load="$gradientColor('.project__header')"
           >
         </div>

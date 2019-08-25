@@ -41,14 +41,14 @@ export default {
   },
   head() {
     return {
-      title: `项目`,
+      title: '项目',
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '项目列表') }
       ]
     }
   },
   async asyncData({ $axios, query }) {
-    const { data: projectList, meta } = await $axios.$get(`/api/projects`, {
+    const { data: projectList, meta } = await $axios.$get('/api/projects', {
       params: {
         page: query.page,
         categoryId: query.categoryId || ''

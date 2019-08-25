@@ -3,7 +3,7 @@
 const config = {
   'server.host': 'localhost',
   'server.port': '3000',
-  'site.name': "曾小满的盒子 ShareMan's Box",
+  'site.name': '曾小满的盒子 ShareMan\'s Box',
   'site.description': '盒子里，是我的生活和我。',
   'site.keywords': '曾小满,小满,个人网站,博客,ShareMan,ShareManT,ShareManTsang',
   'api.protocol': 'https',
