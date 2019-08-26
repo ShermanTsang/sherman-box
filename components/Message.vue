@@ -2,11 +2,10 @@
   .message {
     position: fixed;
     right: 30px;
-    top: 10%;
-    padding: 10px;
+    top: 5%;
+    padding: 12px;
     border-radius: 0 0 5px 5px;
-    z-index: 998;
-    box-shadow: 0 0 6px rgba(177,177,177,.2);
+    z-index: 1006;
     background-color: #fff;
     color: #666;
     font-size: .95rem;

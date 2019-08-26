@@ -2,7 +2,7 @@
   .markdown {
 
     article {
-      font-size: 1.05rem;
+      font-size: 1rem;
       counter-reset: h1;
       color: #666;
       letter-spacing: 1px;
@@ -19,6 +19,7 @@
       }
 
       h1 {
+        font-size: 1.4rem;
         &:before {
           counter-increment: h1;
           content: counter(h1) " ";
@@ -32,6 +33,7 @@
       }
 
       h2 {
+        font-size: 1.3rem;
         &:before {
           counter-increment: h2;
           content: counter(h1) "." counter(h2) " ";
@@ -45,6 +47,7 @@
       }
 
       h3 {
+        font-size: 1.2rem;
         &:before {
           counter-increment: h3;
           content: counter(h1) "." counter(h2) "." counter(h3) " ";

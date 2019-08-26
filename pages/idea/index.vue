@@ -1,19 +1,4 @@
 <style lang="scss">
-  .idea-list {
-    column-count: 3;
-    column-gap: 0;
-
-    &__item {
-      box-sizing: border-box;
-      break-inside: avoid;
-      padding: 10px;
-    }
-
-    @media ($screen-xs-max) {
-      column-count: 1;
-    }
-
-  }
 </style>
 
 <template>
@@ -21,15 +6,15 @@
     <Blocker height="20px" />
     <CategoryBox module="idea" />
     <Blocker height="20px" />
-    <div v-if="data.ideaList" class="idea-list">
+    <Waterfall v-if="data.ideaList">
       <div
         v-for="item in data.ideaList"
         :key="item.id"
-        class="idea-list__item"
+        class="waterfall__item"
       >
         <item-idea :item="item" />
       </div>
-    </div>
+    </Waterfall>
     <Blocker height="40px" />
     <Pagination
       :page="parseInt(meta.current_page)"

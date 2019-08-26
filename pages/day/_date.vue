@@ -68,8 +68,6 @@
         position: relative;
         padding: 32px;
         margin: 10px;
-        column-count: 3;
-        column-gap: 20px;
 
         &__item {
           break-inside: avoid;
@@ -123,8 +121,6 @@
         &__main {
           padding: 16px;
           margin: 0;
-          column-count: 1;
-          column-gap: 10px;
 
           &__item {
             margin-bottom: 10px !important;
@@ -177,7 +173,7 @@
             <Moment format="ddd" :time="data.dayItem.date" />
           </small>
         </div>
-        <div class="day__card__main">
+        <Waterfall gap="10px" class="day__card__main">
           <div v-if="data.dayItem.event" class="day__card__main__item">
             <div class="day__card__main__item__name">
               <Icon name="calendar" />
@@ -281,7 +277,7 @@
               <Tag>{{ data.dayItem.medicine }}</tag>
             </div>
           </div>
-        </div>
+        </Waterfall>
       </Card>
     </layout-container>
     <Blocker height="40px" />

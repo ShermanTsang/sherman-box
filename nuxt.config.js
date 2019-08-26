@@ -83,7 +83,6 @@ export default {
   build: {
     analyze: false,
     extractCSS: true,
-    resourceHints: false,
     maxChunkSize: 300000,
     postcss: {
       plugins: {
