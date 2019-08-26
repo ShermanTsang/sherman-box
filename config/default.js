@@ -1,7 +1,7 @@
 'use strict'
 
 const config = {
-  'server.host': 'localhost',
+  'server.host': '127.0.0.1',
   'server.port': '3000',
   'site.name': '曾小满的盒子 ShareMan\'s Box',
   'site.description': '盒子里，是我的生活和我。',
