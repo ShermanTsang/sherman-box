@@ -40,8 +40,7 @@
         height: 100%;
         width: 100%;
         z-index: 40;
-        background-color: hsla(0, 0%, 20%, 0);
-        background-image: linear-gradient(hsla(0, 0%, 20%, 0), hsla(0, 0%, 20%, .50));
+        background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.4));
       }
 
     }
