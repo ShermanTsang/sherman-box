@@ -128,7 +128,7 @@
           <template v-if="item.datetime_end">
             <moment format="YYYY.MM.DD" :time="item.datetime_end" />
           </template>
-          <template>
+          <template v-else>
             至今
           </template>
         </template>

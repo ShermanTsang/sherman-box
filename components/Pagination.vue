@@ -88,15 +88,15 @@ export default {
         return [1, 2, 3, 0, pageNum]
       }
       if (index >= pageNum - 1) {
-        return [1, 0, pageNum - 2, pageNum - 1, pageNum]
+        return [1, 0, pageNum - 1, pageNum]
       }
       if (index === 3) {
-        return [1, 2, 3, 4, 0, pageNum]
+        return [1, 2, 3, 0, pageNum]
       }
       if (index === pageNum - 2) {
         return [1, 0, pageNum - 2, pageNum - 1, pageNum]
       }
-      return [1, 0, index - 1, index, index + 1, 0, pageNum]
+      return [1, 0, index, 0, pageNum]
     }
   },
   watch: {
