@@ -19,7 +19,7 @@
       flex: 1 0;
 
       &__name {
-        display:inline-block;
+        display:block;
         overflow: hidden;
         font-size: 1rem;
         letter-spacing: 2px;
@@ -118,23 +118,14 @@
           <span class="common-item__main__name__module">
             {{ module.name }}
           </span>
-          {{ name }}
+          {{ item.name }}
         </div>
       </nuxt-link>
       <div v-if="text === 'date'" class="common-item__main__info">
-        <moment format="YYYY.MM.DD" :time="date" />
-        <template v-if="item.module === 'project' || item.module==='plan'">
-          ~
-          <template v-if="item.datetime_end">
-            <moment format="YYYY.MM.DD" :time="item.datetime_end" />
-          </template>
-          <template v-else>
-            至今
-          </template>
-        </template>
+        <moment format="YYYY.MM.DD" :time="item.datetime" />
       </div>
       <div v-else-if="text === 'detail'" class="common-item__main__info">
-        detail
+        {{ item.text }}
       </div>
     </div>
     <div v-if="item.image" class="common-item__image">
@@ -176,18 +167,11 @@ export default {
     }
   },
   computed: {
-    name() {
-      return this.item.module === 'day' ? `${this.$time(this.item.date).format('YYYY-MM-DD')}` : `${this.item.name}`
-    },
     module() {
       return this.config[this.item.module]
     },
-    date() {
-      const dateField = this.module.date
-      return this.item[dateField]
-    },
     link() {
-      return `/${this.item.module}/` + (this.item.module === 'day' ? `${this.$time(this.item.date).format('YYYY-MM-DD')}` : `${this.item.id}`)
+      return `/${this.item.module}/` + (this.item.module === 'day' ? `${this.$time(this.item.datetime).format('YYYY-MM-DD')}` : `${this.item.id}`)
     }
   }
 }

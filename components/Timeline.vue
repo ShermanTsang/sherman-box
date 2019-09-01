@@ -4,6 +4,7 @@
     position: relative;
     margin: auto;
     overflow: hidden;
+    padding-bottom: 60px;
 
     &:before {
       content: '';
@@ -78,6 +79,21 @@
       }
     }
 
+    &__more {
+      position:absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #999;
+      border-radius: 20px;
+      padding: 10px 12px;
+      background-color: #fff;
+      font-size: .9rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 0 4px rgba(177, 177, 177, .4);
+    }
+
     @media ($screen-lg-max) {
       &:before {
         opacity: .5;
@@ -111,14 +127,17 @@
   <div class="timeline">
     <div v-for="(item,index) in timeline" :key="`${item.module}-${item.id}`" class="timeline__item">
       <div class="timeline__item__date">
-        <Moment from-now :time="item[$getModuleConfig(item.module).date]" type="date" />
+        <Moment from-now :time="item.datetime" type="date" />
         <div class="timeline__item__date__icon">
           <Icon :name="$getModuleConfig(item.module).icon" size="24px" color="#aaa"></icon>
         </div>
       </div>
       <div class="timeline__item__body">
-        <item-common :item="item" :align="index % 2 === 0 ? 'right': 'left'"></item-common>
+        <item-common text="detail" :item="item" :align="index % 2 === 0 ? 'right': 'left'"></item-common>
       </div>
+    </div>
+    <div v-if="meta.last_page !== meta.current_page" class="timeline__more" @click="$emit('on-request-more')">
+      加载更多
     </div>
   </div>
 </template>
@@ -131,6 +150,12 @@ export default {
       type: Array,
       default: () => {
         return []
+      }
+    },
+    meta: {
+      type: Object,
+      default: () => {
+        return {}
       }
     }
   },
