@@ -20,6 +20,7 @@
 
       h1 {
         font-size: 1.4rem;
+
         &:before {
           counter-increment: h1;
           content: counter(h1) " ";
@@ -34,6 +35,7 @@
 
       h2 {
         font-size: 1.3rem;
+
         &:before {
           counter-increment: h2;
           content: counter(h1) "." counter(h2) " ";
@@ -48,6 +50,7 @@
 
       h3 {
         font-size: 1.2rem;
+
         &:before {
           counter-increment: h3;
           content: counter(h1) "." counter(h2) "." counter(h3) " ";
@@ -71,8 +74,15 @@
         line-height: 1.6;
       }
 
-      code {
-        max-height: 250px;
+      pre {
+        background: #272822;
+        padding: 10px;
+
+        code {
+          color: #f8f8f2;
+          max-height: 400px;
+          font: 400 14px Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
+        }
       }
 
       img {
@@ -107,6 +117,8 @@
 
 <script>
 import Marked from 'marked'
+import Highlight from 'highlight.js'
+import 'highlight.js/styles/monokai-sublime.css'
 
 export default {
   name: 'Markdown',
@@ -149,6 +161,9 @@ export default {
     setMarkdownOption() {
       Marked.setOptions({
         renderer: this.renderer,
+        highlight: (code) => {
+          return Highlight.highlightAuto(code).value
+        },
         gfm: true,
         tables: true,
         breaks: false,
