@@ -54,11 +54,11 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 10px
+  width: 6px
 }
 
 ::-webkit-scrollbar:horizontal {
-  height: 10px
+  height: 6px
 }
 
 ::-webkit-scrollbar-track {
@@ -67,7 +67,8 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ddd
+  background-color: #aaa;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

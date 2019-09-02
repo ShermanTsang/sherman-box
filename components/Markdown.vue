@@ -66,22 +66,47 @@
       }
 
       p {
-        display: block;
         -webkit-margin-before: 0.5em;
         -webkit-margin-after: 0.5em;
         -webkit-margin-start: 0;
         -webkit-margin-end: 0;
-        line-height: 1.6;
+        line-height: 1.8;
+
+        a {
+          color: $theme-color;
+        }
+
+        code {
+          margin: 0 4px;
+          color: $theme-color;
+          position: relative;
+          font-family: Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
+
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            border-radius: 4px;
+            opacity: .4;
+            @include gradient-background;
+          }
+        }
       }
 
       pre {
         background: #272822;
-        padding: 10px;
+        padding: 16px;
+        max-height: 450px;
+        width: 100%;
+        overflow: auto;
 
         code {
           color: #f8f8f2;
-          max-height: 400px;
-          font: 400 14px Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
+          font: 400 .95rem Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
         }
       }
 
@@ -94,6 +119,43 @@
 
         &:hover {
           box-shadow: 0 0 6px rgba(177, 177, 177, .5);
+        }
+      }
+
+      table {
+        width: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        border-collapse: collapse;
+
+        thead {
+          background-color: #efefef;
+
+          tr {
+            border-bottom: 2px solid #efefef;
+
+            th {
+              border: none;
+              padding: 10px 6px;
+              font-weight: normal;
+              white-space: nowrap;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            border-bottom: 2px solid #efefef;
+            transition: all .2s ease-in-out;
+
+            td {
+              padding: 10px 6px;
+            }
+
+            &:hover {
+              background-color: rgba(239, 239, 239, 0.5);
+            }
+          }
         }
       }
     }

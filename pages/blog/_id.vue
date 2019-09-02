@@ -38,14 +38,18 @@
         color: #fff;
         cursor: default;
         padding: 0 20px;
-        text-shadow: 0 0 8px rgba(0, 0, 0, .8);
+        text-shadow: 0 0 2px rgba(0, 0, 0, .8);
 
         &__title {
+          padding: 4px 10px;
+          background-color: rgba(0,0,0,.4);
           letter-spacing: 2px;
           font-size: 1.6rem;
         }
 
         &__info {
+          padding: 4px 10px;
+          background-color: rgba(0,0,0,.35);
           max-width: 600px;
           letter-spacing: 1px;
           font-size: 1rem;
@@ -66,6 +70,8 @@
         </div>
         <Blocker height="20px" />
         <div class="blog__header__text__info">
+          <Icon name="category" />
+          {{ data.blogItem.category.name }}
           <Icon name="clock" />
           <Moment format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
         </div>
