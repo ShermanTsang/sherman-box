@@ -1,5 +1,6 @@
 <style lang="scss">
   .main {
+    background-color: #fff;
     flex: 1;
   }
 </style>

@@ -5,16 +5,12 @@
     left: 0;
     bottom: 0;
     height: 100%;
-    width: 200px;
+    width: $sidebar-width;
     background-color: #ffffff;
     border-right: 1px solid #eee;
     overflow: hidden;
     transition: all .2s ease-in-out;
-    box-shadow: 0 2px 10px rgba(177,177,177,.2);
-
-    &:hover {
-      box-shadow: 0 2px 20px #f0f1f2;
-    }
+    box-shadow: 0 2px 10px rgba(177, 177, 177, .2);
 
     &__container {
       margin: 0 auto;
@@ -23,48 +19,63 @@
       flex-flow: column nowrap;
 
       &__logo {
-        margin-top: 20px;
-        margin-bottom: 4px;
+        padding: 20px 0;
         text-align: center;
+        border-bottom: 1px solid #eee;
       }
 
       &__menu {
-        margin-top: 20px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
         flex: 1 0;
 
         &__item {
-          line-height: 60px;
-          height: 60px;
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          width: 100%;
           cursor: pointer;
-          flex: 1 0 auto;
-          padding: 0 20px;
-          font-size: 1.1rem;
-          letter-spacing: 4px;
+          padding: 20px 16px;
+          font-size: 1rem;
+          letter-spacing: 2px;
           color: #666;
           text-overflow: ellipsis;
           overflow: hidden;
+          border-bottom: 1px solid #eee;
 
-          &:not(:last-child) {
-            border-bottom: 1px solid #eee;
+          &__icon {
+            transition: all .25s ease-in-out;
+            transform-origin: center bottom;
+
+            i {
+              color: #aaa;
+              margin-right: 10px;
+            }
           }
 
-          i {
-            color: #aaa;
-            margin-right: 10px;
+          &__name {
+            margin-left: 6px;
+
+            span {
+              margin-top: 4px;
+              letter-spacing: 1px;
+              font-size: .8rem;
+              color: #999;
+              text-transform: capitalize;
+            }
           }
 
-          span {
-            letter-spacing: 1px;
-            font-size: .8rem;
-            color: #999;
-            text-transform: capitalize;
+          &:hover {
+            .sidebar__container__menu__item__icon {
+              transform: rotate(-15deg);
+            }
           }
         }
 
         &__item--active {
-          border-bottom: none !important;
           position: relative;
-          box-shadow: 0 0 1px $theme-color;
+          box-shadow: 0 0 10px rgba(10, 132, 234, 0.51);
           @include gradient-background;
         }
 
@@ -82,14 +93,12 @@
         white-space: nowrap;
 
         &__menu {
-          width: 100%;
           margin-top: 20px;
           display: -webkit-box;
           overflow-x: scroll;
           overflow-scrolling: touch;
 
           &__item {
-            display: inline-block;
             padding: 0 10px;
             overflow: hidden;
 
@@ -119,7 +128,7 @@
   <div class="sidebar">
     <div class="sidebar__container">
       <div class="sidebar__container__logo">
-        <Logo></Logo>
+        <Logo type="text" width="85%" />
       </div>
       <div class="sidebar__container__menu">
         <div
@@ -129,9 +138,14 @@
           :class="{'sidebar__container__menu__item--active': isActiveMenu(item)}"
           @click="$router.push(`/${item.url}`)"
         >
-          <Icon :name="item.icon" size="1.2rem" />
-          {{ item.name }}
-          <span>{{ item.url }}</span>
+          <div class="sidebar__container__menu__item__icon">
+            <Icon :name="item.icon" size="24px" />
+          </div>
+          <div class="sidebar__container__menu__item__name">
+            {{ item.name }}
+            <br>
+            <span>{{ item.url }}</span>
+          </div>
         </div>
       </div>
     </div>

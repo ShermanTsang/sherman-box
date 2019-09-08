@@ -43,10 +43,6 @@ export default {
       type: String,
       default: null
     },
-    size: {
-      type: String,
-      default: '64px'
-    },
     height: {
       type: String,
       default: ''
@@ -66,7 +62,7 @@ export default {
   },
   computed: {
     style() {
-      const fullWidth = { width: '100%', height: '100%' }
+      const fullWidth = { width: '100%'}
       const height = { height: this.height }
       const width = { width: this.width }
       return Object.assign(

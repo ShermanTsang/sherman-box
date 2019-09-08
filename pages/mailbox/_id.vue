@@ -88,7 +88,7 @@
       >
         <span v-if="data.mailboxItem.hint" slot="tip">提示：{{ data.mailboxItem.hint }}</span>
       </FormItem>
-      <Btn slot="footer" :full-width="true" height="64px" :colorful="true" @click="submitCheckPassword()">
+      <Btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitCheckPassword()">
         校验
       </Btn>
     </Modal>

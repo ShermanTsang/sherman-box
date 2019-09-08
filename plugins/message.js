@@ -2,7 +2,7 @@ import Vue from 'vue'
 import messageComponent from '@/components/Message.vue'
 
 export default function () {
-  function showMessage(type, text, icon = 'info', duration = 3000, callBack) {
+  function showMessage(type, text, icon = 'info', duration = 4000, callBack) {
     const MessageConstructor = Vue.extend(messageComponent)
     const messageDom = new MessageConstructor({
       el: document.createElement('div'),

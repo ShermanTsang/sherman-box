@@ -3,17 +3,15 @@
     position: fixed;
     right: 30px;
     top: 5%;
-    padding: 12px;
-    border-radius: 0 0 5px 5px;
+    padding: 12px 16px;
     z-index: 1006;
     background-color: #fff;
     color: #666;
     font-size: .95rem;
     letter-spacing: 1px;
+    box-shadow: 10px 20px 30px rgba(0,0,0,.2);
 
     &--info {
-      color: #fff;
-      @include gradient-background;
     }
 
     &--success {

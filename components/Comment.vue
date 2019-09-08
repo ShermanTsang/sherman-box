@@ -117,7 +117,7 @@
       >
         <Avatar :sign="form.contact" size="60px" />
       </FormItem>
-      <Btn slot="footer" :full-width="true" height="64px" :colorful="true" @click="submitSendComment()">
+      <Btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitSendComment()">
         发送
       </Btn>
     </Modal>

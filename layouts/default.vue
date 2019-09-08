@@ -15,7 +15,7 @@
 
   .layout-main {
     @media ($screen-md-min) {
-      margin-left: 200px;
+      margin-left: $sidebar-width;
     }
   }
 </style>

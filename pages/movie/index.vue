@@ -18,10 +18,9 @@
           :key="item.id"
           :xs="{span:24}"
           :sm="{span:24}"
-          :md="{span:24}"
-          :lg="{span:24}"
-          :xl="{span:12}"
-          :xxl="{span:8}"
+          :md="{span:12}"
+          :lg="{span:8}"
+          :xl="{span:6}"
         >
           <item-movie :item="item" />
         </layout-col>

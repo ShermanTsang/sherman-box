@@ -29,7 +29,7 @@ export default {
   props: {
     maxWidth: {
       type: String,
-      default: '1600px'
+      default: '1800px'
     },
     padding: {
       type: String,

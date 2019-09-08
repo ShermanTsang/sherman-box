@@ -84,11 +84,11 @@
         <span style="font-size: .95rem;">
           {{ item.category.name }} / {{ item.type }}
         </span>
-        <blocker height="4px" />
+        <Blocker height="4px" />
         <span style="font-size: 1.2rem;">
           {{ item.name }}
         </span>
-        <blocker height="6px" />
+        <Blocker height="6px" />
         <span style="font-size: .85rem;">
           {{ item.status }}{{ item.progress !== 100 ? `（${item.progress}%）` : '' }}  · {{ $time(item.datetime_start).format('YYYY-MM-DD') }} {{ $time(item.datetime_start).fromNow() }}
         </span>

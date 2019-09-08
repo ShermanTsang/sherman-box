@@ -1,6 +1,6 @@
 <style lang="scss">
   .footer {
-    margin-left: 200px;
+    margin-left: $sidebar-width;
     background-color: #ffffff;
     padding: 30px 10px;
     border-top: 1px solid #eee;

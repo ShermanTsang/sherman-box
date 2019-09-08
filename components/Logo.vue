@@ -1,23 +1,46 @@
 <style lang="scss">
   .logo {
-    width: 100%;
     cursor: pointer;
     font-size: 1.2rem;
-    max-width: 166px;
-
-    img {
-      width: 85%;
-    }
-
   }
 </style>
 
 <template>
-  <img :src="$getImageAsset('logo')" alt="logo" class="logo" @click="$router.push('/')">
+  <div class="logo">
+    <img :src="image" alt="logo" :style="style" @click="$router.push('/')">
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Logo'
+  name: 'Logo',
+  props: {
+    type: {
+      type: String,
+      default: 'text',
+      validator(value) {
+        return ['text', 'icon'].includes(value)
+      }
+    },
+    height: {
+      type: String,
+      default: ''
+    },
+    width: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    image() {
+      return this.type === 'text' ? this.$getImageAsset('logo') : '/favicon.ico'
+    },
+    style() {
+      return {
+        width: this.width,
+        height: this.height
+      }
+    }
+  }
 }
 </script>

@@ -1,7 +1,7 @@
 <style lang="scss">
   .blog-list {
     &__item {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
   }
 </style>
@@ -11,20 +11,20 @@
     <Blocker height="20px" />
     <CategoryBox module="blog" />
     <Blocker height="20px" />
-    <div v-if="data.blogList" class="blog-list">
-      <layout-row :gutter="16">
-        <layout-col
-          v-for="item in data.blogList"
-          :key="item.id"
-          :sm="{span : 24}"
-          :md="{span : 12}"
-          :lg="{span : 8}"
-        >
-          <item-blog :item="item" />
-        </layout-col>
-      </layout-row>
-    </div>
-    <Blocker height="40px" />
+    <layout-container max-width="1440px">
+      <div v-if="data.blogList" class="blog-list">
+        <layout-row :gutter="16">
+          <layout-col
+            v-for="item in data.blogList"
+            :key="item.id"
+            :sm="{span : 24}"
+          >
+            <item-blog :item="item" />
+          </layout-col>
+        </layout-row>
+      </div>
+      <Blocker height="40px" />
+    </layout-container>
     <Pagination
       :page="parseInt(meta.current_page)"
       :total="parseInt(meta.total)"

@@ -1,7 +1,7 @@
 <style lang="scss">
   .mail-item {
     position: relative;
-    border: none;
+    border: none !important;
     margin-top: 230px;
     background: none;
 

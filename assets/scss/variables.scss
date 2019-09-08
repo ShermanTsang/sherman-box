@@ -14,6 +14,8 @@ $screen-lg-max: "max-width: 992px";
 $screen-xl-max: "max-width: 1200px";
 $screen-xxl-max: "max-width: 1600px";
 
+$sidebar-width: 180px;
+
 @mixin gradient-background {
   background-color: #51defe;
   background-image: linear-gradient(126deg, #51defe 0%, #1170f5 79%);

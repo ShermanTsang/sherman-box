@@ -1,6 +1,6 @@
 <style lang="scss">
   .header {
-    height: 74px;
+    height: 64px;
     padding: 10px 20px;
     border-bottom: 1px solid #eee;
     overflow: hidden;
@@ -8,7 +8,7 @@
     box-shadow: 0 2px 8px #f0f1f2;
 
     &__container {
-      margin: 0 auto;
+      margin: 0 auto 0 $sidebar-width;
       height: 100%;
       display: flex;
       flex-flow: row nowrap;
@@ -53,26 +53,18 @@
             color: $theme-color;
           }
 
-          &:after {
-            position: absolute;
-            content: '';
-            bottom: -27px;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: $theme-color;
-            height: 2px;
-          }
         }
 
       }
     }
 
-    @media ($screen-xs-max) {
+    @media ($screen-md-max) {
       height: auto;
       padding: 16px;
 
       &__container {
+        position: relative;
+        margin: auto;
         flex-flow: column nowrap;
         align-items: flex-start;
         white-space: nowrap;
@@ -85,11 +77,15 @@
           overflow-scrolling: touch;
 
           &__item {
-            display:inline-block;
+            display: inline-block;
             padding: 0 10px;
 
             &:not(:last-child) {
               margin-right: 16px;
+            }
+
+            &:last-child {
+              margin-right: 30px;
             }
           }
 
@@ -100,8 +96,19 @@
           }
 
         }
+
+        &__arrow {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 20px;
+          text-align: right;
+          background-color: #fff;
+          box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
+        }
       }
     }
+
   }
 </style>
 
@@ -109,7 +116,7 @@
   <header class="header">
     <div class="header__container">
       <div class="header__container__logo">
-        <Logo></Logo>
+        <Logo type="text" height="36px" />
       </div>
       <div class="header__container__menu">
         <div
@@ -123,6 +130,9 @@
             {{ item.name }}
           </nuxt-link>
         </div>
+      </div>
+      <div class="header__container__arrow">
+        <Icon name="angle-right" color="#aaa" size="18px"></Icon>
       </div>
     </div>
   </header>

@@ -11,19 +11,20 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    height: 110px;
+    height: 120px;
 
     &__main {
       padding: 16px;
       overflow: hidden;
-      flex: 1 0;
+      flex: 1;
+      width: 0;
 
       &__name {
         display:block;
         overflow: hidden;
         font-size: 1rem;
         letter-spacing: 2px;
-        padding-bottom: 5px;
+        padding-bottom: 6px;
         border-bottom: 1px solid #efefef;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -46,8 +47,9 @@
       &__info {
         color: #999999;
         font-size: .9rem;
-        margin-top: 10px;
+        margin-top: 6px;
         overflow: hidden;
+        text-overflow: ellipsis;
 
         &__detail {
 
@@ -73,15 +75,15 @@
     }
 
     &__image {
-      height: 110px;
-      width: 110px;
+      flex: 0 0 120px;
       opacity: .5;
       transition: all .2s ease-in-out;
+      cursor: pointer;
 
       img {
+        height: 120px;
+        width: 120px;
         border-radius: 2px;
-        width: 100%;
-        height: 100%;
         object-fit: cover;
         box-shadow: 0 0 6px rgba(0, 0, 0, .1);
       }
@@ -113,14 +115,14 @@
 <template>
   <card class="common-item" :class="{'common-item--right':align === 'right'}">
     <div class="common-item__main">
-      <nuxt-link :to="link" class="clock">
-        <div class="common-item__main__name">
+      <div class="common-item__main__name">
+        <nuxt-link :to="link">
           <span class="common-item__main__name__module">
             {{ module.name }}
           </span>
           {{ item.name }}
-        </div>
-      </nuxt-link>
+        </nuxt-link>
+      </div>
       <div v-if="text === 'date'" class="common-item__main__info">
         <moment format="YYYY.MM.DD" :time="item.datetime" />
       </div>
@@ -128,10 +130,8 @@
         {{ item.text }}
       </div>
     </div>
-    <div v-if="item.image" class="common-item__image">
-      <nuxt-link :to="link" class="clock">
-        <img v-lazy="$getOssUrl(item.image)">
-      </nuxt-link>
+    <div v-if="item.image" class="common-item__image" @click="$router.push(link)">
+      <img v-lazy="$getOssUrl(item.image)">
     </div>
   </card>
 </template>

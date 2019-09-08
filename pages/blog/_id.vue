@@ -12,7 +12,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 1;
         opacity: .8;
         transform: scale(1.2);
         filter: blur(4px);
@@ -44,7 +43,7 @@
           padding: 4px 10px;
           background-color: rgba(0,0,0,.4);
           letter-spacing: 2px;
-          font-size: 1.6rem;
+          font-size: 1.4rem;
         }
 
         &__info {

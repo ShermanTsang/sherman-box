@@ -114,7 +114,7 @@
           margin-bottom: 14px;
 
           &__icon {
-            display: none;
+           display: none;
           }
         }
       }

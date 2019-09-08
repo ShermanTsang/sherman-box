@@ -1,5 +1,7 @@
 <style lang="scss">
   .loading {
+    max-width: 100%;
+    max-height: 100%;
 
     &__element {
       position: relative;
