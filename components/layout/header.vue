@@ -85,7 +85,7 @@
             }
 
             &:last-child {
-              margin-right: 30px;
+              margin-right: 40px;
             }
           }
 
@@ -97,7 +97,7 @@
 
         }
 
-        &__arrow {
+        &__scroll {
           position: absolute;
           right: 0;
           bottom: 0;
@@ -118,7 +118,7 @@
       <div class="header__container__logo">
         <Logo type="text" height="36px" />
       </div>
-      <div class="header__container__menu">
+      <div id="headerMenu" class="header__container__menu">
         <div
           v-for="(item,index) in $store.getters.moduleList"
           :key="index"
@@ -131,7 +131,7 @@
           </nuxt-link>
         </div>
       </div>
-      <div class="header__container__arrow">
+      <div class="header__container__scroll" @click="scrollMenu()">
         <Icon name="angle-right" color="#aaa" size="18px"></Icon>
       </div>
     </div>
@@ -152,6 +152,11 @@ export default {
       const path = this.$route.path
       const inIndexPage = url === 'timeline' && path === '/'
       return path.indexOf(url) > 0 || inIndexPage
+    },
+    scrollMenu() {
+      const headerMenu = document.getElementById('headerMenu')
+      const scrollLeft = headerMenu.scrollLeft
+      headerMenu.scrollLeft = scrollLeft + 40
     }
   }
 }

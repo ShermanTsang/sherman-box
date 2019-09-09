@@ -39,7 +39,7 @@
         bottom: 0;
         width: 100%;
         height: 100%;
-        opacity: .6;
+        opacity: .4;
         background-position: center center;
         background-size: cover;
         box-shadow: 0 -40px 30px 40px #fff inset;
