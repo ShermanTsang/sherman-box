@@ -2,7 +2,7 @@
   .message {
     position: fixed;
     right: 30px;
-    top: 5%;
+    top: 10%;
     padding: 12px 16px;
     z-index: 1006;
     background-color: #fff;

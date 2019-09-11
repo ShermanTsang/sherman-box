@@ -20,6 +20,7 @@
         margin: 0 auto;
         width: 200px;
         height: 270px;
+        cursor: pointer;
         box-shadow: 0 0 20px rgba(0,0,0,.2);
 
         img {
@@ -127,7 +128,7 @@
     class="movie-list__item movie-item"
   >
     <div class="movie-item__header">
-      <div class="movie-item__header__poster">
+      <div class="movie-item__header__poster" @click="$router.push(`/movie/${item.id}`)">
         <img v-lazy="$getOssUrl(item.image)">
       </div>
       <div v-lazy:background-image="$getOssUrl(item.image)" class="movie-item__header__background"></div>

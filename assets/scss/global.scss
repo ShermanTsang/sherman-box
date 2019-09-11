@@ -80,3 +80,7 @@ html {
   font-size: .95rem;
   color: #ccc;
 }
+
+img[src=""],img:not([src]){
+  opacity:0;
+}

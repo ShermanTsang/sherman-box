@@ -1,6 +1,6 @@
 <style lang="scss">
   .plan-item {
-    height: 400px;
+    height: 300px;
     position: relative;
     overflow: hidden;
     transition-duration: 0.2s;
@@ -15,42 +15,41 @@
       background-position: center center;
       background-size: cover;
       transition: all 200ms ease-in;
-      opacity: .8;
       transform: scale(1.3);
       box-shadow: 0 -20px 20px 40px rgb(255, 255, 255) inset;
     }
 
     &__main {
       position: absolute;
-      top: 190px;
+      top: 110px;
       left: 0;
       right: 0;
-      margin-top: 20px;
       padding: 20px;
 
       &__title {
+        display: inline-block;
         font-size: 1.2rem;
         letter-spacing: 2px;
-        padding-bottom: 5px;
-        border-bottom: 2px solid #efefef;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 10px;
+        background-color: rgba(0,0,0,.2);
+        color: #ffffff;
+      }
+
+      &__info {
+        color: #999999;
+        margin-top: 30px;
+        line-height: 2;
+        font-size: .95rem;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
-
-      &__description {
-        color: #999999;
-        margin-top: 10px;
-        line-height: 2;
-        font-size: .95rem;
-        overflow: hidden;
-      }
     }
 
     &:hover {
-      .plan-item__image {
-        opacity: 1;
-      }
     }
 
   }
@@ -64,13 +63,13 @@
       <div v-lazy:background-image="$getOssUrl(item.image)" :to="`/plan/${item.id}`" class="plan-item__image">
       </div>
       <div class="plan-item__main">
-        <div class="plan-item__main__title">
-          <nuxt-link :to="`/plan/${item.id}`">
-            {{ item.name }}
-          </nuxt-link>
+        <div class="plan-item__main__title" @click="$router.push(`/plan/${item.id}`)">
+          <small>{{ item.category.name }}</small> / {{ item.name }}
         </div>
-        <div class="plan-item__main__description">
-          <moment format="YYYY-MM-DD" from-now :time="item.datetime" />
+        <div class="plan-item__main__info">
+          <moment format="YYYY-MM-DD" from-now :time="item.datetime_start" />
+          ~
+          <moment format="YYYY-MM-DD" from-now :time="item.datetime_end" />
           <br>
           <template v-if="item.description">
             {{ item.description.length > 40 ? `${item.description.substring(0,40)}...` : item.description }}

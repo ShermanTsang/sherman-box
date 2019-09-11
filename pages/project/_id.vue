@@ -288,25 +288,29 @@
         <Markdown :content="data.projectItem.logs || ''" />
       </layout-container>
     </template>
-    <Blocker height="40px" />
-    <layout-container v-if="data.projectItem.file">
-      <Nameplate title="文件" sub-title="file" />
-      <iframe
-        v-if="data.projectItem.file.indexOf('.ppt') !== -1 || data.projectItem.file.indexOf('.doc') !== -1"
-        :src="`https://view.officeapps.live.com/op/view.aspx?src=${$getOssUrl(data.projectItem.file)}`"
-        width="100%"
-        height="600px"
-      ></iframe>
-    </layout-container>
-    <layout-container v-if="data.projectItem.video">
-      <Nameplate title="视频" sub-title="video" />
-      <iframe
-        height="500"
-        width="100%"
-        :src="data.projectItem.video"
-        allowfullscreen
-      ></iframe>
-    </layout-container>
+    <template v-if="data.projectItem.file">
+      <layout-container>
+        <Blocker height="60px" />
+        <Nameplate title="文件" sub-title="file" />
+        <iframe
+          v-if="data.projectItem.file.indexOf('.ppt') !== -1 || data.projectItem.file.indexOf('.doc') !== -1"
+          :src="`https://view.officeapps.live.com/op/view.aspx?src=${$getOssUrl(data.projectItem.file)}`"
+          width="100%"
+          height="600px"
+        ></iframe>
+      </layout-container>
+    </template>
+    <template v-if="data.projectItem.video">
+      <layout-container>
+        <Nameplate title="视频" sub-title="video" />
+        <iframe
+          height="500"
+          width="100%"
+          :src="data.projectItem.video"
+          allowfullscreen
+        ></iframe>
+      </layout-container>
+    </template>
     <Blocker height="60px" />
     <layout-container>
       <Comment :id="data.projectItem.id" module="project" :source-data="data.projectItem.comments" />

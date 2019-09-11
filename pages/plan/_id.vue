@@ -37,7 +37,7 @@
           letter-spacing: 2px;
         }
 
-        &__description {
+        &__time {
           display: block;
           color: #ffffff;
           padding: 10px;
@@ -47,6 +47,16 @@
           text-shadow: 0 0 4px rgba(0, 0, 0, .5);
           border-top: 1px solid rgba(255, 255, 255, .2);
           border-bottom: 1px solid rgba(255, 255, 255, .2);
+        }
+
+        &__description {
+          display: block;
+          color: #ffffff;
+          padding: 10px;
+          font-size: 1rem;
+          line-height: 1.5;
+          letter-spacing: 2px;
+          text-shadow: 0 0 4px rgba(0, 0, 0, .5);
         }
 
       }
@@ -116,7 +126,7 @@
           }
 
           &__description {
-            margin: 20px 20px 0 20px;
+            margin: 10px 10px 0 10px;
             padding: 20px;
           }
         }
@@ -160,14 +170,33 @@
         </div>
         <Blocker height="30px" />
         <div class="plan__header__main__name">
-          {{ data.planItem.name }}
+          <small>{{ data.planItem.category.name }}</small> / {{ data.planItem.name }}
         </div>
         <Blocker height="20px" />
+        <div class="plan__header__main__time">
+          始 <Moment from-now type="datetime" :time="data.planItem.datetime_start" />
+          <br>
+          终 <Moment from-now type="datetime" :time="data.planItem.datetime_end" />
+        </div>
         <div class="plan__header__main__description">
           {{ data.planItem.description || '暂无项目介绍' }}
         </div>
       </layout-container>
     </div>
+    <template v-if="data.planItem.content">
+      <Blocker height="60px" />
+      <layout-container>
+        <Nameplate title="内容" sub-title="content" />
+        <Markdown :content="data.planItem.content || ''" />
+      </layout-container>
+    </template>
+    <template v-if="data.planItem.logs">
+      <Blocker height="60px" />
+      <layout-container>
+        <Nameplate title="日志" sub-title="logs" />
+        <Markdown :content="data.planItem.logs || ''" />
+      </layout-container>
+    </template>
     <Blocker height="60px" />
     <layout-container>
       <Comment :id="data.planItem.id" module="plan" :source-data="data.planItem.comments" />
