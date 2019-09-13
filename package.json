@@ -16,12 +16,12 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",
     "cross-env": "^5.2.0",
+    "dayjs": "^1.8.16",
     "grade-js": "^1.0.10",
     "gravatar-url": "^3.0.1",
     "highlight.js": "^9.15.10",
     "lodash": "^4.17.11",
     "marked": "^0.6.2",
-    "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.4.0",
     "vee-validate": "^2.2.15",

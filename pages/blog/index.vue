@@ -13,15 +13,7 @@
     <Blocker height="20px" />
     <layout-container max-width="1440px">
       <div v-if="data.blogList" class="blog-list">
-        <layout-row :gutter="16">
-          <layout-col
-            v-for="item in data.blogList"
-            :key="item.id"
-            :sm="{span : 24}"
-          >
-            <item-blog :item="item" />
-          </layout-col>
-        </layout-row>
+        <item-blog v-for="item in data.blogList" :key="item.id" :item="item" class="blog-list__item" />
       </div>
       <Blocker height="40px" />
     </layout-container>

@@ -1,7 +1,7 @@
 <style lang="scss">
   .day-list {
     &__item {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
   }
 </style>
@@ -9,19 +9,11 @@
 <template>
   <layout-container>
     <Blocker height="20px" />
-    <div v-if="data.dayList" class="day-list">
-      <layout-row :gutter="16">
-        <layout-col
-          v-for="item in data.dayList"
-          :key="item.id"
-          :md="{span:24}"
-          :lg="{span:24}"
-          :xl="{span:12}"
-        >
-          <item-day :item="item" />
-        </layout-col>
-      </layout-row>
-    </div>
+    <layout-container max-width="1440px">
+      <div v-if="data.dayList" class="day-list">
+        <item-day v-for="item in data.dayList" :key="item.id" :item="item" class="day-list__item" />
+      </div>
+    </layout-container>
     <Blocker height="40px" />
     <Pagination
       :page="parseInt(meta.current_page)"

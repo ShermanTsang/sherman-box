@@ -11,9 +11,9 @@
 </style>
 
 <template>
-  <nuxt-link v-if="timeValue" :to="{path:`/day/${timeValue.format('YYYY-MM-DD')}`}" class="moment">
-    {{ timeValue.format(format) }}
-    <small v-if="fromNow">{{ timeValue.fromNow() }}</small>
+  <nuxt-link v-if="localTime" :to="{path:`/day/${localTime.format('YYYY-MM-DD')}`}" class="moment" :style="style">
+    {{ localTime.format(format) }}
+    <small v-if="fromNow">{{ fromNowFormat }}</small>
   </nuxt-link>
 </template>
 
@@ -36,11 +36,30 @@ export default {
     fromNow: {
       type: Boolean,
       default: undefined
+    },
+    color: {
+      type: String,
+      default: undefined
     }
   },
   computed: {
-    timeValue() {
+    style() {
+      return {
+        color: this.color + '!important'
+      }
+    },
+    localTime() {
       return this.$time(this.time) || undefined
+    },
+    isDateFormat() {
+      return this.localTime.format('HH:mm:ss') === '00:00:00'
+    },
+    isToday() {
+      return this.localTime.format('YYYY-MM-DD') === this.$time().format('YYYY-MM-DD')
+    },
+    fromNowFormat() {
+      const expectedTimeValue = this.isDateFormat ? this.localTime.set('hour', 23).set('minute', 59) : this.localTime
+      return this.isDateFormat && this.isToday ? '今天' : expectedTimeValue.from()
     }
   }
 }

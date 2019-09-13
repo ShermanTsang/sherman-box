@@ -50,7 +50,7 @@ export default {
     { src: '@/plugins/axios', ssr: true },
     { src: '@/plugins/transfer-dom', ssr: true },
     { src: '@/plugins/auto-components', ssr: true },
-    { src: '@/plugins/moment', ssr: true },
+    { src: '@/plugins/day-js', ssr: true },
     { src: '@/plugins/gradient-color', ssr: true },
     { src: '@/plugins/vue-lazyload', ssr: false },
     { src: '@/plugins/3rd-analyze', ssr: false },

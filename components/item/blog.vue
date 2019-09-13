@@ -2,15 +2,17 @@
   .blog-item {
     display: flex;
     flex-flow: row nowrap;
+    height: 200px;
+    overflow: hidden;
 
     &__image {
       flex: 0 0 30%;
-      height: 260px;
+      height: 100%;
+      width: 30%;
       cursor: pointer;
       background-position: center center;
       background-size: cover;
       transition: all 200ms ease-in;
-      order: 1;
     }
 
     &__main {
@@ -36,12 +38,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-      }
-
-      &__name {
-        a {
-          color: #999;
-        }
+        color: #666;
       }
 
       &__description {
@@ -51,6 +48,14 @@
         overflow: hidden;
       }
 
+    }
+
+    &:nth-child(2n) {
+      .blog-item {
+        &__image {
+          order: 1;
+        }
+      }
     }
 
   }
@@ -69,12 +74,10 @@
     </div>
     <div class="blog-item__main">
       <div class="blog-item__main__time">
-        <moment format="YYYY-MM-DD" from-now :time="item.datetime" />
+        <moment format="YYYY-MM-DD" from-now :time="item.datetime" color="#999" />
       </div>
-      <div class="blog-item__main__title">
-        <nuxt-link :to="`/blog/${item.id}`">
-          {{ item.name }}
-        </nuxt-link>
+      <div class="blog-item__main__title" @click="$router.push(`/blog/${item.id}`)">
+        {{ item.name }}
       </div>
       <Blocker height="10px" divider />
       <div class="blog-item__main__description">

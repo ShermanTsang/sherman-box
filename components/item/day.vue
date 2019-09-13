@@ -7,7 +7,6 @@
     line-height: 1.5;
     text-overflow: ellipsis;
     letter-spacing: 1px;
-    font-size: 1rem;
     display: flex;
     flex-flow: row nowrap;
 
@@ -63,7 +62,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      width: 300px;
+      width: 400px;
       height: 100%;
       background-position: center center;
       background-size: cover;
