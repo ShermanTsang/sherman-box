@@ -39,6 +39,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         color: #666;
+        cursor: pointer;
       }
 
       &__description {
@@ -56,6 +57,19 @@
           order: 1;
         }
       }
+    }
+
+    @media ($screen-xs-max) {
+      height: auto;
+      flex-flow: column nowrap;
+
+      &__image {
+        width: 100%;
+        height: 200px;
+        flex: 0 0 200px;
+        order: 0 !important;
+      }
+
     }
 
   }
