@@ -19,7 +19,7 @@
       flex: 1 0;
       display: flex;
       flex-flow: column nowrap;
-      justify-content: center;
+      justify-content: flex-start;
       position: relative;
       overflow: hidden;
       transition-duration: 0.2s;

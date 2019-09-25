@@ -13,18 +13,26 @@
     &__main {
       flex: 0 0 60%;
       padding: 32px;
-      height: 260px;
+      height: 300px;
 
-      &__name {
+      &__date {
         display: inline-block;
-        font-size: 1rem;
-        letter-spacing: 2px;
-        padding-bottom: 5px;
-        border-bottom: 2px solid #efefef;
+        padding-bottom: 10px;
+        border-bottom: 4px dashed #efefef;
+        cursor: pointer;
 
-        small {
+        &__main {
+          font-size: 2rem;
+          font-weight: bold;
+          letter-spacing: 2px;
+          color: #666;
+        }
+
+        &__sub {
+          font-size: 1rem;
           color: #999;
         }
+
       }
 
       &__info {
@@ -126,13 +134,13 @@
     class="day-list__item day-item"
   >
     <div class="day-item__main">
-      <div class="day-item__main__name">
-        <nuxt-link :to="`/day/${ $time(item.date).format('YYYY-MM-DD') }`">
-          {{ $time(item.date).format('YYYY年MM月DD日') }} {{ $time(item.date).format('dddd') }}
-          <br>
-          <small>{{ $time(item.date).format('YY') }}年的第{{ $time(item.date).format('DDD') }}天（{{
-            Math.ceil($time(item.date).format('DDD')/365*100) }}%）</small>
-        </nuxt-link>
+      <div class="day-item__main__date" @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)">
+        <div class="day-item__main__date__main">
+          {{ $time(item.date).format('MM.DD') }}
+        </div>
+        <div class="day-item__main__date__sub">
+          {{ $time(item.date).format('YYYY dddd') }}
+        </div>
       </div>
       <div class="day-item__main__info">
         <div class="day-item__main__info__detail">

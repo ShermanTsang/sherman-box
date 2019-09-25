@@ -75,8 +75,11 @@
 
         &__item--active {
           position: relative;
-          box-shadow: 0 0 10px rgba(10, 132, 234, 0.51);
           @include gradient-background;
+
+          &:hover {
+            box-shadow: 0 0 20px rgba(10, 132, 234, 0.51);
+          }
         }
 
       }

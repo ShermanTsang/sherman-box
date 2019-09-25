@@ -44,7 +44,7 @@
         background-position: center center;
         background-size: cover;
         box-shadow: 0 -40px 30px 40px #fff inset;
-        filter: blur(4px);
+        filter: blur(6px);
         transform: scale(1.3);
       }
 
