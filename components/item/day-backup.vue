@@ -1,36 +1,18 @@
 <style lang="scss">
-  .day-item {
+  .day-item-backup {
     position: relative;
     overflow: hidden;
     transition-duration: 0.2s;
     line-height: 1.5;
     text-overflow: ellipsis;
     letter-spacing: 1px;
-
-    &__image {
-      position: relative;
-      transition: all 200ms ease-in;
-      opacity: .5;
-
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 0;
-        width: 100%;
-        border-left: 600px solid transparent;
-        border-bottom: 60px solid #fff;
-      }
-
-      img {
-        width: 100%;
-        object-fit: cover;
-      }
-    }
+    display: flex;
+    flex-flow: row nowrap;
 
     &__main {
-      padding: 0 32px 32px 32px;
+      flex: 0 0 60%;
+      padding: 32px;
+      height: 300px;
 
       &__date {
         display: inline-block;
@@ -56,14 +38,15 @@
         color: #999999;
         font-size: .9rem;
         margin-top: 10px;
+        overflow: hidden;
 
         &__detail {
-          display: flex;
-          flex-flow: row wrap;
-          justify-content: flex-start;
+          flex-flow: column nowrap;
+          align-items: center;
 
           &__item {
-            width: 25%;
+            width: 80px;
+            display: inline-block;
             cursor: default;
             font-size: .95rem;
             margin: 6px 0;
@@ -71,12 +54,40 @@
 
             i {
               display: block;
-              font-size: 1.4rem;
+              font-size: 2rem;
+              margin-right: 6px;
               color: #ccc;
             }
 
           }
         }
+      }
+    }
+
+    &__image {
+      flex: 0 0 40%;
+      transform: translateX(10px);
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 400px;
+      height: 100%;
+      background-position: center center;
+      background-size: cover;
+      -webkit-transition: all 200ms ease-in;
+      transition: all 200ms ease-in;
+      opacity: .5;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        bottom: 0;
+        left: -2px;
+        width: 0;
+        height: 0;
+        border-bottom: 400px solid transparent;
+        border-left: 50px solid #fff;
       }
     }
 
@@ -100,6 +111,19 @@
         }
       }
 
+      &__image {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        opacity: 1;
+        transform: none;
+        order: -1;
+        background-attachment: fixed;
+
+        &:after {
+          display: none;
+        }
+      }
     }
 
   }
@@ -109,13 +133,6 @@
   <card
     class="day-list__item day-item"
   >
-    <div
-      v-if="item.image"
-      class="day-item__image"
-      @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)"
-    >
-      <img :src="$getOssUrl(item.image)">
-    </div>
     <div class="day-item__main">
       <div class="day-item__main__date" @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)">
         <div class="day-item__main__date__main">
@@ -162,6 +179,10 @@
         </div>
       </div>
     </div>
+    <nuxt-link :to="`/day/${ $time(item.date).format('YYYY-MM-DD') }`">
+      <div v-if="item.image" v-lazy:background-image="$getOssUrl(item.image)" class="day-item__image">
+      </div>
+    </nuxt-link>
   </card>
 </template>
 

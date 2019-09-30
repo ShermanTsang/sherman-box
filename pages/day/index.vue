@@ -1,19 +1,22 @@
 <style lang="scss">
   .day-list {
-    &__item {
-      margin-bottom: 40px;
-    }
   }
 </style>
 
 <template>
   <layout-container>
     <Blocker height="20px" />
-    <layout-container max-width="1440px">
-      <div v-if="data.dayList" class="day-list">
-        <item-day v-for="item in data.dayList" :key="item.id" :item="item" class="day-list__item" />
-      </div>
-    </layout-container>
+    <div v-if="data.dayList" class="day-list">
+      <Waterfall gap="10px">
+        <div
+          v-for="item in data.dayList"
+          :key="item.id"
+          class="waterfall__item"
+        >
+          <item-day :item="item" />
+        </div>
+      </Waterfall>
+    </div>
     <Blocker height="40px" />
     <Pagination
       :page="parseInt(meta.current_page)"
@@ -26,7 +29,10 @@
 </template>
 
 <script>
+import Waterfall from '../../components/Waterfall'
+
 export default {
+  components: { Waterfall },
   data() {
     return {}
   },
