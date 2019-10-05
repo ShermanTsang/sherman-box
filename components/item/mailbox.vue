@@ -79,7 +79,7 @@
 </style>
 
 <template>
-  <card
+  <Card
     class="mailbox-list__item mailbox-item"
   >
     <div class="card mail-item">
@@ -100,13 +100,13 @@
         <icon name="comment" /> {{ item.category.name }} / {{ item.name }}
         <br>
         <icon name="clock" />
-        <moment format="YYYY-MM-DD" :time="item.datetime" />
+        <Moment format="YYYY-MM-DD" :time="item.datetime" />
       </div>
       <div v-if="item.password || item.hint" class="mail-item__pin">
         <icon name="lock" />
       </div>
     </div>
-  </card>
+  </Card>
 </template>
 
 <script>

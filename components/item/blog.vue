@@ -76,7 +76,7 @@
 </style>
 
 <template>
-  <card
+  <Card
     class="blog-list__item blog-item"
   >
     <div
@@ -88,7 +88,7 @@
     </div>
     <div class="blog-item__main">
       <div class="blog-item__main__time">
-        <moment format="YYYY-MM-DD" from-now :time="item.datetime" color="#999" />
+        <Moment format="YYYY-MM-DD" from-now :time="item.datetime" color="#999" />
       </div>
       <div class="blog-item__main__title" @click="$router.push(`/blog/${item.id}`)">
         {{ item.name }}
@@ -101,7 +101,7 @@
         </template>
       </div>
     </div>
-  </card>
+  </Card>
 </template>
 
 <script>

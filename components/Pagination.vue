@@ -27,7 +27,7 @@
 </style>
 
 <template>
-  <div class="pagination">
+  <div v-if="total > 1" class="pagination">
     <div class="pagination__item pagination__item--action" @click="jumpPage(currentPage - 1)">
       <Icon name="angle-left" />
     </div>

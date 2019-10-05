@@ -130,7 +130,7 @@
 </style>
 
 <template>
-  <card
+  <Card
     class="day-list__item day-item"
   >
     <div class="day-item__main">
@@ -183,7 +183,7 @@
       <div v-if="item.image" v-lazy:background-image="$getOssUrl(item.image)" class="day-item__image">
       </div>
     </nuxt-link>
-  </card>
+  </Card>
 </template>
 
 <script>

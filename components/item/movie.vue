@@ -124,7 +124,7 @@
 </style>
 
 <template>
-  <card
+  <Card
     class="movie-list__item movie-item"
   >
     <div class="movie-item__header">
@@ -155,11 +155,11 @@
         </div>
         <div class="movie-item__content__info__item">
           <icon name="clock" size=".9rem" />
-          <moment from-now :time="item.datetime" type="date" />
+          <Moment from-now :time="item.datetime" type="date" />
         </div>
       </div>
     </div>
-  </card>
+  </Card>
 </template>
 
 <script>

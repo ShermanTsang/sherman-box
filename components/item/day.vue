@@ -11,17 +11,7 @@
       position: relative;
       transition: all 200ms ease-in;
       opacity: .5;
-
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 0;
-        width: 100%;
-        border-left: 600px solid transparent;
-        border-bottom: 60px solid #fff;
-      }
+      cursor: pointer;
 
       img {
         width: 100%;
@@ -30,7 +20,7 @@
     }
 
     &__main {
-      padding: 0 32px 32px 32px;
+      padding: 16px 32px;
 
       &__date {
         display: inline-block;
@@ -106,7 +96,7 @@
 </style>
 
 <template>
-  <card
+  <Card
     class="day-list__item day-item"
   >
     <div
@@ -162,7 +152,7 @@
         </div>
       </div>
     </div>
-  </card>
+  </Card>
 </template>
 
 <script>

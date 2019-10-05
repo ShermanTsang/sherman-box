@@ -113,7 +113,7 @@
 </style>
 
 <template>
-  <card class="common-item" :class="{'common-item--right':align === 'right'}">
+  <Card class="common-item" :class="{'common-item--right':align === 'right'}">
     <div class="common-item__main">
       <div class="common-item__main__name">
         <nuxt-link :to="link">
@@ -124,7 +124,7 @@
         </nuxt-link>
       </div>
       <div v-if="text === 'date'" class="common-item__main__info">
-        <moment format="YYYY.MM.DD" :time="item.datetime" />
+        <Moment format="YYYY.MM.DD" :time="item[module.dateField]" />
       </div>
       <div v-else-if="text === 'detail'" class="common-item__main__info">
         {{ item.text }}
@@ -133,7 +133,7 @@
     <div v-if="item.image" class="common-item__image" @click="$router.push(link)">
       <img v-lazy="$getOssUrl(item.image)">
     </div>
-  </card>
+  </Card>
 </template>
 
 <script>

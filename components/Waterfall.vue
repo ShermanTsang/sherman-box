@@ -28,7 +28,7 @@
 export default {
   name: 'Waterfall',
   props: {
-    count: {
+    column: {
       type: [Number, String],
       default: 3
     },
@@ -40,7 +40,7 @@ export default {
   computed: {
     style() {
       return {
-        'column-count': this.count,
+        'column-count': this.column,
         'column-gap': this.gap
       }
     }

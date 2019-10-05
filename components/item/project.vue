@@ -72,7 +72,7 @@
 </style>
 
 <template>
-  <card
+  <Card
     class="project-list__item project-item"
   >
     <nuxt-link :to="`/project/${item.id}`">
@@ -94,7 +94,7 @@
         </span>
       </div>
     </nuxt-link>
-  </card>
+  </Card>
 </template>
 
 <script>

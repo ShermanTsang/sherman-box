@@ -32,7 +32,7 @@
 
 <template>
   <nuxt-link :to="`/idea/${item.id}`">
-    <card class="idea-item">
+    <Card class="idea-item">
       <div class="idea-item__content">
         {{ item.content }}
       </div>
@@ -43,7 +43,7 @@
           {{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}
         </small>
       </div>
-    </card>
+    </Card>
   </nuxt-link>
 </template>
 

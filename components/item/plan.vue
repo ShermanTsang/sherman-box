@@ -71,7 +71,7 @@
 </style>
 
 <template>
-  <card
+  <Card
     class="plan-list__item plan-item"
   >
     <div
@@ -93,11 +93,11 @@
       </div>
     </div>
     <div class="plan-item__info">
-      <moment format="YYYY-MM-DD" from-now :time="item.datetime_start" />
+      <Moment format="YYYY-MM-DD" from-now :time="item.datetime_start" />
       ~
-      <moment format="YYYY-MM-DD" from-now :time="item.datetime_end" />
+      <Moment format="YYYY-MM-DD" from-now :time="item.datetime_end" />
     </div>
-  </card>
+  </Card>
 </template>
 
 <script>

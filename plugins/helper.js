@@ -112,25 +112,25 @@ export default function ({ store }) {
     const mainConfigList = store.getters.moduleList || []
     const configList = {
       day: {
-        name: '日迹', date: 'date'
+        name: '日迹', dateField: 'date'
       },
       blog: {
-        name: '博文', date: 'datetime'
+        name: '博文', dateField: 'datetime'
       },
       movie: {
-        name: '观影', date: 'datetime'
+        name: '观影', dateField: 'datetime'
       },
       project: {
-        name: '项目', date: 'datetime_start'
+        name: '项目', dateField: 'datetime_start'
       },
       plan: {
-        name: '计划', date: 'datetime'
+        name: '计划', dateField: 'datetime_start'
       },
       idea: {
-        name: '想法', date: 'datetime'
+        name: '想法', dateField: 'datetime'
       },
       mailbox: {
-        name: '邮局', date: 'datetime'
+        name: '邮局', dateField: 'datetime'
       }
     }
     if (mainConfigList && mainConfigList.length > 0) {
