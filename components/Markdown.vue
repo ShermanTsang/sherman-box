@@ -65,6 +65,25 @@
       blockquote {
       }
 
+      ul {
+        line-height: 2;
+        padding-left: 20px;
+        li {
+          position: relative;
+          padding-left: 16px;
+          list-style-type: none;
+          &:before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #aaa;
+            left: 0;
+            top: calc(50% - 2px);
+          }
+        }
+      }
+
       p {
         -webkit-margin-before: 0.5em;
         -webkit-margin-after: 0.5em;
@@ -81,6 +100,7 @@
           color: $theme-color;
           position: relative;
           font-family: Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
+          font-size: .9rem;
 
           &:after {
             content: '';
@@ -100,7 +120,7 @@
       pre {
         background: #272822;
         padding: 16px;
-        max-height: 450px;
+        max-height: 400px;
         width: 100%;
         overflow: auto;
 
@@ -113,7 +133,7 @@
       img {
         display: block;
         cursor: pointer;
-        margin: 20px auto;
+        margin: 20px 0;
         max-width: 100%;
         transition: all .2s ease-in;
 

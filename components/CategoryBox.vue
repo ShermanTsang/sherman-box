@@ -29,7 +29,7 @@
         width: 30px;
         left: calc(50% - 15px);
         border-radius: 4px;
-        bottom: -5px;
+        bottom: 0;
         position: absolute;
         @include gradient-background;
       }

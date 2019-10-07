@@ -11,7 +11,7 @@
     <Blocker height="20px" />
     <CategoryBox module="mailbox" />
     <Blocker height="20px" />
-    <div v-if="data.mailboxList" class="mailbox-list">
+    <div v-if="data.mailboxList && data.mailboxList.length > 0" class="mailbox-list">
       <layout-row :gutter="16">
         <layout-col
           v-for="item in data.mailboxList"
@@ -24,6 +24,9 @@
         </layout-col>
       </layout-row>
     </div>
+    <Tip v-else>
+      暂无内容
+    </Tip>
     <Blocker height="40px" />
     <Pagination
       :page="parseInt(meta.current_page)"

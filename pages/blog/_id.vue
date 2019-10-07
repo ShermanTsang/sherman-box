@@ -40,15 +40,15 @@
         text-shadow: 0 0 2px rgba(0, 0, 0, .8);
 
         &__title {
-          padding: 4px 10px;
-          background-color: rgba(0,0,0,.4);
+          padding: 8px 10px;
+          background-color: rgba(0, 0, 0, .4);
           letter-spacing: 2px;
           font-size: 1.4rem;
         }
 
         &__info {
-          padding: 4px 10px;
-          background-color: rgba(0,0,0,.35);
+          padding: 8px 10px;
+          background-color: rgba(0, 0, 0, .35);
           max-width: 600px;
           letter-spacing: 1px;
           font-size: 1rem;

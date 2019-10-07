@@ -11,7 +11,7 @@
     <Blocker height="20px" />
     <CategoryBox module="plan" />
     <Blocker height="20px" />
-    <div v-if="data.planList" class="plan-list">
+    <div v-if="data.planList && data.planList.length > 0" class="plan-list">
       <layout-row :gutter="16">
         <layout-col
           v-for="item in data.planList"
@@ -24,6 +24,9 @@
         </layout-col>
       </layout-row>
     </div>
+    <Tip v-else>
+      暂无内容
+    </Tip>
     <Blocker height="40px" />
     <Pagination
       :page="parseInt(meta.current_page)"

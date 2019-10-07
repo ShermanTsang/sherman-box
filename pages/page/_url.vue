@@ -9,6 +9,8 @@
     <Nameplate :title="data.pageItem.name" :sub-title="data.pageItem.url" />
     <Blocker height="40px" />
     <Markdown :content="data.pageItem.content" />
+    <Blocker height="40px" />
+    <Comment :id="data.pageItem.id" module="page" :source-data="data.pageItem.comments" />
   </layout-container>
 </template>
 

@@ -11,7 +11,9 @@
       position: relative;
       transition: all 200ms ease-in;
       opacity: .5;
+      max-height: 320px;
       cursor: pointer;
+      overflow: hidden;
 
       img {
         width: 100%;

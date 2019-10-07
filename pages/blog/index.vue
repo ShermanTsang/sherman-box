@@ -12,9 +12,12 @@
     <CategoryBox module="blog" />
     <Blocker height="20px" />
     <layout-container max-width="1440px">
-      <div v-if="data.blogList" class="blog-list">
+      <div v-if="data.blogList && data.blogList.length > 0" class="blog-list">
         <item-blog v-for="item in data.blogList" :key="item.id" :item="item" class="blog-list__item" />
       </div>
+      <Tip v-else>
+        暂无内容
+      </Tip>
       <Blocker height="40px" />
     </layout-container>
     <Pagination

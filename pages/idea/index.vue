@@ -6,7 +6,7 @@
     <Blocker height="20px" />
     <CategoryBox module="idea" />
     <Blocker height="20px" />
-    <Waterfall v-if="data.ideaList">
+    <Waterfall v-if="data.ideaList && data.ideaList.length > 0">
       <div
         v-for="item in data.ideaList"
         :key="item.id"
@@ -15,6 +15,9 @@
         <item-idea :item="item" />
       </div>
     </Waterfall>
+    <Tip v-else>
+      暂无内容
+    </Tip>
     <Blocker height="40px" />
     <Pagination
       :page="parseInt(meta.current_page)"

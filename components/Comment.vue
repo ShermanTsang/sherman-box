@@ -67,6 +67,9 @@
         </div>
       </div>
     </div>
+    <Tip v-if="data.commentList.length === 0">
+      暂无评论
+    </Tip>
     <Modal v-model="status.showModal" title="写评论" icon="comment" width="500px">
       <Loading v-if="status.isLoadingSubmit" :fix="true">
         评论发送中
