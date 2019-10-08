@@ -38,6 +38,7 @@ export default {
   css: [
     'normalize.css',
     '@/assets/scss/global.scss',
+    '@/assets/scss/animate.scss',
     '@/assets/scss/override.scss',
     '@/assets/iconfont/iconfont.css'
   ],

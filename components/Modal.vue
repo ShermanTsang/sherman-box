@@ -69,24 +69,26 @@
 </style>
 
 <template>
-  <div v-if="showModal" class="modal">
-    <div class="modal__overlay" @click="toggleModalStatus()"></div>
-    <div class="modal__container" :style="containerStyle">
-      <div class="modal__container__header">
-        <Icon v-if="icon" :name="icon" />
-        {{ title }}
-        <span class="modal__container__header__close" @click="toggleModalStatus()">
-          <Icon name="close" />
-        </span>
-      </div>
-      <div class="modal__container__content">
-        <slot></slot>
-      </div>
-      <div v-if="$slots.footer" class="modal__container__footer">
-        <slot name="footer"></slot>
+  <transition name="fade">
+    <div v-if="showModal" class="modal">
+      <div class="modal__overlay" @click="toggleModalStatus()"></div>
+      <div class="modal__container" :style="containerStyle">
+        <div class="modal__container__header">
+          <Icon v-if="icon" :name="icon" />
+          {{ title }}
+          <span class="modal__container__header__close" @click="toggleModalStatus()">
+            <Icon name="close" />
+          </span>
+        </div>
+        <div class="modal__container__content">
+          <slot></slot>
+        </div>
+        <div v-if="$slots.footer" class="modal__container__footer">
+          <slot name="footer"></slot>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>

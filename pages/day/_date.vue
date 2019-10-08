@@ -4,18 +4,6 @@
     &__card {
       overflow: hidden;
 
-      &__banner--plain {
-        padding: 20px 20px 0 20px;
-        line-height: 1.2;
-        font-size: 1.8rem;
-        color: #666;
-
-        &__date {
-          font-weight: bolder;
-          letter-spacing: 1px;
-        }
-      }
-
       &__banner {
         height: 400px;
         position: relative;
@@ -40,28 +28,6 @@
           }
         }
 
-        &__text {
-          position: absolute;
-          bottom: 60px;
-          left: 40px;
-          color: #fff;
-          line-height: 1.2;
-          font-size: 1.8rem;
-          text-shadow: 0 0 6px rgba(0, 0, 0, .8);
-
-          &__date {
-            display: block;
-            font-weight: bolder;
-            letter-spacing: 1px;
-            width: 200px;
-            text-align: justify;
-            text-align-last: justify;
-          }
-
-          a {
-            color: #fff;
-          }
-        }
       }
 
       &__main {
@@ -124,37 +90,20 @@
     &__control {
       padding: 16px;
       box-sizing: content-box;
-      height: 60px;
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-between;
 
       &__item {
-        letter-spacing: 1px;
-
-        &__main {
-          color: #666;
-          font-size: 1.1rem;
-          margin-bottom: 6px;
-        }
-
-        &__sub {
-          color: #999;
-          font-size: .9rem;
-        }
-        &:first-child {
-          text-align: left;
-        }
-
-        &:last-child {
-          text-align: right;
-        }
+        color: #666;
+        font-size: .95rem;
       }
 
       &__item--divider {
         width: 2px;
-        height: 100%;
+        margin: 0 10px;
+        height: 20px;
         background-color: #efefef;
       }
     }
@@ -215,23 +164,31 @@
     <layout-container>
       <layout-row :gutter="32">
         <layout-col :md="{span:16}" :lg="{span:16}">
-          <Nameplate title="数据" sub-title="data" />
+          <Nameplate>
+            <Moment slot="title" format="YYYY年MM月DD日" class="day__date__text" :time="data.dayItem.date" />
+            <small slot="subTitle">
+              <Moment format="ddd" :time="data.dayItem.date" />
+            </small>
+            <div class="day__control">
+              <div class="day__control__item">
+                <template v-if="data.dayItem.day_previous">
+                  <Icon color="#ccc" name="angle-left" />
+                  <Moment :time="data.dayItem.day_previous.date" type="date" />
+                </template>
+              </div>
+              <div class="day__control__item day__control__item--divider">
+              </div>
+              <div class="day__control__item">
+                <template v-if="data.dayItem.day_next">
+                  <Moment :time="data.dayItem.day_next.date" type="date" />
+                  <Icon color="#ccc" name="angle-right" />
+                </template>
+              </div>
+            </div>
+          </Nameplate>
           <Card class="day__card">
             <div v-if="data.dayItem.image" class="day__card__banner">
               <div v-lazy:background-image="$getOssUrl(data.dayItem.image)" class="day__card__banner__image"></div>
-              <div class="day__card__banner__text">
-                <Moment format="YYYY.MM.DD" class="day__card__banner__text__date" :time="data.dayItem.date" />
-                <small>
-                  <Moment format="ddd" :time="data.dayItem.date" />
-                </small>
-              </div>
-            </div>
-            <div v-else class="day__card__banner--plain">
-              <Moment format="YYYY.MM.DD" class="day__card__banner--plain__date" :time="data.dayItem.date" />
-              <br>
-              <small>
-                <Moment format="ddd" :time="data.dayItem.date" />
-              </small>
             </div>
             <Waterfall gap="16px" class="day__card__main" :column="2">
               <div v-if="data.dayItem.event" class="day__card__main__item">
@@ -341,29 +298,6 @@
           </Card>
         </layout-col>
         <layout-col :md="{span:8}" :lg="{span:8}">
-          <Card class="day__control">
-            <div class="day__control__item">
-              <div class="day__control__item__main">
-                <Moment v-if="data.dayItem.day_previous" :time="data.dayItem.day_previous.date" type="date" />
-                <span v-else> 没有数据 </span>
-              </div>
-              <div class="day__control__item__sub">
-                前一天
-              </div>
-            </div>
-            <div class="day__control__item day__control__item--divider">
-            </div>
-            <div class="day__control__item">
-              <div class="day__control__item__main">
-                <Moment v-if="data.dayItem.day_next" :time="data.dayItem.day_next.date" type="date" />
-                <span v-else> 没有数据 </span>
-              </div>
-              <div class="day__control__item__sub">
-                后一天
-              </div>
-            </div>
-          </Card>
-          <Blocker height="30px" />
           <Nameplate title="那年今日" sub-title="retrospect" />
           <Card
             v-for="item in data.dayItem.day_different_year"

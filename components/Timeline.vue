@@ -110,7 +110,6 @@
 
         &__date {
           font-size: .95rem;
-          background-color: rgba(255,255,255,.5);
           margin-bottom: 14px;
 
           &__icon {

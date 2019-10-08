@@ -7,7 +7,7 @@
   <layout-container>
     <Blocker height="20px" />
     <div v-if="data.dayList" class="day-list">
-      <Waterfall gap="10px">
+      <Waterfall gap="0">
         <div
           v-for="item in data.dayList"
           :key="item.id"

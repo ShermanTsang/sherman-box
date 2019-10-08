@@ -136,7 +136,7 @@ export default function ({ store }) {
     if (mainConfigList && mainConfigList.length > 0) {
       mainConfigList.forEach((item) => {
         if (configList[item.url]) {
-          configList[item.url] = Object.assign(configList[item.url], item)
+          configList[item.url] = { ...configList[item.url], ...item }
         }
       })
     }

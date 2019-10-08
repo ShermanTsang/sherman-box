@@ -201,7 +201,7 @@ export default {
           qq: this.contactType === 'qq' ? contact : '',
           email: this.contactType === 'email' ? contact : ''
         }
-        const newComment = Object.assign(this.form, appendParams)
+        const newComment = { ...this.form, appendParams }
         this.$axios.$post('/api/comments', newComment)
           .then((response) => {
             this.data.commentList.push(response.data)

@@ -58,7 +58,8 @@
   <div class="nameplate">
     <div class="nameplate__title">
       {{ title }}
-      <span>{{ subTitle }}</span>
+      <slot name="title"></slot>
+      <span>{{ subTitle }}<slot name="subTitle"></slot></span>
     </div>
     <div class="nameplate__action">
       <slot></slot>

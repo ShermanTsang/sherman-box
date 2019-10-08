@@ -13,14 +13,14 @@
         right: 0;
         bottom: 0;
         opacity: .8;
-        transform: scale(1.2);
+        transform: scale(1.3);
         filter: blur(4px);
         width: 100%;
         height: 100%;
         background-attachment: fixed;
         background-size: cover;
         background-position: center center;
-        box-shadow: 0 -20px 20px 40px rgb(255, 255, 255) inset;
+        box-shadow: 0 -30px 20px 40px rgb(255, 255, 255) inset;
       }
 
       &__text {
@@ -43,7 +43,8 @@
           padding: 8px 10px;
           background-color: rgba(0, 0, 0, .4);
           letter-spacing: 2px;
-          font-size: 1.4rem;
+          line-height: 1.6;
+          font-size: 1.3rem;
         }
 
         &__info {
@@ -51,7 +52,7 @@
           background-color: rgba(0, 0, 0, .35);
           max-width: 600px;
           letter-spacing: 1px;
-          font-size: 1rem;
+          font-size: .9rem;
         }
       }
     }

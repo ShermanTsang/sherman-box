@@ -2,7 +2,7 @@
   .markdown {
 
     article {
-      font-size: 1rem;
+      font-size: 16px;
       counter-reset: h1;
       color: #666;
       letter-spacing: 1px;
@@ -19,7 +19,7 @@
       }
 
       h1 {
-        font-size: 1.4rem;
+        font-size: 1.4em;
 
         &:before {
           counter-increment: h1;
@@ -34,7 +34,7 @@
       }
 
       h2 {
-        font-size: 1.3rem;
+        font-size: 1.3em;
 
         &:before {
           counter-increment: h2;
@@ -49,7 +49,7 @@
       }
 
       h3 {
-        font-size: 1.2rem;
+        font-size: 1.2em;
 
         &:before {
           counter-increment: h3;
@@ -68,10 +68,12 @@
       ul {
         line-height: 2;
         padding-left: 20px;
+
         li {
           position: relative;
           padding-left: 16px;
           list-style-type: none;
+
           &:before {
             content: '';
             position: absolute;
@@ -81,6 +83,15 @@
             left: 0;
             top: calc(50% - 2px);
           }
+        }
+      }
+
+      ol {
+        line-height: 2;
+        margin-left: 20px;
+
+        li {
+          position: relative;
         }
       }
 
@@ -100,7 +111,7 @@
           color: $theme-color;
           position: relative;
           font-family: Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
-          font-size: .9rem;
+          font-size: .9em;
 
           &:after {
             content: '';
@@ -126,7 +137,7 @@
 
         code {
           color: #f8f8f2;
-          font: 400 .95rem Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
+          font: 400 .95em Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
         }
       }
 
@@ -178,6 +189,16 @@
           }
         }
       }
+
+      @media ($screen-xs-max) {
+        font-size: 14px;
+        padding: 0 6px;
+
+        pre {
+          max-height: 35vh;
+        }
+      }
+
     }
 
   }

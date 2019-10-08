@@ -23,21 +23,11 @@
         display:block;
         overflow: hidden;
         font-size: 1rem;
-        letter-spacing: 2px;
         padding-bottom: 6px;
         border-bottom: 1px solid #efefef;
         white-space: nowrap;
         text-overflow: ellipsis;
-
-        &__module {
-          font-size: .95rem;
-          color: #999;
-          margin-right: 6px;
-
-          &:before {
-            content: '#';
-          }
-        }
+        letter-spacing: 1px;
 
         small {
           color: #999;
@@ -74,6 +64,18 @@
       }
     }
 
+    &__module {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: rgba(0,0,0,.3);
+      color: #fff;
+      padding: 2px 6px;
+      letter-spacing: 1px;
+      font-size: .9rem;
+      z-index: 99;
+    }
+
     &__image {
       flex: 0 0 120px;
       opacity: .5;
@@ -108,18 +110,23 @@
       &__image {
         order: -1;
       }
+
+      &__module {
+        left: 0;
+        right: unset;
+      }
     }
   }
 </style>
 
 <template>
   <Card class="common-item" :class="{'common-item--right':align === 'right'}">
+    <div class="common-item__module">
+      {{ module.name }}
+    </div>
     <div class="common-item__main">
       <div class="common-item__main__name">
         <nuxt-link :to="link">
-          <span class="common-item__main__name__module">
-            {{ module.name }}
-          </span>
           {{ item.name }}
         </nuxt-link>
       </div>

@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     style() {
-      const fullWidth = { width: '100%'}
+      const fullWidth = { width: '100%' }
       const height = { height: this.height }
       const width = { width: this.width }
       return Object.assign(
