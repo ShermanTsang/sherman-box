@@ -35,11 +35,13 @@
     }
 
     &__action {
-      float: right;
     }
 
     @media ($screen-xs-max) {
-      .nameplate {
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+
         &__title {
           &:after {
             left: 10px;
@@ -47,8 +49,12 @@
 
           padding-left: 10px;
         }
-      }
 
+      &__action {
+        margin-top: 20px;
+        align-self: flex-end;
+        border-bottom: 1px solid #eee;
+      }
     }
 
   }

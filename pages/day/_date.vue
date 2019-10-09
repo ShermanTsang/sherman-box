@@ -170,20 +170,20 @@
               <Moment format="ddd" :time="data.dayItem.date" />
             </small>
             <div class="day__control">
-              <div class="day__control__item">
-                <template v-if="data.dayItem.day_previous">
+              <template v-if="data.dayItem.day_previous">
+                <div class="day__control__item">
                   <Icon color="#ccc" name="angle-left" />
                   <Moment :time="data.dayItem.day_previous.date" type="date" />
-                </template>
+                </div>
+              </template>
+              <div v-if="data.dayItem.day_previous && data.dayItem.day_next" class="day__control__item day__control__item--divider">
               </div>
-              <div class="day__control__item day__control__item--divider">
-              </div>
-              <div class="day__control__item">
-                <template v-if="data.dayItem.day_next">
+              <template v-if="data.dayItem.day_next">
+                <div class="day__control__item">
                   <Moment :time="data.dayItem.day_next.date" type="date" />
                   <Icon color="#ccc" name="angle-right" />
-                </template>
-              </div>
+                </div>
+              </template>
             </div>
           </Nameplate>
           <Card class="day__card">
@@ -298,6 +298,7 @@
           </Card>
         </layout-col>
         <layout-col :md="{span:8}" :lg="{span:8}">
+          <Blocker height="20px" />
           <Nameplate title="那年今日" sub-title="retrospect" />
           <Card
             v-for="item in data.dayItem.day_different_year"

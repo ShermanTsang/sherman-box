@@ -2,6 +2,7 @@
   .main {
     background-color: #fff;
     flex: 1;
+    overflow: hidden;
   }
 </style>
 
