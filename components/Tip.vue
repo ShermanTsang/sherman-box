@@ -2,22 +2,22 @@
   .tip {
     margin: 0 auto;
     background-color: #fff;
-    padding: 32px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     transition: all .2s ease-in-out;
 
     &__svg {
-      width: 220px;
-      height: 220px;
+      $svgSize: 140px;
+      width: $svgSize;
+      height: $svgSize;
 
       &__stack-illustration {
         display: block;
         position: relative;
         top: 50%;
         height: 50%;
-        min-height: 200px;
+        min-height: $svgSize;
         margin: 0 auto;
         transform: translateY(-50%) translateZ(0);
 

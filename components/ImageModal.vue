@@ -48,11 +48,13 @@
 </style>
 
 <template>
-  <div v-if="imageUrl" class="image-box" @click="handleClick($event)">
-    <div class="image-box__image">
-      <img :src="$getOssUrl(imageUrl)">
+  <transition name="fade">
+    <div v-if="imageUrl" class="image-box" @click="handleClick($event)">
+      <div class="image-box__image">
+        <img :src="$getOssUrl(imageUrl)">
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>

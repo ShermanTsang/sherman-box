@@ -52,7 +52,7 @@ export default {
           page: requestPage
         }
       })
-      this.data.timeline = this.data.timeline.concat(timeline)
+      this.data.timeline = [...this.data.timeline, ...timeline]
       this.meta = meta
       this.status.currentPage++
     }

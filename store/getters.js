@@ -12,7 +12,7 @@ export default {
     const extraModule = [
       { name: '轴线', url: 'timeline', icon: 'iconfont icon-schedule' }
     ]
-    return extraModule.concat(state.moduleList)
+    return [...extraModule, ...state.moduleList]
   },
   pageList(state) {
     return state.pageList

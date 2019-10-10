@@ -355,8 +355,7 @@ export default {
     },
     allItem() {
       const { movieList, ideaList, blogList, projectList, mailboxList, planList } = this.data
-      const allItem = []
-      return allItem.concat(movieList, ideaList, blogList, projectList, mailboxList, planList)
+      return [...movieList, ...ideaList, ...blogList, ...projectList, ...mailboxList, ...planList]
     }
   },
   async asyncData({ $axios, params }) {

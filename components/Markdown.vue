@@ -191,7 +191,7 @@
       }
 
       @media ($screen-xs-max) {
-        font-size: 14px;
+        font-size: 15px;
         padding: 0 6px;
 
         pre {
