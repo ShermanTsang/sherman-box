@@ -32,29 +32,30 @@
 
       &__main {
         position: relative;
-        padding: 32px;
+        padding: 16px;
         margin: 10px;
 
         &__item {
           break-inside: avoid;
-          border-top: 1px solid #eee;
 
           &:not(:first-child) {
             margin-bottom: 20px;
           }
 
           &__name {
-            display: flex;
+            display: inline-flex;
             flex-flow: row nowrap;
             align-items: center;
             color: #666;
             letter-spacing: 2px;
             font-size: 1rem;
             padding: 10px 0;
+            border-bottom: 2px solid #efefef;
 
             i {
-              margin-right: 20px;
-              font-size: 1.1rem;
+              margin-right: 16px;
+              font-size: 1.25rem;
+              color: #999;
             }
           }
 

@@ -2,7 +2,7 @@
   .blog-item {
     display: flex;
     flex-flow: row nowrap;
-    height: 200px;
+    height: 240px;
     overflow: hidden;
 
     &__image {

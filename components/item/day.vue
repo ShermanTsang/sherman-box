@@ -11,12 +11,13 @@
       position: relative;
       transition: all 200ms ease-in;
       opacity: .5;
-      max-height: 320px;
+      height: 240px;
       cursor: pointer;
       overflow: hidden;
 
       img {
         width: 100%;
+        height: 100%;
         object-fit: cover;
       }
     }
@@ -55,15 +56,13 @@
           justify-content: flex-start;
 
           &__item {
-            width: 25%;
+            width: 33%;
             cursor: default;
             font-size: .95rem;
             margin: 6px 0;
-            text-align: center;
 
             i {
-              display: block;
-              font-size: 1.4rem;
+              font-size: 1.25rem;
               color: #ccc;
             }
 

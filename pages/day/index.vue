@@ -29,10 +29,7 @@
 </template>
 
 <script>
-import Waterfall from '../../components/Waterfall'
-
 export default {
-  components: { Waterfall },
   data() {
     return {}
   },

@@ -11,23 +11,23 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    height: 120px;
 
     &__main {
-      padding: 16px;
+      padding: 32px;
       overflow: hidden;
+      align-self: center;
       flex: 1;
       width: 0;
 
       &__name {
-        display:block;
+        display: block;
         overflow: hidden;
-        font-size: 1rem;
+        font-size: 1.05rem;
         padding-bottom: 6px;
         border-bottom: 1px solid #efefef;
-        white-space: nowrap;
-        text-overflow: ellipsis;
         letter-spacing: 1px;
+        cursor: pointer;
+        color: #666;
 
         small {
           color: #999;
@@ -62,32 +62,42 @@
           }
         }
       }
+
+      @media ($screen-xs-max) {
+        padding: 16px;
+      }
     }
 
     &__module {
       position: absolute;
       top: 0;
       right: 0;
-      background-color: rgba(0,0,0,.3);
+      background: linear-gradient(rgba(0, 0, 0, .4), transparent);
       color: #fff;
-      padding: 2px 6px;
+      padding: 6px 6px 14px 6px;
       letter-spacing: 1px;
       font-size: .9rem;
       z-index: 99;
     }
 
     &__image {
-      flex: 0 0 120px;
+      flex: 0 0 200px;
       opacity: .5;
       transition: all .2s ease-in-out;
       cursor: pointer;
+      min-height: 200px;
 
       img {
-        height: 120px;
-        width: 120px;
-        border-radius: 2px;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         box-shadow: 0 0 6px rgba(0, 0, 0, .1);
+      }
+
+      @media ($screen-xs-max) {
+        $smallImageSize: 120px;
+        flex: 0 0 $smallImageSize;
+        width: $smallImageSize;
       }
     }
 
@@ -125,10 +135,8 @@
       {{ module.name }}
     </div>
     <div class="common-item__main">
-      <div class="common-item__main__name">
-        <nuxt-link :to="link">
-          {{ item.name }}
-        </nuxt-link>
+      <div class="common-item__main__name" @click="$router.push(link)">
+        {{ item.name }}
       </div>
       <div v-if="text === 'date'" class="common-item__main__info">
         <Moment format="YYYY.MM.DD" :time="item[module.dateField]" />

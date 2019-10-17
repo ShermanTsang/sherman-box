@@ -140,7 +140,7 @@
           <small v-if="item.memo">{{ item.memo }}</small>
         </nuxt-link>
       </div>
-      <Blocker height="20px" divider />
+      <Blocker height="30px" divider divider-height="2px" divider-width="100px" />
       <div class="movie-item__content__info">
         <div class="movie-item__content__info__item">
           <icon name="category" size=".9rem" />

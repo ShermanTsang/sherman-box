@@ -93,7 +93,10 @@
         </div>
         <Blocker height="20px" />
         <div class="movie__header__poster__name">
-          {{ data.movieItem.name }}{{ data.movieItem.memo ? ` ${data.movieItem.memo}` : '' }}
+          {{ data.movieItem.name }}
+          <template v-if="data.movieItem.memo">
+            <small>{{ data.movieItem.memo }}</small>
+          </template>
         </div>
       </div>
       <Blocker width="100px" />

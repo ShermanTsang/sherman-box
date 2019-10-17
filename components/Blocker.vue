@@ -6,17 +6,18 @@
     align-items: center;
     justify-content: center;
     cursor: default;
+
     &__divider {
       height: 1px;
       width: 100%;
-      background-color: rgba(177,177,177,.3);
+      background-color: rgba(177, 177, 177, .3);
     }
   }
 </style>
 
 <template>
   <div class="blocker" :style="style">
-    <div v-if="divider" class="blocker__divider"></div>
+    <div v-if="divider" class="blocker__divider" :style="dividerStyle"></div>
     <slot></slot>
   </div>
 </template>
@@ -33,6 +34,14 @@ export default {
       type: String,
       default: '100%'
     },
+    dividerWidth: {
+      type: String,
+      default: '100%'
+    },
+    dividerHeight: {
+      type: String,
+      default: '1px'
+    },
     divider: {
       type: Boolean,
       default: undefined
@@ -43,6 +52,12 @@ export default {
       return {
         height: this.height,
         width: this.width
+      }
+    },
+    dividerStyle() {
+      return {
+        width: this.dividerWidth,
+        height: this.dividerHeight
       }
     }
   }

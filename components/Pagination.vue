@@ -28,7 +28,7 @@
 
 <template>
   <div v-if="total > 1" class="pagination">
-    <div class="pagination__item pagination__item--action" @click="jumpPage(currentPage - 1)">
+    <div class="pagination__item pagination__item--action" @click="jumpPage(parseInt(currentPage) - 1)">
       <Icon name="angle-left" />
     </div>
     <div
@@ -45,7 +45,7 @@
         {{ item }}
       </template>
     </div>
-    <div class="pagination__item pagination__item--action" @click="jumpPage(currentPage + 1)">
+    <div class="pagination__item pagination__item--action" @click="jumpPage(parseInt(currentPage) + 1)">
       <Icon name="angle-right" />
     </div>
   </div>
@@ -110,8 +110,7 @@ export default {
     },
     jumpPage(pageNumber) {
       if (pageNumber !== 0) {
-        const path = this.$route.path || ''
-        const query = this.$route.query || {}
+        const { path = '', query = {} } = this.$route
         const newQuery = JSON.parse(JSON.stringify(query))
         newQuery.page = pageNumber
         this.$router.push({ path, query: newQuery })
