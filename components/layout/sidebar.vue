@@ -7,10 +7,8 @@
     height: 100%;
     width: $sidebar-width;
     background-color: #ffffff;
-    border-right: 1px solid #eee;
     overflow: hidden;
     transition: all .2s ease-in-out;
-    box-shadow: 0 2px 10px rgba(177, 177, 177, .2);
 
     &__container {
       margin: 0 auto;
@@ -21,13 +19,13 @@
       &__logo {
         padding: 20px 0;
         text-align: center;
-        border-bottom: 1px solid #eee;
       }
 
       &__menu {
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-start;
+        padding-right: 10px;
         flex: 1 0;
 
         &__item {
@@ -42,7 +40,8 @@
           color: #666;
           text-overflow: ellipsis;
           overflow: hidden;
-          border-bottom: 1px solid #eee;
+          border-radius: 0 45px 45px 0;
+          transition: border-radius .2s ease-in-out;
 
           &__icon {
             transition: all .25s ease-in-out;
@@ -78,7 +77,7 @@
           @include gradient-background;
 
           &:hover {
-            box-shadow: 0 0 20px rgba(10, 132, 234, 0.51);
+            border-radius: 0;
           }
         }
 
@@ -118,10 +117,6 @@
 
         }
       }
-    }
-
-    &:hover {
-      box-shadow: 0 2px 8px #f0f1f2;
     }
 
   }

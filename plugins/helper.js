@@ -3,7 +3,7 @@ import config from '../config'
 
 export default function ({ store }) {
   function getConfigItem(key) {
-    return key ? config[key] : `[!${key}]`
+    return config[key] ? config[key] : `[!${key}]`
   }
 
   function getConfigList(keyword) {

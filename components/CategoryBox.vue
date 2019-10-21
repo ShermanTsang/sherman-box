@@ -10,10 +10,9 @@
     &__item {
       position: relative;
       display: inline-block;
-      letter-spacing: 1px;
-      font-size: 1.05rem;
-      padding-bottom: 4px;
-      line-height: 2.5;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      padding: 6px 16px;
 
       &:not(:last-child) {
         margin-right: 24px;
@@ -21,18 +20,9 @@
     }
 
     &__item--active {
-      color: $theme-color;
-
-      &:after {
-        content: '';
-        height: 4px;
-        width: 30px;
-        left: calc(50% - 15px);
-        border-radius: 4px;
-        bottom: 0;
-        position: absolute;
-        @include gradient-background;
-      }
+      color: #fff;
+      border-radius: 24px;
+      @include gradient-background;
     }
 
     &::-webkit-scrollbar {

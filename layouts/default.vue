@@ -26,7 +26,9 @@
     <layout-header class="layout-header" />
     <layout-view>
       <layout-main class="layout-main">
-        <nuxt />
+        <transition name="fade">
+          <nuxt />
+        </transition>
       </layout-main>
       <layout-footer />
     </layout-view>

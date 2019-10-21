@@ -13,6 +13,7 @@
       background-image: linear-gradient(135deg, rgb(130, 130, 130) 0%, rgb(103, 103, 103) 75%);
 
       &__poster {
+
         &__image {
           overflow: hidden;
           max-height: 405px;
@@ -34,12 +35,19 @@
           padding: 0 10px;
           text-align: center;
           letter-spacing: 2px;
+          @media ($screen-xs-max) {
+            font-size: 1.3rem;
+          }
         }
       }
 
       &__main {
         display: block;
         max-width: 400px;
+
+        @media ($screen-xs-max) {
+         margin-top: 30px;
+        }
 
         &__item {
           font-size: 1.1rem;
@@ -50,33 +58,22 @@
           color: #ffffff;
           text-shadow: 0 0 6px rgba(0, 0, 0, .4);
 
+          @media ($screen-xs-max) {
+            font-size: 1rem;
+          }
+
           &:not(:first-child) {
             border-top: 1px solid rgba(255, 255, 255, .2);
           }
         }
       }
 
-    }
-
-    @media ($screen-xs-max) {
-      &__header {
+      @media ($screen-xs-max) {
         flex-flow: column nowrap;
-        padding: 20px 0;
-
-        &__poster {
-          &__image {
-            transform: scale(.9);
-          }
-
-          &__name {
-            font-size: 1.3rem;
-            opacity: .8;
-            margin-bottom: 30px;
-          }
-        }
-
       }
+
     }
+
   }
 </style>
 
