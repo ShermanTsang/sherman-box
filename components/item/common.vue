@@ -135,7 +135,7 @@
       {{ module.name }}
     </div>
     <div class="common-item__main">
-      <div class="common-item__main__name" @click="$router.push(link)">
+      <div class="common-item__main__name" @click="redirectToItem()">
         {{ item.name }}
       </div>
       <div v-if="text === 'date'" class="common-item__main__info">
@@ -145,7 +145,7 @@
         {{ item.text }}
       </div>
     </div>
-    <div v-if="item.image" class="common-item__image" @click="$router.push(link)">
+    <div v-if="item.image" class="common-item__image" @click="redirectToItem()">
       <img v-lazy="$getOssUrl(item.image)">
     </div>
   </Card>
@@ -174,6 +174,10 @@ export default {
         return ['date', 'detail'].includes(value)
       },
       default: 'date'
+    },
+    openInNewTab: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -187,6 +191,12 @@ export default {
     },
     link() {
       return `/${this.item.module}/` + (this.item.module === 'day' ? `${this.$time(this.item.datetime).format('YYYY-MM-DD')}` : `${this.item.id}`)
+    }
+  },
+  methods: {
+    redirectToItem() {
+      const link = this.link
+      this.openInNewTab ? window.open(link, '_blank') : this.$router.push(link)
     }
   }
 }

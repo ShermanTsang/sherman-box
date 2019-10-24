@@ -13,22 +13,22 @@
 
     &--info {
       background-color: $theme-color;
-      box-shadow: 10px 20px 30px rgba(10, 132, 234, 0.5);
+      box-shadow: 6px 10px 30px rgba(10, 132, 234, 0.5);
     }
 
     &--success {
       background-color: green;
-      box-shadow: 10px 20px 30px rgba(28, 234, 37, 0.5);
+      box-shadow: 6px 10px 30px rgba(28, 234, 37, 0.5);
     }
 
     &--warning {
       background-color: orange;
-      box-shadow: 10px 20px 30px rgba(234, 200, 7, 0.5);
+      box-shadow: 6px 10px 30px rgba(234, 200, 7, 0.5);
     }
 
     &--error {
       background-color: red;
-      box-shadow: 10px 20px 30px rgba(234, 117, 28, 0.5);
+      box-shadow: 6px 10px 30px rgba(234, 117, 28, 0.5);
     }
 
   }
@@ -59,6 +59,7 @@ export default {
       return {}
     }
   },
-  methods: {}
+  methods: {
+  }
 }
 </script>

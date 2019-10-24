@@ -30,7 +30,7 @@
         bottom: -20px;
         opacity: .8;
         background-color: #1170f5;
-        background-image: linear-gradient(126deg, #1170f5 0%, #fff 90%);
+        background-image: linear-gradient(126deg, #0262f5 0%, #fff 99%);
       }
     }
 

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import messageComponent from '@/components/Message.vue'
 
-export default function () {
+export default function ({ app, $axios }) {
   function showMessage(type, text, icon = 'info', duration = 4000, callBack) {
     const MessageConstructor = Vue.extend(messageComponent)
     const messageDom = new MessageConstructor({

@@ -42,8 +42,10 @@ export default {
       status: {}
     }
   },
-  mounted() {
-    if (process.browser) {
+  watch: {
+    $route: function (to, from) {
+      document.body.scrollTop = 0
+      document.documentElement.scrollTop = 0
     }
   },
   methods: {}
