@@ -43,7 +43,7 @@
       <input v-model="form.keyword" placeholder="搜索..." class="search__box__input" @keyup.enter="search">
     </div>
     <div v-if="data.resultList && data.resultList.length > 0" class="search__info">
-      共 <span>{{ meta.total }}</span> 条数据，页数 <span>{{ meta.current_page }}</span> / {{ meta.last_page }}
+      共 <span>{{ meta.total }}</span> 条线索数据，页数 <span>{{ meta.current_page }}</span> / {{ meta.last_page }}
     </div>
     <Blocker height="40px" />
     <Timeline

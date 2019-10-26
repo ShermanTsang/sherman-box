@@ -39,27 +39,11 @@
         font-size: .9rem;
         margin-top: 6px;
         overflow: hidden;
-        text-overflow: ellipsis;
 
         &__detail {
-
-          &__item {
-            display: inline-flex;
-            width: 30%;
-            flex-flow: row nowrap;
-            align-items: center;
-            cursor: default;
-            font-size: .95rem;
-            margin: 6px 0;
-            justify-content: left;
-
-            i {
-              font-size: 1rem;
-              margin-right: 6px;
-              color: #ccc;
-            }
-
-          }
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
 
@@ -135,14 +119,14 @@
       {{ module.name }}
     </div>
     <div class="common-item__main">
-      <div class="common-item__main__name" @click="redirectToItem()">
-        {{ item.name }}
+      <div class="common-item__main__name" @click="redirectToItem()" v-html="nameHtml">
       </div>
       <div v-if="text === 'date'" class="common-item__main__info">
         <Moment format="YYYY.MM.DD" :time="item[module.dateField]" />
       </div>
       <div v-else-if="text === 'detail'" class="common-item__main__info">
-        {{ item.text }}
+        <div v-for="(textItem,index) in textHtml" :key="index" class="common-item__main__info__detail" v-html="textItem">
+        </div>
       </div>
     </div>
     <div v-if="item.image" class="common-item__image" @click="redirectToItem()">
@@ -174,10 +158,6 @@ export default {
         return ['date', 'detail'].includes(value)
       },
       default: 'date'
-    },
-    openInNewTab: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -191,12 +171,32 @@ export default {
     },
     link() {
       return `/${this.item.module}/` + (this.item.module === 'day' ? `${this.$time(this.item.datetime).format('YYYY-MM-DD')}` : `${this.item.id}`)
+    },
+    nameHtml() {
+      let nameHtml = this.item.name || ''
+      const keyword = this.$route.query.keyword
+      if (keyword) {
+        const replaceReg = new RegExp(keyword, 'g')
+        const replaceString = '<span class="search-text">' + keyword + '</span>'
+        nameHtml = nameHtml.replace(replaceReg, replaceString)
+      }
+      return nameHtml
+    },
+    textHtml() {
+      let textHtml = this.item.text || ''
+      const keyword = this.$route.query.keyword
+      if (keyword) {
+        const replaceReg = new RegExp(keyword, 'g')
+        const replaceString = '<span class="search-text">' + keyword + '</span>'
+        textHtml = textHtml.replace(replaceReg, replaceString)
+      }
+      return textHtml.split('|')
     }
   },
   methods: {
     redirectToItem() {
       const link = this.link
-      this.openInNewTab ? window.open(link, '_blank') : this.$router.push(link)
+      this.$route.path === '/search' ? window.open(link, '_blank') : this.$router.push(link)
     }
   }
 }
