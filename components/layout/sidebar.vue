@@ -25,7 +25,6 @@
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-start;
-        padding-right: 10px;
         flex: 1 0;
 
         &__item {
@@ -40,7 +39,6 @@
           color: #666;
           text-overflow: ellipsis;
           overflow: hidden;
-          border-radius: 0 45px 45px 0;
           transition: border-radius .2s ease-in-out;
 
           &__icon {
@@ -57,7 +55,7 @@
             margin-left: 6px;
 
             span {
-              margin-top: 4px;
+              margin-left: 6px;
               letter-spacing: 1px;
               font-size: .8rem;
               color: #999;
@@ -83,6 +81,10 @@
 
       }
 
+    }
+
+    &:hover {
+      box-shadow: 0 0 12px rgba(0,0,0,.1);
     }
 
     @media ($screen-xs-max) {
@@ -140,9 +142,7 @@
             <Icon :name="item.icon" size="24px" />
           </div>
           <div class="sidebar__container__menu__item__name">
-            {{ item.name }}
-            <br>
-            <span>{{ item.url }}</span>
+            {{ item.name }}<span>{{ item.url }}</span>
           </div>
         </div>
       </div>

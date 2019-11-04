@@ -21,7 +21,8 @@
 
     &__item--active {
       color: #fff;
-      border-radius: 24px;
+      border-radius: 1px;
+      opacity: .8;
       @include gradient-background;
     }
 

@@ -1,6 +1,5 @@
 <style lang="scss">
   .timeline {
-    max-width: 1440px;
     position: relative;
     margin: auto;
     overflow: hidden;

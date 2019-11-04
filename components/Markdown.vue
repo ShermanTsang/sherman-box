@@ -6,6 +6,7 @@
       counter-reset: h1;
       color: #666;
       letter-spacing: 1px;
+      width: 100%;
 
       h1, h2, h3, h4, h5 {
         font-weight: normal;
@@ -153,38 +154,54 @@
         }
       }
 
-      table {
+      .table-wrap {
         width: 100%;
         overflow: hidden;
-        overflow-y: scroll;
-        border-collapse: collapse;
+        overflow-x: scroll;
 
-        thead {
-          background-color: #efefef;
+        table {
+          border-collapse: collapse;
 
-          tr {
-            border-bottom: 2px solid #efefef;
+          thead {
+            background-color: #efefef;
+            text-align: left;
 
-            th {
-              border: none;
-              padding: 10px 6px;
-              font-weight: normal;
-              white-space: nowrap;
+            tr {
+              border-bottom: 2px solid #efefef;
+
+              th {
+                border: none;
+                padding: 10px 6px;
+                font-weight: normal;
+                white-space: nowrap;
+                &:not(:first-child) {
+                  border-left: 1px solid #efefef;
+                  margin-left: 6px;
+                }
+              }
             }
           }
-        }
 
-        tbody {
-          tr {
-            border-bottom: 2px solid #efefef;
-            transition: all .2s ease-in-out;
+          tbody {
 
-            td {
-              padding: 10px 6px;
-            }
+            tr {
+              border-bottom: 2px solid #efefef;
+              transition: all .2s ease-in-out;
 
-            &:hover {
-              background-color: rgba(239, 239, 239, 0.5);
+              td {
+                padding: 10px 6px;
+                font-weight: normal;
+                white-space: nowrap;
+
+                &:not(:first-child) {
+                  border-left: 1px solid #efefef;
+                  margin-left: 6px;
+                }
+              }
+
+              &:hover {
+                background-color: rgba(239, 239, 239, 0.5);
+              }
             }
           }
         }
@@ -259,6 +276,10 @@ export default {
       this.renderer.link = (href, title, text) => {
         const titleOutput = title ? `title="${title}"` : ''
         return `<a href="${href}"  ${titleOutput} target="_blank">${text}</a>`
+      }
+      this.renderer.table = (header, body) => {
+        if (body) body = '<tbody>' + body + '</tbody>'
+        return '<div class="table-wrap">\n' + '<table>\n' + '<thead>\n' + header + '</thead>\n' + body + '</table>\n' + '</div>\n'
       }
     },
     setMarkdownOption() {
