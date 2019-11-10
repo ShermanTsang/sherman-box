@@ -1,4 +1,10 @@
 export default {
+  currentPage(state) {
+    return state.currentPage
+  },
+  currentItem(state) {
+    return state.currentItem
+  },
   configurationList(state) {
     return state.configurationList
   },

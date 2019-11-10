@@ -146,19 +146,21 @@ export default {
     return /^\d+$/.test(params.id)
   },
   head() {
+    const { name, category, description } = this.data.movieItem
     return {
-      title: `${this.data.movieItem.name} - ${this.data.movieItem.category.name} - 观影`,
+      title: `${name} - ${category.name} - 观影`,
       meta: [
         {
           hid: 'index',
           name: 'description',
-          content: this.$getSeoInfo('description', `${this.data.movieItem.description || ''}`)
+          content: this.$getSeoInfo('description', `${description || ''}`)
         }
       ]
     }
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, store, params }) {
     const { data: movieItem } = await $axios.$get(`/api/movies/${params.id}`)
+    store.commit('currentItem', movieItem)
     return {
       data: {
         movieItem

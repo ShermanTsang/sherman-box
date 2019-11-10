@@ -48,7 +48,7 @@
           transform: translateY(-50%);
           right: -125px;
           box-shadow: 0 0 4px rgba(177,177,177,.4);
-          z-index: 1000;
+          z-index: 900;
           background-color: white;
         }
 

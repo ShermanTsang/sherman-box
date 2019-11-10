@@ -1,24 +1,5 @@
 <style lang="scss">
   .search {
-    &__box {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: center;
-
-      &__input {
-        display: block;
-        width: 600px;
-        max-width: 100%;
-        border: none;
-        border-radius: 30px;
-        padding: 16px;
-        letter-spacing: 2px;
-        text-align: center;
-        background-color: #f1f1f1;
-        box-shadow: 0 0 10px rgba(177, 177, 177, .2) inset;
-      }
-    }
 
     &__info {
       padding: 16px;
@@ -38,10 +19,7 @@
   <layout-container class="search">
     <Blocker height="40px" />
     <Nameplate title="搜索" :sub-title="this.$route.query.keyword || ''" />
-    <Blocker height="40px" />
-    <div class="search__box">
-      <input v-model="form.keyword" placeholder="搜索..." class="search__box__input" @keyup.enter="search">
-    </div>
+    <Blocker height="20px" />
     <div v-if="data.resultList && data.resultList.length > 0" class="search__info">
       共 <span>{{ meta.total }}</span> 条线索数据，页数 <span>{{ meta.current_page }}</span> / {{ meta.last_page }}
     </div>
@@ -74,9 +52,6 @@ export default {
   },
   data() {
     return {
-      form: {
-        keyword: this.$route.query.keyword
-      },
       status: {
         currentPage: 1
       }
@@ -109,14 +84,11 @@ export default {
   mounted() {
   },
   methods: {
-    search() {
-      this.$router.push({ name: 'search', query: { keyword: this.form.keyword } })
-    },
     async requestMoreResult() {
       const requestPage = this.status.currentPage + 1
       const { data: timeline, meta } = await this.$axios.$get('/api/common/search', {
         params: {
-          keyword: this.form.keyword,
+          keyword: this.$route.query.keyword,
           page: requestPage
         }
       })

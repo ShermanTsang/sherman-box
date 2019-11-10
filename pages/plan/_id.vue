@@ -211,19 +211,21 @@ export default {
     return /^\d+$/.test(params.id)
   },
   head() {
+    const { name, category, description } = this.data.planItem
     return {
-      title: `${this.data.planItem.name} - ${this.data.planItem.category.name} - 项目`,
+      title: `${name} - ${category.name} - 项目`,
       meta: [
         {
           hid: 'index',
           name: 'description',
-          content: this.$getSeoInfo('description', `${this.data.planItem.description || ''}`)
+          content: this.$getSeoInfo('description', `${description || ''}`)
         }
       ]
     }
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, store, params }) {
     const { data: planItem } = await $axios.$get(`/api/plans/${params.id}`)
+    store.commit('currentItem', planItem)
     return {
       data: {
         planItem

@@ -101,13 +101,14 @@ export default {
     return /^\d+$/.test(params.id)
   },
   head() {
+    const { name, category, description } = this.data.mailboxItem
     return {
-      title: `${this.data.mailboxItem.name} - ${this.data.mailboxItem.category.name} - 邮盒`,
+      title: `${name} - ${category.name} - 邮盒`,
       meta: [
         {
           hid: 'index',
           name: 'description',
-          content: this.$getSeoInfo('description', `${this.data.mailboxItem.description || ''}`)
+          content: this.$getSeoInfo('description', `${description || ''}`)
         }
       ]
     }
@@ -126,8 +127,9 @@ export default {
       }
     }
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, store, params }) {
     const { data: mailboxItem } = await $axios.$get(`/api/mailboxes/${params.id}`)
+    store.commit('currentItem', mailboxItem)
     return {
       data: {
         mailboxItem
@@ -141,29 +143,29 @@ export default {
   },
   methods: {
     submitCheckPassword() {
-      if (this.$checkFormValidate(this.status.validate)) {
-        this.status.isLoadingSubmit = true
-        const { id } = this.data.mailboxItem
-        const { password } = this.form
-        this.$axios.$post(`/api/mailboxes/${id}/check`, { password })
-          .then(({ data, code }) => {
-            if (code === 200) {
-              this.data.mailboxItem = data
-            }
-            this.status.showModal = false
-            this.status.isLoadingSubmit = false
-            this.errors.clear()
-          })
-          .catch((error) => {
+      if (!this.$checkFormValidate(this.status.validate)) {
+        this.$message.error('表单有错误')
+        return
+      }
+      this.status.isLoadingSubmit = true
+      const { id } = this.data.mailboxItem
+      const { password } = this.form
+      this.$axios.$post(`/api/mailboxes/${id}/check`, { password })
+        .then(({ data, event, code }) => {
+          if (event === 'returnErrorMessage' || event === 6000) {
             this.$message.error('邮盒密码错误')
             this.status.showModal = false
             this.status.isLoadingSubmit = false
             this.errors.clear()
-            console.log(error)
-          })
-      } else {
-        this.$message.error('表单有错误')
-      }
+            return
+          }
+          if (code === 200) {
+            this.data.mailboxItem = data
+          }
+          this.status.showModal = false
+          this.status.isLoadingSubmit = false
+          this.errors.clear()
+        })
     }
   }
 }

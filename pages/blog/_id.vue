@@ -95,19 +95,21 @@ export default {
     return /^\d+$/.test(params.id)
   },
   head() {
+    const { name, category, description } = this.data.blogItem
     return {
-      title: `${this.data.blogItem.name} - ${this.data.blogItem.category.name} - 博文`,
+      title: `${name} - ${category.name} - 博文`,
       meta: [
         {
           hid: 'index',
           name: 'description',
-          content: this.$getSeoInfo('description', `${this.data.blogItem.description || ''}`)
+          content: this.$getSeoInfo('description', `${description || ''}`)
         }
       ]
     }
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, store, params }) {
     const { data: blogItem } = await $axios.$get(`/api/blogs/${params.id}`)
+    store.commit('currentItem', blogItem)
     return {
       data: {
         blogItem

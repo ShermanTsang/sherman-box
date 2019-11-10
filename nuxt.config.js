@@ -73,9 +73,19 @@ export default {
     proxy: true
   },
 
+  /*
+  ** Proxy configuration
+  */
   proxy: {
     '/api/': { target: `${config['api.protocol']}://${config['api.domain']}`, pathRewrite: { '^/api/': 'v1/' } },
     '/oss/': { target: `${config['oss.protocol']}://${config['oss.domain.https']}`, pathRewrite: { '^/oss/': '/' } }
+  },
+
+  /*
+  ** Router configuration
+  */
+  router: {
+    middleware: 'common'
   },
 
   /*

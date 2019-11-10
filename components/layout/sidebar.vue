@@ -9,6 +9,11 @@
     background-color: #ffffff;
     overflow: hidden;
     transition: all .2s ease-in-out;
+    z-index: 996;
+
+    &:hover {
+      box-shadow: 0 0 24px rgba(0,0,0,.1);
+    }
 
     &__container {
       margin: 0 auto;
@@ -17,8 +22,11 @@
       flex-flow: column nowrap;
 
       &__logo {
-        padding: 20px 0;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
         text-align: center;
+        height: 64px;
       }
 
       &__menu {
@@ -81,10 +89,6 @@
 
       }
 
-    }
-
-    &:hover {
-      box-shadow: 0 0 12px rgba(0,0,0,.1);
     }
 
     @media ($screen-xs-max) {

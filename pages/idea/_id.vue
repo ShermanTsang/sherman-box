@@ -77,19 +77,21 @@ export default {
     return /^\d+$/.test(params.id)
   },
   head() {
+    const { name, category, description } = this.data.ideaItem
     return {
-      title: `${this.data.ideaItem.name} - ${this.data.ideaItem.category.name} - 想法`,
+      title: `${name} - ${category.name} - 想法`,
       meta: [
         {
           hid: 'index',
           name: 'description',
-          content: this.$getSeoInfo('description', `${this.data.ideaItem.description || ''}`)
+          content: this.$getSeoInfo('description', `${description || ''}`)
         }
       ]
     }
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, store, params }) {
     const { data: ideaItem } = await $axios.$get(`/api/ideas/${params.id}`)
+    store.commit('currentItem', ideaItem)
     return {
       data: {
         ideaItem

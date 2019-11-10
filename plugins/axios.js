@@ -7,7 +7,7 @@ export default function ({ $axios, redirect }) {
   $axios.onResponse((response) => {
     if (process.client) {
       const { event, message } = response.data
-      if (event === 'returnErrorMessage') {
+      if (event === 'returnErrorMessage' || event === 6000) {
         Vue.prototype.$message.error(message)
       }
       if (event === 'returnInfoMessage') {

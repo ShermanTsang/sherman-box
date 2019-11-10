@@ -9,14 +9,9 @@
 
     &__container {
       margin: 0 auto 0 $sidebar-width;
-      height: 100%;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      align-items: center;
 
       &__logo {
-
+        text-align: center;
       }
 
       &__menu {

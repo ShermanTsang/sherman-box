@@ -4,11 +4,7 @@
 <template>
   <layout-container>
     <Blocker height="40px" />
-    <Nameplate title="时间轴" sub-title="timeline">
-      <Btn @click="$router.push({name:'search'})">
-        搜索
-      </Btn>
-    </Nameplate>
+    <Nameplate title="时间轴" sub-title="timeline"></Nameplate>
     <Timeline :timeline="data.timeline" :meta="meta" @on-request-more="requestTimeline()" />
   </layout-container>
 </template>

@@ -253,7 +253,7 @@
               <div v-if="data.dayItem.mood" class="day__card__main__item">
                 <div class="day__card__main__item__name">
                   <Icon name="mood" />
-                  情绪
+                  状态
                 </div>
                 <div class="day__card__main__item__content">
                   <Tag>{{ data.dayItem.mood }}</tag>
@@ -331,13 +331,14 @@ export default {
     return /^(\d{4})(-)(\d{2})(-)(\d{2})$/.test(params.date)
   },
   head() {
+    const { date } = this.data.dayItem
     return {
-      title: `${this.data.dayItem.date.substring(0, 11)} - 日迹`,
+      title: `${date.substring(0, 11)} - 日迹`,
       meta: [
         {
           hid: 'index',
           name: 'description',
-          content: this.$getSeoInfo('description', `${this.data.dayItem.date.substring(0, 11)}日迹`)
+          content: this.$getSeoInfo('description', `${date.substring(0, 11)}日迹`)
         }
       ]
     }
@@ -359,7 +360,7 @@ export default {
       return [...movieList, ...ideaList, ...blogList, ...projectList, ...mailboxList, ...planList]
     }
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, store, params }) {
     const {
       data: {
         dayItem, movieCollection: movieList,
@@ -370,6 +371,7 @@ export default {
         planCollection: planList
       }
     } = await $axios.$get(`/api/days/${params.date}`)
+    store.commit('currentItem', dayItem)
     return {
       data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList }
     }

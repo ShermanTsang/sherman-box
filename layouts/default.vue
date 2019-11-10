@@ -18,12 +18,20 @@
       margin-left: $sidebar-width;
     }
   }
+
+  .layout-toolbar {
+    @media ($screen-md-min) {
+      left: $sidebar-width;
+      margin-left: $sidebar-width;
+    }
+  }
 </style>
 
 <template>
   <div id="app">
     <layout-sidebar class="layout-sidebar" />
     <layout-header class="layout-header" />
+    <layout-toolbar class="layout-toolbar" />
     <layout-view>
       <layout-main class="layout-main">
         <transition name="fade">
@@ -44,10 +52,9 @@ export default {
   },
   watch: {
     $route: function (to, from) {
-      document.body.scrollTop = 0
-      document.documentElement.scrollTop = 0
     }
   },
-  methods: {}
+  methods: {
+  }
 }
 </script>

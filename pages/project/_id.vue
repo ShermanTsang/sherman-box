@@ -325,19 +325,21 @@ export default {
     return /^\d+$/.test(params.id)
   },
   head() {
+    const { name, category, description } = this.data.projectItem
     return {
-      title: `${this.data.projectItem.name} - ${this.data.projectItem.category.name} - 项目`,
+      title: `${name} - ${category.name} - 项目`,
       meta: [
         {
           hid: 'index',
           name: 'description',
-          content: this.$getSeoInfo('description', `${this.data.projectItem.description || ''}`)
+          content: this.$getSeoInfo('description', `${description || ''}`)
         }
       ]
     }
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, store, params }) {
     const { data: projectItem } = await $axios.$get(`/api/projects/${params.id}`)
+    store.commit('currentItem', projectItem)
     return {
       data: {
         projectItem

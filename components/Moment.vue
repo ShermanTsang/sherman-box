@@ -1,11 +1,22 @@
 <style lang="scss">
   .moment {
+    position: relative;
     transition: all .3s ease-in-out;
     color: unset !important;
 
     &:hover {
-      text-decoration: underline;
-      text-decoration-color: inherit;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        border-radius: 4px;
+        opacity: .4;
+        @include gradient-background;
+      }
     }
   }
 </style>

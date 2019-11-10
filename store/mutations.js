@@ -1,4 +1,10 @@
 export default {
+  currentPage(state, data) {
+    state.currentPage = data
+  },
+  currentItem(state, data) {
+    state.currentItem = data
+  },
   configurationList(state, data) {
     state.configurationList = data
   },

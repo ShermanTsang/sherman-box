@@ -21,6 +21,20 @@ export default function ({ store }) {
     }
   }
 
+  function getConfig(key, returnType = 'value') {
+    if (!key) {
+      return '[ key is null ]'
+    }
+    const configurationList = this.$store.getters.configurationList || []
+    const configurationTarget = configurationList.find((item) => {
+      return item.name === key || item.id === key
+    })
+    if (!configurationTarget) {
+      return `[ configuration ${key} not found ]`
+    }
+    return returnType === 'object' ? configurationTarget : configurationTarget.value || ''
+  }
+
   function getApiUrl(url) {
     const config = this.$configList('api')
     return `${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/${url}`
@@ -52,20 +66,6 @@ export default function ({ store }) {
     } catch (e) {
       return 1
     }
-  }
-
-  function getConfig(key, returnType = 'value') {
-    if (!key) {
-      return '[ key is null ]'
-    }
-    const configurationList = this.$store.getters.configurationList || []
-    const configurationTarget = configurationList.find((item) => {
-      return item.name === key || item.id === key
-    })
-    if (!configurationTarget) {
-      return `[ configuration ${key} not found ]`
-    }
-    return returnType === 'object' ? configurationTarget : configurationTarget.value || ''
   }
 
   function getImageAsset(key, returnType = 'value') {
@@ -111,6 +111,9 @@ export default function ({ store }) {
   function getModuleConfig(module) {
     const mainConfigList = store.getters.moduleList || []
     const configList = {
+      timeline: {
+        name: '时间轴', dateField: 'date'
+      },
       day: {
         name: '日迹', dateField: 'date'
       },
