@@ -25,5 +25,23 @@ export default {
   },
   categoryList(state) {
     return state.categoryList
+  },
+  statisticsModule(state) {
+    const statisticsData = state.statisticsModule
+    const statisticsName = {
+      total: '总计',
+      total_today: '今日',
+      total_week: '本周',
+      total_month: '本月',
+      total_year: '今年'
+    }
+    statisticsData.forEach((module) => {
+      module.text = Object.keys(module).map((key) => {
+        if (statisticsName[key] && module[key] > 0) {
+          return `${statisticsName[key]} ${module[key]}`
+        }
+      }).join(' ') || ''
+    })
+    return statisticsData
   }
 }

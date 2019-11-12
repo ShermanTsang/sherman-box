@@ -6,5 +6,6 @@ export default () => ({
   imageAssetList: [],
   moduleList: [],
   pageList: [],
-  categoryList: []
+  categoryList: [],
+  statisticsModule: []
 })

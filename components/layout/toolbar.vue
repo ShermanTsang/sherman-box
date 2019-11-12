@@ -62,15 +62,19 @@ export default {
     currentModule() {
       return this.currentPage.module && this.$getModuleConfig(this.currentPage.module)
     },
+    statisticsModule() {
+      return this.$store.getters.statisticsModule
+    },
     navs() {
       if (!this.currentModule) {
         return false
       }
       if (this.currentPage.type === 'list') {
         const { name, url } = this.currentModule
+        const statistics = this.statisticsModule.find(item => item.module === this.currentModule.url)
         return [
           { text: name, path: `/${url}` },
-          { text: '' }
+          { text: statistics ? statistics.text : '', color: '#999' }
         ]
       }
       if (this.currentPage.type === 'item') {

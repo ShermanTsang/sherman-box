@@ -22,5 +22,8 @@ export default {
   },
   categoryList(state, data) {
     state.categoryList = data
+  },
+  statisticsModule(state, data) {
+    state.statisticsModule = data
   }
 }
