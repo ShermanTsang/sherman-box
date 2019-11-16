@@ -11,7 +11,7 @@
     background: rgba(0,0,0,.6);
 
     &__overlay {
-      z-index: 998;
+      z-index: 10000;
       top: 0;
       bottom: 0;
       left: 0;

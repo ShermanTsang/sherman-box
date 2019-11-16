@@ -9,7 +9,6 @@
       border-radius: 24px;
       max-width: 100%;
       transition: all .2s ease-in-out;
-      box-shadow: rgba(0, 0, 0, 0.1) 0 0 14px inset;
       background: #fff url('../assets/image/search.png') 8px 5px no-repeat;
       background-size: 28px;
       border: 1px solid #ddd;
@@ -18,7 +17,7 @@
         color: #666;
         width: 240px;
         box-shadow: rgba(177, 177, 177, 0.2) 0 0 10px inset;
-        background-color: rgb(241, 241, 241);
+        background-color: rgb(246, 246, 246);
       }
     }
   }

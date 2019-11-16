@@ -34,9 +34,7 @@
     <layout-toolbar class="layout-toolbar" />
     <layout-view>
       <layout-main class="layout-main">
-        <transition name="fade">
-          <nuxt />
-        </transition>
+        <nuxt />
       </layout-main>
       <layout-footer />
     </layout-view>

@@ -12,7 +12,7 @@
 
     &__overlay {
       position: fixed;
-      z-index: 998;
+      z-index: 1000;
       top: 0;
       bottom: 0;
       left: 0;
@@ -24,7 +24,7 @@
 
     &__container {
       position: relative;
-      z-index: 999;
+      z-index: 1001;
       height: auto;
       overflow: hidden;
       max-width: 95%;

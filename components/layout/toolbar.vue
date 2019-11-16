@@ -1,8 +1,6 @@
 <style lang="scss">
   .toolbar {
     background-color: rgba(255, 255, 255, .95);
-    height: 64px;
-    padding: 10px 30px;
     overflow: hidden;
     z-index: 995;
 
@@ -10,11 +8,27 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
+      padding: 10px 30px;
+      overflow: hidden;
+
+      @media ($screen-xs-max) {
+        flex-flow: column nowrap;
+        padding: 10px;
+      }
 
       &__main {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+
+        @media ($screen-xs-max) {
+          padding: 16px 0;
+        }
+
       }
 
     }
@@ -24,6 +38,7 @@
   .toolbar--pinned {
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
     z-index: 999;
     margin-left: 0;
