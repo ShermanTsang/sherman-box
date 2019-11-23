@@ -48,7 +48,6 @@
           transform: translateY(-50%);
           right: -125px;
           box-shadow: 0 0 4px rgba(177,177,177,.4);
-          z-index: 900;
           background-color: white;
         }
 
@@ -125,7 +124,7 @@
   <div class="timeline">
     <div v-for="(item,index) in timeline" :key="`${item.module}-${item.id}`" class="timeline__item">
       <div class="timeline__item__date">
-        <Moment from-now :time="item.datetime" type="date" />
+        <Datetime from-now :time="item.datetime" type="date" />
         <div class="timeline__item__date__icon">
           <Icon :name="$getModuleConfig(item.module).icon" size="24px" color="#aaa"></icon>
         </div>

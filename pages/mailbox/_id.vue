@@ -58,7 +58,7 @@
         </div>
         <div class="mailbox__main__text__info">
           <Icon name="clock" />
-          <Moment format="YYYY-MM-DD" :time="data.mailboxItem.datetime" from-now />
+          <Datetime format="YYYY-MM-DD" :time="data.mailboxItem.datetime" from-now />
         </div>
       </layout-container>
     </layout-container>

@@ -180,11 +180,11 @@
           <div class="project__detail__item__info">
             <Tag>
               始
-              <Moment from-now type="datetime" :time="data.projectItem.datetime_start" />
+              <Datetime from-now type="datetime" :time="data.projectItem.datetime_start" />
             </tag>
             <Tag v-if="data.projectItem.datetime_end">
               终
-              <Moment from-now type="datetime" :time="data.projectItem.datetime_end" />
+              <Datetime from-now type="datetime" :time="data.projectItem.datetime_end" />
             </tag>
           </div>
         </div>

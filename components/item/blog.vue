@@ -88,7 +88,7 @@
     </div>
     <div class="blog-item__main">
       <div class="blog-item__main__time">
-        <Moment format="YYYY-MM-DD" from-now :time="item.datetime" color="#999" />
+        <Datetime format="YYYY-MM-DD" from-now :time="item.datetime" color="#999" />
       </div>
       <div class="blog-item__main__title" @click="$router.push(`/blog/${item.id}`)">
         {{ item.name }}

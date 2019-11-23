@@ -14,7 +14,8 @@ $screen-lg-max: "max-width: 992px";
 $screen-xl-max: "max-width: 1200px";
 $screen-xxl-max: "max-width: 1600px";
 
-$sidebar-width: 180px;
+$sidebar-width: 120px;
+$header-height: 64px;
 
 @mixin gradient-background {
   background-color: #51defe;
@@ -27,3 +28,14 @@ $sidebar-width: 180px;
     color: #f1f1f1;
   }
 }
+
+$z-index-message: 999;
+$z-index-header: 990;
+$z-index-toolbar: 993;
+$z-index-sidebar: 989;
+$z-index-modal: 996;
+$z-index-overlay: 995;
+$z-index-fullscreen: 1000;
+$z-index-card-background:1;
+$z-index-card-content:2;
+$z-index-card-action:3;

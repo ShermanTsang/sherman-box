@@ -1,7 +1,6 @@
 <style lang="scss">
   .day-item {
     position: relative;
-    overflow: hidden;
     transition-duration: 0.2s;
     line-height: 1.5;
     text-overflow: ellipsis;

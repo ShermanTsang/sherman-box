@@ -7,7 +7,7 @@
 
     &__header {
       position: absolute;
-      z-index: 10;
+      z-index: $z-index-card-background;
       top: -200px;
       width: 100%;
       transition: all 0.4s ease-in-out;
@@ -31,7 +31,7 @@
 
     &__content {
       position: relative;
-      z-index: 20;
+      z-index: $z-index-card-content;
       background: #ffffff;
       line-height: 2;
       padding: 32px;
@@ -45,7 +45,7 @@
       color: #999;
       bottom: 20px;
       right: 20px;
-      z-index: 40;
+      z-index: $z-index-card-action;
     }
 
     &:hover {
@@ -100,7 +100,7 @@
         <icon name="comment" /> {{ item.category.name }} / {{ item.name }}
         <br>
         <icon name="clock" />
-        <Moment format="YYYY-MM-DD" :time="item.datetime" />
+        <Datetime format="YYYY-MM-DD" :time="item.datetime" />
       </div>
       <div v-if="item.password || item.hint" class="mail-item__pin">
         <icon name="lock" />

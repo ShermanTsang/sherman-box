@@ -50,7 +50,7 @@
       </div>
       <Blocker height="20px" />
       <div class="idea__header__info">
-        <Moment format="YYYY-MM-DD" from-now :time="data.ideaItem.datetime" />
+        <Datetime format="YYYY-MM-DD" from-now :time="data.ideaItem.datetime" />
       </div>
       <div
         v-if="data.ideaItem.image"

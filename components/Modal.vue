@@ -1,5 +1,6 @@
 <style lang="scss">
   .modal {
+    z-index: $z-index-modal;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -12,7 +13,7 @@
 
     &__overlay {
       position: fixed;
-      z-index: 1000;
+      z-index: $z-index-overlay;
       top: 0;
       bottom: 0;
       left: 0;
@@ -24,7 +25,7 @@
 
     &__container {
       position: relative;
-      z-index: 1001;
+      z-index: $z-index-modal;
       height: auto;
       overflow: hidden;
       max-width: 95%;

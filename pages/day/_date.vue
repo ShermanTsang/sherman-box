@@ -166,22 +166,22 @@
       <layout-row :gutter="32">
         <layout-col :md="{span:16}" :lg="{span:16}">
           <Nameplate>
-            <Moment slot="title" format="YYYY年MM月DD日" class="day__date__text" :time="data.dayItem.date" />
+            <Datetime slot="title" format="YYYY年MM月DD日" class="day__date__text" :time="data.dayItem.date" />
             <small slot="subTitle">
-              <Moment format="ddd" :time="data.dayItem.date" />
+              <Datetime format="ddd" :time="data.dayItem.date" />
             </small>
             <div class="day__control">
               <template v-if="data.dayItem.day_previous">
                 <div class="day__control__item">
                   <Icon color="#ccc" name="angle-left" />
-                  <Moment :time="data.dayItem.day_previous.date" type="date" />
+                  <Datetime :time="data.dayItem.day_previous.date" type="date" />
                 </div>
               </template>
               <div v-if="data.dayItem.day_previous && data.dayItem.day_next" class="day__control__item day__control__item--divider">
               </div>
               <template v-if="data.dayItem.day_next">
                 <div class="day__control__item">
-                  <Moment :time="data.dayItem.day_next.date" type="date" />
+                  <Datetime :time="data.dayItem.day_next.date" type="date" />
                   <Icon color="#ccc" name="angle-right" />
                 </div>
               </template>
@@ -308,7 +308,7 @@
             class="day__block"
           >
             <div class="day__block__main">
-              <Moment :time="item.date" type="date" from-now />
+              <Datetime :time="item.date" type="date" from-now />
             </div>
           </Card>
           <Blocker height="30px" />

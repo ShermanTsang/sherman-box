@@ -16,7 +16,7 @@
         right: 0;
         top: 30px;
         bottom: 0;
-        z-index: 4;
+        z-index: $z-index-card-content;
         margin: 0 auto;
         width: 200px;
         height: 270px;
@@ -32,7 +32,7 @@
       }
 
       &__background {
-        z-index: 2;
+        z-index: $z-index-card-background;
         position: absolute;
         left: 0;
         right: 0;
@@ -155,7 +155,7 @@
         </div>
         <div class="movie-item__content__info__item">
           <icon name="clock" size=".9rem" />
-          <Moment from-now :time="item.datetime" type="date" />
+          <Datetime from-now :time="item.datetime" type="date" />
         </div>
       </div>
     </div>

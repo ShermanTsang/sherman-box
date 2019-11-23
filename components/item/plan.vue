@@ -19,7 +19,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 2;
+        z-index: $z-index-card-background;
         background: rgba(0, 0, 0, .2);
       }
 
@@ -33,7 +33,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 3;
+        z-index: $z-index-card-content;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -93,9 +93,9 @@
       </div>
     </div>
     <div class="plan-item__info">
-      <Moment format="YYYY-MM-DD" from-now :time="item.datetime_start" />
+      <Datetime format="YYYY-MM-DD" from-now :time="item.datetime_start" />
       ~
-      <Moment format="YYYY-MM-DD" from-now :time="item.datetime_end" />
+      <Datetime format="YYYY-MM-DD" from-now :time="item.datetime_end" />
     </div>
   </Card>
 </template>

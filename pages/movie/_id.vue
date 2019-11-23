@@ -116,7 +116,7 @@
         </div>
         <div v-if="data.movieItem.datetime" class="movie__header__main__item">
           <Icon name="clock" />
-          <Moment :time="data.movieItem.datetime" type="date" from-now />
+          <Datetime :time="data.movieItem.datetime" type="date" from-now />
         </div>
       </div>
     </div>

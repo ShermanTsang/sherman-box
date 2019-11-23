@@ -174,9 +174,9 @@
         </div>
         <Blocker height="20px" />
         <div class="plan__header__main__time">
-          始 <Moment from-now type="datetime" :time="data.planItem.datetime_start" />
+          始 <Datetime from-now type="datetime" :time="data.planItem.datetime_start" />
           <br>
-          终 <Moment from-now type="datetime" :time="data.planItem.datetime_end" />
+          终 <Datetime from-now type="datetime" :time="data.planItem.datetime_end" />
         </div>
         <div class="plan__header__main__description">
           {{ data.planItem.description || '暂无项目介绍' }}

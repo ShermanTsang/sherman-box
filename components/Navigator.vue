@@ -23,7 +23,7 @@
 
 <template>
   <div v-if="navs && navs.length > 0" class="navigator" :style="style">
-    <div v-for="(item,index) in navs" :key="index" :style="{color: item.color || '#666'}" class="navigator__item" @click="clickNavItem(item)">
+    <div v-for="(item,index) in navs" :key="index" :style="{color: item.color || '#666',cursor: item.path ? 'pointer':'default'}" class="navigator__item" @click="clickNavItem(item)">
       {{ item.text }}
       <template v-if="index !== navs.length - 1">
         <Icon v-if="!divider" name="angle-right" color="#ccc" />

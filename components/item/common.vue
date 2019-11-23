@@ -61,7 +61,6 @@
       padding: 6px 6px 14px 6px;
       letter-spacing: 1px;
       font-size: .9rem;
-      z-index: 99;
     }
 
     &__image {
@@ -122,7 +121,7 @@
       <div class="common-item__main__name" @click="redirectToItem()" v-html="nameHtml">
       </div>
       <div v-if="text === 'date'" class="common-item__main__info">
-        <Moment format="YYYY.MM.DD" :time="item[module.dateField]" />
+        <Datetime format="YYYY.MM.DD" :time="item[module.dateField]" />
       </div>
       <div v-else-if="text === 'detail'" class="common-item__main__info">
         <div v-for="(textItem,index) in textHtml" :key="index" class="common-item__main__info__detail" v-html="textItem">

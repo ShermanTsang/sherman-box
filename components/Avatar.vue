@@ -5,10 +5,12 @@
     img {
       width: 100%;
       height: 100%;
-      box-shadow: 0 0 4px rgba(177, 177, 177, .5);
       object-fit: cover;
       background-color: #fff;
-      border-radius: 50%;
+
+      &:hover {
+        box-shadow: 0 0 4px rgba(177, 177, 177, .5);
+      }
     }
   }
 </style>
@@ -21,7 +23,7 @@
 
 <script>
 import Gravatar from 'gravatar-url'
-import defaultEmail from '@/assets/image/defaultImage.png'
+import defaultEmail from '@/assets/image/defaultAvatar.png'
 
 export default {
   name: 'Avatar',

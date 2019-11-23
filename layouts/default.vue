@@ -6,13 +6,6 @@
     }
   }
 
-  .layout-header {
-    display: block;
-    @media ($screen-md-min) {
-      display: none;
-    }
-  }
-
   .layout-main {
     @media ($screen-md-min) {
       margin-left: $sidebar-width;
@@ -29,9 +22,8 @@
 
 <template>
   <div id="app">
-    <layout-sidebar class="layout-sidebar" />
     <layout-header class="layout-header" />
-    <layout-toolbar class="layout-toolbar" />
+    <layout-sidebar class="layout-sidebar" />
     <layout-view>
       <layout-main class="layout-main">
         <nuxt />

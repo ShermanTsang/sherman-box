@@ -5,7 +5,7 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 12px 16px;
-    z-index: 1006;
+    z-index: $z-index-message;
     color: #fff;
     font-size: .95rem;
     letter-spacing: 1px;

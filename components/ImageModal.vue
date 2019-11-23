@@ -1,6 +1,6 @@
 <style lang="scss">
-  .image-box {
-    z-index: 996;
+  .image-modal {
+    z-index: $z-index-modal;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -11,7 +11,7 @@
     background: rgba(0,0,0,.6);
 
     &__overlay {
-      z-index: 10000;
+      z-index: $z-index-overlay;
       top: 0;
       bottom: 0;
       left: 0;
@@ -23,7 +23,7 @@
     }
 
     &__image {
-      z-index: 999;
+      z-index: $z-index-modal;
       position: fixed;
       top: 0;
       bottom: 0;
@@ -49,8 +49,8 @@
 
 <template>
   <transition name="fade">
-    <div v-if="imageUrl" class="image-box" @click="handleClick($event)">
-      <div class="image-box__image">
+    <div v-if="imageUrl" class="image-modal" @click="handleClick($event)">
+      <div class="image-modal__image">
         <img :src="$getOssUrl(imageUrl)">
       </div>
     </div>

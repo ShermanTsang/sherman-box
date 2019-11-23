@@ -29,7 +29,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 2;
         display: flex;
         flex-flow: column nowrap;
         align-items: flex-start;
@@ -73,7 +72,7 @@
           <Icon name="category" />
           {{ data.blogItem.category.name }}
           <Icon name="clock" />
-          <Moment format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
+          <Datetime format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
         </div>
       </layout-container>
     </div>

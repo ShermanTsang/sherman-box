@@ -8,7 +8,7 @@
       top: 0;
       height: 100%;
       width: 100%;
-      z-index: 40;
+      z-index: $z-index-card-background;
       background-image: linear-gradient(hsla(0, 0%, 20%, 0), hsla(0, 0%, 20%, .4));
     }
 
@@ -20,7 +20,7 @@
       right: 0;
       padding: 20px;
       color: #ffffff;
-      z-index: 50;
+      z-index: $z-index-card-content;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
       word-wrap: break-word;
       background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0, transparent 100%);

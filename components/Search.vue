@@ -13,11 +13,13 @@
       background-size: 28px;
       border: 1px solid #ddd;
 
-      &:focus {
-        color: #666;
-        width: 240px;
-        box-shadow: rgba(177, 177, 177, 0.2) 0 0 10px inset;
-        background-color: rgb(246, 246, 246);
+      @media ($screen-sm-min) {
+        &:focus {
+          color: #666;
+          width: 240px;
+          box-shadow: rgba(177, 177, 177, 0.2) 0 0 10px inset;
+          background-color: rgb(248, 248, 248);
+        }
       }
     }
   }
