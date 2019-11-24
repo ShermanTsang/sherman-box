@@ -10,12 +10,9 @@ const config = {
   'api.version': 'v1',
   'api.domain': 'api.share-man.com',
   'oss.protocol': 'https',
-  'oss.domain.default': '7mnmjl.com1.z0.glb.clouddn.com',
+  'oss.domain.default': '',
   'oss.domain.custom': 'sharemancdn.ochase.com',
-  'oss.domain.https': 'cdn.share-man.com',
-  '3rd.geetest.id': 'b2efc5d05666f74e38b1f9eebaf028c4',
-  '3rd.geetest.key': '5d4254f168393ec1a91c17c680c23868',
-  '3rd.baiduAnalyze.id': '15a2c685afbd639a5537af013711da1e'
+  'oss.domain.https': 'cdn.share-man.com'
 }
 
 export default config

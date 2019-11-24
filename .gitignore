@@ -85,3 +85,4 @@ sw.*
 
 # Custome Config
 config/custom.js
+config/default.js
