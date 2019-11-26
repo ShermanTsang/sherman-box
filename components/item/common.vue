@@ -61,6 +61,7 @@
       padding: 6px 6px 14px 6px;
       letter-spacing: 1px;
       font-size: .9rem;
+      z-index: $z-index-card-content;
     }
 
     &__image {
@@ -69,6 +70,7 @@
       transition: all .2s ease-in-out;
       cursor: pointer;
       min-height: 200px;
+      z-index: $z-index-card-background;
 
       img {
         width: 100%;

@@ -122,12 +122,11 @@ export default {
     }
   },
   mounted() {
-    if (this.currentModule) {
-      window.addEventListener('scroll', this.onScroll)
-    }
+    window.addEventListener('scroll', this.onScroll)
   },
   methods: {
     onScroll() {
+      const navigator = document.querySelector('#navigator')
       if (navigator) {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         this.status.isDisplayNavigator = scrollTop > 160
