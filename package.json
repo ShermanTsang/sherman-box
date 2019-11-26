@@ -17,8 +17,6 @@
     "@nuxtjs/axios": "^5.4.1",
     "cross-env": "^5.2.0",
     "dayjs": "^1.8.16",
-    "fundebug-javascript": "^2.0.0",
-    "fundebug-vue": "^0.0.1",
     "grade-js": "^1.0.10",
     "gravatar-url": "^3.0.1",
     "highlight.js": "^9.15.10",
