@@ -19,8 +19,7 @@ export default {
       { hid: 'keywords', name: 'keywords', content: config['site.keywords'] }
     ],
     script: [
-      process.env.NODE_ENV === 'production' ? { src: `https://hm.baidu.com/hm.js?${config['3rd.baiduAnalyze.id']}` } : {},
-      process.env.NODE_ENV === 'production' ? { src: 'https://js.fundebug.cn/fundebug.revideo.0.6.0.min.js' } : {}
+      process.env.NODE_ENV === 'production' ? { src: `https://hm.baidu.com/hm.js?${config['3rd.baiduAnalyze.id']}` } : {}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -57,8 +56,7 @@ export default {
     { src: '@/plugins/vue-lazyload', mode: 'client' },
     { src: '@/plugins/3rd-analyze', mode: 'client' },
     { src: '@/plugins/vee-validate', mode: 'client' },
-    { src: '@/plugins/message', mode: 'client' },
-    { src: '@/plugins/fun-debug', mode: 'client' }
+    { src: '@/plugins/message', mode: 'client' }
   ],
 
   /*
