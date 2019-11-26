@@ -12,8 +12,7 @@
       cursor: pointer;
       padding: 20px 16px;
       font-size: .95rem;
-      letter-spacing: 2px;
-      color: #666;
+      color: #888;
       text-overflow: ellipsis;
       overflow: hidden;
       transition: border-radius .2s ease-in-out;
@@ -33,6 +32,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        letter-spacing: 4px;
 
         span {
           margin-left: 6px;

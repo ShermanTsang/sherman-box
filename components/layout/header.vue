@@ -50,12 +50,14 @@
 <template>
   <header class="header">
     <div class="header__main">
-      <transition name="fade">
+      <transition name="slideFromUp">
+        <div v-if="!currentModule || !status.isDisplayNavigator" id="logo" class="header__main__logo">
+          <Logo type="text" height="36px" />
+        </div>
+      </transition>
+      <transition name="slideFromDown">
         <div v-if="currentModule && status.isDisplayNavigator" id="navigator" class="header__main__navigator">
           <Navigator :navs="navs" :divider="currentPage.type === 'list'?'/':'>'"></Navigator>
-        </div>
-        <div v-else id="logo" class="header__main__logo">
-          <Logo type="text" height="36px" />
         </div>
       </transition>
       <div class="header__main__search">
@@ -74,7 +76,8 @@ export default {
   data() {
     return {
       status: {
-        isDisplayNavigator: false
+        isDisplayNavigator: false,
+        lastScrollOffset: 0
       }
     }
   },
@@ -126,11 +129,10 @@ export default {
   },
   methods: {
     onScroll() {
-      const navigator = document.querySelector('#navigator')
-      if (navigator) {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        this.status.isDisplayNavigator = scrollTop > 160
-      }
+      const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      const isScrollDown = (scrollOffset - this.status.lastScrollOffset) > 0
+      this.status.isDisplayNavigator = isScrollDown && scrollOffset > 200
+      this.status.lastScrollOffset = scrollOffset
     }
   }
 }
