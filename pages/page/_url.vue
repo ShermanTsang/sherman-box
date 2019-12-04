@@ -17,7 +17,7 @@
 <script>
 export default {
   validate({ params }) {
-    return params.url
+    return params.url && params.url !== 'log'
   },
   head() {
     return {

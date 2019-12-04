@@ -9,7 +9,7 @@
     background-color: #ffffff;
     overflow: hidden;
     transition: all .2s ease-in-out;
-    box-shadow: 0 0 12px rgba(177,177,177,.2);
+    box-shadow: 0 0 12px rgba(177,177,177,.1);
 
     &:hover {
       box-shadow: 0 0 24px rgba(0,0,0,.1);
@@ -30,7 +30,7 @@
 <template>
   <div class="sidebar">
     <div class="sidebar__container">
-      <ModuleMenu type="vertical"></ModuleMenu>
+      <ModuleMenu type="vertical" />
     </div>
   </div>
 </template>

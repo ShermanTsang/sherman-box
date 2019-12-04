@@ -21,7 +21,10 @@ export default {
     return [...extraModule, ...state.moduleList]
   },
   pageList(state) {
-    return state.pageList
+    const extraPage = [
+      { name: '开发日志', url: 'log', isExtra: true }
+    ]
+    return [...state.pageList, ...extraPage]
   },
   categoryList(state) {
     return state.categoryList

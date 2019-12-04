@@ -15,6 +15,8 @@
           cursor: pointer;
           display: inline-block;
           font-size: .95rem;
+          color: #999;
+          letter-spacing: 2px;
 
           a {
             color: #999;
@@ -60,10 +62,8 @@
   <footer class="footer">
     <layout-container class="footer__container">
       <div class="footer__container__page">
-        <div v-for="item in $store.getters.pageList" :key="item.id" class="footer__container__page__item">
-          <nuxt-link :to="{name:`page-url`,params:{type:'page',id:item.id,url:item.url}}">
-            {{ item.name }}
-          </nuxt-link>
+        <div v-for="item in $store.getters.pageList" :key="item.id" class="footer__container__page__item" @click="redirectToPage(item)">
+          {{ item.name }}
         </div>
       </div>
       <div class="footer__container__info">
@@ -75,6 +75,15 @@
 
 <script>
 export default {
-  name: 'LayoutFooter'
+  name: 'LayoutFooter',
+  methods: {
+    redirectToPage(item) {
+      if (item.isExtra) {
+        window.open(`/page/${item.url}`)
+        return
+      }
+      this.$router.push({ name: 'page-url', params: { type: 'page', id: item.id, url: item.url } })
+    }
+  }
 }
 </script>

@@ -16,7 +16,7 @@
 </style>
 
 <template>
-  <div class="avatar" :style="style">
+  <div class="avatar" :style="style" @click="$emit(click)">
     <img :src="avatarUrl">
   </div>
 </template>

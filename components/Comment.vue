@@ -8,7 +8,6 @@
         margin: 1rem 0;
         padding: 10px;
         transition: all 300ms ease-in-out;
-        border-bottom: 1px solid #EEEEEE;
 
         &__avatar {
           margin-right: 20px;
@@ -52,10 +51,10 @@
     <div v-for="item in data.commentList" :key="item.id" class="comment__list">
       <div class="comment__list__item">
         <div class="comment__list__item__avatar">
-          <Avatar :sign="item.qq || item.email" size="60px" />
+          <Avatar :sign="item.qq || item.email" size="48px" @click="redirectByUrl(item.website)" />
         </div>
         <div class="comment__list__item__main">
-          <div class="comment__list__item__main__username" @click="item.site ? redirectByUrl(item.site) : ''">
+          <div class="comment__list__item__main__username" @click="redirectByUrl(item.website)">
             {{ item.username }}
           </div>
           <div class="comment__list__item__main__content">
@@ -82,7 +81,7 @@
         type="input"
         placeholder="该如何称呼你呢？"
         @changeValidate="valid => status.validate.username = valid"
-      ></FormItem>
+      />
       <FormItem
         v-model="form.contact"
         label="联系方式"
@@ -102,7 +101,7 @@
         validate="url|max:60"
         placeholder="可填写你的网站、博客、微博或其他社媒地址"
         @changeValidate="valid => status.validate.website = valid"
-      ></FormItem>
+      />
       <FormItem
         v-model="form.comment"
         label="内容"
@@ -111,7 +110,7 @@
         validate="required|max:30|min:4"
         placeholder="留下你的想法、疑问、评论或回忆"
         @changeValidate="valid => status.validate.comment = valid"
-      ></FormItem>
+      />
       <FormItem
         v-if="['qq','email'].includes(contactType)"
         label="显示头像"
@@ -186,7 +185,9 @@ export default {
   },
   methods: {
     redirectByUrl(url) {
-      window.open(url)
+      if (url) {
+        window.open(url)
+      }
     },
     submitSendComment() {
       if (this.$checkFormValidate(this.status.validate)) {
@@ -201,7 +202,7 @@ export default {
           qq: this.contactType === 'qq' ? contact : '',
           email: this.contactType === 'email' ? contact : ''
         }
-        const newComment = { ...this.form, appendParams }
+        const newComment = { ...this.form, ...appendParams }
         this.$axios.$post('/api/comments', newComment)
           .then((response) => {
             this.data.commentList.push(response.data)
