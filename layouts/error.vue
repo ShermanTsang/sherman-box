@@ -2,10 +2,10 @@
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     {{ error }}
     <nuxt-link to="/">
       首 页
     </nuxt-link>
-  </layout-container>
+  </LayoutContainer>
 </template>

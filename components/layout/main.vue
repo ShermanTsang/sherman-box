@@ -1,6 +1,5 @@
 <style lang="scss">
   .main {
-    background-color: #fff;
     flex: 1;
     overflow: hidden;
     margin-top: $header-height;

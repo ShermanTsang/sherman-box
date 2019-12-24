@@ -22,14 +22,14 @@
 
 <template>
   <div id="app">
-    <layout-header class="layout-header" />
-    <layout-sidebar class="layout-sidebar" />
-    <layout-view>
-      <layout-main class="layout-main">
+    <LayoutHeader class="layout-header" />
+    <LayoutSidebar class="layout-sidebar" />
+    <LayoutView>
+      <LayoutMain class="layout-main">
         <nuxt />
-      </layout-main>
-      <layout-footer />
-    </layout-view>
+      </LayoutMain>
+      <LayoutFooter />
+    </LayoutView>
   </div>
 </template>
 

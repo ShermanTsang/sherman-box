@@ -2,10 +2,10 @@
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     <Blocker height="40px" />
     遇到错误了
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

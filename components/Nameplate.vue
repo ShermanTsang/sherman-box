@@ -68,7 +68,7 @@
       <span>{{ subTitle }}<slot name="subTitle"></slot></span>
     </div>
     <div class="nameplate__action">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

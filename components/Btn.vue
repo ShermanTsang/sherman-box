@@ -5,7 +5,7 @@
     color: #666;
     padding: 10px;
     letter-spacing: 2px;
-    background-color: #fff;
+    background-color: transparent;
     transition: all .2s ease-in-out;
 
     &:hover {
@@ -31,7 +31,7 @@
 
 <template>
   <button class="btn" :class="classes" :style="style" @click="$emit('click')">
-    <slot></slot>
+    <slot />
   </button>
 </template>
 

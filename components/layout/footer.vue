@@ -1,7 +1,6 @@
 <style lang="scss">
   .footer {
     margin-left: $sidebar-width;
-    background-color: #ffffff;
     padding: 30px 10px;
     border-top: 1px solid #eee;
 
@@ -60,7 +59,7 @@
 
 <template>
   <footer class="footer">
-    <layout-container class="footer__container">
+    <LayoutContainer class="footer__container">
       <div class="footer__container__page">
         <div v-for="item in $store.getters.pageList" :key="item.id" class="footer__container__page__item" @click="redirectToPage(item)">
           {{ item.name }}
@@ -69,7 +68,7 @@
       <div class="footer__container__info">
         {{ $getConfig('site.icp') }}
       </div>
-    </layout-container>
+    </LayoutContainer>
   </footer>
 </template>
 

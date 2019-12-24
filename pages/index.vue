@@ -2,11 +2,11 @@
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     <Blocker height="40px" />
     <Nameplate title="时间轴" sub-title="timeline"></Nameplate>
     <Timeline :timeline="data.timeline" :meta="meta" @on-request-more="requestTimeline()" />
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

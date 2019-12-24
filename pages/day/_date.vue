@@ -162,9 +162,9 @@
 <template>
   <div class="day">
     <Blocker height="40px" />
-    <layout-container>
-      <layout-row :gutter="32">
-        <layout-col :md="{span:16}" :lg="{span:16}">
+    <LayoutContainer>
+      <LayoutRow :gutter="32">
+        <LayoutCol :md="{span:16}" :lg="{span:16}">
           <Nameplate>
             <Datetime slot="title" format="YYYY年MM月DD日" class="day__date__text" :time="data.dayItem.date" />
             <small slot="subTitle">
@@ -297,8 +297,8 @@
               </div>
             </Waterfall>
           </Card>
-        </layout-col>
-        <layout-col :md="{span:8}" :lg="{span:8}">
+        </LayoutCol>
+        <LayoutCol :md="{span:8}" :lg="{span:8}">
           <Blocker height="20px" />
           <Nameplate title="那年今日" sub-title="retrospect" />
           <Card
@@ -313,14 +313,14 @@
           </Card>
           <Blocker height="30px" />
           <Nameplate title="记录" sub-title="record" />
-          <item-common v-for="item in allItem" :key="item.id" :item="item"></item-common>
-        </layout-col>
-      </layout-row>
-    </layout-container>
+          <ItemCommon v-for="item in allItem" :key="item.id" :item="item"></ItemCommon>
+        </LayoutCol>
+      </LayoutRow>
+    </LayoutContainer>
     <Blocker height="60px" />
-    <layout-container>
+    <LayoutContainer>
       <Comment :id="data.dayItem.id" module="day" :source-data="data.dayItem.comments" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
   </div>
 </template>

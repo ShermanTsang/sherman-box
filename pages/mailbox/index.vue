@@ -7,22 +7,22 @@
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     <Blocker height="20px" />
     <CategoryBox module="mailbox" />
     <Blocker height="20px" />
     <div v-if="data.mailboxList && data.mailboxList.length > 0" class="mailbox-list">
-      <layout-row :gutter="16">
-        <layout-col
+      <LayoutRow :gutter="16">
+        <LayoutCol
           v-for="item in data.mailboxList"
           :key="item.id"
           :sm="{span : 24}"
           :md="{span : 12}"
           :lg="{span : 8}"
         >
-          <item-mailbox :item="item" />
-        </layout-col>
-      </layout-row>
+          <ItemMailbox :item="item" />
+        </LayoutCol>
+      </LayoutRow>
     </div>
     <Tip v-else>
       暂无内容
@@ -35,7 +35,7 @@
       @change="changePage"
     />
     <Blocker height="40px" />
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

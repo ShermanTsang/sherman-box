@@ -1,5 +1,6 @@
 <style lang="scss">
   .tip {
+    padding: 16px;
     margin: 0 auto;
     background-color: #fff;
     display: flex;
@@ -159,7 +160,7 @@
 </style>
 
 <template>
-  <div class="tip">
+  <Card class="tip">
     <div class="tip__svg">
       <svg viewBox="0 0 136 135" class="tip__svg__stack-illustration">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -353,9 +354,9 @@
       </svg>
     </div>
     <div class="tip__text">
-      <slot></slot>
+      <slot />
     </div>
-  </div>
+  </Card>
 </template>
 
 <script>

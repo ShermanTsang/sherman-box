@@ -7,13 +7,13 @@
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     <Blocker height="20px" />
     <CategoryBox module="movie" />
     <Blocker height="20px" />
     <div v-if="data.movieList && data.movieList.length > 0" class="movie-list">
-      <layout-row :gutter="16">
-        <layout-col
+      <LayoutRow :gutter="16">
+        <LayoutCol
           v-for="item in data.movieList"
           :key="item.id"
           :xs="{span:24}"
@@ -22,9 +22,9 @@
           :lg="{span:8}"
           :xl="{span:6}"
         >
-          <item-movie :item="item" />
-        </layout-col>
-      </layout-row>
+          <ItemMovie :item="item" />
+        </LayoutCol>
+      </LayoutRow>
     </div>
     <Tip v-else>
       暂无内容
@@ -37,7 +37,7 @@
       @change="changePage"
     />
     <Blocker height="40px" />
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

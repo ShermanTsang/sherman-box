@@ -160,7 +160,7 @@
 <template>
   <div class="plan">
     <div class="plan__header">
-      <layout-container class="plan__header__main" max-width="900px">
+      <LayoutContainer class="plan__header__main" max-width="900px">
         <div class="plan__header__main__image">
           <img
             :src="$getOssUrl(data.planItem.image, true)"
@@ -181,26 +181,26 @@
         <div class="plan__header__main__description">
           {{ data.planItem.description || '暂无项目介绍' }}
         </div>
-      </layout-container>
+      </LayoutContainer>
     </div>
     <template v-if="data.planItem.content">
       <Blocker height="60px" />
-      <layout-container>
+      <LayoutContainer>
         <Nameplate title="内容" sub-title="content" />
         <Markdown :content="data.planItem.content || ''" />
-      </layout-container>
+      </LayoutContainer>
     </template>
     <template v-if="data.planItem.logs">
       <Blocker height="60px" />
-      <layout-container>
+      <LayoutContainer>
         <Nameplate title="日志" sub-title="logs" />
         <Markdown :content="data.planItem.logs || ''" />
-      </layout-container>
+      </LayoutContainer>
     </template>
     <Blocker height="60px" />
-    <layout-container>
+    <LayoutContainer>
       <Comment :id="data.planItem.id" module="plan" :source-data="data.planItem.comments" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
   </div>
 </template>

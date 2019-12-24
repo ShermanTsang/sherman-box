@@ -7,19 +7,19 @@
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     <Blocker height="20px" />
     <CategoryBox module="blog" />
     <Blocker height="20px" />
-    <layout-container max-width="1440px">
+    <LayoutContainer max-width="1440px">
       <div v-if="data.blogList && data.blogList.length > 0" class="blog-list">
-        <item-blog v-for="item in data.blogList" :key="item.id" :item="item" class="blog-list__item" />
+        <ItemBlog v-for="item in data.blogList" :key="item.id" :item="item" class="blog-list__item" />
       </div>
       <Tip v-else>
         暂无内容
       </Tip>
       <Blocker height="40px" />
-    </layout-container>
+    </LayoutContainer>
     <Pagination
       :page="parseInt(meta.current_page)"
       :total="parseInt(meta.total)"
@@ -27,7 +27,7 @@
       @change="changePage"
     />
     <Blocker height="40px" />
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

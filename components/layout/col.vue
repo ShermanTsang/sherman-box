@@ -109,7 +109,7 @@
 
 <template>
   <div class="col" :class="colClass" :style="colStyle">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

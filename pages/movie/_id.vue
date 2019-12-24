@@ -122,20 +122,20 @@
     </div>
     <template v-if="data.movieItem.schedule">
       <Blocker height="60px" />
-      <layout-container class="movie__content">
+      <LayoutContainer class="movie__content">
         <Nameplate title="追剧" sub-title="binge-watching" />
         <Tag>{{ data.movieItem.schedule }}</tag>
-      </layout-container>
+      </LayoutContainer>
     </template>
     <Blocker height="60px" />
-    <layout-container class="movie__content">
+    <LayoutContainer class="movie__content">
       <Nameplate title="想法" sub-title="thinking" />
       <Markdown :content="data.movieItem.comment || ''" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="40px" />
-    <layout-container>
+    <LayoutContainer>
       <Comment :id="data.movieItem.id" module="movie" :source-data="data.movieItem.comments" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
   </div>
 </template>

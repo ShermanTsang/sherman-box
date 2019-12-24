@@ -1,5 +1,6 @@
 <style lang="scss">
   .blog {
+
     &__header {
       position: relative;
       width: 100%;
@@ -20,7 +21,6 @@
         background-attachment: fixed;
         background-size: cover;
         background-position: center center;
-        box-shadow: 0 -30px 20px 40px rgb(255, 255, 255) inset;
       }
 
       &__text {
@@ -55,6 +55,7 @@
         }
       }
     }
+
   }
 </style>
 
@@ -63,7 +64,7 @@
     <div class="blog__header">
       <div v-lazy:background-image="$getOssUrl(data.blogItem.image)" class="blog__header__image">
       </div>
-      <layout-container class="blog__header__text">
+      <LayoutContainer class="blog__header__text">
         <div class="blog__header__text__title">
           {{ data.blogItem.name }}
         </div>
@@ -74,16 +75,16 @@
           <Icon name="clock" />
           <Datetime format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
         </div>
-      </layout-container>
+      </LayoutContainer>
     </div>
-    <Blocker height="20px" />
-    <layout-container class="blog__content">
+    <Blocker height="40px" />
+    <LayoutContainer class="blog__content">
       <Markdown :content="data.blogItem.content" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
-    <layout-container>
+    <LayoutContainer>
       <Comment :id="data.blogItem.id" module="blog" :source-data="data.blogItem.comments" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
   </div>
 </template>

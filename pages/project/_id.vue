@@ -150,7 +150,7 @@
 <template>
   <div class="project">
     <div class="project__header">
-      <layout-container class="project__header__main" max-width="900px">
+      <LayoutContainer class="project__header__main" max-width="900px">
         <div class="project__header__main__image">
           <img
             :src="$getOssUrl(data.projectItem.image, true)"
@@ -166,10 +166,10 @@
         <div class="project__header__main__description">
           {{ data.projectItem.description || '暂无项目介绍' }}
         </div>
-      </layout-container>
+      </LayoutContainer>
     </div>
     <Blocker height="60px" />
-    <layout-container>
+    <LayoutContainer>
       <Nameplate title="详情" sub-title="Detail" />
       <div class="project__detail">
         <div v-if="data.projectItem.datetime_start" class="project__detail__item">
@@ -273,23 +273,23 @@
           </div>
         </div>
       </div>
-    </layout-container>
+    </LayoutContainer>
     <template v-if="data.projectItem.content">
       <Blocker height="60px" />
-      <layout-container>
+      <LayoutContainer>
         <Nameplate title="预览" sub-title="Preview" />
         <Markdown :content="data.projectItem.content || ''" />
-      </layout-container>
+      </LayoutContainer>
     </template>
     <template v-if="data.projectItem.logs">
       <Blocker height="60px" />
-      <layout-container>
+      <LayoutContainer>
         <Nameplate title="日志" sub-title="Log" />
         <Markdown :content="data.projectItem.logs || ''" />
-      </layout-container>
+      </LayoutContainer>
     </template>
     <template v-if="data.projectItem.file">
-      <layout-container>
+      <LayoutContainer>
         <Blocker height="60px" />
         <Nameplate title="文件" sub-title="file" />
         <iframe
@@ -298,10 +298,10 @@
           width="100%"
           height="600px"
         ></iframe>
-      </layout-container>
+      </LayoutContainer>
     </template>
     <template v-if="data.projectItem.video">
-      <layout-container>
+      <LayoutContainer>
         <Nameplate title="视频" sub-title="video" />
         <iframe
           height="500"
@@ -309,12 +309,12 @@
           :src="data.projectItem.video"
           allowfullscreen
         ></iframe>
-      </layout-container>
+      </LayoutContainer>
     </template>
     <Blocker height="60px" />
-    <layout-container>
+    <LayoutContainer>
       <Comment :id="data.projectItem.id" module="project" :source-data="data.projectItem.comments" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
   </div>
 </template>

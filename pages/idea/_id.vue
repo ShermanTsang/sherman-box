@@ -43,7 +43,7 @@
 
 <template>
   <div class="idea">
-    <layout-container class="idea__header">
+    <LayoutContainer class="idea__header">
       <Blocker height="60px" />
       <div class="idea__header__title">
         {{ data.ideaItem.name }}
@@ -58,15 +58,15 @@
         class="idea__header__image"
       >
       </div>
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="20px" />
-    <layout-container class="idea__content">
+    <LayoutContainer class="idea__content">
       <Markdown :content="data.ideaItem.content" class="idea__content__main" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
-    <layout-container>
+    <LayoutContainer>
       <Comment :id="data.ideaItem.id" module="idea" :source-data="data.ideaItem.comments" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
   </div>
 </template>

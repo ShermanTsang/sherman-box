@@ -5,49 +5,58 @@
     line-height: 1.5;
     text-overflow: ellipsis;
     letter-spacing: 1px;
+    overflow: hidden;
+    height: 340px;
+    cursor: pointer;
 
     &__image {
-      position: relative;
+      transform: scale(1.4);
+      z-index: $z-index-card-background;
       transition: all 200ms ease-in;
-      opacity: .5;
-      height: 240px;
-      cursor: pointer;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      opacity: .8;
+      height: 60%;
+      background-position: center;
+      background-size: cover;
+      box-shadow: 0 -10px 17px 16px #fff inset;
     }
 
     &__main {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: $z-index-card-content;
       padding: 16px 32px;
 
       &__date {
         display: inline-block;
         padding-bottom: 10px;
-        border-bottom: 4px solid #efefef;
         cursor: pointer;
+        color: #fff;
+        text-shadow: 2px 1px 6px rgba(0,0,0,.2);
 
         &__main {
-          font-size: 1.8rem;
+          font-size: 1.85rem;
           font-weight: bold;
           letter-spacing: 2px;
-          color: #ccc;
         }
 
         &__sub {
-          font-size: 1rem;
-          color: #999;
+          font-size: 1.1rem;
         }
 
+      }
+
+      &__date--withoutImage{
+        color: #999;
+        text-shadow: none;
       }
 
       &__info {
         color: #999999;
         font-size: .9rem;
-        margin-top: 10px;
+        margin-top: 100px;
 
         &__detail {
           display: flex;
@@ -55,14 +64,20 @@
           justify-content: flex-start;
 
           &__item {
-            width: 33%;
+            border: 1px solid #eee;
+            padding: 2px 10px;
+            border-radius: 4px;
             cursor: default;
             font-size: .95rem;
-            margin: 6px 0;
+            margin: 4px;
 
             i {
               font-size: 1.25rem;
               color: #ccc;
+            }
+
+            small {
+              font-size: .85rem;
             }
 
           }
@@ -73,7 +88,6 @@
     &:hover {
       .day-item__image {
         opacity: 1;
-        transform: none;
       }
     }
 
@@ -98,16 +112,15 @@
 <template>
   <Card
     class="day-list__item day-item"
+    @click.native="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)"
   >
     <div
       v-if="item.image"
+      v-lazy:background-image="$getOssUrl(item.image)"
       class="day-item__image"
-      @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)"
-    >
-      <img :src="$getOssUrl(item.image)">
-    </div>
+    ></div>
     <div class="day-item__main">
-      <div class="day-item__main__date" @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)">
+      <div class="day-item__main__date" :class="{'day-item__main__date--withoutImage': !item.image}" @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)">
         <div class="day-item__main__date__main">
           {{ $time(item.date).format('MM.DD') }}
         </div>
@@ -119,35 +132,35 @@
         <div class="day-item__main__info__detail">
           <div v-if="item.event" class="day-item__main__info__detail__item">
             <icon name="calendar" />
-            {{ $getStringCount(item.event) }}件
+            {{ $getStringCount(item.event) }} <small>件</small>
           </div>
           <div v-if="item.step" class="day-item__main__info__detail__item">
             <icon name="run" />
-            {{ item.step }}步
+            {{ item.step }} <small>步</small>
           </div>
           <div v-if="item.weight" class="day-item__main__info__detail__item">
             <icon name="weight" />
-            {{ item.weight }}斤
+            {{ item.weight }} <small>斤</small>
           </div>
           <div v-if="item.movement" class="day-item__main__info__detail__item">
             <icon name="schedule" />
-            {{ $getStringCount(item.movement) }}项
+            {{ $getStringCount(item.movement) }} <small>项</small>
           </div>
           <div v-if="item.people" class="day-item__main__info__detail__item">
             <icon name="user" />
-            {{ $getStringCount(item.people) }}人
+            {{ $getStringCount(item.people) }} <small>人</small>
           </div>
           <div v-if="item.food" class="day-item__main__info__detail__item">
             <icon name="food" />
-            {{ $getStringCount(item.food) }}类
+            {{ $getStringCount(item.food) }} <small>类</small>
           </div>
           <div v-if="item.location" class="day-item__main__info__detail__item">
             <icon name="location" />
-            {{ $getStringCount(item.location) }}处
+            {{ $getStringCount(item.location) }} <small>处</small>
           </div>
           <div v-if="item.mood" class="day-item__main__info__detail__item">
             <icon name="mood" />
-            {{ $getStringCount(item.mood) }}种
+            {{ $getStringCount(item.mood) }} <small>种</small>
           </div>
         </div>
       </div>

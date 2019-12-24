@@ -87,7 +87,7 @@
       <div class="loading__element__bounce2"></div>
     </div>
     <div v-if="$slots.default && $slots.default[0]" class="loading__text">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

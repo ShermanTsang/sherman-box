@@ -16,7 +16,7 @@
 </style>
 
 <template>
-  <layout-container class="search">
+  <LayoutContainer class="search">
     <Blocker height="40px" />
     <Nameplate title="搜索" :sub-title="this.$route.query.keyword || ''" />
     <Blocker height="20px" />
@@ -33,7 +33,7 @@
     <Tip v-else>
       暂无搜索结果
     </Tip>
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

@@ -47,8 +47,8 @@
 <template>
   <div class="mailbox">
     <div v-lazy:background-image="$getOssUrl(data.mailboxItem.image)" class="mailbox__image"></div>
-    <layout-container class="mailbox__main">
-      <layout-container class="mailbox__main__text">
+    <LayoutContainer class="mailbox__main">
+      <LayoutContainer class="mailbox__main__text">
         <div class="mailbox__main__text__title">
           {{ data.mailboxItem.name }}
         </div>
@@ -60,18 +60,18 @@
           <Icon name="clock" />
           <Datetime format="YYYY-MM-DD" :time="data.mailboxItem.datetime" from-now />
         </div>
-      </layout-container>
-    </layout-container>
+      </LayoutContainer>
+    </LayoutContainer>
     <Btn v-if="data.mailboxItem.content === null" width="300px" class="mailbox__locker" @click="status.showModal = true">
       <Icon name="lock" /> 解锁
     </Btn>
-    <layout-container v-if="data.mailboxItem.content !== null" class="mailbox__content">
+    <LayoutContainer v-if="data.mailboxItem.content !== null" class="mailbox__content">
       <Markdown :content="data.mailboxItem.content" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
-    <layout-container>
+    <LayoutContainer>
       <Comment :id="data.mailboxItem.id" module="mailbox" :source-data="data.mailboxItem.comments" />
-    </layout-container>
+    </LayoutContainer>
     <Blocker height="60px" />
     <Modal v-model="status.showModal" title="解锁邮盒" icon="comment" width="500px">
       <Loading v-if="status.isLoadingSubmit" :fix="true">

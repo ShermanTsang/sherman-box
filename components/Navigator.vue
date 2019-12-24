@@ -30,7 +30,7 @@
         <span v-else class="navigator__item__divider">{{ divider }}</span>
       </template>
     </div>
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

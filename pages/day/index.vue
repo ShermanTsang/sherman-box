@@ -1,21 +1,28 @@
 <style lang="scss">
   .day-list {
+    &__item {
+      margin-bottom: 30px;
+    }
   }
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     <Blocker height="20px" />
     <div v-if="data.dayList" class="day-list">
-      <Waterfall gap="0">
-        <div
+      <LayoutRow :gutter="16">
+        <LayoutCol
           v-for="item in data.dayList"
           :key="item.id"
-          class="waterfall__item"
+          :xs="{span:24}"
+          :sm="{span:24}"
+          :md="{span:12}"
+          :lg="{span:12}"
+          :xl="{span:8}"
         >
-          <item-day :item="item" />
-        </div>
-      </Waterfall>
+          <ItemDay :item="item" />
+        </LayoutCol>
+      </LayoutRow>
     </div>
     <Blocker height="40px" />
     <Pagination
@@ -25,7 +32,7 @@
       @change="changePage"
     />
     <Blocker height="40px" />
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

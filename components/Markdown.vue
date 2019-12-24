@@ -1,5 +1,6 @@
 <style lang="scss">
   .markdown {
+    padding: 16px;
 
     article {
       font-size: 16px;
@@ -174,6 +175,7 @@
                 padding: 10px 6px;
                 font-weight: normal;
                 white-space: nowrap;
+
                 &:not(:first-child) {
                   border-left: 1px solid #efefef;
                   margin-left: 6px;
@@ -222,17 +224,17 @@
 </style>
 
 <template>
-  <div class="markdown">
+  <Card class="markdown">
     <article
       v-lazy-container="{ selector: 'img' }"
       class="markdown"
       @click="handleClick($event)"
       v-html="compiledMarkdown"
     >
-      <slot></slot>
+      <slot />
     </article>
     <ImageModal :url.sync="imageModalUrl" />
-  </div>
+  </Card>
 </template>
 
 <script>
@@ -256,12 +258,13 @@ export default {
   },
   computed: {
     compiledMarkdown() {
-      this.setMarkdownOption()
-      this.setMarkdownRenderer()
-      return Marked(this.content)
+      if (process.client) {
+        this.setMarkdownOption()
+        this.setMarkdownRenderer()
+        return Marked(this.content)
+      }
+      return this.content
     }
-  },
-  mounted() {
   },
   methods: {
     handleClick(event) {

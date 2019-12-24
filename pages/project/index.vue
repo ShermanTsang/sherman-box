@@ -7,21 +7,21 @@
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     <Blocker height="20px" />
     <CategoryBox module="project" />
     <Blocker height="20px" />
     <div v-if="data.projectList && data.projectList.length > 0" class="project-list">
-      <layout-row :gutter="16">
-        <layout-col
+      <LayoutRow :gutter="16">
+        <LayoutCol
           v-for="item in data.projectList"
           :key="item.id"
           :md="{span:24}"
           :lg="{span:12}"
         >
-          <item-project :item="item" />
-        </layout-col>
-      </layout-row>
+          <ItemProject :item="item" />
+        </LayoutCol>
+      </LayoutRow>
     </div>
     <Tip v-else>
       暂无内容
@@ -34,7 +34,7 @@
       @change="changePage"
     />
     <Blocker height="40px" />
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

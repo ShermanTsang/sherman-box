@@ -2,9 +2,9 @@
 </style>
 
 <template>
-  <layout-container>
+  <LayoutContainer>
     <Tip>页面不存在！</Tip>
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

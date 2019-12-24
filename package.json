@@ -23,7 +23,7 @@
     "lodash": "^4.17.11",
     "marked": "^0.6.2",
     "normalize.css": "^8.0.1",
-    "nuxt": "^2.10.0",
+    "nuxt": "^2.11.0",
     "vee-validate": "^2.2.15",
     "vue-lazyload": "^1.2.6"
   },

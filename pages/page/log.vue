@@ -27,7 +27,7 @@
 </style>
 
 <template>
-  <layout-container class="log">
+  <LayoutContainer class="log">
     <Blocker height="40px" />
     <Nameplate title="开发日志" sub-title="develop log" />
     <Blocker height="40px" />
@@ -49,7 +49,7 @@
       </template>
     </div>
     <Blocker height="40px" />
-  </layout-container>
+  </LayoutContainer>
 </template>
 
 <script>

@@ -31,7 +31,7 @@
       <span>{{ tagLength }}</span>
     </template>
     <template v-else>
-      <span v-if="tagLength <= 1" class="tag__item"><slot></slot></span>
+      <span v-if="tagLength <= 1" class="tag__item"><slot /></span>
       <span v-for="item in tagResult" v-else :key="item" class="tag__item">{{ item }}</span>
     </template>
   </div>

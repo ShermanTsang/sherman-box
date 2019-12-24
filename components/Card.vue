@@ -1,11 +1,11 @@
 <style lang="scss">
   .card {
-    transition: all .2s ease-in-out;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .1);
+    transition: all .4s ease-in-out;
+    border: 1px solid #eee;
     background-color: #ffffff;
 
     &:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
     }
 
   }
@@ -13,7 +13,7 @@
 
 <template>
   <div class="card">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

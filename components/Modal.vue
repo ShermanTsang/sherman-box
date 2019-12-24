@@ -82,7 +82,7 @@
           </span>
         </div>
         <div class="modal__container__content">
-          <slot></slot>
+          <slot />
         </div>
         <div v-if="$slots.footer" class="modal__container__footer">
           <slot name="footer"></slot>

@@ -20,7 +20,7 @@
 
 <template>
   <div class="waterfall" :style="style">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

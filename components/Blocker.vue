@@ -18,7 +18,7 @@
 <template>
   <div class="blocker" :style="style">
     <div v-if="divider" class="blocker__divider" :style="dividerStyle"></div>
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

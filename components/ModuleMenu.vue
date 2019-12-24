@@ -12,7 +12,7 @@
       cursor: pointer;
       padding: 20px 16px;
       font-size: .95rem;
-      color: #888;
+      color: #666;
       text-overflow: ellipsis;
       overflow: hidden;
       transition: border-radius .2s ease-in-out;
@@ -22,7 +22,7 @@
         transform-origin: center bottom;
 
         i {
-          color: #aaa;
+          color: #999;
           margin-right: 10px;
         }
       }
