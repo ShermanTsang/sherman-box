@@ -164,8 +164,8 @@
         <div class="plan__header__main__image">
           <img
             :src="$getOssUrl(data.planItem.image, true)"
-            crossorigin="anonymous"
             @load="$gradientColor('.plan__header')"
+            crossorigin="anonymous"
           >
         </div>
         <Blocker height="30px" />
@@ -174,9 +174,9 @@
         </div>
         <Blocker height="20px" />
         <div class="plan__header__main__time">
-          始 <Datetime from-now type="datetime" :time="data.planItem.datetime_start" />
+          始 <Datetime :time="data.planItem.datetime_start" from-now type="datetime" />
           <br>
-          终 <Datetime from-now type="datetime" :time="data.planItem.datetime_end" />
+          终 <Datetime :time="data.planItem.datetime_end" from-now type="datetime" />
         </div>
         <div class="plan__header__main__description">
           {{ data.planItem.description || '暂无项目介绍' }}
@@ -199,7 +199,7 @@
     </template>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.planItem.id" module="plan" :source-data="data.planItem.comments" />
+      <Comment :id="data.planItem.id" :source-data="data.planItem.comments" module="plan" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

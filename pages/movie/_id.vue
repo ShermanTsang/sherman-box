@@ -84,8 +84,8 @@
         <div class="movie__header__poster__image">
           <img
             :src="$getOssUrl(data.movieItem.image, true)"
-            crossorigin="anonymous"
             @load="$gradientColor('.movie__header')"
+            crossorigin="anonymous"
           >
         </div>
         <Blocker height="20px" />
@@ -134,7 +134,7 @@
     </LayoutContainer>
     <Blocker height="40px" />
     <LayoutContainer>
-      <Comment :id="data.movieItem.id" module="movie" :source-data="data.movieItem.comments" />
+      <Comment :id="data.movieItem.id" :source-data="data.movieItem.comments" module="movie" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

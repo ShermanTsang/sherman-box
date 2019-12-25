@@ -184,7 +184,7 @@
         </div>
       </div>
       <div class="menu--horizontal__scrollbar" @click="scrollHorizontalMenu()">
-        <Icon name="angle-right" color="#aaa" size="18px"></Icon>
+        <Icon name="angle-right" color="#aaa" size="18px" />
       </div>
     </div>
   </div>

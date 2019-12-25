@@ -50,7 +50,7 @@
       </div>
       <Blocker height="20px" />
       <div class="idea__header__info">
-        <Datetime format="YYYY-MM-DD" from-now :time="data.ideaItem.datetime" />
+        <Datetime :time="data.ideaItem.datetime" format="YYYY-MM-DD" from-now />
       </div>
       <div
         v-if="data.ideaItem.image"
@@ -65,7 +65,7 @@
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.ideaItem.id" module="idea" :source-data="data.ideaItem.comments" />
+      <Comment :id="data.ideaItem.id" :source-data="data.ideaItem.comments" module="idea" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

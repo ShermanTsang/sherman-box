@@ -4,7 +4,7 @@
 <template>
   <LayoutContainer>
     <Blocker height="40px" />
-    <Nameplate title="时间轴" sub-title="timeline"></Nameplate>
+    <Nameplate title="时间轴" sub-title="timeline" />
     <Timeline :timeline="data.timeline" :meta="meta" @on-request-more="requestTimeline()" />
   </LayoutContainer>
 </template>

@@ -37,7 +37,7 @@
 <template>
   <transition name="fade">
     <div v-show="isShow" class="message" :class="`message--${type}`">
-      <Icon v-if="icon" :name="icon"></Icon>
+      <Icon v-if="icon" :name="icon" />
       <span class="text">{{ text }}</span>
     </div>
   </transition>

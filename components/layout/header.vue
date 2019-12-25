@@ -8,10 +8,11 @@
     z-index: $z-index-header;
     height: $header-height;
     padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
     overflow: hidden;
     transition: all .2s ease-in-out;
     background-color: rgba(255, 255, 255, .95);
+    box-shadow: 0 2px 10px rgba(177, 177, 177, .2);
 
     @media($screen-md-max) {
       position: relative;
@@ -44,7 +45,7 @@
     }
 
     &:hover {
-      box-shadow: 0 2px 10px rgba(177, 177, 177, .2);
+      box-shadow: 0 2px 12px rgba(177, 177, 177, .4);
     }
 
   }

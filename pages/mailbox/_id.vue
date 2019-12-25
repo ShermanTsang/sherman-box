@@ -58,11 +58,11 @@
         </div>
         <div class="mailbox__main__text__info">
           <Icon name="clock" />
-          <Datetime format="YYYY-MM-DD" :time="data.mailboxItem.datetime" from-now />
+          <Datetime :time="data.mailboxItem.datetime" format="YYYY-MM-DD" from-now />
         </div>
       </LayoutContainer>
     </LayoutContainer>
-    <Btn v-if="data.mailboxItem.content === null" width="300px" class="mailbox__locker" @click="status.showModal = true">
+    <Btn v-if="data.mailboxItem.content === null" @click="status.showModal = true" width="300px" class="mailbox__locker">
       <Icon name="lock" /> 解锁
     </Btn>
     <LayoutContainer v-if="data.mailboxItem.content !== null" class="mailbox__content">
@@ -70,7 +70,7 @@
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.mailboxItem.id" module="mailbox" :source-data="data.mailboxItem.comments" />
+      <Comment :id="data.mailboxItem.id" :source-data="data.mailboxItem.comments" module="mailbox" />
     </LayoutContainer>
     <Blocker height="60px" />
     <Modal v-model="status.showModal" title="解锁邮盒" icon="comment" width="500px">
@@ -79,16 +79,16 @@
       </Loading>
       <FormItem
         v-model="form.password"
+        @changeValidate="valid => status.validate.password = valid"
         validate="required"
         label="密码"
         name="password"
         type="input"
         placeholder="等待解锁"
-        @changeValidate="valid => status.validate.password = valid"
       >
-        <span v-if="data.mailboxItem.hint" slot="tip">提示：{{ data.mailboxItem.hint }}</span>
+        <span slot="tip" v-if="data.mailboxItem.hint">提示：{{ data.mailboxItem.hint }}</span>
       </FormItem>
-      <Btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitCheckPassword()">
+      <Btn slot="footer" :full-width="true" :colorful="true" @click="submitCheckPassword()" height="48px">
         校验
       </Btn>
     </Modal>

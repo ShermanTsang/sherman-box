@@ -5,9 +5,12 @@
       &__item {
         display: flex;
         align-items: flex-start;
-        margin: 1rem 0;
-        padding: 10px;
+        padding: 32px;
         transition: all 300ms ease-in-out;
+
+        &:not(:first-child) {
+          border-top: 1px solid #eee;
+        }
 
         &__avatar {
           margin-right: 20px;
@@ -48,13 +51,13 @@
         写评论
       </Btn>
     </Nameplate>
-    <div v-for="item in data.commentList" :key="item.id" class="comment__list">
-      <div class="comment__list__item">
+    <Card class="comment__list">
+      <div v-for="item in data.commentList" :key="item.id" class="comment__list__item">
         <div class="comment__list__item__avatar">
-          <Avatar :sign="item.qq || item.email" size="48px" @click="redirectByUrl(item.website)" />
+          <Avatar :sign="item.qq || item.email" @click="redirectByUrl(item.website)" size="48px" />
         </div>
         <div class="comment__list__item__main">
-          <div class="comment__list__item__main__username" @click="redirectByUrl(item.website)">
+          <div @click="redirectByUrl(item.website)" class="comment__list__item__main__username">
             {{ item.username }}
           </div>
           <div class="comment__list__item__main__content">
@@ -65,7 +68,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </Card>
     <Tip v-if="data.commentList.length === 0">
       暂无评论
     </Tip>
@@ -75,41 +78,41 @@
       </Loading>
       <FormItem
         v-model="form.username"
+        @changeValidate="valid => status.validate.username = valid"
         validate="required|max:12"
         label="昵称"
         name="username"
         type="input"
         placeholder="该如何称呼你呢？"
-        @changeValidate="valid => status.validate.username = valid"
       />
       <FormItem
         v-model="form.contact"
+        @changeValidate="valid => status.validate.contact = valid"
         label="联系方式"
         name="contact"
         type="input"
         validate="required|max:30"
         placeholder="QQ / Wechat / Email"
-        @changeValidate="valid => status.validate.contact = valid"
       >
-        <span v-if="contactType" slot="tip">使用 {{ contactType }} 作为联系方式</span>
+        <span slot="tip" v-if="contactType">使用 {{ contactType }} 作为联系方式</span>
       </FormItem>
       <FormItem
         v-model="form.website"
+        @changeValidate="valid => status.validate.website = valid"
         label="个人网站"
         name="website"
         type="input"
         validate="url|max:60"
         placeholder="可填写你的网站、博客、微博或其他社媒地址"
-        @changeValidate="valid => status.validate.website = valid"
       />
       <FormItem
         v-model="form.comment"
+        @changeValidate="valid => status.validate.comment = valid"
         label="内容"
         name="comment"
         type="input"
         validate="required|max:30|min:4"
         placeholder="留下你的想法、疑问、评论或回忆"
-        @changeValidate="valid => status.validate.comment = valid"
       />
       <FormItem
         v-if="['qq','email'].includes(contactType)"
@@ -119,7 +122,7 @@
       >
         <Avatar :sign="form.contact" size="60px" />
       </FormItem>
-      <Btn slot="footer" :full-width="true" height="48px" :colorful="true" @click="submitSendComment()">
+      <Btn slot="footer" :full-width="true" :colorful="true" @click="submitSendComment()" height="48px">
         发送
       </Btn>
     </Modal>

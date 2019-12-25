@@ -54,6 +54,7 @@
     }
 
     &__detail {
+      background-color: #fff;
       display: flex;
       flex-flow: row wrap;
 
@@ -154,8 +155,8 @@
         <div class="project__header__main__image">
           <img
             :src="$getOssUrl(data.projectItem.image, true)"
-            crossorigin="anonymous"
             @load="$gradientColor('.project__header')"
+            crossorigin="anonymous"
           >
         </div>
         <Blocker height="30px" />
@@ -180,11 +181,11 @@
           <div class="project__detail__item__info">
             <Tag>
               始
-              <Datetime from-now type="datetime" :time="data.projectItem.datetime_start" />
+              <Datetime :time="data.projectItem.datetime_start" from-now type="datetime" />
             </tag>
             <Tag v-if="data.projectItem.datetime_end">
               终
-              <Datetime from-now type="datetime" :time="data.projectItem.datetime_end" />
+              <Datetime :time="data.projectItem.datetime_end" from-now type="datetime" />
             </tag>
           </div>
         </div>
@@ -304,16 +305,16 @@
       <LayoutContainer>
         <Nameplate title="视频" sub-title="video" />
         <iframe
+          :src="data.projectItem.video"
           height="500"
           width="100%"
-          :src="data.projectItem.video"
           allowfullscreen
         ></iframe>
       </LayoutContainer>
     </template>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.projectItem.id" module="project" :source-data="data.projectItem.comments" />
+      <Comment :id="data.projectItem.id" :source-data="data.projectItem.comments" module="project" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

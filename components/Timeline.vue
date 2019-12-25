@@ -124,16 +124,16 @@
   <div class="timeline">
     <div v-for="(item,index) in timeline" :key="`${item.module}-${item.id}`" class="timeline__item">
       <div class="timeline__item__date">
-        <Datetime from-now :time="item.datetime" type="date" />
+        <Datetime :time="item.datetime" from-now type="date" />
         <div class="timeline__item__date__icon">
-          <Icon :name="$getModuleConfig(item.module).icon" size="24px" color="#aaa"></icon>
+          <Icon :name="$getModuleConfig(item.module).icon" size="24px" color="#aaa" />
         </div>
       </div>
       <div class="timeline__item__body">
-        <ItemCommon text="detail" :item="item" :align="index % 2 === 0 ? 'right': 'left'"></ItemCommon>
+        <ItemCommon :item="item" :align="index % 2 === 0 ? 'right': 'left'" text="detail" />
       </div>
     </div>
-    <div v-if="meta.last_page !== meta.current_page" class="timeline__more" @click="$emit('on-request-more')">
+    <div v-if="meta.last_page !== meta.current_page" @click="$emit('on-request-more')" class="timeline__more">
       加载更多
     </div>
   </div>

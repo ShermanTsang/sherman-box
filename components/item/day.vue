@@ -6,7 +6,7 @@
     text-overflow: ellipsis;
     letter-spacing: 1px;
     overflow: hidden;
-    height: 340px;
+    height: 360px;
     cursor: pointer;
 
     &__image {
@@ -22,7 +22,7 @@
 
     &__main {
       position: absolute;
-      top: 50px;
+      top: 60px;
       left: 0;
       right: 0;
       bottom: 0;
@@ -111,8 +111,8 @@
 
 <template>
   <Card
-    class="day-list__item day-item"
     @click.native="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)"
+    class="day-list__item day-item"
   >
     <div
       v-if="item.image"
@@ -120,7 +120,7 @@
       class="day-item__image"
     ></div>
     <div class="day-item__main">
-      <div class="day-item__main__date" :class="{'day-item__main__date--withoutImage': !item.image}" @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)">
+      <div :class="{'day-item__main__date--withoutImage': !item.image}" @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)" class="day-item__main__date">
         <div class="day-item__main__date__main">
           {{ $time(item.date).format('MM.DD') }}
         </div>

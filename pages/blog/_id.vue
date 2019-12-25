@@ -73,7 +73,7 @@
           <Icon name="category" />
           {{ data.blogItem.category.name }}
           <Icon name="clock" />
-          <Datetime format="YYYY-MM-DD" :time="data.blogItem.datetime" from-now />
+          <Datetime :time="data.blogItem.datetime" format="YYYY-MM-DD" from-now />
         </div>
       </LayoutContainer>
     </div>
@@ -83,7 +83,7 @@
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.blogItem.id" module="blog" :source-data="data.blogItem.comments" />
+      <Comment :id="data.blogItem.id" :source-data="data.blogItem.comments" module="blog" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

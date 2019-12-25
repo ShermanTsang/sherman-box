@@ -3,22 +3,24 @@
     input {
       outline: none;
       color: #999;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       width: 120px;
       padding: 10px 16px 10px 40px;
-      border-radius: 24px;
       max-width: 100%;
       transition: all .2s ease-in-out;
       background: #fff url('../assets/image/search.png') 8px 5px no-repeat;
       background-size: 28px;
-      border: 1px solid #ddd;
+      border: none;
+
+      &:focus{
+        border-bottom: 1px solid #ddd;
+      }
 
       @media ($screen-sm-min) {
         &:focus {
           color: #666;
           width: 240px;
-          box-shadow: rgba(177, 177, 177, 0.2) 0 0 10px inset;
-          background-color: rgb(248, 248, 248);
+          box-shadow: rgba(177, 177, 177, 0.1) 0 0 10px inset;
         }
       }
     }
@@ -27,7 +29,14 @@
 
 <template>
   <div class="search">
-    <input v-model="form.keyword" type="text" placeholder="搜索..." @keyup.enter="search">
+    <input
+      v-model="form.keyword"
+      @keyup.enter="search"
+      type="text"
+      minlength="2"
+      maxlength="15"
+      placeholder="搜索..."
+    >
   </div>
 </template>
 

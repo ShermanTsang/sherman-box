@@ -7,17 +7,17 @@
   <LayoutContainer class="page">
     <Blocker height="40px" />
     <Nameplate :title="data.pageItem.name" :sub-title="data.pageItem.url" />
-    <Blocker height="40px" />
     <Markdown :content="data.pageItem.content" />
     <Blocker height="40px" />
-    <Comment :id="data.pageItem.id" module="page" :source-data="data.pageItem.comments" />
+    <Comment :id="data.pageItem.id" :source-data="data.pageItem.comments" module="page" />
   </LayoutContainer>
 </template>
 
 <script>
 export default {
   validate({ params }) {
-    return params.url && params.url !== 'log'
+    const customePageNameArray = ['log']
+    return params.url && !customePageNameArray.includes(params.url)
   },
   head() {
     return {

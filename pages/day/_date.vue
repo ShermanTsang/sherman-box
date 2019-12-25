@@ -166,9 +166,9 @@
       <LayoutRow :gutter="32">
         <LayoutCol :md="{span:16}" :lg="{span:16}">
           <Nameplate>
-            <Datetime slot="title" format="YYYY年MM月DD日" class="day__date__text" :time="data.dayItem.date" />
+            <Datetime slot="title" :time="data.dayItem.date" format="YYYY年MM月DD日" class="day__date__text" />
             <small slot="subTitle">
-              <Datetime format="ddd" :time="data.dayItem.date" />
+              <Datetime :time="data.dayItem.date" format="ddd" />
             </small>
             <div class="day__control">
               <template v-if="data.dayItem.day_previous">
@@ -191,7 +191,7 @@
             <div v-if="data.dayItem.image" class="day__card__banner">
               <div v-lazy:background-image="$getOssUrl(data.dayItem.image)" class="day__card__banner__image"></div>
             </div>
-            <Waterfall gap="16px" class="day__card__main" :column="2">
+            <Waterfall :column="2" gap="16px" class="day__card__main">
               <div v-if="data.dayItem.event" class="day__card__main__item">
                 <div class="day__card__main__item__name">
                   <Icon name="calendar" />
@@ -319,7 +319,7 @@
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.dayItem.id" module="day" :source-data="data.dayItem.comments" />
+      <Comment :id="data.dayItem.id" :source-data="data.dayItem.comments" module="day" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

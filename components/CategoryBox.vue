@@ -1,11 +1,14 @@
 <style lang="scss">
   .category-box {
     color: #999;
-    padding: 10px;
     display: -webkit-box;
     overflow-x: scroll;
     overflow-scrolling: touch;
     white-space: nowrap;
+
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
 
     &__item {
       position: relative;
@@ -20,10 +23,8 @@
     }
 
     &__item--active {
-      color: #fff;
+      color: $theme-color;
       border-radius: 1px;
-      opacity: .8;
-      @include gradient-background;
     }
 
     &::-webkit-scrollbar {
@@ -36,11 +37,11 @@
 </style>
 
 <template>
-  <div class="category-box" :style="style">
+  <div :style="style" class="category-box">
     <nuxt-link
       :to="$route.path"
-      class="category-box__item"
       :class="{'category-box__item--active': !$route.query.categoryId}"
+      class="category-box__item"
     >
       全部
     </nuxt-link>
@@ -48,8 +49,8 @@
       v-for="item in categoryList"
       :key="item.id"
       :to="`${$route.path}?categoryId=${item.id}&page=1`"
-      class="category-box__item"
       :class="{'category-box__item--active':isActiveCategory(item)}"
+      class="category-box__item"
     >
       {{ item.name }}
     </nuxt-link>
