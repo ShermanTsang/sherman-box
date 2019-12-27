@@ -3,7 +3,7 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: #f8f8f8;
+    background-color: #fff;
   }
 </style>
 

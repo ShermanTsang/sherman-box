@@ -8,9 +8,9 @@
       padding: 10px 16px 10px 40px;
       max-width: 100%;
       transition: all .2s ease-in-out;
-      background: #fff url('../assets/image/search.png') 8px 5px no-repeat;
+      background: transparent url('../assets/image/search.png') 8px 5px no-repeat;
       background-size: 28px;
-      border: none;
+      border: transparent;
 
       &:focus{
         border-bottom: 1px solid #ddd;
@@ -20,7 +20,6 @@
         &:focus {
           color: #666;
           width: 240px;
-          box-shadow: rgba(177, 177, 177, 0.1) 0 0 10px inset;
         }
       }
     }

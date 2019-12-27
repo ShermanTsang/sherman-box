@@ -6,7 +6,7 @@
     text-overflow: ellipsis;
     letter-spacing: 1px;
     overflow: hidden;
-    height: 360px;
+    height: 400px;
     cursor: pointer;
 
     &__image {
@@ -14,15 +14,15 @@
       z-index: $z-index-card-background;
       transition: all 200ms ease-in;
       opacity: .8;
-      height: 60%;
+      height: 210px;
       background-position: center;
       background-size: cover;
-      box-shadow: 0 -10px 17px 16px #fff inset;
+      box-shadow: 0 -10px 20px 16px #fff inset;
     }
 
     &__main {
       position: absolute;
-      top: 60px;
+      top: 70px;
       left: 0;
       right: 0;
       bottom: 0;

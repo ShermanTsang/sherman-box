@@ -3,7 +3,6 @@
 
     &__list {
       position: relative;
-      min-height: 400px;
 
       &__item {
         letter-spacing: 1px;
@@ -49,7 +48,7 @@
     <Blocker height="40px" />
     <Nameplate title="开发日志" sub-title="develop log" />
     <Blocker height="40px" />
-    <Card class="log__list">
+    <div class="log__list">
       <Loading v-if="status.isLoading" :fix="true">
         正在从Github拉取日志...
       </Loading>
@@ -76,7 +75,7 @@
       <div @click="requestGithubCommitLog()" class="log__list__action">
         加载更多
       </div>
-    </Card>
+    </div>
     <Blocker height="40px" />
   </LayoutContainer>
 </template>
@@ -102,7 +101,7 @@ export default {
       },
       status: {
         isLoading: false,
-        currentPage: 1
+        currentPage: 0
       }
     }
   },

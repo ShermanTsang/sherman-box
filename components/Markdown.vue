@@ -224,17 +224,17 @@
 </style>
 
 <template>
-  <Card class="markdown">
+  <div class="markdown">
     <article
       v-lazy-container="{ selector: 'img' }"
-      class="markdown"
       @click="handleClick($event)"
       v-html="compiledMarkdown"
+      class="markdown"
     >
       <slot />
     </article>
     <ImageModal :url.sync="imageModalUrl" />
-  </Card>
+  </div>
 </template>
 
 <script>

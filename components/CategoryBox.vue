@@ -6,10 +6,6 @@
     overflow-scrolling: touch;
     white-space: nowrap;
 
-    &:not(:first-child) {
-      margin-left: 10px;
-    }
-
     &__item {
       position: relative;
       display: inline-block;
@@ -25,6 +21,17 @@
     &__item--active {
       color: $theme-color;
       border-radius: 1px;
+      &:before {
+        position: absolute;
+        width: 100%;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        background-color: $theme-color;
+        height: 8px;
+        content: '';
+        opacity: 0.2;
+      }
     }
 
     &::-webkit-scrollbar {

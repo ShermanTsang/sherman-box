@@ -15,7 +15,7 @@
       color: #666;
       text-overflow: ellipsis;
       overflow: hidden;
-      transition: border-radius .2s ease-in-out;
+      transition: transform .3s ease-in-out;
 
       &__icon {
         transition: all .25s ease-in-out;
@@ -44,9 +44,7 @@
       }
 
       &:hover {
-        .sidebar__container__menu--vertical__item__icon {
-          transform: rotate(-15deg);
-        }
+        transform: scale(1.05);
       }
     }
 
@@ -157,9 +155,9 @@
       <div
         v-for="(item,index) in $store.getters.moduleList"
         :key="index"
-        class="menu--vertical__item"
         :class="{'menu--vertical__item--active': isActiveMenu(item)}"
         @click="$router.push(`/${item.url}`)"
+        class="menu--vertical__item"
       >
         <div class="menu--vertical__item__icon">
           <Icon :name="item.icon" size="24px" />
@@ -174,8 +172,8 @@
         <div
           v-for="(item,index) in $store.getters.moduleList"
           :key="index"
-          class="menu--horizontal__content__item"
           :class="{'menu--horizontal__content__item--active': isActiveMenu(item)}"
+          class="menu--horizontal__content__item"
         >
           <nuxt-link :to="`/${item.url}`">
             <Icon :name="item.icon" />
@@ -183,7 +181,7 @@
           </nuxt-link>
         </div>
       </div>
-      <div class="menu--horizontal__scrollbar" @click="scrollHorizontalMenu()">
+      <div @click="scrollHorizontalMenu()" class="menu--horizontal__scrollbar">
         <Icon name="angle-right" color="#aaa" size="18px" />
       </div>
     </div>

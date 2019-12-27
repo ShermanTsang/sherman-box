@@ -10,7 +10,7 @@
       z-index: $z-index-card-background;
       top: -200px;
       width: 100%;
-      transition: all 0.4s ease-in-out;
+      transition: all 0.3s ease-in-out;
 
       &__image {
         overflow: hidden;

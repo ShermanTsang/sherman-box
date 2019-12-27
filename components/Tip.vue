@@ -46,7 +46,7 @@
           transform: translate(52px, 54px) translateZ(0);
 
           &.animated {
-            animation: popupCenter 0.75s 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) forwards 1;
+            animation: popupCenter 0.75s 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards 1;
 
             &.secondary {
               animation: hoverCenter 3s linear forwards infinite;
@@ -160,7 +160,7 @@
 </style>
 
 <template>
-  <Card class="tip">
+  <div class="tip">
     <div class="tip__svg">
       <svg viewBox="0 0 136 135" class="tip__svg__stack-illustration">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -356,7 +356,7 @@
     <div class="tip__text">
       <slot />
     </div>
-  </Card>
+  </div>
 </template>
 
 <script>

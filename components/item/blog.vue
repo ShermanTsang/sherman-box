@@ -82,18 +82,19 @@
     <div
       v-lazy:background-image="$getOssUrl(item.image)"
       :to="`/blog/${item.id}`"
-      class="blog-item__image"
       @click="$router.push(`/blog/${item.id}`)"
+      class="blog-item__image"
     >
     </div>
     <div class="blog-item__main">
       <div class="blog-item__main__time">
-        <Datetime format="YYYY-MM-DD" from-now :time="item.datetime" color="#999" />
+        <Datetime :time="item.datetime" format="YYYY-MM-DD" from-now color="#999" />
       </div>
-      <div class="blog-item__main__title" @click="$router.push(`/blog/${item.id}`)">
+      <Blocker height="20px" />
+      <div @click="$router.push(`/blog/${item.id}`)" class="blog-item__main__title">
         {{ item.name }}
       </div>
-      <Blocker height="10px" divider />
+      <Blocker height="10px" />
       <div class="blog-item__main__description">
         # {{ item.category.name }}
         <template v-if="item.description">

@@ -6,9 +6,10 @@
       letter-spacing: 2px;
       color: #666;
       line-height: 1.6;
+      font-size: .98rem;
 
       &:first-letter {
-        font-size: 1.85rem;
+        font-size: 1.6rem;
         padding-right: 0.2em;
       }
 

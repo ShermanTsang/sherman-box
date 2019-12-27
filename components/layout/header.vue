@@ -8,11 +8,10 @@
     z-index: $z-index-header;
     height: $header-height;
     padding: 10px 20px;
-    border-bottom: 1px solid #eee;
     overflow: hidden;
     transition: all .2s ease-in-out;
     background-color: rgba(255, 255, 255, .95);
-    box-shadow: 0 2px 10px rgba(177, 177, 177, .2);
+    box-shadow: 0 2px 10px rgba(177, 177, 177, .1);
 
     @media($screen-md-max) {
       position: relative;
@@ -55,12 +54,12 @@
   <header class="header">
     <div class="header__main">
       <transition name="slideFromUp">
-        <div v-if="!currentModule || !status.isDisplayNavigator" id="logo" class="header__main__logo">
+        <div id="logo" v-if="!currentModule || !status.isDisplayNavigator" class="header__main__logo">
           <Logo type="text" height="36px" />
         </div>
       </transition>
       <transition name="slideFromDown">
-        <div v-if="currentModule && status.isDisplayNavigator" id="navigator" class="header__main__navigator">
+        <div id="navigator" v-if="currentModule && status.isDisplayNavigator" class="header__main__navigator">
           <Navigator :navs="navs" :divider="currentPage.type === 'list'?'/':'>'"></Navigator>
         </div>
       </transition>

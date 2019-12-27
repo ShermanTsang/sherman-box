@@ -1,11 +1,14 @@
 <style lang="scss">
   .card {
     transition: all .4s ease-in-out;
-    border: 1px solid #eee;
+    box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
     background-color: #ffffff;
+    border-radius: 4px;
+    will-change: transform;
 
     &:hover {
-      box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
+      transform: translate3d(0, -4px, 0);
+      box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.12);
     }
 
   }

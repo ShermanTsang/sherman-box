@@ -51,7 +51,7 @@
         写评论
       </Btn>
     </Nameplate>
-    <Card class="comment__list">
+    <div class="comment__list">
       <div v-for="item in data.commentList" :key="item.id" class="comment__list__item">
         <div class="comment__list__item__avatar">
           <Avatar :sign="item.qq || item.email" @click="redirectByUrl(item.website)" size="48px" />
@@ -68,7 +68,7 @@
           </div>
         </div>
       </div>
-    </Card>
+    </div>
     <Tip v-if="data.commentList.length === 0">
       暂无评论
     </Tip>

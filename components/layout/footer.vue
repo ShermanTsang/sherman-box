@@ -2,7 +2,6 @@
   .footer {
     margin-left: $sidebar-width;
     padding: 30px 10px;
-    border-top: 1px solid #eee;
 
     &__container {
       display: flex;
@@ -61,7 +60,7 @@
   <footer class="footer">
     <LayoutContainer class="footer__container">
       <div class="footer__container__page">
-        <div v-for="item in $store.getters.pageList" :key="item.id" class="footer__container__page__item" @click="redirectToPage(item)">
+        <div v-for="item in $store.getters.pageList" :key="item.id" @click="redirectToPage(item)" class="footer__container__page__item">
           {{ item.name }}
         </div>
       </div>
