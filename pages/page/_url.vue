@@ -16,8 +16,8 @@
 <script>
 export default {
   validate({ params }) {
-    const customePageNameArray = ['log']
-    return params.url && !customePageNameArray.includes(params.url)
+    const customPageNameArray = ['log']
+    return params.url && !customPageNameArray.includes(params.url)
   },
   head() {
     return {

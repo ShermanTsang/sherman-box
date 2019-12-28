@@ -230,7 +230,7 @@
         </div>
         <div v-if="data.projectItem.client" class="project__detail__item">
           <div class="project__detail__item__name">
-            <Icon name="user-require" />
+            <Icon name="user-client" />
             需求委托方
           </div>
           <div class="project__detail__item__info">

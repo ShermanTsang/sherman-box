@@ -1,35 +1,55 @@
+// Vue animate implements
+
 // Fade
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s
 }
+
 .fade-enter, .fade-leave-to {
   opacity: 0
 }
 
-// slideFromUp
-.slideFromUp-enter {
+// slideFromTop
+.slideFromTop-enter {
   transform: translateY(-64px);
 }
-.slideFromUp-enter-to {
+
+.slideFromTop-enter-to {
   transform: translateY(0);
 }
-.slideFromUp-enter-active {
-  transition: all .4s;
+
+.slideFromTop-enter-active {
+  transition: all .3s;
 }
-.slideFromUp-leave-active {
+
+.slideFromTop-leave-active {
   display: none;
 }
 
-// slideFromDown
-.slideFromDown-enter {
-  transform: translateY(  64px);
+// slideFromBottom
+.slideFromBottom-enter {
+  transform: translateY(64px);
 }
-.slideFromDown-enter-to {
+
+.slideFromBottom-enter-to {
   transform: translateY(0);
 }
-.slideFromDown-enter-active {
-  transition: all .4s;
+
+.slideFromBottom-enter-active {
+  transition: all .3s;
 }
-.slideFromDown-leave-active {
+
+.slideFromBottom-leave-active {
   display: none;
+}
+
+// CSS3 animate implement
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,4 +1,4 @@
-export default function ({ route, store, redirect }) {
+export default function ({ app: { router }, route, store, redirect }) {
   const pathArray = route.path.split('/')
   const pageType = ['index', 'list', 'item'][pathArray.length + -1]
   const pageModule = pathArray[1]

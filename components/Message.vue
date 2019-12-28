@@ -4,7 +4,7 @@
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 12px 16px;
+    padding: 10px 16px;
     z-index: $z-index-message;
     color: #fff;
     font-size: .95rem;
@@ -36,7 +36,7 @@
 
 <template>
   <transition name="fade">
-    <div v-show="isShow" class="message" :class="`message--${type}`">
+    <div v-show="isShow" :class="`message--${type}`" class="message">
       <Icon v-if="icon" :name="icon" />
       <span class="text">{{ text }}</span>
     </div>

@@ -8,7 +8,7 @@
     right: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,.6);
+    background: rgba(0, 0, 0, .6);
 
     &__overlay {
       z-index: $z-index-overlay;
@@ -19,7 +19,7 @@
       width: 100%;
       height: 100%;
       opacity: .5;
-      background: rgba(0,0,0,.6);
+      background: rgba(0, 0, 0, .6);
     }
 
     &__image {
@@ -41,7 +41,7 @@
         margin: 0 auto;
         max-width: 100%;
         max-height: 100%;
-        box-shadow: 0 0 30px rgba(0,0,0,.2);
+        box-shadow: 0 0 30px rgba(0, 0, 0, .2);
       }
     }
   }
@@ -49,7 +49,7 @@
 
 <template>
   <transition name="fade">
-    <div v-if="imageUrl" class="image-modal" @click="handleClick($event)">
+    <div v-if="imageUrl" @click="handleClick($event)" class="image-modal">
       <div class="image-modal__image">
         <img :src="$getOssUrl(imageUrl)">
       </div>

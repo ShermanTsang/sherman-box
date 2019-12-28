@@ -1,6 +1,6 @@
 <style lang="scss">
   .card {
-    transition: all .4s ease-in-out;
+    transition: all .3s ease-in-out;
     box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
     background-color: #ffffff;
     border-radius: 4px;

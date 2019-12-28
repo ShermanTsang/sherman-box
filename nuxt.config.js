@@ -47,14 +47,14 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '@/plugins/helper' },
+    { src: '@/plugins/utils' },
     { src: '@/plugins/day-js' },
     { src: '@/plugins/auto-components' },
     { src: '@/plugins/axios' },
     { src: '@/plugins/transfer-dom', mode: 'client' },
     { src: '@/plugins/gradient-color', mode: 'client' },
     { src: '@/plugins/vue-lazyload', mode: 'client' },
-    { src: '@/plugins/3rd-analyze', mode: 'client' },
+    { src: '@/plugins/vue-router', mode: 'client' },
     { src: '@/plugins/vee-validate', mode: 'client' },
     { src: '@/plugins/message', mode: 'client' }
   ],

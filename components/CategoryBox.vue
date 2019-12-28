@@ -5,6 +5,7 @@
     overflow-x: scroll;
     overflow-scrolling: touch;
     white-space: nowrap;
+    margin: 20px 0;
 
     &__item {
       position: relative;
@@ -20,15 +21,15 @@
 
     &__item--active {
       color: $theme-color;
-      border-radius: 1px;
+
       &:before {
         position: absolute;
         width: 100%;
-        bottom: 4px;
+        bottom: 0;
         left: 0;
         right: 0;
         background-color: $theme-color;
-        height: 8px;
+        height: 12px;
         content: '';
         opacity: 0.2;
       }

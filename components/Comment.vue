@@ -5,7 +5,7 @@
       &__item {
         display: flex;
         align-items: flex-start;
-        padding: 32px;
+        padding: 16px;
         transition: all 300ms ease-in-out;
 
         &:not(:first-child) {

@@ -1,27 +1,41 @@
 <style lang="scss">
   .page-loading {
     position: fixed;
-    top: 0;
-    left: 0;
+    left: 50%;
+    bottom: 60px;
     z-index: $z-index-overlay;
+    transform: translateX(-50%);
+
+    &__tip {
+      color: #fff;
+      border-radius: 20px;
+      padding: 8px 16px;
+      background-color: $theme-color;
+      box-shadow: 6px 10px 30px rgba(10, 132, 234, 0.5);
+    }
+
   }
 </style>
 
 <template>
-  <div v-if="loading" class="page-loading">
-  </div>
+  <transition name="slideFromBottom">
+    <div v-if="loading" class="page-loading">
+      <div class="page-loading__tip">
+        <Icon name="spinner" rotate />
+        Loading
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
 export default {
   name: 'PageLoading',
-  props: {
-  },
+  props: {},
   data: () => ({
     loading: false
   }),
-  computed: {
-  },
+  computed: {},
   mounted() {
   },
   methods: {

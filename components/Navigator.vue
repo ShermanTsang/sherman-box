@@ -12,6 +12,13 @@
         margin-left: 10px;
       }
 
+      &__module {
+        color: $theme-color;
+        padding: 4px 12px;
+        border-radius: 4px;
+        background-color: rgba($theme-color,0.1);
+      }
+
       &__divider {
         color: #ccc;
       }
@@ -22,9 +29,9 @@
 </style>
 
 <template>
-  <div v-if="navs && navs.length > 0" class="navigator" :style="style">
-    <div v-for="(item,index) in navs" :key="index" :style="{color: item.color || '#666',cursor: item.path ? 'pointer':'default'}" class="navigator__item" @click="clickNavItem(item)">
-      {{ item.text }}
+  <div v-if="navs && navs.length > 0" :style="style" class="navigator">
+    <div v-for="(item,index) in navs" :key="index" :style="{color: item.color || '#666',cursor: item.path ? 'pointer':'default'}" @click="clickNavItem(item)" class="navigator__item">
+      <span :class="{'navigator__item__module':index===0}">{{ item.text }}</span>
       <template v-if="index !== navs.length - 1">
         <Icon v-if="!divider" name="angle-right" color="#ccc" />
         <span v-else class="navigator__item__divider">{{ divider }}</span>

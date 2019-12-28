@@ -1,5 +1,6 @@
 <style lang="scss">
   .iconfont {
+    display: inline-block;
     letter-spacing: 1px;
   }
 </style>
@@ -23,14 +24,22 @@ export default {
     size: {
       type: String,
       default: null
+    },
+    rotate: {
+      type: Boolean,
+      default: undefined
     }
   },
   computed: {
     style() {
-      return {
+      const styleObject = {
         color: this.color,
         fontSize: this.size
       }
+      if (this.rotate) {
+        styleObject.animation = 'rotation .4s linear infinite'
+      }
+      return styleObject
     }
   }
 }

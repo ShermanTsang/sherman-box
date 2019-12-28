@@ -23,12 +23,12 @@
       &:after {
         position: absolute;
         content: '';
-        height: 6px;
+        height: 8px;
         width: 40px;
-        border-radius: 4px;
+        border-radius: 2px;
         left: 0;
         bottom: -20px;
-        opacity: .8;
+        opacity: .6;
         background-color: #1170f5;
         background-image: linear-gradient(126deg, #0262f5 0%, #fff 99%);
       }
@@ -64,8 +64,8 @@
   <div class="nameplate">
     <div class="nameplate__title">
       {{ title }}
-      <slot name="title"></slot>
-      <span>{{ subTitle }}<slot name="subTitle"></slot></span>
+      <slot name="title" />
+      <span>{{ subTitle }}<slot name="subTitle" /></span>
     </div>
     <div class="nameplate__action">
       <slot />
