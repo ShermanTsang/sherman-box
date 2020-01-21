@@ -34,6 +34,13 @@
       "unicode_decimal": 58993
     },
     {
+      "icon_id": "369850",
+      "name": "more",
+      "font_class": "add-circle",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
       "icon_id": "372112",
       "name": "cc-archive",
       "font_class": "archive",
@@ -242,6 +249,13 @@
       "font_class": "vcode1",
       "unicode": "e7df",
       "unicode_decimal": 59359
+    },
+    {
+      "icon_id": "1290295",
+      "name": "More",
+      "font_class": "more",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
     },
     {
       "icon_id": "1381385",

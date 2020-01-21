@@ -8,19 +8,7 @@
     right: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .6);
-
-    &__overlay {
-      z-index: $z-index-overlay;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      opacity: .5;
-      background: rgba(0, 0, 0, .6);
-    }
+    background: rgba(255,255,255,.8);
 
     &__image {
       z-index: $z-index-modal;

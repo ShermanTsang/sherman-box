@@ -73,7 +73,7 @@
         </div>
       </template>
       <div @click="requestGithubCommitLog()" class="log__list__action">
-        加载更多
+        <Icon name="more" size="1.2rem"/>
       </div>
     </div>
     <Blocker height="40px" />

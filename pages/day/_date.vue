@@ -14,17 +14,20 @@
           height: 100%;
           background-size: cover;
           background-position: center;
-          animation: imageMove 8s ease-in-out infinite;
 
-          &:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            height: 0;
-            width: 100%;
-            border-left: 1400px solid transparent;
-            border-bottom: 80px solid #fff;
+          /*&:after {*/
+          /*  content: '';*/
+          /*  position: absolute;*/
+          /*  bottom: 0;*/
+          /*  right: 0;*/
+          /*  height: 0;*/
+          /*  width: 100%;*/
+          /*  border-left: 1400px solid transparent;*/
+          /*  border-bottom: 80px solid #fff;*/
+          /*}*/
+
+          &:hover {
+            animation: imageMove 8s ease-in-out infinite;
           }
         }
 
@@ -163,159 +166,153 @@
   <div class="day">
     <Blocker height="40px" />
     <LayoutContainer>
-      <LayoutRow :gutter="32">
-        <LayoutCol :md="{span:16}" :lg="{span:16}">
-          <Nameplate>
-            <Datetime slot="title" :time="data.dayItem.date" format="YYYY年MM月DD日" class="day__date__text" />
-            <small slot="subTitle">
-              <Datetime :time="data.dayItem.date" format="ddd" />
-            </small>
-            <div class="day__control">
-              <template v-if="data.dayItem.day_previous">
-                <div class="day__control__item">
-                  <Icon color="#ccc" name="angle-left" />
-                  <Datetime :time="data.dayItem.day_previous.date" type="date" />
-                </div>
-              </template>
-              <div v-if="data.dayItem.day_previous && data.dayItem.day_next" class="day__control__item day__control__item--divider">
-              </div>
-              <template v-if="data.dayItem.day_next">
-                <div class="day__control__item">
-                  <Datetime :time="data.dayItem.day_next.date" type="date" />
-                  <Icon color="#ccc" name="angle-right" />
-                </div>
-              </template>
+      <Nameplate>
+        <Datetime slot="title" :time="data.dayItem.date" format="YYYY年MM月DD日" class="day__date__text" />
+        <small slot="subTitle">
+          <Datetime :time="data.dayItem.date" format="ddd" />
+        </small>
+        <div class="day__control">
+          <template v-if="data.dayItem.day_previous">
+            <div class="day__control__item">
+              <Icon color="#ccc" name="angle-left" />
+              <Datetime :time="data.dayItem.day_previous.date" type="date" />
             </div>
-          </Nameplate>
-          <Card class="day__card">
-            <div v-if="data.dayItem.image" class="day__card__banner">
-              <div v-lazy:background-image="$getOssUrl(data.dayItem.image)" class="day__card__banner__image"></div>
+          </template>
+          <div v-if="data.dayItem.day_previous && data.dayItem.day_next" class="day__control__item day__control__item--divider">
+          </div>
+          <template v-if="data.dayItem.day_next">
+            <div class="day__control__item">
+              <Datetime :time="data.dayItem.day_next.date" type="date" />
+              <Icon color="#ccc" name="angle-right" />
             </div>
-            <Waterfall :column="2" gap="16px" class="day__card__main">
-              <div v-if="data.dayItem.event" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="calendar" />
-                  事件
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.event }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.time_sleep && data.dayItem.time_wakeup" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="sleep" />
-                  睡眠
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>
-                    入眠{{ data.dayItem.time_sleep }},
-                    醒来{{ data.dayItem.time_wakeup }},
-                    时长{{ sleepHour }}
-                  </tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.weather" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="weather" />
-                  天气
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.weather }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.step" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="run" />
-                  步数
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.step }}步</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.weight" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="weight" />
-                  体重
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.weight }}斤</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.movement" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="schedule" />
-                  活动
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.movement }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.mood" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="mood" />
-                  状态
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.mood }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.location" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="location" />
-                  位置
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.location }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.people" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="user" />
-                  人物
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.people }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.food" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="food" />
-                  食物
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.food }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.medicine" class="day__card__main__item">
-                <div class="day__card__main__item__name">
-                  <Icon name="medicine" />
-                  药物
-                </div>
-                <div class="day__card__main__item__content">
-                  <Tag>{{ data.dayItem.medicine }}</tag>
-                </div>
-              </div>
-            </Waterfall>
-          </Card>
-        </LayoutCol>
-        <LayoutCol :md="{span:8}" :lg="{span:8}">
-          <Blocker height="20px" />
-          <Nameplate title="那年今日" sub-title="retrospect" />
-          <Card
-            v-for="item in data.dayItem.day_different_year"
-            v-if="data.dayItem.day_different_year && data.dayItem.date.indexOf(item.date) === -1"
-            :key="item.date"
-            class="day__block"
-          >
-            <div class="day__block__main">
-              <Datetime :time="item.date" type="date" from-now />
+          </template>
+        </div>
+      </Nameplate>
+      <Card class="day__card">
+        <div v-if="data.dayItem.image" class="day__card__banner">
+          <div v-lazy:background-image="$getOssUrl(data.dayItem.image)" class="day__card__banner__image"></div>
+        </div>
+        <Waterfall :column="2" gap="16px" class="day__card__main">
+          <div v-if="data.dayItem.event" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="calendar" />
+              事件
             </div>
-          </Card>
-          <Blocker height="30px" />
-          <Nameplate title="记录" sub-title="record" />
-          <ItemCommon v-for="item in allItem" :key="item.id" :item="item"></ItemCommon>
-        </LayoutCol>
-      </LayoutRow>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.event }}</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.time_sleep && data.dayItem.time_wakeup" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="sleep" />
+              睡眠
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>
+                入眠{{ data.dayItem.time_sleep }},
+                醒来{{ data.dayItem.time_wakeup }},
+                时长{{ sleepHour }}
+              </tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.weather" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="weather" />
+              天气
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.weather }}</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.step" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="run" />
+              步数
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.step }}步</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.weight" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="weight" />
+              体重
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.weight }}斤</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.movement" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="schedule" />
+              活动
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.movement }}</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.mood" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="mood" />
+              状态
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.mood }}</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.location" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="location" />
+              位置
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.location }}</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.people" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="user" />
+              人物
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.people }}</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.food" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="food" />
+              食物
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.food }}</tag>
+            </div>
+          </div>
+          <div v-if="data.dayItem.medicine" class="day__card__main__item">
+            <div class="day__card__main__item__name">
+              <Icon name="medicine" />
+              药物
+            </div>
+            <div class="day__card__main__item__content">
+              <Tag>{{ data.dayItem.medicine }}</tag>
+            </div>
+          </div>
+        </Waterfall>
+      </Card>
+      <Blocker height="60px" />
+      <Nameplate title="那年今日" sub-title="retrospect" />
+      <Card
+        v-for="item in data.dayItem.day_different_year"
+        v-if="data.dayItem.day_different_year && data.dayItem.date.indexOf(item.date) === -1"
+        :key="item.date"
+        class="day__block"
+      >
+        <div class="day__block__main">
+          <Datetime :time="item.date" type="date" from-now />
+        </div>
+      </Card>
+      <Blocker height="30px" />
+      <Nameplate title="记录" sub-title="record" />
+      <ItemCommon v-for="item in allItem" :key="item.id" :item="item" />
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>

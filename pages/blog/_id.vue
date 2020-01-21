@@ -40,18 +40,19 @@
 
         &__title {
           padding: 8px 10px;
-          background-color: rgba(0, 0, 0, .4);
           letter-spacing: 2px;
-          line-height: 1.6;
+          line-height: 1.4;
           font-size: 1.3rem;
         }
 
         &__info {
-          padding: 8px 10px;
-          background-color: rgba(0, 0, 0, .35);
           max-width: 600px;
           letter-spacing: 1px;
-          font-size: .9rem;
+          font-size: .95rem;
+
+          &__item {
+            padding: 8px 10px;
+          }
         }
       }
     }
@@ -70,10 +71,14 @@
         </div>
         <Blocker height="20px" />
         <div class="blog__header__text__info">
-          <Icon name="category" />
-          {{ data.blogItem.category.name }}
-          <Icon name="clock" />
-          <Datetime :time="data.blogItem.datetime" format="YYYY-MM-DD" from-now />
+          <div class="blog__header__text__info__item">
+            <Icon name="category" />
+            {{ data.blogItem.category.name }}
+          </div>
+          <div class="blog__header__text__info__item">
+            <Icon name="clock" />
+            <Datetime :time="data.blogItem.datetime" format="YYYY-MM-DD" from-now />
+          </div>
         </div>
       </LayoutContainer>
     </div>

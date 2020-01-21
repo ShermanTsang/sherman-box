@@ -162,7 +162,7 @@
         <div class="menu--vertical__item__icon">
           <Icon :name="item.icon" size="24px" />
         </div>
-        <div class="menu--vertical__item__name">
+        <div class="menu--vertical__item__name web-font">
           {{ item.name }}
         </div>
       </div>

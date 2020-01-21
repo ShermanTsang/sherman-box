@@ -1,6 +1,5 @@
 <style lang="scss">
   .markdown {
-    padding: 16px;
 
     article {
       font-size: 16px;

@@ -134,7 +134,7 @@
       </div>
     </div>
     <div v-if="meta.last_page !== meta.current_page" @click="$emit('on-request-more')" class="timeline__more">
-      加载更多
+      <Icon name="more" size="1.2rem" />
     </div>
   </div>
 </template>

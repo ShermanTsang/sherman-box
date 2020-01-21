@@ -1,40 +1,29 @@
 <style lang="scss">
   .day-item {
-    position: relative;
     transition-duration: 0.2s;
-    line-height: 1.5;
     text-overflow: ellipsis;
     letter-spacing: 1px;
     overflow: hidden;
-    height: 400px;
     cursor: pointer;
 
-    &__image {
-      transform: scale(1.4);
-      z-index: $z-index-card-background;
-      transition: all 200ms ease-in;
-      opacity: .8;
-      height: 210px;
-      background-position: center;
-      background-size: cover;
+    &__header {
+      position: relative;
+      height: 220px;
       box-shadow: 0 -10px 20px 16px #fff inset;
-    }
+      color: #fff;
+      text-shadow: 4px 4px 6px rgba(0, 0, 0, .2);
 
-    &__main {
-      position: absolute;
-      top: 70px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: $z-index-card-content;
-      padding: 16px 32px;
-
-      &__date {
-        display: inline-block;
-        padding-bottom: 10px;
+      &__text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        padding: 16px;
         cursor: pointer;
-        color: #fff;
-        text-shadow: 2px 1px 6px rgba(0,0,0,.2);
 
         &__main {
           font-size: 1.85rem;
@@ -45,18 +34,35 @@
         &__sub {
           font-size: 1.1rem;
         }
-
       }
 
-      &__date--withoutImage{
-        color: #999;
-        text-shadow: none;
+      &__image {
+        height: 100%;
+        width: 100%;
+        transform: scale(1.4);
+        z-index: $z-index-card-background;
+        transition: all 200ms ease-in;
+        opacity: .8;
+        background-position: center;
+        background-size: cover;
+        box-shadow: 0 -10px 20px 16px #fff inset;
       }
+
+    }
+
+    &__header--withoutImage {
+      color: #999;
+      text-shadow: none;
+    }
+
+    &__main {
+      margin-top: 40px;
+      padding: 16px;
+      line-height: 1.5;
 
       &__info {
         color: #999999;
         font-size: .9rem;
-        margin-top: 100px;
 
         &__detail {
           display: flex;
@@ -86,7 +92,7 @@
     }
 
     &:hover {
-      .day-item__image {
+      .day-item__header__image {
         opacity: 1;
       }
     }
@@ -114,20 +120,18 @@
     @click.native="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)"
     class="day-list__item day-item"
   >
-    <div
-      v-if="item.image"
-      v-lazy:background-image="$getOssUrl(item.image)"
-      class="day-item__image"
-    ></div>
-    <div class="day-item__main">
-      <div :class="{'day-item__main__date--withoutImage': !item.image}" @click="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)" class="day-item__main__date">
-        <div class="day-item__main__date__main">
+    <div :class="{'day-item__header--withoutImage': !item.image}" class="day-item__header">
+      <div v-lazy:background-image="$getOssUrl(item.image)" class="day-item__header__image"></div>
+      <div class="day-item__header__text">
+        <div class="day-item__header__text__main">
           {{ $time(item.date).format('MM.DD') }}
         </div>
-        <div class="day-item__main__date__sub">
+        <div class="day-item__header__text__sub">
           {{ $time(item.date).format('YYYY dddd') }}
         </div>
       </div>
+    </div>
+    <div class="day-item__main">
       <div class="day-item__main__info">
         <div class="day-item__main__info__detail">
           <div v-if="item.event" class="day-item__main__info__detail__item">

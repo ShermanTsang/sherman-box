@@ -62,7 +62,7 @@
 
 <template>
   <div class="nameplate">
-    <div class="nameplate__title">
+    <div class="nameplate__title web-font">
       {{ title }}
       <slot name="title" />
       <span>{{ subTitle }}<slot name="subTitle" /></span>

@@ -176,7 +176,7 @@
         <div class="plan__header__main__time">
           始 <Datetime :time="data.planItem.datetime_start" from-now type="datetime" />
           <br>
-          终 <Datetime :time="data.planItem.datetime_end" from-now type="datetime" />
+          终 <Datetime :time="data.planItem.datetime_end" v-if="data.planItem.datetime_end" from-now type="datetime" /><span v-else>至今</span>
         </div>
         <div class="plan__header__main__description">
           {{ data.planItem.description || '暂无项目介绍' }}
