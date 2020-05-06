@@ -133,7 +133,7 @@
         <ItemCommon :item="item" :align="index % 2 === 0 ? 'right': 'left'" text="detail" />
       </div>
     </div>
-    <div v-if="meta.last_page !== meta.current_page" @click="$emit('on-request-more')" class="timeline__more">
+    <div v-if="meta.last_page !== meta.current_page" class="timeline__more" @click="$emit('on-request-more')">
       <Icon name="more" size="1.2rem" />
     </div>
   </div>

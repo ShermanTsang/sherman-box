@@ -37,7 +37,7 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       return {
         'max-width': this.maxWidth,
         padding: this.padding

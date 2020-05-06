@@ -62,7 +62,7 @@
         </div>
       </LayoutContainer>
     </LayoutContainer>
-    <Btn v-if="data.mailboxItem.content === null" @click="status.showModal = true" width="300px" class="mailbox__locker">
+    <Btn v-if="data.mailboxItem.content === null" width="300px" class="mailbox__locker" @click="status.showModal = true">
       <Icon name="lock" /> 解锁
     </Btn>
     <LayoutContainer v-if="data.mailboxItem.content !== null" class="mailbox__content">
@@ -79,16 +79,16 @@
       </Loading>
       <FormItem
         v-model="form.password"
-        @changeValidate="valid => status.validate.password = valid"
         validate="required"
         label="密码"
         name="password"
         type="input"
         placeholder="等待解锁"
+        @changeValidate="valid => status.validate.password = valid"
       >
-        <span slot="tip" v-if="data.mailboxItem.hint">提示：{{ data.mailboxItem.hint }}</span>
+        <span v-if="data.mailboxItem.hint" slot="tip">提示：{{ data.mailboxItem.hint }}</span>
       </FormItem>
-      <Btn slot="footer" :full-width="true" :colorful="true" @click="submitCheckPassword()" height="48px">
+      <Btn slot="footer" :full-width="true" :colorful="true" height="48px" @click="submitCheckPassword()">
         校验
       </Btn>
     </Modal>
@@ -97,23 +97,19 @@
 
 <script>
 export default {
-  validate({ params }) {
+  validate ({ params }) {
     return /^\d+$/.test(params.id)
   },
-  head() {
-    const { name, category, description } = this.data.mailboxItem
+  async asyncData ({ $axios, store, params }) {
+    const { data: mailboxItem } = await $axios.$get(`/api/mailboxes/${params.id}`)
+    store.commit('currentItem', mailboxItem)
     return {
-      title: `${name} - ${category.name} - 邮盒`,
-      meta: [
-        {
-          hid: 'index',
-          name: 'description',
-          content: this.$getSeoInfo('description', `${description || ''}`)
-        }
-      ]
+      data: {
+        mailboxItem
+      }
     }
   },
-  data() {
+  data () {
     return {
       status: {
         showModal: false,
@@ -127,22 +123,13 @@ export default {
       }
     }
   },
-  async asyncData({ $axios, store, params }) {
-    const { data: mailboxItem } = await $axios.$get(`/api/mailboxes/${params.id}`)
-    store.commit('currentItem', mailboxItem)
-    return {
-      data: {
-        mailboxItem
-      }
-    }
-  },
-  mounted() {
+  mounted () {
     if (this.data.mailboxItem.content === null) {
       this.$message.info('该邮盒需要密码解锁')
     }
   },
   methods: {
-    submitCheckPassword() {
+    submitCheckPassword () {
       if (!this.$checkFormValidate(this.status.validate)) {
         this.$message.error('表单有错误')
         return
@@ -166,6 +153,19 @@ export default {
           this.status.isLoadingSubmit = false
           this.errors.clear()
         })
+    }
+  },
+  head () {
+    const { name, category, description } = this.data.mailboxItem
+    return {
+      title: `${name} - ${category.name} - 邮盒`,
+      meta: [
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${description || ''}`)
+        }
+      ]
     }
   }
 }

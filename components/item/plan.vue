@@ -77,8 +77,8 @@
     <div
       v-lazy:background-image="$getOssUrl(item.image)"
       :to="`/plan/${item.id}`"
-      @click="$router.push(`/plan/${item.id}`)"
       class="plan-item__image"
+      @click="$router.push(`/plan/${item.id}`)"
     >
       <div class="plan-item__image__overlay"></div>
       <div class="plan-item__image__text">
@@ -95,7 +95,7 @@
     <div class="plan-item__info">
       <Datetime :time="item.datetime_start" format="YYYY-MM-DD" from-now />
       ~
-      <Datetime :time="item.datetime_end" v-if="item.datetime_end" format="YYYY-MM-DD" from-now />
+      <Datetime v-if="item.datetime_end" :time="item.datetime_end" format="YYYY-MM-DD" from-now />
       <template v-else>
         至今
       </template>

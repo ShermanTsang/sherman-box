@@ -106,14 +106,14 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       return {
         width: this.size,
         height: this.size
       }
     }
   },
-  mounted() {
+  mounted () {
   },
   methods: {}
 }

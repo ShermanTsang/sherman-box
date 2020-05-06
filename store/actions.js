@@ -1,29 +1,29 @@
 export default {
-  async GET_CONFIGURATION_LIST({ commit }) {
+  async GET_CONFIGURATION_LIST ({ commit }) {
     const { data } = await this.$axios.$get('/api/configurations')
     commit('configurationList', data)
   },
-  async GET_FILE_ASSET_LIST({ commit }) {
+  async GET_FILE_ASSET_LIST ({ commit }) {
     const { data } = await this.$axios.$get('/api/fileAssets')
     commit('fileAssetList', data)
   },
-  async GET_IMAGE_ASSET_LIST({ commit }) {
+  async GET_IMAGE_ASSET_LIST ({ commit }) {
     const { data } = await this.$axios.$get('/api/imageAssets')
     commit('imageAssetList', data)
   },
-  async GET_MODULE_LIST({ commit }) {
+  async GET_MODULE_LIST ({ commit }) {
     const { data } = await this.$axios.$get('/api/modules')
     commit('moduleList', data)
   },
-  async GET_PAGE_LIST({ commit }) {
+  async GET_PAGE_LIST ({ commit }) {
     const { data } = await this.$axios.$get('/api/pages')
     commit('pageList', data)
   },
-  async GET_CATEGORY_LIST({ commit }) {
+  async GET_CATEGORY_LIST ({ commit }) {
     const { data } = await this.$axios.$get('/api/categories')
     commit('categoryList', data)
   },
-  async GET_INIT_DATA({ commit }) {
+  async GET_INIT_DATA ({ commit }) {
     const [configurations, fileAssets, imageAssets, modules, pages, categories, statisticsModule] =
       await Promise.all([
         this.$axios.$get('/api/configurations'),
@@ -42,7 +42,7 @@ export default {
     commit('categoryList', categories.data)
     commit('statisticsModule', statisticsModule.data)
   },
-  async nuxtServerInit({ dispatch }) {
+  async nuxtServerInit ({ dispatch }) {
     await dispatch('GET_INIT_DATA')
     // await dispatch('GET_CONFIGURATION_LIST')
     // await dispatch('GET_FILE_ASSET_LIST')

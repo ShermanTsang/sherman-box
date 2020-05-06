@@ -324,40 +324,10 @@
 
 <script>
 export default {
-  validate({ params }) {
+  validate ({ params }) {
     return /^(\d{4})(-)(\d{2})(-)(\d{2})$/.test(params.date)
   },
-  head() {
-    const { date } = this.data.dayItem
-    return {
-      title: `${date.substring(0, 11)} - 日迹`,
-      meta: [
-        {
-          hid: 'index',
-          name: 'description',
-          content: this.$getSeoInfo('description', `${date.substring(0, 11)}日迹`)
-        }
-      ]
-    }
-  },
-  computed: {
-    sleepHour() {
-      const sleepTime = this.data.dayItem.time_sleep
-      const wakeupTime = this.data.dayItem.time_wakeup
-      if (sleepTime && wakeupTime) {
-        const sleepDate = this.data.dayItem.time_sleep.indexOf('0') === 0 ? '1996-05-21' : '1996-05-20'
-        const sleepTimeFormatted = this.$time(`${sleepDate} ${sleepTime}`)
-        const wakeupTimeFormatted = this.$time(`1996-05-21 ${wakeupTime}`)
-        return wakeupTimeFormatted.diff(sleepTimeFormatted, 'hours') + '时'
-      }
-      return '不详'
-    },
-    allItem() {
-      const { movieList, ideaList, blogList, projectList, mailboxList, planList } = this.data
-      return [...movieList, ...ideaList, ...blogList, ...projectList, ...mailboxList, ...planList]
-    }
-  },
-  async asyncData({ $axios, store, params }) {
+  async asyncData ({ $axios, store, params }) {
     const {
       data: {
         dayItem, movieCollection: movieList,
@@ -373,8 +343,38 @@ export default {
       data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList }
     }
   },
-  mounted() {
+  computed: {
+    sleepHour () {
+      const sleepTime = this.data.dayItem.time_sleep
+      const wakeupTime = this.data.dayItem.time_wakeup
+      if (sleepTime && wakeupTime) {
+        const sleepDate = this.data.dayItem.time_sleep.indexOf('0') === 0 ? '1996-05-21' : '1996-05-20'
+        const sleepTimeFormatted = this.$time(`${sleepDate} ${sleepTime}`)
+        const wakeupTimeFormatted = this.$time(`1996-05-21 ${wakeupTime}`)
+        return wakeupTimeFormatted.diff(sleepTimeFormatted, 'hours') + '时'
+      }
+      return '不详'
+    },
+    allItem () {
+      const { movieList, ideaList, blogList, projectList, mailboxList, planList } = this.data
+      return [...movieList, ...ideaList, ...blogList, ...projectList, ...mailboxList, ...planList]
+    }
   },
-  methods: {}
+  mounted () {
+  },
+  methods: {},
+  head () {
+    const { date } = this.data.dayItem
+    return {
+      title: `${date.substring(0, 11)} - 日迹`,
+      meta: [
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${date.substring(0, 11)}日迹`)
+        }
+      ]
+    }
+  }
 }
 </script>

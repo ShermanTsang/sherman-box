@@ -96,10 +96,19 @@
 
 <script>
 export default {
-  validate({ params }) {
+  validate ({ params }) {
     return /^\d+$/.test(params.id)
   },
-  head() {
+  async asyncData ({ $axios, store, params }) {
+    const { data: blogItem } = await $axios.$get(`/api/blogs/${params.id}`)
+    store.commit('currentItem', blogItem)
+    return {
+      data: {
+        blogItem
+      }
+    }
+  },
+  head () {
     const { name, category, description } = this.data.blogItem
     return {
       title: `${name} - ${category.name} - 博文`,
@@ -110,15 +119,6 @@ export default {
           content: this.$getSeoInfo('description', `${description || ''}`)
         }
       ]
-    }
-  },
-  async asyncData({ $axios, store, params }) {
-    const { data: blogItem } = await $axios.$get(`/api/blogs/${params.id}`)
-    store.commit('currentItem', blogItem)
-    return {
-      data: {
-        blogItem
-      }
     }
   }
 }

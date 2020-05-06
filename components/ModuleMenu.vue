@@ -1,149 +1,138 @@
 <style lang="scss">
-  .menu--vertical {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
+  .menu {
 
-    &__item {
+    &--vertical {
       display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      width: 100%;
-      cursor: pointer;
-      padding: 20px 16px;
-      font-size: .95rem;
-      color: #666;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      transition: transform .3s ease-in-out;
-
-      &__icon {
-        transition: all .25s ease-in-out;
-        transform-origin: center bottom;
-
-        i {
-          color: #999;
-          margin-right: 10px;
-        }
-      }
-
-      &__name {
-        margin-left: 4px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        letter-spacing: 4px;
-
-        span {
-          margin-left: 6px;
-          letter-spacing: 1px;
-          font-size: .8rem;
-          color: #999;
-          text-transform: capitalize;
-        }
-      }
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-
-    &__item--active {
-      position: relative;
-      @include gradient-background;
-
-      &:hover {
-        border-radius: 0;
-      }
-    }
-
-  }
-
-  .menu--horizontal {
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-
-    &__content {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: right;
-      white-space: nowrap;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
 
       &__item {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        width: 100%;
         cursor: pointer;
-        flex: 1 0 auto;
-        padding: 0 20px;
-        font-size: 1rem;
-        letter-spacing: 2px;
+        padding: 20px 16px;
+        font-size: .95rem;
+        color: #666;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        transition: transform .3s ease-in-out;
 
-        a {
-          color: #666;
+        &__icon {
+          transition: all .25s ease-in-out;
+          transform-origin: center bottom;
+
+          i {
+            color: #999;
+            margin-right: 10px;
+          }
         }
 
-        i {
-          color: #aaa;
+        &__name {
+          margin-left: 4px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          letter-spacing: 4px;
+
+          span {
+            margin-left: 6px;
+            letter-spacing: 1px;
+            font-size: .8rem;
+            color: #999;
+            text-transform: capitalize;
+          }
+        }
+
+        &:hover {
+          transform: scale(1.05);
         }
       }
 
       &__item--active {
         position: relative;
+        @include gradient-background;
 
-        a {
-          color: $theme-color;
+        &:hover {
+          border-radius: 0;
         }
-
-        i {
-          color: $theme-color;
-        }
-
-      }
-
-      @media ($screen-md-max) {
-        width: 100%;
-        margin-top: 20px;
-        display: -webkit-box;
-        overflow-x: scroll;
-        white-space: nowrap;
-        overflow-scrolling: touch;
-
-        &__item {
-          display: inline-block;
-          padding: 0 10px;
-
-          &:not(:last-child) {
-            margin-right: 12px;
-          }
-
-          &:last-child {
-            margin-right: 40px;
-          }
-
-        }
-
-        &::-webkit-scrollbar {
-          width: 0;
-          height: 0;
-          display: none;
-        }
-
       }
 
     }
 
-    &__scrollbar {
-      display: none;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 20px;
-      text-align: right;
-      background-color: #fff;
-      box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
-      @media($screen-md-max) {
-        display: block;
+    &--horizontal {
+      overflow: hidden;
+      position: relative;
+      height: $header-main-height;
+      line-height: $header-main-height;
+
+      &__item {
+        text-align: center;
+        display: inline-block;
+        position: relative;
+        padding: 0 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        transition: all .2s ease-in;
+        color: #666;
+
+        i {
+          display: none;
+          color: #aaa;
+        }
+
+        &:hover {
+          letter-spacing: 3px;
+
+          i {
+            display: inline-block;
+          }
+        }
       }
+
+      &__item--normal {
+        @media screen and ($screen-md-max) {
+          display: none;
+        }
+      }
+
+      &__item--active {
+        position: relative;
+        color: $theme-color;
+
+        i {
+          display: inline-block;
+          color: $theme-color;
+        }
+
+        &:before {
+          transition: .2s ease-in-out;
+          position: absolute;
+          width: 30px;
+          bottom: 0;
+          left: calc(50% - 15px);
+          background-color: $theme-color;
+          height: 3px;
+          content: '';
+          opacity: 0.5;
+        }
+
+      }
+
+      &__item--button {
+        display: none;
+
+        i {
+          display: inline-block;
+        }
+
+        @media screen and ($screen-md-max) {
+          display: inline-block;
+        }
+      }
+
     }
 
   }
@@ -151,63 +140,69 @@
 
 <template>
   <div class="menu">
-    <div v-if="type === 'vertical'" class="menu--vertical">
+    <div v-if="!status.showModal" class="menu--horizontal">
+      <div
+        class="menu--horizontal__item menu--horizontal__item--button"
+        :class="{'menu--horizontal__item--active': status.showModal}"
+        @click="status.showModal = !status.showModal"
+      >
+        <Icon name="menu" size="20px" color="#666" />
+      </div>
       <div
         v-for="(item,index) in $store.getters.moduleList"
         :key="index"
-        :class="{'menu--vertical__item--active': isActiveMenu(item)}"
-        @click="$router.push(`/${item.url}`)"
-        class="menu--vertical__item"
+        :class="{'menu--horizontal__item--active': isActiveMenu(item)}"
+        class="menu--horizontal__item menu--horizontal__item--normal"
+        @click="clickModalMenu(item.url)"
       >
-        <div class="menu--vertical__item__icon">
-          <Icon :name="item.icon" size="24px" />
-        </div>
-        <div class="menu--vertical__item__name web-font">
-          {{ item.name }}
-        </div>
+        <Icon :name="item.icon" />
+        {{ item.name }}
       </div>
     </div>
-    <div v-if="type === 'horizontal'" class="menu--horizontal">
-      <div id="headerHorizontalMenu" class="menu--horizontal__content">
+    <Modal v-model="status.showModal" icon="menu" title="模块" width="500px">
+      <div class="menu--vertical">
         <div
           v-for="(item,index) in $store.getters.moduleList"
           :key="index"
-          :class="{'menu--horizontal__content__item--active': isActiveMenu(item)}"
-          class="menu--horizontal__content__item"
+          :class="{'menu--vertical__item--active': isActiveMenu(item)}"
+          class="menu--vertical__item"
+          @click="clickModalMenu(item.url)"
         >
-          <nuxt-link :to="`/${item.url}`">
-            <Icon :name="item.icon" />
+          <div class="menu--vertical__item__icon">
+            <Icon :name="item.icon" size="24px" />
+          </div>
+          <div class="menu--vertical__item__name web-font">
             {{ item.name }}
-          </nuxt-link>
+          </div>
         </div>
       </div>
-      <div @click="scrollHorizontalMenu()" class="menu--horizontal__scrollbar">
-        <Icon name="angle-right" color="#aaa" size="18px" />
-      </div>
-    </div>
+    </Modal>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Menu',
-  props: {
-    type: {
-      type: String,
-      default: 'horizontal'
+  props: {},
+  data () {
+    return {
+      status: {
+        showModal: false
+      }
     }
   },
   methods: {
-    isActiveMenu(menuItem) {
+    isActiveMenu (menuItem) {
       const { url } = menuItem
       const path = this.$route.path
       const inIndexPage = url === 'timeline' && path === '/'
       return path.indexOf(url) > 0 || inIndexPage
     },
-    scrollHorizontalMenu() {
-      const headerHorizontalMenu = document.getElementById('headerHorizontalMenu')
-      const scrollLeft = headerHorizontalMenu.scrollLeft
-      headerHorizontalMenu.scrollLeft = scrollLeft + 40
+    clickModalMenu (url) {
+      this.$router.push(`/${url}`)
+      if (this.status.showModal) {
+        this.status.showModal = false
+      }
     }
   }
 }

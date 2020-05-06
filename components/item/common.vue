@@ -148,32 +148,32 @@ export default {
     },
     align: {
       type: String,
-      validator(value) {
+      validator (value) {
         return ['left', 'right'].includes(value)
       },
       default: 'left'
     },
     text: {
       type: String,
-      validator(value) {
+      validator (value) {
         return ['date', 'detail'].includes(value)
       },
       default: 'date'
     }
   },
-  data() {
+  data () {
     return {
       config: this.$getModuleConfig()
     }
   },
   computed: {
-    module() {
+    module () {
       return this.config[this.item.module]
     },
-    link() {
+    link () {
       return `/${this.item.module}/` + (this.item.module === 'day' ? `${this.$time(this.item.datetime).format('YYYY-MM-DD')}` : `${this.item.id}`)
     },
-    nameHtml() {
+    nameHtml () {
       let nameHtml = this.item.name || ''
       const keyword = this.$route.query.keyword
       if (keyword) {
@@ -183,7 +183,7 @@ export default {
       }
       return nameHtml
     },
-    textHtml() {
+    textHtml () {
       let textHtml = this.item.text || ''
       const keyword = this.$route.query.keyword
       if (keyword) {
@@ -195,7 +195,7 @@ export default {
     }
   },
   methods: {
-    redirectToItem() {
+    redirectToItem () {
       const link = this.link
       this.$route.path === '/search' ? window.open(link, '_blank') : this.$router.push(link)
     }

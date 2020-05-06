@@ -54,10 +54,10 @@
     <div class="comment__list">
       <div v-for="item in data.commentList" :key="item.id" class="comment__list__item">
         <div class="comment__list__item__avatar">
-          <Avatar :sign="item.qq || item.email" @click="redirectByUrl(item.website)" size="48px" />
+          <Avatar :sign="item.qq || item.email" size="48px" @click="redirectByUrl(item.website)" />
         </div>
         <div class="comment__list__item__main">
-          <div @click="redirectByUrl(item.website)" class="comment__list__item__main__username">
+          <div class="comment__list__item__main__username" @click="redirectByUrl(item.website)">
             {{ item.username }}
           </div>
           <div class="comment__list__item__main__content">
@@ -78,41 +78,41 @@
       </Loading>
       <FormItem
         v-model="form.username"
-        @changeValidate="valid => status.validate.username = valid"
-        validate="required|max:12"
+        validate="required|max:8"
         label="昵称"
         name="username"
         type="input"
         placeholder="该如何称呼你呢？"
+        @changeValidate="valid => status.validate.username = valid"
       />
       <FormItem
         v-model="form.contact"
-        @changeValidate="valid => status.validate.contact = valid"
         label="联系方式"
         name="contact"
         type="input"
         validate="required|max:30"
         placeholder="QQ / Wechat / Email"
+        @changeValidate="valid => status.validate.contact = valid"
       >
-        <span slot="tip" v-if="contactType">使用 {{ contactType }} 作为联系方式</span>
+        <span v-if="contactType" slot="tip">使用 {{ contactType }} 作为联系方式</span>
       </FormItem>
       <FormItem
         v-model="form.website"
-        @changeValidate="valid => status.validate.website = valid"
         label="个人网站"
         name="website"
         type="input"
         validate="url|max:60"
         placeholder="可填写你的网站、博客、微博或其他社媒地址"
+        @changeValidate="valid => status.validate.website = valid"
       />
       <FormItem
         v-model="form.comment"
-        @changeValidate="valid => status.validate.comment = valid"
         label="内容"
         name="comment"
         type="input"
         validate="required|max:30|min:4"
         placeholder="留下你的想法、疑问、评论或回忆"
+        @changeValidate="valid => status.validate.comment = valid"
       />
       <FormItem
         v-if="['qq','email'].includes(contactType)"
@@ -122,7 +122,7 @@
       >
         <Avatar :sign="form.contact" size="60px" />
       </FormItem>
-      <Btn slot="footer" :full-width="true" :colorful="true" @click="submitSendComment()" height="48px">
+      <Btn slot="footer" :full-width="true" :colorful="true" height="48px" @click="submitSendComment()">
         发送
       </Btn>
     </Modal>
@@ -148,7 +148,7 @@ export default {
       }
     }
   },
-  data() {
+  data () {
     return {
       status: {
         showModal: false,
@@ -168,10 +168,10 @@ export default {
     }
   },
   computed: {
-    contactType() {
+    contactType () {
       const { contact = '' } = this.form
       const contactTypeList = {
-        email: contact.indexOf('@') !== -1,
+        email: contact.includes('@'),
         wechat: /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/.test(contact),
         qq: /^[1-9][0-9]{4,9}$/gim.test(contact)
       }
@@ -183,16 +183,16 @@ export default {
       return false
     }
   },
-  mounted() {
+  mounted () {
     this.data.commentList = this.sourceData
   },
   methods: {
-    redirectByUrl(url) {
+    redirectByUrl (url) {
       if (url) {
         window.open(url)
       }
     },
-    submitSendComment() {
+    submitSendComment () {
       if (this.$checkFormValidate(this.status.validate)) {
         this.status.isLoadingSubmit = true
         const { contact } = this.form
@@ -215,10 +215,11 @@ export default {
             this.errors.clear()
           })
           .catch((error) => {
+            this.status.isLoadingSubmit = false
             console.log(error)
           })
       } else {
-        this.$message.error('表单有错误')
+        this.$message.error('表单填写有误')
       }
     }
   }

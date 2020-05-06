@@ -11,24 +11,24 @@
 <script>
 export default {
   layout: 'error',
-  head() {
-    return {
-      title: '遇到错误了',
-      meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '访问遇到错误了') }
-      ]
-    }
-  },
-  data() {
+  data () {
     return {
       status: {
         currentPage: 1
       }
     }
   },
-  mounted() {
+  mounted () {
   },
   methods: {
+  },
+  head () {
+    return {
+      title: '遇到错误了',
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '访问遇到错误了') }
+      ]
+    }
   }
 }
 </script>

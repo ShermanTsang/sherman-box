@@ -56,15 +56,15 @@
         <div
           v-for="item in data.commitList"
           :key="item.sha"
-          @click="openCommitDetailPage(item.sha)"
           class="log__list__item"
+          @click="openCommitDetailPage(item.sha)"
         >
           <div class="log__list__item__info">
             <Datetime :time="item.commit.author.date" from-now type="datetime" />
           </div>
           <div
-            v-html="(item.commit.message || 'no specific message').replace(/\n/g,'<br>')"
             class="log__list__item__main"
+            v-html="(item.commit.message || 'no specific message').replace(/\n/g,'<br>')"
           >
           </div>
           <div class="log__list__item__info">
@@ -72,8 +72,8 @@
           </div>
         </div>
       </template>
-      <div @click="requestGithubCommitLog()" class="log__list__action">
-        <Icon name="more" size="1.2rem"/>
+      <div class="log__list__action" @click="requestGithubCommitLog()">
+        <Icon name="more" size="1.2rem" />
       </div>
     </div>
     <Blocker height="40px" />
@@ -82,19 +82,7 @@
 
 <script>
 export default {
-  head() {
-    return {
-      title: '更新日志 - 页面',
-      meta: [
-        {
-          hid: 'index',
-          name: 'description',
-          content: this.$getSeoInfo('description', '更新日志')
-        }
-      ]
-    }
-  },
-  data() {
+  data () {
     return {
       data: {
         commitList: []
@@ -105,11 +93,11 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.requestGithubCommitLog()
   },
   methods: {
-    async requestGithubCommitLog() {
+    async requestGithubCommitLog () {
       this.status.isLoading = true
       const requestPage = this.status.currentPage + 1
       const commitList = await this.$axios.$get('https://api.github.com/repos/ShareManT/ShareManBox-Nuxt/commits', {
@@ -121,8 +109,20 @@ export default {
       this.status.currentPage++
       this.status.isLoading = false
     },
-    openCommitDetailPage(sha) {
+    openCommitDetailPage (sha) {
       window.open(`https://github.com/ShareManT/ShareManBox-Nuxt/commit/${sha}`)
+    }
+  },
+  head () {
+    return {
+      title: '更新日志 - 页面',
+      meta: [
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', '更新日志')
+        }
+      ]
     }
   }
 }

@@ -155,8 +155,8 @@
         <div class="project__header__main__image">
           <img
             :src="$getOssUrl(data.projectItem.image, true)"
-            @load="$gradientColor('.project__header')"
             crossorigin="anonymous"
+            @load="$gradientColor('.project__header')"
           >
         </div>
         <Blocker height="30px" />
@@ -322,10 +322,22 @@
 
 <script>
 export default {
-  validate({ params }) {
+  validate ({ params }) {
     return /^\d+$/.test(params.id)
   },
-  head() {
+  async asyncData ({ $axios, store, params }) {
+    const { data: projectItem } = await $axios.$get(`/api/projects/${params.id}`)
+    store.commit('currentItem', projectItem)
+    return {
+      data: {
+        projectItem
+      }
+    }
+  },
+  mounted () {
+  },
+  methods: {},
+  head () {
     const { name, category, description } = this.data.projectItem
     return {
       title: `${name} - ${category.name} - 项目`,
@@ -337,18 +349,6 @@ export default {
         }
       ]
     }
-  },
-  async asyncData({ $axios, store, params }) {
-    const { data: projectItem } = await $axios.$get(`/api/projects/${params.id}`)
-    store.commit('currentItem', projectItem)
-    return {
-      data: {
-        projectItem
-      }
-    }
-  },
-  mounted() {
-  },
-  methods: {}
+  }
 }
 </script>

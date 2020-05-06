@@ -31,18 +31,7 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
-  head() {
-    return {
-      title: '想法',
-      meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '想法列表') }
-      ]
-    }
-  },
-  async asyncData({ $axios, query }) {
+  async asyncData ({ $axios, query }) {
     const { data: ideaList, meta } = await $axios.$get('/api/ideas', {
       params: {
         page: query.page,
@@ -56,16 +45,27 @@ export default {
       meta
     }
   },
-  mounted() {
+  data () {
+    return {}
+  },
+  mounted () {
   },
   methods: {
-    changePage(currentPage) {
+    changePage (currentPage) {
       this.$router.push({
         name: 'idea',
         query: {
           page: parseInt(currentPage)
         }
       })
+    }
+  },
+  head () {
+    return {
+      title: '想法',
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '想法列表') }
+      ]
     }
   },
   watchQuery: ['page', 'categoryId']

@@ -15,7 +15,9 @@ $screen-xl-max: "max-width: 1200px";
 $screen-xxl-max: "max-width: 1600px";
 
 $sidebar-width: 140px;
-$header-height: 64px;
+$header-main-height: 64px;
+$header-nav-height: 54px;
+$header-height: $header-main-height;
 
 @mixin gradient-background {
   background-color: #51defe;

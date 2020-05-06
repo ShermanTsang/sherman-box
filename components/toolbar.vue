@@ -56,16 +56,16 @@
 <script>
 export default {
   name: 'Toolbar',
-  data() {
+  data () {
     return {}
   },
   computed: {
   },
-  mounted() {
+  mounted () {
     window.addEventListener('scroll', this.onScroll)
   },
   methods: {
-    onScroll() {
+    onScroll () {
       const toolbar = document.querySelector('#toolbar')
       if (toolbar) {
         const toolbarClassList = toolbar.classList

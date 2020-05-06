@@ -11,18 +11,18 @@
 export default {
   layout: 'default',
   middleware: 'redirect',
-  head() {
+  asyncData ({ params }) {
+    return {}
+  },
+  methods: {
+  },
+  head () {
     return {
       title: '页面不存在',
       meta: [
         { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '页面不存在') }
       ]
     }
-  },
-  asyncData({ params }) {
-    return {}
-  },
-  methods: {
   }
 }
 </script>

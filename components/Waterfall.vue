@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       return {
         'column-count': this.column,
         'column-gap': this.gap

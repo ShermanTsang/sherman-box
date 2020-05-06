@@ -84,8 +84,8 @@
         <div class="movie__header__poster__image">
           <img
             :src="$getOssUrl(data.movieItem.image, true)"
-            @load="$gradientColor('.movie__header')"
             crossorigin="anonymous"
+            @load="$gradientColor('.movie__header')"
           >
         </div>
         <Blocker height="20px" />
@@ -142,10 +142,22 @@
 
 <script>
 export default {
-  validate({ params }) {
+  validate ({ params }) {
     return /^\d+$/.test(params.id)
   },
-  head() {
+  async asyncData ({ $axios, store, params }) {
+    const { data: movieItem } = await $axios.$get(`/api/movies/${params.id}`)
+    store.commit('currentItem', movieItem)
+    return {
+      data: {
+        movieItem
+      }
+    }
+  },
+  mounted () {
+  },
+  methods: {},
+  head () {
     const { name, category, description } = this.data.movieItem
     return {
       title: `${name} - ${category.name} - 观影`,
@@ -157,18 +169,6 @@ export default {
         }
       ]
     }
-  },
-  async asyncData({ $axios, store, params }) {
-    const { data: movieItem } = await $axios.$get(`/api/movies/${params.id}`)
-    store.commit('currentItem', movieItem)
-    return {
-      data: {
-        movieItem
-      }
-    }
-  },
-  mounted() {
-  },
-  methods: {}
+  }
 }
 </script>

@@ -38,10 +38,10 @@
 <script>
 export default {
   name: 'LayoutSidebar',
-  data() {
+  data () {
     return {}
   },
-  mounted() {
+  mounted () {
   },
   methods: {
   }

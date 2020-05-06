@@ -46,7 +46,7 @@
 <script>
 export default {
   name: 'Message',
-  data() {
+  data () {
     return {
       text: '',
       icon: 'info',
@@ -55,7 +55,7 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       return {}
     }
   },

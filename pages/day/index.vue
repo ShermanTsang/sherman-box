@@ -37,18 +37,7 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
-  head() {
-    return {
-      title: '日迹',
-      meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '日迹列表') }
-      ]
-    }
-  },
-  async asyncData({ $axios, query }) {
+  async asyncData ({ $axios, query }) {
     const { data: dayList, meta } = await $axios.$get('/api/days', {
       params: {
         page: query.page
@@ -61,11 +50,22 @@ export default {
       meta
     }
   },
-  mounted() {
+  data () {
+    return {}
+  },
+  mounted () {
   },
   methods: {
-    changePage(currentPage) {
+    changePage (currentPage) {
       this.$router.push({ name: 'day', query: { page: parseInt(currentPage) } })
+    }
+  },
+  head () {
+    return {
+      title: '日迹',
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '日迹列表') }
+      ]
     }
   },
   watchQuery: ['page']

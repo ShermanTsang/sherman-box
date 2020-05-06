@@ -48,13 +48,13 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       return {
         height: this.height,
         width: this.width
       }
     },
-    dividerStyle() {
+    dividerStyle () {
       return {
         width: this.dividerWidth,
         height: this.dividerHeight

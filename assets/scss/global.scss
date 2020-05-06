@@ -65,10 +65,10 @@ html {
   input {
     background: none;
     outline: none;
-
-    &:focus {
-      border: none;
-    }
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #eee;
   }
 
   .search-text {

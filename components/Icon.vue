@@ -31,7 +31,7 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       const styleObject = {
         color: this.color,
         fontSize: this.size

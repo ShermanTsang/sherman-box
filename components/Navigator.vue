@@ -1,28 +1,50 @@
 <style lang="scss">
   .navigator {
-    cursor: default;
+    height: $header-nav-height;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
 
-    &__item {
-      letter-spacing: 1px;
-      display: inline-block;
-      font-size: .95rem;
-      color: #666;
+    &__main {
+      &__item {
+        letter-spacing: 1px;
+        display: inline-block;
+        font-size: .95rem;
+        color: #666;
+        cursor: default;
 
-      &:not(:first-child) {
-        margin-left: 10px;
+        &:not(:first-child) {
+          margin-left: 10px;
+        }
+
+        &__module {
+          color: $theme-color;
+          padding: 4px 12px;
+          border-radius: 4px;
+          background-color: rgba($theme-color, 0.1);
+        }
+
+        &__divider {
+          color: #ccc;
+        }
+
       }
+    }
 
-      &__module {
-        color: $theme-color;
-        padding: 4px 12px;
+    &__action {
+      &__item {
+        cursor: pointer;
+        display: inline-block;
+        padding: 10px;
+        margin: 0 10px;
         border-radius: 4px;
-        background-color: rgba($theme-color,0.1);
-      }
+        color: $theme-color;
 
-      &__divider {
-        color: #ccc;
+        &:hover {
+          background-color: rgba(177,177,177, .1);
+        }
       }
-
     }
 
   }
@@ -30,14 +52,27 @@
 
 <template>
   <div v-if="navs && navs.length > 0" :style="style" class="navigator">
-    <div v-for="(item,index) in navs" :key="index" :style="{color: item.color || '#666',cursor: item.path ? 'pointer':'default'}" @click="clickNavItem(item)" class="navigator__item">
-      <span :class="{'navigator__item__module':index===0}">{{ item.text }}</span>
-      <template v-if="index !== navs.length - 1">
-        <Icon v-if="!divider" name="angle-right" color="#ccc" />
-        <span v-else class="navigator__item__divider">{{ divider }}</span>
-      </template>
+    <div class="navigator__main">
+      <div
+        v-for="(item,index) in navs"
+        :key="index"
+        :style="{color: item.color || '#666',cursor: item.path ? 'pointer':'default'}"
+        class="navigator__main__item"
+        @click="clickNavItem(item)"
+      >
+        <span :class="{'navigator__main__item__module':index===0}">{{ item.text }}</span>
+        <template v-if="index !== navs.length - 1">
+          <Icon v-if="!divider" name="angle-right" color="#ccc" />
+          <span v-else class="navigator__main__item__divider">{{ divider }}</span>
+        </template>
+      </div>
+      <slot />
     </div>
-    <slot />
+    <div class="navigator__action">
+      <div class="navigator__action__item" @click="backToTop()">
+        <Icon name="arrow-up" color="#999" size="20px"></Icon>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -51,21 +86,24 @@ export default {
     },
     navs: {
       type: Array,
-      default() {
+      default () {
         return []
       }
     }
   },
   computed: {
-    style() {
+    style () {
       return {}
     }
   },
   methods: {
-    clickNavItem(item) {
+    clickNavItem (item) {
       if (item.path) {
         this.$router.push({ path: item.path })
       }
+    },
+    backToTop () {
+      document.body.scrollIntoView()
     }
   }
 }

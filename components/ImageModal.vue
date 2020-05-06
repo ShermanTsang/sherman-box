@@ -37,7 +37,7 @@
 
 <template>
   <transition name="fade">
-    <div v-if="imageUrl" @click="handleClick($event)" class="image-modal">
+    <div v-if="imageUrl" class="image-modal" @click="handleClick($event)">
       <div class="image-modal__image">
         <img :src="$getOssUrl(imageUrl)">
       </div>
@@ -54,19 +54,19 @@ export default {
       default: ''
     }
   },
-  data() {
+  data () {
     return {
       imageUrl: this.url
     }
   },
   watch: {
-    url(url) {
+    url (url) {
       this.imageUrl = url
       this.$emit('update:url', url)
     }
   },
   methods: {
-    handleClick(event) {
+    handleClick (event) {
       if (event.target.nodeName !== 'IMG') {
         this.imageUrl = null
         this.$emit('update:url', this.imageUrl)

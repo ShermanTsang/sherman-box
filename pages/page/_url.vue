@@ -15,11 +15,21 @@
 
 <script>
 export default {
-  validate({ params }) {
+  validate ({ params }) {
     const customPageNameArray = ['log']
     return params.url && !customPageNameArray.includes(params.url)
   },
-  head() {
+  async asyncData ({ $axios, params }) {
+    const { data: pageItem } = await $axios.$get(`/api/pages/${params.url}`)
+    return {
+      data: {
+        pageItem
+      }
+    }
+  },
+  mounted () {
+  },
+  head () {
     return {
       title: `${this.data.pageItem.name} - 页面`,
       meta: [
@@ -30,16 +40,6 @@ export default {
         }
       ]
     }
-  },
-  async asyncData({ $axios, params }) {
-    const { data: pageItem } = await $axios.$get(`/api/pages/${params.url}`)
-    return {
-      data: {
-        pageItem
-      }
-    }
-  },
-  mounted() {
   }
 }
 </script>

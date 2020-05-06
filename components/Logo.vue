@@ -6,7 +6,7 @@
 
 <template>
   <div class="logo">
-    <img :src="image" :style="style" @click="$router.push('/')" alt="logo">
+    <img :src="image" :style="style" alt="logo" @click="$router.push('/')">
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     type: {
       type: String,
       default: 'text',
-      validator(value) {
+      validator (value) {
         return ['text', 'icon'].includes(value)
       }
     },
@@ -31,10 +31,10 @@ export default {
     }
   },
   computed: {
-    image() {
+    image () {
       return this.type === 'text' ? this.$getImageAsset('logo') : '/favicon.ico'
     },
-    style() {
+    style () {
       return {
         width: this.width,
         height: this.height

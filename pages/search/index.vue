@@ -38,26 +38,7 @@
 
 <script>
 export default {
-  head() {
-    return {
-      title: `${this.$route.query.keyword || '请输入关键字'} - 搜索`,
-      meta: [
-        {
-          hid: 'index',
-          name: 'description',
-          content: this.$getSeoInfo('description', '搜索')
-        }
-      ]
-    }
-  },
-  data() {
-    return {
-      status: {
-        currentPage: 1
-      }
-    }
-  },
-  async asyncData({ $axios, query }) {
+  async asyncData ({ $axios, query }) {
     if (query.keyword) {
       const { data: resultList, meta } = await $axios.$get('/api/common/search', {
         params: {
@@ -81,10 +62,17 @@ export default {
       }
     }
   },
-  mounted() {
+  data () {
+    return {
+      status: {
+        currentPage: 1
+      }
+    }
+  },
+  mounted () {
   },
   methods: {
-    async requestMoreResult() {
+    async requestMoreResult () {
       const requestPage = this.status.currentPage + 1
       const { data: timeline, meta } = await this.$axios.$get('/api/common/search', {
         params: {
@@ -95,6 +83,18 @@ export default {
       this.data.resultList = [...this.data.resultList, ...timeline]
       this.meta = meta
       this.status.currentPage++
+    }
+  },
+  head () {
+    return {
+      title: `${this.$route.query.keyword || '请输入关键字'} - 搜索`,
+      meta: [
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', '搜索')
+        }
+      ]
     }
   },
   watchQuery: ['page', 'keyword']

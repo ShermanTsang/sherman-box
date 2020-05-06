@@ -73,10 +73,22 @@
 
 <script>
 export default {
-  validate({ params }) {
+  validate ({ params }) {
     return /^\d+$/.test(params.id)
   },
-  head() {
+  async asyncData ({ $axios, store, params }) {
+    const { data: ideaItem } = await $axios.$get(`/api/ideas/${params.id}`)
+    store.commit('currentItem', ideaItem)
+    return {
+      data: {
+        ideaItem
+      }
+    }
+  },
+  mounted () {
+  },
+  methods: {},
+  head () {
     const { name, category, description } = this.data.ideaItem
     return {
       title: `${name} - ${category.name} - 想法`,
@@ -88,18 +100,6 @@ export default {
         }
       ]
     }
-  },
-  async asyncData({ $axios, store, params }) {
-    const { data: ideaItem } = await $axios.$get(`/api/ideas/${params.id}`)
-    store.commit('currentItem', ideaItem)
-    return {
-      data: {
-        ideaItem
-      }
-    }
-  },
-  mounted() {
-  },
-  methods: {}
+  }
 }
 </script>

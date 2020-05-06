@@ -1,5 +1,5 @@
 <style lang="scss">
-  .FormItem {
+  .form-item {
 
     &:not(:first-child) {
       margin-top: 16px;
@@ -25,15 +25,21 @@
         font-size: 1rem;
         padding: 0 10px;
         line-height: 34px;
-        border: none;
         border-bottom: 1px solid #ddd;
       }
     }
 
     &__error {
-      margin: 10px 0;
-      color: orangered;
-      font-size: .9rem;
+      display: block;
+      margin-top: 10px;
+
+      span {
+        background-color: rgba(orangered, .1);
+        margin: 10px 4px;
+        padding: 4px 8px;
+        color: orangered;
+        font-size: .9rem;
+      }
     }
 
     &__tip {
@@ -46,26 +52,27 @@
 </style>
 
 <template>
-  <div class="FormItem" :style="style">
-    <div class="FormItem__name">
+  <div class="form-item" :style="style">
+    <div class="form-item__name">
       <label :for="name">{{ label }}</label><span v-if="isRequired">*</span>
     </div>
-    <div class="FormItem__content">
+    <div class="form-item__content">
       <input
         v-if="type === 'input'"
         :id="name"
         v-model="data.value"
-        v-validate="validate"
         :name="name"
         :placeholder="placeholder"
       >
       <slot v-if="type === 'custom'"></slot>
     </div>
-    <div v-if="$slots.tip" class="FormItem__tip">
+    <div v-if="$slots.tip" class="form-item__tip">
       <slot name="tip"></slot>
     </div>
-    <div v-show="errors.has(name)" class="FormItem__error">
-      <span v-for="(item, index) in errors.collect(name)" :key="index">{{ item }}</span>
+    <div v-if="data.errors.length > 0" class="form-item__error">
+      <span v-for="error in data.errors" :key="error">
+        {{ error }}
+      </span>
     </div>
   </div>
 </template>
@@ -84,7 +91,7 @@ export default {
     },
     validate: {
       type: String,
-      default: undefined
+      default: ''
     },
     name: {
       type: String,
@@ -97,7 +104,7 @@ export default {
     type: {
       type: String,
       default: 'custom',
-      validator(value) {
+      validator (value) {
         return ['custom', 'input', 'textarea'].includes(value)
       }
     },
@@ -106,38 +113,91 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       data: {
-        value: ''
+        value: '',
+        errors: []
       }
     }
   },
   computed: {
-    style() {
+    style () {
       return {}
     },
-    isRequired() {
+    isRequired () {
       const validate = this.validate
       if (validate) {
-        return validate.toString().indexOf('required') !== -1
+        return validate.toString().includes('required')
       }
       return false
+    },
+    validateRules () {
+      const validate = this.validate
+      if (!validate) {
+        return []
+      }
+      const finalRules = []
+      if (validate.includes('|')) {
+        const rules = validate.split('|')
+        for (const rule of rules) {
+          if (rule) {
+            finalRules.push(rule.includes(':')
+              ? { [rule.split(':')[0]]: rule.split(':')[1] }
+              : { [rule]: true })
+          }
+        }
+      } else {
+        finalRules.push(validate.includes(':')
+          ? { [validate.split(':')[0]]: validate.split(':')[1] }
+          : { [validate]: true })
+      }
+      return finalRules
     }
   },
   watch: {
-    'data.value'(value) {
+    'data.value' (value) {
       this.changeValue(value)
-      this.checkValidate()
+      this.checkValidate(value)
     }
   },
   methods: {
-    changeValue(value) {
-      this.$emit('updateValue', value)
+    changeValue (currentValue) {
+      this.$emit('updateValue', currentValue)
     },
-    async checkValidate() {
-      const validate = await this.$validator.validate()
-      this.$emit('changeValidate', validate)
+    checkValidate (currentValue) {
+      this.data.errors = []
+      const validateRules = this.validateRules
+
+      if (validateRules && validateRules.length > 0) {
+        for (const ruleItem of validateRules) {
+          if ('required' in ruleItem) {
+            if (!currentValue) {
+              this.data.errors.push(this.label + '不能为空')
+            }
+          } else if (currentValue && currentValue.length > 0) {
+            if ('max' in ruleItem) {
+              if (currentValue.length > Number.parseInt(ruleItem.max)) {
+                this.data.errors.push(this.label + `超过最大字数限制(${ruleItem.max})`)
+              }
+            }
+
+            if ('min' in ruleItem) {
+              if (currentValue.length < Number.parseInt(ruleItem.max)) {
+                this.data.errors.push(this.label + `小于最小字数限制(${ruleItem.max}｝)`)
+              }
+            }
+
+            if ('url' in ruleItem) {
+              if (!(/^(https?:\/\/(([a-zA-Z0-9]+-?)+[a-zA-Z0-9]+\.)+[a-zA-Z]+)(:\d+)?(\/.*)?(\?.*)?(#.*)?$/.test(currentValue))) {
+                this.data.errors.push('网址格式有误')
+              }
+            }
+          }
+        }
+      }
+      const validatePass = this.data.errors.length === 0
+      this.$emit('changeValidate', validatePass)
     }
   }
 }

@@ -68,13 +68,13 @@ export default {
       default: 0
     }
   },
-  data() {
+  data () {
     return {
       currentPage: parseInt(this.$route.query.page) || 1
     }
   },
   computed: {
-    displayPageList() {
+    displayPageList () {
       const pageNum = Math.ceil(this.total / this.size) || 0
       const index = this.currentPage
       const arr = []
@@ -100,15 +100,15 @@ export default {
     }
   },
   watch: {
-    '$route.query.page'(value) {
+    '$route.query.page' (value) {
       this.currentPage = value
     }
   },
   methods: {
-    changePage(currentPage) {
+    changePage (currentPage) {
       this.$emit('change', currentPage)
     },
-    jumpPage(pageNumber) {
+    jumpPage (pageNumber) {
       if (pageNumber !== 0) {
         const { path = '', query = {} } = this.$route
         const newQuery = JSON.parse(JSON.stringify(query))

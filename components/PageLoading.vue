@@ -36,13 +36,13 @@ export default {
     loading: false
   }),
   computed: {},
-  mounted() {
+  mounted () {
   },
   methods: {
-    start() {
+    start () {
       this.loading = true
     },
-    finish() {
+    finish () {
       this.loading = false
     }
   }

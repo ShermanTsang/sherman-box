@@ -3,11 +3,6 @@
     flex: 1;
     overflow: hidden;
     margin-top: $header-height;
-
-    @media($screen-md-max) {
-      margin-top: 0;
-    }
-
   }
 </style>
 

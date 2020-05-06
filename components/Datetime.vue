@@ -39,21 +39,21 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       return {
         color: this.color + '!important'
       }
     },
-    localTime() {
+    localTime () {
       return this.$time(this.time) || undefined
     },
-    isDateFormat() {
+    isDateFormat () {
       return this.localTime.format('HH:mm:ss') === '00:00:00'
     },
-    isToday() {
+    isToday () {
       return this.localTime.format('YYYY-MM-DD') === this.$time().format('YYYY-MM-DD')
     },
-    fromNowFormat() {
+    fromNowFormat () {
       const expectedTimeValue = this.isDateFormat ? this.localTime.set('hour', 23).set('minute', 59) : this.localTime
       return this.isDateFormat && this.isToday ? '今天' : expectedTimeValue.from()
     }

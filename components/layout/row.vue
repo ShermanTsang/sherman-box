@@ -33,31 +33,31 @@ export default {
     align: {
       type: String,
       default: 'left',
-      validator(value) {
+      validator (value) {
         return ['left', 'right', 'center'].includes(value)
       }
     }
   },
   computed: {
-    rowStyle() {
+    rowStyle () {
       return {
         marginLeft: -this.gutter / 2 + 'px',
         marginRight: -this.gutter / 2 + 'px'
       }
     },
-    rowClass() {
+    rowClass () {
       const { align } = this
       return [align && `align-${align}`]
     }
   },
-  mounted() {
+  mounted () {
     this.setColGutter()
   },
-  updated() {
+  updated () {
     this.setColGutter()
   },
   methods: {
-    setColGutter() {
+    setColGutter () {
       this.$children.forEach((vm) => { // 遍历 row 中 col，将 gutter 传递给 col
         vm.gutter = this.gutter
       })

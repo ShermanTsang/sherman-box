@@ -6,48 +6,55 @@
     right: 0;
     top: 0;
     z-index: $z-index-header;
-    height: $header-height;
-    padding: 10px 20px;
-    overflow: hidden;
     transition: all .2s ease-in-out;
-    background-color: rgba(255, 255, 255, .98);
-    box-shadow: 0 2px 10px rgba(177, 177, 177, .1);
-
-    @media($screen-md-max) {
-      position: relative;
-      height: auto;
-    }
+    border-bottom: 1px solid #efefef;
+    background-color: #fff;
 
     &__main {
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-between;
+      padding: 0 20px;
+      height: $header-main-height;
 
       &__logo {
       }
 
-      &__navigator {
-        flex-grow: 1;
-        margin: 0 16px;
-      }
+      &__content {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
 
-      &__search {
+        &__menu {
+        }
+
+        &__action {
+          position: relative;
+          margin-left: 20px;
+
+          &:before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -20px;
+            content: '';
+            width: 2px;
+            height: 120%;
+            background-color: #ececec;
+          }
+        }
       }
 
     }
 
-    &__menu {
-      display: none;
-      @media($screen-md-max) {
-        padding: 12px 0;
-        display: block;
-      }
+    &__navigator {
+      padding: 0 20px;
+      border-top: 1px solid #efefef;
     }
 
     &:hover {
-      box-shadow: 0 2px 12px rgba(177, 177, 177, .4);
-      background-color: #fff;
+      box-shadow: 0 2px 12px rgba(177, 177, 177, .2);
     }
 
   }
@@ -59,25 +66,27 @@
       <div id="logo" class="header__main__logo">
         <Logo type="text" height="40px" />
       </div>
-      <transition name="slideFromBottom">
-        <div id="navigator" v-if="currentModule && status.isDisplayNavigator" class="header__main__navigator">
-          <Navigator :navs="navs" :divider="currentPage.type === 'list'?'/':'>'" />
+      <div class="header__main__content">
+        <div class="header__main__content__menu">
+          <ModuleMenu />
         </div>
-      </transition>
-      <div class="header__main__search">
-        <Search />
+        <div class="header__main__content__action">
+          <Search />
+        </div>
       </div>
     </div>
-    <div class="header__menu">
-      <ModuleMenu type="horizontal" />
-    </div>
+    <transition name="slideFromBottom">
+      <div v-if="currentModule && status.isDisplayNavigator" id="navigator" class="header__navigator">
+        <Navigator :navs="navs" :divider="currentPage.type === 'list'?'/':'>'" />
+      </div>
+    </transition>
   </header>
 </template>
 
 <script>
 export default {
   name: 'LayoutHeader',
-  data() {
+  data () {
     return {
       status: {
         isDisplayNavigator: false,
@@ -86,19 +95,19 @@ export default {
     }
   },
   computed: {
-    currentPage() {
+    currentPage () {
       return this.$store.getters.currentPage
     },
-    currentItem() {
+    currentItem () {
       return this.$store.getters.currentItem
     },
-    currentModule() {
+    currentModule () {
       return this.currentPage.module && this.$getModuleConfig(this.currentPage.module)
     },
-    statisticsModule() {
+    statisticsModule () {
       return this.$store.getters.statisticsModule
     },
-    navs() {
+    navs () {
       if (!this.currentModule) {
         return false
       }
@@ -128,11 +137,11 @@ export default {
       return []
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('scroll', this.onScroll)
   },
   methods: {
-    onScroll() {
+    onScroll () {
       const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       const isScrollDown = (scrollOffset - this.status.lastScrollOffset) > 0
       this.status.isDisplayNavigator = isScrollDown && scrollOffset > 200

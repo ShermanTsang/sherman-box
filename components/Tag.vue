@@ -46,16 +46,16 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       tagValue: this.$slots.default[0].text || ''
     }
   },
   computed: {
-    tagLength() {
+    tagLength () {
       return this.$getStringCount(this.tagValue)
     },
-    tagResult() {
+    tagResult () {
       return this.tagValue.split(',')
     }
   }

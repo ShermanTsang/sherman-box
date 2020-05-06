@@ -61,7 +61,7 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       const fullWidth = { width: '100%' }
       const height = { height: this.height }
       const width = { width: this.width }
@@ -69,7 +69,7 @@ export default {
         height, width, this.fullWidth ? fullWidth : ''
       )
     },
-    classes() {
+    classes () {
       return {
         'btn--colorful': this.colorful,
         'btn--disabled': this.disabled

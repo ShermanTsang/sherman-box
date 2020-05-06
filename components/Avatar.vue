@@ -38,10 +38,10 @@ export default {
     }
   },
   computed: {
-    avatarUrl() {
+    avatarUrl () {
       if (this.sign) {
         const sign = this.sign
-        const isEmail = sign.indexOf('@') !== -1
+        const isEmail = sign.includes('@')
         const isQQ = /^[1-9][0-9]{4,9}$/gim.test(sign)
         // const isWechat = /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/.test(sign)
         if (isEmail) {
@@ -54,7 +54,7 @@ export default {
       }
       return defaultEmail
     },
-    style() {
+    style () {
       return {
         height: this.size,
         width: this.size

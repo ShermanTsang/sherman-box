@@ -42,18 +42,7 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
-  head() {
-    return {
-      title: '观影',
-      meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '观影列表') }
-      ]
-    }
-  },
-  async asyncData({ $axios, query }) {
+  async asyncData ({ $axios, query }) {
     const { data: movieList, meta } = await $axios.$get('/api/movies', {
       params: {
         pageSize: 8,
@@ -68,11 +57,22 @@ export default {
       meta
     }
   },
-  mounted() {
+  data () {
+    return {}
+  },
+  mounted () {
   },
   methods: {
-    changePage(currentPage) {
+    changePage (currentPage) {
       this.$router.push({ name: 'movie', query: { page: parseInt(currentPage) } })
+    }
+  },
+  head () {
+    return {
+      title: '观影',
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '观影列表') }
+      ]
     }
   },
   watchQuery: ['page', 'categoryId']

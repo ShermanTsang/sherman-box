@@ -1,6 +1,6 @@
 <style lang="scss">
   .footer {
-    margin-left: $sidebar-width;
+    border-top: 1px solid #efefef;
     padding: 30px 10px;
 
     &__container {
@@ -60,7 +60,7 @@
   <footer class="footer">
     <LayoutContainer class="footer__container">
       <div class="footer__container__page">
-        <div v-for="item in $store.getters.pageList" :key="item.id" @click="redirectToPage(item)" class="footer__container__page__item">
+        <div v-for="item in $store.getters.pageList" :key="item.id" class="footer__container__page__item" @click="redirectToPage(item)">
           {{ item.name }}
         </div>
       </div>
@@ -75,7 +75,7 @@
 export default {
   name: 'LayoutFooter',
   methods: {
-    redirectToPage(item) {
+    redirectToPage (item) {
       if (item.isExtra) {
         window.open(`/page/${item.url}`)
         return

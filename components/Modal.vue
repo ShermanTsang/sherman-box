@@ -20,7 +20,7 @@
       right: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.9);
     }
 
     &__container {
@@ -45,7 +45,7 @@
         }
 
         &__close {
-          color: #999;
+          color: #ddd;
           float: right;
           transition: all .2s ease-in-out;
           cursor: pointer;
@@ -70,26 +70,24 @@
 </style>
 
 <template>
-  <transition name="fade">
-    <div v-if="showModal" class="modal">
-      <div class="modal__overlay" @click="toggleModalStatus()"></div>
-      <div class="modal__container" :style="containerStyle">
-        <div class="modal__container__header">
-          <Icon v-if="icon" :name="icon" />
-          {{ title }}
-          <span class="modal__container__header__close" @click="toggleModalStatus()">
-            <Icon name="close" />
-          </span>
-        </div>
-        <div class="modal__container__content">
-          <slot />
-        </div>
-        <div v-if="$slots.footer" class="modal__container__footer">
-          <slot name="footer"></slot>
-        </div>
+  <div v-if="showModal" class="modal">
+    <div class="modal__overlay" @click="toggleModalStatus()"></div>
+    <div class="modal__container" :style="containerStyle">
+      <div class="modal__container__header">
+        <Icon v-if="icon" :name="icon" />
+        {{ title }}
+        <span class="modal__container__header__close" @click="toggleModalStatus()">
+          <Icon name="close" />
+        </span>
+      </div>
+      <div class="modal__container__content">
+        <slot />
+      </div>
+      <div v-if="$slots.footer" class="modal__container__footer">
+        <slot name="footer"></slot>
       </div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
@@ -117,19 +115,19 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
     }
   },
   computed: {
-    containerStyle() {
+    containerStyle () {
       return {
         width: this.width
       }
     }
   },
   methods: {
-    toggleModalStatus() {
+    toggleModalStatus () {
       this.$emit('toggleModalStatus', !this.showModal)
       this.$emit(this.showModal ? 'onOpen' : 'onClose')
     }

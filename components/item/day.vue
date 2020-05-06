@@ -45,7 +45,6 @@
         opacity: .8;
         background-position: center;
         background-size: cover;
-        box-shadow: 0 -10px 20px 16px #fff inset;
       }
 
     }
@@ -117,8 +116,8 @@
 
 <template>
   <Card
-    @click.native="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)"
     class="day-list__item day-item"
+    @click.native="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)"
   >
     <div :class="{'day-item__header--withoutImage': !item.image}" class="day-item__header">
       <div v-lazy:background-image="$getOssUrl(item.image)" class="day-item__header__image"></div>

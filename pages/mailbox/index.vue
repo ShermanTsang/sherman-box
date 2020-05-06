@@ -40,18 +40,7 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
-  head() {
-    return {
-      title: '邮盒',
-      meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '邮盒列表') }
-      ]
-    }
-  },
-  async asyncData({ $axios, query }) {
+  async asyncData ({ $axios, query }) {
     const { data: mailboxList, meta } = await $axios.$get('/api/mailboxes', {
       params: {
         page: query.page,
@@ -65,11 +54,22 @@ export default {
       meta
     }
   },
-  mounted() {
+  data () {
+    return {}
+  },
+  mounted () {
   },
   methods: {
-    changePage(currentPage) {
+    changePage (currentPage) {
       this.$router.push({ name: 'mailbox', query: { page: parseInt(currentPage) } })
+    }
+  },
+  head () {
+    return {
+      title: '邮盒',
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '邮盒列表') }
+      ]
     }
   },
   watchQuery: ['page', 'categoryId']

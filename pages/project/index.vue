@@ -39,18 +39,7 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
-  head() {
-    return {
-      title: '项目',
-      meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '项目列表') }
-      ]
-    }
-  },
-  async asyncData({ $axios, query }) {
+  async asyncData ({ $axios, query }) {
     const { data: projectList, meta } = await $axios.$get('/api/projects', {
       params: {
         page: query.page,
@@ -64,11 +53,22 @@ export default {
       meta
     }
   },
-  mounted() {
+  data () {
+    return {}
+  },
+  mounted () {
   },
   methods: {
-    changePage(currentPage) {
+    changePage (currentPage) {
       this.$router.push({ name: 'project', query: { page: parseInt(currentPage) } })
+    }
+  },
+  head () {
+    return {
+      title: '项目',
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '项目列表') }
+      ]
     }
   },
   watchQuery: ['page', 'categoryId']

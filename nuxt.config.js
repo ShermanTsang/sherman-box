@@ -55,7 +55,6 @@ export default {
     { src: '@/plugins/gradient-color', mode: 'client' },
     { src: '@/plugins/vue-lazyload', mode: 'client' },
     { src: '@/plugins/vue-router', mode: 'client' },
-    { src: '@/plugins/vee-validate', mode: 'client' },
     { src: '@/plugins/message', mode: 'client' }
   ],
 
@@ -103,7 +102,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend (config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && process.client) {
         config.module.rules.push({
@@ -121,7 +120,7 @@ export default {
               loader: 'sass-loader',
               options: {
                 sourceMap: false,
-                data: '@import "@/assets/scss/variables.scss";'
+                prependData: '@import "@/assets/scss/variables.scss";'
               }
             })
           })

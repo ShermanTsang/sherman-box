@@ -12,22 +12,7 @@
 <script>
 export default {
   layout: 'default',
-  head() {
-    return {
-      title: '时间轴',
-      meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '我的时间轴') }
-      ]
-    }
-  },
-  data() {
-    return {
-      status: {
-        currentPage: 1
-      }
-    }
-  },
-  async asyncData({ $axios, query }) {
+  async asyncData ({ $axios, query }) {
     const { data: timeline, meta } = await $axios.$get('/api/common/timeline', {
       params: {
         pageSize: 10,
@@ -41,10 +26,17 @@ export default {
       meta
     }
   },
-  mounted() {
+  data () {
+    return {
+      status: {
+        currentPage: 1
+      }
+    }
+  },
+  mounted () {
   },
   methods: {
-    async requestTimeline() {
+    async requestTimeline () {
       const requestPage = this.status.currentPage + 1
       const { data: timeline, meta } = await this.$axios.$get('/api/common/timeline', {
         params: {
@@ -55,6 +47,14 @@ export default {
       this.data.timeline = [...this.data.timeline, ...timeline]
       this.meta = meta
       this.status.currentPage++
+    }
+  },
+  head () {
+    return {
+      title: '时间轴',
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '我的时间轴') }
+      ]
     }
   }
 }

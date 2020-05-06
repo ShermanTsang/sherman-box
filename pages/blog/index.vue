@@ -32,18 +32,7 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
-  head() {
-    return {
-      title: '博文',
-      meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '博文列表') }
-      ]
-    }
-  },
-  async asyncData({ $axios, query }) {
+  async asyncData ({ $axios, query }) {
     const { data: blogList, meta } = await $axios.$get('/api/blogs', {
       params: {
         page: query.page,
@@ -57,11 +46,22 @@ export default {
       meta
     }
   },
-  mounted() {
+  data () {
+    return {}
+  },
+  mounted () {
   },
   methods: {
-    changePage(currentPage) {
+    changePage (currentPage) {
       this.$router.push({ name: 'blog', query: { page: parseInt(currentPage) } })
+    }
+  },
+  head () {
+    return {
+      title: '博文',
+      meta: [
+        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '博文列表') }
+      ]
     }
   },
   watchQuery: ['page', 'categoryId']

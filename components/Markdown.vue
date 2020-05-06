@@ -226,9 +226,9 @@
   <div class="markdown">
     <article
       v-lazy-container="{ selector: 'img' }"
+      class="markdown"
       @click="handleClick($event)"
       v-html="compiledMarkdown"
-      class="markdown"
     >
       <slot />
     </article>
@@ -249,29 +249,30 @@ export default {
       default: null
     }
   },
-  data() {
+  data () {
     return {
       renderer: new Marked.Renderer(),
       imageModalUrl: null
     }
   },
   computed: {
-    compiledMarkdown() {
-      if (process.client) {
-        this.setMarkdownOption()
-        this.setMarkdownRenderer()
-        return Marked(this.content)
-      }
-      return this.content
+    compiledMarkdown () {
+      return process.client ? Marked(this.content) : this.content
+    }
+  },
+  created () {
+    if (process.client) {
+      this.setMarkdownOption()
+      this.setMarkdownRenderer()
     }
   },
   methods: {
-    handleClick(event) {
+    handleClick (event) {
       if (event.target.nodeName === 'IMG') {
         this.imageModalUrl = event.target.src
       }
     },
-    setMarkdownRenderer() {
+    setMarkdownRenderer () {
       this.renderer.image = (href, title, text) => {
         return `<img data-src="${this.$getOssUrl(href)}">`
       }
@@ -280,11 +281,11 @@ export default {
         return `<a href="${href}"  ${titleOutput} target="_blank">${text}</a>`
       }
       this.renderer.table = (header, body) => {
-        if (body) body = '<tbody>' + body + '</tbody>'
+        if (body) { body = '<tbody>' + body + '</tbody>' }
         return '<div class="table-wrap">\n' + '<table>\n' + '<thead>\n' + header + '</thead>\n' + body + '</table>\n' + '</div>\n'
       }
     },
-    setMarkdownOption() {
+    setMarkdownOption () {
       Marked.setOptions({
         renderer: this.renderer,
         highlight: (code) => {

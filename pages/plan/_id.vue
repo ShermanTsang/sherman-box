@@ -164,8 +164,8 @@
         <div class="plan__header__main__image">
           <img
             :src="$getOssUrl(data.planItem.image, true)"
-            @load="$gradientColor('.plan__header')"
             crossorigin="anonymous"
+            @load="$gradientColor('.plan__header')"
           >
         </div>
         <Blocker height="30px" />
@@ -176,7 +176,7 @@
         <div class="plan__header__main__time">
           始 <Datetime :time="data.planItem.datetime_start" from-now type="datetime" />
           <br>
-          终 <Datetime :time="data.planItem.datetime_end" v-if="data.planItem.datetime_end" from-now type="datetime" /><span v-else>至今</span>
+          终 <Datetime v-if="data.planItem.datetime_end" :time="data.planItem.datetime_end" from-now type="datetime" /><span v-else>至今</span>
         </div>
         <div class="plan__header__main__description">
           {{ data.planItem.description || '暂无项目介绍' }}
@@ -207,10 +207,22 @@
 
 <script>
 export default {
-  validate({ params }) {
+  validate ({ params }) {
     return /^\d+$/.test(params.id)
   },
-  head() {
+  async asyncData ({ $axios, store, params }) {
+    const { data: planItem } = await $axios.$get(`/api/plans/${params.id}`)
+    store.commit('currentItem', planItem)
+    return {
+      data: {
+        planItem
+      }
+    }
+  },
+  mounted () {
+  },
+  methods: {},
+  head () {
     const { name, category, description } = this.data.planItem
     return {
       title: `${name} - ${category.name} - 项目`,
@@ -222,18 +234,6 @@ export default {
         }
       ]
     }
-  },
-  async asyncData({ $axios, store, params }) {
-    const { data: planItem } = await $axios.$get(`/api/plans/${params.id}`)
-    store.commit('currentItem', planItem)
-    return {
-      data: {
-        planItem
-      }
-    }
-  },
-  mounted() {
-  },
-  methods: {}
+  }
 }
 </script>

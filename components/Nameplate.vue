@@ -9,7 +9,7 @@
 
     &__title {
       cursor: default;
-      font-size: 1.45rem;
+      font-size: 1.3rem;
       letter-spacing: 2px;
       color: #333;
       position: relative;
