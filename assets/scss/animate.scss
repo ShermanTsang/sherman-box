@@ -19,7 +19,7 @@
 }
 
 .slideFromTop-enter-active {
-  transition: all .2s;
+  transition: all .2s ease-in-out;
 }
 
 .slideFromTop-leave-active {
@@ -36,7 +36,7 @@
 }
 
 .slideFromBottom-enter-active {
-  transition: all .2s;
+  transition: all .2s ease-in-out;
 }
 
 .slideFromBottom-leave-active {

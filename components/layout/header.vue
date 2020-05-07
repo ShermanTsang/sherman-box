@@ -49,6 +49,7 @@
     }
 
     &__navigator {
+      background-color: #fff;
       padding: 0 20px;
       border-top: 1px solid #efefef;
     }
@@ -58,10 +59,14 @@
     }
 
   }
+
+  .header--shadow {
+    box-shadow: 0 1px 10px rgba(177, 177, 177, .4);
+  }
 </style>
 
 <template>
-  <header class="header">
+  <header class="header" :class="{'header--shadow': status.isDisplayNavigator}">
     <div class="header__main">
       <div id="logo" class="header__main__logo">
         <Logo type="text" height="40px" />

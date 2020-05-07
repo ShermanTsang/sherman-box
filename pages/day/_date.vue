@@ -188,6 +188,8 @@
           </template>
         </div>
       </Nameplate>
+      <fffdiv class="day__background">
+      </fffdiv>
       <Card class="day__card">
         <div v-if="data.dayItem.image" class="day__card__banner">
           <div v-lazy:background-image="$getOssUrl(data.dayItem.image)" class="day__card__banner__image"></div>
