@@ -3,6 +3,7 @@
     display: inline-block;
 
     img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;

@@ -232,7 +232,7 @@
     >
       <slot />
     </article>
-    <ImageModal :url.sync="imageModalUrl" />
+    <ImageGallery :url.sync="imageModalUrl" />
   </div>
 </template>
 

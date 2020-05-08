@@ -9,6 +9,7 @@
     transition: all .2s ease-in-out;
     border-bottom: 1px solid #efefef;
     background-color: #fff;
+    box-shadow: 0 0 8px rgba(177,177,177, .1);
 
     &__main {
       display: flex;
@@ -61,7 +62,7 @@
   }
 
   .header--shadow {
-    box-shadow: 0 1px 10px rgba(177, 177, 177, .4);
+    box-shadow: 0 1px 16px rgba(177, 177, 177, .2);
   }
 </style>
 
@@ -144,6 +145,9 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.onScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.onScroll)
   },
   methods: {
     onScroll () {

@@ -1,10 +1,9 @@
 <style lang="scss">
-  .common-item {
+  .timeline-item {
     position: relative;
     margin: 10px 0;
     overflow: hidden;
     transition-duration: 0.2s;
-    line-height: 1.5;
     text-overflow: ellipsis;
     letter-spacing: 1px;
     font-size: 1rem;
@@ -39,6 +38,7 @@
         font-size: .9rem;
         margin-top: 6px;
         overflow: hidden;
+        line-height: 2;
 
         &__detail {
           overflow: hidden;
@@ -73,6 +73,7 @@
       z-index: $z-index-card-background;
 
       img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -87,7 +88,7 @@
     }
 
     &:hover {
-      .common-item {
+      .timeline-item {
         &__image {
           opacity: 1;
         }
@@ -96,8 +97,8 @@
 
   }
 
-  .common-item--right {
-    .common-item {
+  .timeline-item--right {
+    .timeline-item {
       &__main {
         order: 0;
       }
@@ -112,25 +113,36 @@
       }
     }
   }
+
+  .search-text {
+    color: orange;
+    margin: 0 1px;
+  }
+
+  .separator-text {
+    color: #eaeaea;
+    font-weight: bold;
+    margin: 0 6px;
+  }
 </style>
 
 <template>
-  <Card class="common-item" :class="{'common-item--right':align === 'right'}">
-    <div class="common-item__module">
+  <Card class="timeline-item" :class="{'timeline-item--right':align === 'right'}">
+    <div class="timeline-item__module">
       {{ module.name }}
     </div>
-    <div class="common-item__main">
-      <div class="common-item__main__name" @click="redirectToItem()" v-html="nameHtml">
+    <div class="timeline-item__main">
+      <div class="timeline-item__main__name" @click="redirectToItem()" v-html="nameFieldHtml">
       </div>
-      <div v-if="text === 'date'" class="common-item__main__info">
+      <div v-if="text === 'date'" class="timeline-item__main__info">
         <Datetime format="YYYY.MM.DD" :time="item[module.dateField]" />
       </div>
-      <div v-else-if="text === 'detail'" class="common-item__main__info">
-        <div v-for="(textItem,index) in textHtml" :key="index" class="common-item__main__info__detail" v-html="textItem">
+      <div v-else-if="text === 'detail'" class="timeline-item__main__info">
+        <div v-for="(textItem,index) in textFieldHtml" :key="index" class="timeline-item__main__info__detail" v-html="textItem">
         </div>
       </div>
     </div>
-    <div v-if="item.image" class="common-item__image" @click="redirectToItem()">
+    <div v-if="item.image" class="timeline-item__image" @click="redirectToItem()">
       <img v-lazy="$getOssUrl(item.image)">
     </div>
   </Card>
@@ -173,25 +185,31 @@ export default {
     link () {
       return `/${this.item.module}/` + (this.item.module === 'day' ? `${this.$time(this.item.datetime).format('YYYY-MM-DD')}` : `${this.item.id}`)
     },
-    nameHtml () {
-      let nameHtml = this.item.name || ''
+    nameFieldHtml () {
+      let nameFieldHtml = this.item.name || ''
       const keyword = this.$route.query.keyword
       if (keyword) {
         const replaceReg = new RegExp(keyword, 'g')
         const replaceString = '<span class="search-text">' + keyword + '</span>'
-        nameHtml = nameHtml.replace(replaceReg, replaceString)
+        nameFieldHtml = nameFieldHtml.replace(replaceReg, replaceString)
       }
-      return nameHtml
+      return nameFieldHtml
     },
-    textHtml () {
-      let textHtml = this.item.text || ''
+    textFieldHtml () {
+      let textFieldHtml = this.item.text || ''
       const keyword = this.$route.query.keyword
       if (keyword) {
         const replaceReg = new RegExp(keyword, 'g')
         const replaceString = '<span class="search-text">' + keyword + '</span>'
-        textHtml = textHtml.replace(replaceReg, replaceString)
+        textFieldHtml = textFieldHtml.replace(replaceReg, replaceString)
       }
-      return textHtml.split('|')
+      const separator = ','
+      if (separator) {
+        const replaceReg = new RegExp(separator, 'g')
+        const replaceString = '<span class="separator-text">/</span>'
+        textFieldHtml = textFieldHtml.replace(replaceReg, replaceString)
+      }
+      return textFieldHtml.split('|')
     }
   },
   methods: {

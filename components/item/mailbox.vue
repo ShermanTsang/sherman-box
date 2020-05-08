@@ -18,6 +18,7 @@
         margin: 0 20px;
 
         img {
+          display: block;
           width: 100%;
           height: 100%;
           object-fit: cover;

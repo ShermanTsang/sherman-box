@@ -42,13 +42,18 @@ export default {
     rowStyle () {
       return {
         marginLeft: -this.gutter / 2 + 'px',
-        marginRight: -this.gutter / 2 + 'px'
+        marginBottom: -this.gutter / 2 + 'px',
+        marginRight: -this.gutter / 2 + 'px',
+        marginTop: -this.gutter / 2 + 'px'
       }
     },
     rowClass () {
       const { align } = this
       return [align && `align-${align}`]
     }
+  },
+  created () {
+    this.setColGutter()
   },
   mounted () {
     this.setColGutter()
@@ -58,7 +63,7 @@ export default {
   },
   methods: {
     setColGutter () {
-      this.$children.forEach((vm) => { // 遍历 row 中 col，将 gutter 传递给 col
+      this.$children.forEach((vm) => {
         vm.gutter = this.gutter
       })
     }

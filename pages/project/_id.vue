@@ -21,6 +21,7 @@
           box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
 
           img {
+            display: block;
             border-radius: 2px;
             width: 100%;
             height: 100%;
@@ -290,8 +291,8 @@
       </LayoutContainer>
     </template>
     <template v-if="data.projectItem.file">
+      <Blocker height="60px" />
       <LayoutContainer>
-        <Blocker height="60px" />
         <Nameplate title="文件" sub-title="file" />
         <iframe
           v-if="data.projectItem.file.indexOf('.ppt') !== -1 || data.projectItem.file.indexOf('.doc') !== -1"
@@ -302,6 +303,7 @@
       </LayoutContainer>
     </template>
     <template v-if="data.projectItem.video">
+      <Blocker height="60px" />
       <LayoutContainer>
         <Nameplate title="视频" sub-title="video" />
         <iframe

@@ -187,7 +187,9 @@ export default {
     colStyle () {
       return {
         paddingLeft: this.gutter / 2 + 'px',
-        paddingRight: this.gutter / 2 + 'px'
+        paddingRight: this.gutter / 2 + 'px',
+        paddingTop: this.gutter / 2 + 'px',
+        paddingBottom: this.gutter / 2 + 'px'
       }
     }
   },

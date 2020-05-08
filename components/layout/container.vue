@@ -1,5 +1,5 @@
 <style lang="scss">
-  .LayoutContainer {
+  .layout-container {
     margin: 0 auto;
 
     @media ($screen-xs-max) {
@@ -18,7 +18,7 @@
 </style>
 
 <template>
-  <div class="LayoutContainer" :style="style">
+  <div class="layout-container" :style="style">
     <slot />
   </div>
 </template>

@@ -18,6 +18,7 @@
           :key="item.id"
           :md="{span:24}"
           :lg="{span:12}"
+          :xl="{span:8}"
         >
           <ItemProject :item="item" />
         </LayoutCol>

@@ -2,16 +2,16 @@ import Vue from 'vue'
 import config from '../config'
 
 export default function ({ store }) {
-  function getConfigItem(key) {
+  function getConfigItem (key) {
     return config[key] ? config[key] : `[!${key}]`
   }
 
-  function getConfigList(keyword) {
+  function getConfigList (keyword) {
     if (!keyword) {
       return config
     } else {
       const filterConfigKey = Object.keys(config).filter((item) => {
-        return item.indexOf(keyword) !== -1
+        return item.includes(keyword)
       })
       const filterConfigObject = {}
       filterConfigKey.forEach((item) => {
@@ -21,7 +21,7 @@ export default function ({ store }) {
     }
   }
 
-  function getConfig(key, returnType = 'value') {
+  function getConfig (key, returnType = 'value') {
     if (!key) {
       return '[ key is null ]'
     }
@@ -35,29 +35,29 @@ export default function ({ store }) {
     return returnType === 'object' ? configurationTarget : configurationTarget.value || ''
   }
 
-  function getApiUrl(url) {
+  function getApiUrl (url) {
     const config = this.$configList('api')
     return `${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/${url}`
   }
 
-  function getOssUrl(url, isProxy = false) {
+  function getOssUrl (url, isProxy = false) {
     if (!url) {
       return ''
     }
-    const isWithDomain = url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
-    const is3rdResource = url.indexOf('cdn.share-man.com') === -1 && url.indexOf('sharemancdn.ochase.com') === -1
+    const isWithDomain = url.includes('http://') || url.includes('https://')
+    const is3rdResource = !url.includes('cdn.share-man.com') && !url.includes('sharemancdn.ochase.com')
     const resourceDomain = isProxy ? '/oss/' : `https://${config['oss.domain.https']}`
     return isWithDomain
       ? (is3rdResource ? url : `${resourceDomain}/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
       : `${resourceDomain}/${url}`
   }
 
-  function getStringCount(string) {
+  function getStringCount (string) {
     if (!string) {
       return 0
     }
     try {
-      const hasMany = string.indexOf(',') !== -1
+      const hasMany = string.includes(',')
       if (hasMany) {
         const tagArray = string.split(',')
         return tagArray.length
@@ -68,7 +68,7 @@ export default function ({ store }) {
     }
   }
 
-  function getImageAsset(key, returnType = 'value') {
+  function getImageAsset (key, returnType = 'value') {
     if (!key) {
       return '[ key is null ]'
     }
@@ -82,7 +82,7 @@ export default function ({ store }) {
     return returnType === 'object' ? imageAssetTarget : this.$getOssUrl(imageAssetTarget.url) || ''
   }
 
-  function getFileAsset(key, returnType = 'value') {
+  function getFileAsset (key, returnType = 'value') {
     if (!key) {
       return '[ key is null ]'
     }
@@ -96,7 +96,7 @@ export default function ({ store }) {
     return returnType === 'object' ? fileAssetTarget : this.$getOssUrl(fileAssetTarget.url) || ''
   }
 
-  function getSeoInfo(type, value) {
+  function getSeoInfo (type, value) {
     const seoConfig = {
       description: {
         value: `${value} - ${config['site.description']}`
@@ -108,7 +108,7 @@ export default function ({ store }) {
     return seoConfig[type].value || ''
   }
 
-  function getModuleConfig(module) {
+  function getModuleConfig (module) {
     const mainConfigList = store.getters.moduleList || []
     const configList = {
       timeline: {
@@ -146,7 +146,7 @@ export default function ({ store }) {
     return module ? configList[module] : configList
   }
 
-  function checkFormValidate(validateList = {}) {
+  function checkFormValidate (validateList = {}) {
     const validateValueList = Object.values(validateList) || {}
     const falseItem = validateValueList.find(item => item === false)
     return !!(falseItem || falseItem === undefined)

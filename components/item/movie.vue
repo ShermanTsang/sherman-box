@@ -24,6 +24,7 @@
         box-shadow: 0 0 20px rgba(0,0,0,.2);
 
         img {
+          display: block;
           width: 100%;
           height: 100%;
           object-fit: cover;

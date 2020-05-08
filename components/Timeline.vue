@@ -130,7 +130,7 @@
         </div>
       </div>
       <div class="timeline__item__body">
-        <ItemCommon :item="item" :align="index % 2 === 0 ? 'right': 'left'" text="detail" />
+        <ItemTimeline :item="item" :align="index % 2 === 0 ? 'right': 'left'" text="detail" />
       </div>
     </div>
     <div v-if="meta.last_page !== meta.current_page" class="timeline__more" @click="$emit('on-request-more')">

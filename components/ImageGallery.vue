@@ -39,7 +39,7 @@
   <transition name="fade">
     <div v-if="imageUrl" class="image-modal" @click="handleClick($event)">
       <div class="image-modal__image">
-        <img :src="$getOssUrl(imageUrl)">
+        <Pic :url="$getOssUrl(imageUrl)" />
       </div>
     </div>
   </transition>
@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  name: 'ImageModal',
+  name: 'ImageGallery',
   props: {
     url: {
       type: String,

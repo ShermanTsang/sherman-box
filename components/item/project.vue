@@ -2,6 +2,7 @@
   .project-item {
     position: relative;
     overflow: hidden;
+    height: 360px;
 
     &__overlay {
       position: absolute;
@@ -37,10 +38,11 @@
 
     &__image {
       overflow: hidden;
-      height: 340px;
+      height: 100%;
       transition: all .3s ease-in-out;
 
       img{
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;

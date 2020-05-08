@@ -10,7 +10,7 @@
     &__divider {
       height: 1px;
       width: 100%;
-      background-color: rgba(177, 177, 177, .3);
+      background-color: rgba(177, 177, 177, .1);
     }
   }
 </style>
