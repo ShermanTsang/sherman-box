@@ -12,6 +12,7 @@
         border-bottom: 1px solid $theme-color;
       }
     }
+
   }
 </style>
 
@@ -21,6 +22,8 @@
     <Nameplate :sub-title="this.$route.query.keyword || ''" title="搜索" />
     <Blocker height="20px" />
     <div v-if="data.resultList && data.resultList.length > 0" class="search__info">
+      <Pic asset="pic-search" width="260px"></Pic>
+      <Blocker height="40px" />
       共 <span>{{ meta.total }}</span> 条线索数据，页数 <span>{{ meta.current_page }}</span> / {{ meta.last_page }}
     </div>
     <Blocker height="40px" />
@@ -30,7 +33,7 @@
       :meta="meta"
       @on-request-more="requestMoreResult()"
     />
-    <Tip v-else>
+    <Tip v-else asset="pic-search-empty" max-width="400px">
       暂无搜索结果
     </Tip>
   </LayoutContainer>

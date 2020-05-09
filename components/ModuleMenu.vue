@@ -62,7 +62,6 @@
     }
 
     &--horizontal {
-      overflow: hidden;
       position: relative;
       height: $header-main-height;
       line-height: $header-main-height;
@@ -116,6 +115,7 @@
           background-color: $theme-color;
           height: 3px;
           content: '';
+          border-radius: 4px;
           opacity: 0.5;
         }
 

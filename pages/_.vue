@@ -3,7 +3,9 @@
 
 <template>
   <LayoutContainer>
-    <Tip>页面不存在！</Tip>
+    <Tip asset="pic-404">
+      页面不存在
+    </Tip>
   </LayoutContainer>
 </template>
 

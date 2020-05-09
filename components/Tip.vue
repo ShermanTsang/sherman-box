@@ -1,159 +1,171 @@
 <style lang="scss">
   .tip {
     padding: 16px;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #fff;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     transition: all .2s ease-in-out;
 
-    &__svg {
-      $svgSize: 140px;
-      width: $svgSize;
-      height: $svgSize;
+    &__image {
 
-      &__stack-illustration {
-        display: block;
-        position: relative;
-        top: 50%;
-        height: 50%;
-        min-height: $svgSize;
-        margin: 0 auto;
-        transform: translateY(-50%) translateZ(0);
-
-        svg:not(:root) {
-          overflow: visible;
-        }
+      &__pic {
       }
 
-      &__stack-illustration__item {
-        position: relative;
+      &__svg {
+        $svgSize: 140px;
+        width: $svgSize;
+        height: $svgSize;
 
-        &--one {
-          transform: rotate(-20deg) translate(-3px, 80px) translateZ(0);
+        &__stack-illustration {
+          display: block;
+          position: relative;
+          top: 50%;
+          height: 50%;
+          min-height: $svgSize;
+          margin: 0 auto;
+          transform: translateY(-50%) translateZ(0);
 
-          &.animated {
-            animation: popupLeft 0.75s cubic-bezier(0.215, 0.61, 0.355, 1) forwards 1;
+          svg:not(:root) {
+            overflow: visible;
+          }
+        }
 
-            &.secondary {
-              animation: hoverLeft 3s linear forwards infinite;
+        &__stack-illustration__item {
+          position: relative;
+
+          &--one {
+            transform: rotate(-20deg) translate(-3px, 80px) translateZ(0);
+
+            &.animated {
+              animation: popupLeft 0.75s cubic-bezier(0.215, 0.61, 0.355, 1) forwards 1;
+
+              &.secondary {
+                animation: hoverLeft 3s linear forwards infinite;
+              }
+            }
+          }
+
+          &--two {
+            transform: translate(52px, 54px) translateZ(0);
+
+            &.animated {
+              animation: popupCenter 0.75s 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards 1;
+
+              &.secondary {
+                animation: hoverCenter 3s linear forwards infinite;
+              }
+            }
+          }
+
+          &--three {
+            transform: rotate(20deg) translate(100px, 34px) translateZ(0);
+
+            &.animated {
+              animation: popupRight 0.75s 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards 1;
+
+              &.secondary {
+                animation: hoverRight 3s linear forwards infinite;
+              }
             }
           }
         }
 
-        &--two {
-          transform: translate(52px, 54px) translateZ(0);
-
-          &.animated {
-            animation: popupCenter 0.75s 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) forwards 1;
-
-            &.secondary {
-              animation: hoverCenter 3s linear forwards infinite;
-            }
+        @keyframes popupLeft {
+          0% {
+            transform: rotate(-20deg) translate(-3px, 80px) translateZ(0);
+          }
+          60% {
+            transform: rotate(-20deg) translate(-3px, 17px) translateZ(0);
+          }
+          80% {
+            transform: rotate(-20deg) translate(-3px, 20px) translateZ(0);
+          }
+          100% {
+            transform: rotate(-20deg) translate(-3px, 19px) translateZ(0);
           }
         }
 
-        &--three {
-          transform: rotate(20deg) translate(100px, 34px) translateZ(0);
+        @keyframes popupCenter {
+          0% {
+            transform: translate(52px, 54px) translateZ(0);
+          }
+          60% {
+            transform: translate(52px, -2px) translateZ(0);
+          }
+          80% {
+            transform: translate(52px, 1px) translateZ(0);
+          }
+          100% {
+            transform: translate(52px, 0px) translateZ(0);
+          }
+        }
 
-          &.animated {
-            animation: popupRight 0.75s 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards 1;
+        @keyframes popupRight {
+          0% {
+            transform: rotate(20deg) translate(100px, 34px) translateZ(0);
+          }
+          60% {
+            transform: rotate(20deg) translate(100px, -30px) translateZ(0);
+          }
+          80% {
+            transform: rotate(20deg) translate(100px, -27px) translateZ(0);
+          }
+          100% {
+            transform: rotate(20deg) translate(100px, -28px) translateZ(0);
+          }
+        }
 
-            &.secondary {
-              animation: hoverRight 3s linear forwards infinite;
-            }
+        @keyframes hoverLeft {
+          0% {
+            transform: rotate(-20deg) translate(-3px, 19px) translateZ(0);
+          }
+          50% {
+            transform: rotate(-20deg) translate(-3px, 21px) translateZ(0);
+          }
+          100% {
+            transform: rotate(-20deg) translate(-3px, 19px) translateZ(0);
+          }
+        }
+
+        @keyframes hoverCenter {
+          0% {
+            transform: translate(52px, 0px) translateZ(0);
+          }
+          40% {
+            transform: translate(52px, 2px) translateZ(0);
+          }
+          100% {
+            transform: translate(52px, 0px) translateZ(0);
+          }
+        }
+
+        @keyframes hoverRight {
+          0% {
+            transform: rotate(20deg) translate(100px, -28px) translateZ(0);
+          }
+          60% {
+            transform: rotate(20deg) translate(100px, -26px) translateZ(0);
+          }
+          100% {
+            transform: rotate(20deg) translate(100px, -28px) translateZ(0);
           }
         }
       }
 
-      @keyframes popupLeft {
-        0% {
-          transform: rotate(-20deg) translate(-3px, 80px) translateZ(0);
-        }
-        60% {
-          transform: rotate(-20deg) translate(-3px, 17px) translateZ(0);
-        }
-        80% {
-          transform: rotate(-20deg) translate(-3px, 20px) translateZ(0);
-        }
-        100% {
-          transform: rotate(-20deg) translate(-3px, 19px) translateZ(0);
-        }
-      }
-
-      @keyframes popupCenter {
-        0% {
-          transform: translate(52px, 54px) translateZ(0);
-        }
-        60% {
-          transform: translate(52px, -2px) translateZ(0);
-        }
-        80% {
-          transform: translate(52px, 1px) translateZ(0);
-        }
-        100% {
-          transform: translate(52px, 0px) translateZ(0);
-        }
-      }
-
-      @keyframes popupRight {
-        0% {
-          transform: rotate(20deg) translate(100px, 34px) translateZ(0);
-        }
-        60% {
-          transform: rotate(20deg) translate(100px, -30px) translateZ(0);
-        }
-        80% {
-          transform: rotate(20deg) translate(100px, -27px) translateZ(0);
-        }
-        100% {
-          transform: rotate(20deg) translate(100px, -28px) translateZ(0);
-        }
-      }
-
-      @keyframes hoverLeft {
-        0% {
-          transform: rotate(-20deg) translate(-3px, 19px) translateZ(0);
-        }
-        50% {
-          transform: rotate(-20deg) translate(-3px, 21px) translateZ(0);
-        }
-        100% {
-          transform: rotate(-20deg) translate(-3px, 19px) translateZ(0);
-        }
-      }
-
-      @keyframes hoverCenter {
-        0% {
-          transform: translate(52px, 0px) translateZ(0);
-        }
-        40% {
-          transform: translate(52px, 2px) translateZ(0);
-        }
-        100% {
-          transform: translate(52px, 0px) translateZ(0);
-        }
-      }
-
-      @keyframes hoverRight {
-        0% {
-          transform: rotate(20deg) translate(100px, -28px) translateZ(0);
-        }
-        60% {
-          transform: rotate(20deg) translate(100px, -26px) translateZ(0);
-        }
-        100% {
-          transform: rotate(20deg) translate(100px, -28px) translateZ(0);
-        }
-      }
     }
 
     &__text {
-      color: #999;
-      letter-spacing: 1px;
+      color: $theme-color;
+      letter-spacing: 2px;
+      padding: 4px 16px;
       text-align: center;
       margin-top: 20px;
+      font-size: .95rem;
+      opacity: .8;
+      border-radius: 2px;
+      background-color: rgba($theme-color,.1);
     }
 
   }
@@ -161,14 +173,17 @@
 
 <template>
   <div class="tip">
-    <div class="tip__svg">
-      <svg viewBox="0 0 136 135" class="tip__svg__stack-illustration">
+    <div v-if="asset" class="tip__image__pic" :style="imageStyle">
+      <Pic :asset="asset"></Pic>
+    </div>
+    <div v-else class="tip__image__svg">
+      <svg viewBox="0 0 136 135" class="tip__image__svg__stack-illustration">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
           <g transform="translate(-855.000000, -240.000000)">
             <g transform="translate(855.000000, 240.000000)">
               <ellipse fill="#D4E6F3" cx="68" cy="133" rx="44" ry="2" />
               <g
-                class="tip__svg__stack-illustration__item animated tip__svg__stack-illustration__item--one"
+                class="tip__image__svg__stack-illustration__item animated tip__image__svg__stack-illustration__item--one"
                 transform="translate(19.139324, 27.378808) rotate(-20.000000) translate(-19.139324, -27.378808) translate(3.139324, 15.378808)"
               >
                 <rect
@@ -191,7 +206,7 @@
                 />
               </g>
               <g
-                class="tip__svg__stack-illustration__item animated tip__svg__stack-illustration__item--two"
+                class="tip__image__svg__stack-illustration__item animated tip__image__svg__stack-illustration__item--two"
                 transform="translate(52.000000, 0.000000)"
               >
                 <g>
@@ -251,7 +266,7 @@
                 />
               </g>
               <g
-                class="tip__svg__stack-illustration__item animated tip__svg__stack-illustration__item--three"
+                class="tip__image__svg__stack-illustration__item animated tip__image__svg__stack-illustration__item--three"
                 transform="translate(117.000000, 27.000000) rotate(20.000000) translate(-117.000000, -27.000000) translate(101.000000, 15.000000)"
               >
                 <g>
@@ -353,7 +368,7 @@
         </g>
       </svg>
     </div>
-    <div class="tip__text">
+    <div v-if="$slots.default && $slots.default[0]" class="tip__text">
       <slot />
     </div>
   </div>
@@ -366,8 +381,22 @@ export default {
     type: {
       type: String,
       default: 'empty'
+    },
+    maxWidth: {
+      type: String,
+      default: '800px'
+    },
+    asset: {
+      type: [String, undefined],
+      default: undefined
     }
   },
-  computed: {}
+  computed: {
+    imageStyle() {
+      return {
+        'max-width': this.maxWidth
+      }
+    }
+  }
 }
 </script>

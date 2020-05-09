@@ -304,15 +304,17 @@
                 </div>
                 <div class="day__data__main__item__content">
                   <Tag>{{ data.dayItem.food }}</tag>
-                  <Blocker height="30px" divider divider-height="1px" />
-                  <Pic
-                    v-for="url in data.dayItem.food_images"
-                    :key="url"
-                    :url="url"
-                    radius="2px"
-                    can-preview
-                    :styles="{width: '30%',height:'120px',margin:'4px',border:'1px solid #efefef'}"
-                  ></Pic>
+                  <template v-if="data.dayItem.food_images && data.dayItem.food_images.length>0">
+                    <Blocker height="30px" divider divider-height="1px" />
+                    <Pic
+                      v-for="url in data.dayItem.food_images"
+                      :key="url"
+                      :url="url"
+                      radius="2px"
+                      can-preview
+                      :styles="{width: '30%',height:'120px',margin:'4px',border:'1px solid #efefef'}"
+                    ></Pic>
+                  </template>
                 </div>
               </div>
               <div v-if="data.dayItem.medicine" class="day__data__main__item">

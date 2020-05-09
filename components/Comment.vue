@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-    <Tip v-if="data.commentList.length === 0">
+    <Tip v-if="data.commentList.length === 0" asset="pic-comment" max-width="240px">
       暂无评论
     </Tip>
     <Modal v-model="status.showModal" title="写评论" icon="comment" width="500px">

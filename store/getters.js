@@ -1,35 +1,36 @@
 export default {
-  currentPage(state) {
+  currentPage (state) {
     return state.currentPage
   },
-  currentItem(state) {
+  currentItem (state) {
     return state.currentItem
   },
-  configurationList(state) {
+  configurationList (state) {
     return state.configurationList
   },
-  fileAssetList(state) {
+  fileAssetList (state) {
     return state.fileAssetList
   },
-  imageAssetList(state) {
+  imageAssetList (state) {
     return state.imageAssetList
   },
-  moduleList(state) {
+  moduleList (state) {
     const extraModule = [
       { name: '轴线', url: 'timeline', icon: 'iconfont icon-schedule' }
     ]
     return [...extraModule, ...state.moduleList]
   },
-  pageList(state) {
+  pageList (state) {
     const extraPage = [
-      { name: '开发日志', url: 'log', isExtra: true }
+      { name: '开发日志', url: 'page/log', isExtra: true },
+      { name: 'Sitemap', url: 'sitemap.xml', isExtra: true }
     ]
     return [...state.pageList, ...extraPage]
   },
-  categoryList(state) {
+  categoryList (state) {
     return state.categoryList
   },
-  statisticsModule(state) {
+  statisticsModule (state) {
     const statisticsData = state.statisticsModule
     const statisticsName = {
       total: '总计',

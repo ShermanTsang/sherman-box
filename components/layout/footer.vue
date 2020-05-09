@@ -77,7 +77,7 @@ export default {
   methods: {
     redirectToPage (item) {
       if (item.isExtra) {
-        window.open(`/page/${item.url}`)
+        window.open(`/${item.url}`)
         return
       }
       this.$router.push({ name: 'page-url', params: { type: 'page', id: item.id, url: item.url } })

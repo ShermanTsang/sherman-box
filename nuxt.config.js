@@ -1,3 +1,4 @@
+import axios from 'axios'
 import config from './config'
 
 export default {
@@ -14,7 +15,10 @@ export default {
     titleTemplate: `%s - ${config['site.name']}`,
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
+      },
       { hid: 'description', name: 'description', content: config['site.description'] },
       { hid: 'keywords', name: 'keywords', content: config['site.keywords'] }
     ],
@@ -62,8 +66,29 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/sitemap'
   ],
+
+  /*
+  ** Nuxt.js modules sitemap configuration
+  */
+  sitemap: {
+    cacheTime: 1000 * 60 * 15,
+    gzip: true,
+    routes: async () => {
+      const { data: { data: pages } } = await axios.get(`${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/common/sitemap`)
+      const routers = []
+      pages.forEach((item) => {
+        routers.push({
+          url: `/${item.module}/${item.resource_sn}`,
+          changefreq: 'monthly',
+          priority: 1
+        })
+      })
+      return routers
+    }
+  },
 
   /*
   ** Nuxt.js modules axios configuration

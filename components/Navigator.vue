@@ -7,6 +7,8 @@
     align-items: center;
 
     &__main {
+      font-size: 0;
+
       &__item {
         letter-spacing: 1px;
         display: inline-block;
