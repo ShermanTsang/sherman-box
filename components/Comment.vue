@@ -13,6 +13,7 @@
         }
 
         &__avatar {
+          border-radius: 50%;
           margin-right: 20px;
         }
 
@@ -78,7 +79,7 @@
       </Loading>
       <FormItem
         v-model="form.username"
-        validate="required|max:8"
+        validate="required|maxLength:8"
         label="昵称"
         name="username"
         type="input"
@@ -90,7 +91,7 @@
         label="联系方式"
         name="contact"
         type="input"
-        validate="required|max:30"
+        validate="required|maxLength:30"
         placeholder="QQ / Wechat / Email"
         @changeValidate="valid => status.validate.contact = valid"
       >
@@ -101,7 +102,7 @@
         label="个人网站"
         name="website"
         type="input"
-        validate="url|max:60"
+        validate="url|maxLength:60"
         placeholder="可填写你的网站、博客、微博或其他社媒地址"
         @changeValidate="valid => status.validate.website = valid"
       />
@@ -110,7 +111,7 @@
         label="内容"
         name="comment"
         type="input"
-        validate="required|max:30|min:4"
+        validate="required|maxLength:30|minLength:4"
         placeholder="留下你的想法、疑问、评论或回忆"
         @changeValidate="valid => status.validate.comment = valid"
       />
@@ -161,7 +162,6 @@ export default {
         }
       },
       form: {},
-      formError: {},
       data: {
         commentList: []
       }
@@ -197,22 +197,23 @@ export default {
         this.status.isLoadingSubmit = true
         const { contact } = this.form
         const appendParams = {
+          page_url: this.$route.path,
+          page_title: document.title,
           module: this.module,
           id: this.id,
-          isDisplay: 1,
-          fromUrl: this.$route.path,
+          is_display: 1,
           wechat: this.contactType === 'wechat' ? contact : '',
           qq: this.contactType === 'qq' ? contact : '',
           email: this.contactType === 'email' ? contact : ''
         }
         const newComment = { ...this.form, ...appendParams }
+
         this.$axios.$post('/api/comments', newComment)
           .then((response) => {
             this.data.commentList.push(response.data)
             this.form = {}
             this.status.showModal = false
             this.status.isLoadingSubmit = false
-            this.errors.clear()
           })
           .catch((error) => {
             this.status.isLoadingSubmit = false

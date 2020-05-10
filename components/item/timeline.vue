@@ -10,19 +10,19 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    border: 1px solid #efefef;
 
     &__main {
       padding: 32px;
       overflow: hidden;
       align-self: center;
       flex: 1;
-      width: 0;
 
       &__name {
         display: block;
         overflow: hidden;
         font-size: 1.05rem;
-        padding-bottom: 6px;
+        padding-bottom: 16px;
         border-bottom: 1px solid #efefef;
         letter-spacing: 1px;
         cursor: pointer;
@@ -47,21 +47,11 @@
         }
       }
 
-      @media ($screen-xs-max) {
+      @media ($screen-md-max) {
+        width: 100%;
+        order: 2;
         padding: 16px;
       }
-    }
-
-    &__module {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: linear-gradient(rgba(0, 0, 0, .4), transparent);
-      color: #fff;
-      padding: 6px 6px 14px 6px;
-      letter-spacing: 1px;
-      font-size: .9rem;
-      z-index: $z-index-card-content;
     }
 
     &__image {
@@ -80,11 +70,23 @@
         box-shadow: 0 0 6px rgba(0, 0, 0, .1);
       }
 
-      @media ($screen-xs-max) {
-        $smallImageSize: 120px;
-        flex: 0 0 $smallImageSize;
-        width: $smallImageSize;
+      @media ($screen-md-max) {
+        order: 1;
+        height: 240px;
       }
+
+    }
+
+    &__module {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: linear-gradient(rgba(0, 0, 0, .4), transparent);
+      color: #fff;
+      padding: 6px 6px 14px 6px;
+      letter-spacing: 1px;
+      font-size: .9rem;
+      z-index: $z-index-card-content;
     }
 
     &:hover {
@@ -95,16 +97,26 @@
       }
     }
 
+    @media screen and ($screen-md-max) {
+      flex-flow: column nowrap;
+    }
+
   }
 
   .timeline-item--right {
     .timeline-item {
       &__main {
         order: 0;
+        @media screen and ($screen-md-max) {
+          order: 2;
+        }
       }
 
       &__image {
         order: -1;
+        @media screen and ($screen-md-max) {
+          order: 1;
+        }
       }
 
       &__module {
@@ -138,7 +150,12 @@
         <Datetime format="YYYY.MM.DD" :time="item[module.dateField]" />
       </div>
       <div v-else-if="text === 'detail'" class="timeline-item__main__info">
-        <div v-for="(textItem,index) in textFieldHtml" :key="index" class="timeline-item__main__info__detail" v-html="textItem">
+        <div
+          v-for="(textItem,index) in textFieldHtml"
+          :key="index"
+          class="timeline-item__main__info__detail"
+          v-html="textItem"
+        >
         </div>
       </div>
     </div>

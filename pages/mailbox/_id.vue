@@ -26,6 +26,7 @@
         &__info {
           margin-top: 20px;
           color: #999;
+
           span {
             font-style: italic;
             font-size: 1.2rem;
@@ -62,8 +63,14 @@
         </div>
       </LayoutContainer>
     </LayoutContainer>
-    <Btn v-if="data.mailboxItem.content === null" width="300px" class="mailbox__locker" @click="status.showModal = true">
-      <Icon name="lock" /> 解锁
+    <Btn
+      v-if="data.mailboxItem.content === null"
+      width="300px"
+      class="mailbox__locker"
+      @click="status.showModal = true"
+    >
+      <Icon name="lock" />
+      解锁
     </Btn>
     <LayoutContainer v-if="data.mailboxItem.content !== null" class="mailbox__content">
       <Markdown :content="data.mailboxItem.content" />
@@ -137,7 +144,11 @@ export default {
       this.status.isLoadingSubmit = true
       const { id } = this.data.mailboxItem
       const { password } = this.form
-      this.$axios.$post(`/api/mailboxes/${id}/check`, { password })
+      this.$axios.$post(`/api/mailboxes/${id}/check`, {
+        page_url: this.$route.path,
+        page_title: document.title,
+        password
+      })
         .then(({ data, event, code }) => {
           if (event === 'returnErrorMessage' || event === 6000) {
             this.$message.error('邮盒密码错误')

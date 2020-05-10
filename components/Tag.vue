@@ -21,7 +21,13 @@
       &:not(:last-child) {
         margin-right: 5px;
       }
+
+      &:hover {
+        border-color: transparent;
+        box-shadow: 1px 1px 10px rgba(177,177,177,.6);
+      }
     }
+
   }
 </style>
 

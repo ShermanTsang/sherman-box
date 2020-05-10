@@ -47,7 +47,7 @@
           top: 50%;
           transform: translateY(-50%);
           right: -125px;
-          box-shadow: 0 0 4px rgba(177,177,177,.4);
+          box-shadow: 0 0 4px rgba(177, 177, 177, .4);
           background-color: white;
         }
 
@@ -78,7 +78,7 @@
     }
 
     &__more {
-      position:absolute;
+      position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
@@ -92,7 +92,7 @@
       box-shadow: 0 0 4px rgba(177, 177, 177, .4);
     }
 
-    @media ($screen-lg-max) {
+    @media ($screen-xl-max) {
       &:before {
         opacity: .5;
       }
@@ -111,7 +111,7 @@
           margin-bottom: 14px;
 
           &__icon {
-           display: none;
+            display: none;
           }
         }
       }

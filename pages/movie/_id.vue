@@ -21,7 +21,7 @@
           box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
 
           img {
-            display:block;
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -47,7 +47,7 @@
         max-width: 400px;
 
         @media ($screen-xs-max) {
-         margin-top: 30px;
+          margin-top: 30px;
         }
 
         &__item {
@@ -121,6 +121,21 @@
         </div>
       </div>
     </div>
+    <template v-if="data.movieItem.scores">
+      <Blocker height="60px" />
+      <LayoutContainer class="movie__content">
+        <Nameplate title="评分" sub-title="score">
+          <Btn @click="status.showScoreModal = true">
+            评个分
+          </Btn>
+        </Nameplate>
+        <Tag>共 {{ data.movieItem.score_count }} 人参与评分</Tag>
+        <Tag>总评为 {{ data.movieItem.score_total }} 分</Tag>
+        <Tag v-for="item in data.movieItem.scores" :key="item.id">
+          {{ item.name }} {{ item.score }} 分 - <Datetime :time="item.datetime" format="YYYY-MM-DD" from-now />
+        </Tag>
+      </LayoutContainer>
+    </template>
     <template v-if="data.movieItem.schedule">
       <Blocker height="60px" />
       <LayoutContainer class="movie__content">
@@ -138,6 +153,43 @@
       <Comment :id="data.movieItem.id" :source-data="data.movieItem.comments" module="movie" />
     </LayoutContainer>
     <Blocker height="60px" />
+
+    <Modal v-model="status.showScoreModal" title="评个分" icon="star" width="500px">
+      <Loading v-if="status.isLoadingSubmit" :fix="true">
+        评分提交中
+      </Loading>
+      <FormItem
+        v-model="form.name"
+        validate="required|maxLength:15"
+        label="评分人"
+        name="name"
+        type="input"
+        placeholder="敢问大侠叫什么?"
+        @changeValidate="valid => status.validate.name = valid"
+      />
+      <FormItem
+        v-model="form.score"
+        label="评分"
+        name="score"
+        type="input"
+        validate="required|number|minValue:0.1|maxValue:10"
+        placeholder="0.1-10"
+        @changeValidate="valid => status.validate.score = valid"
+      >
+      </FormItem>
+      <FormItem
+        v-model="form.content"
+        label="评语"
+        name="content"
+        type="input"
+        validate="maxLength:60"
+        placeholder="可简述为何这样评分"
+        @changeValidate="valid => status.validate.content = valid"
+      />
+      <Btn slot="footer" :full-width="true" :colorful="true" height="48px" @click="submitMovieScore()">
+        提交
+      </Btn>
+    </Modal>
   </div>
 </template>
 
@@ -155,9 +207,47 @@ export default {
       }
     }
   },
-  mounted () {
+  data () {
+    return {
+      status: {
+        showScoreModal: false,
+        isLoadingSubmit: false,
+        validate: {
+          name: false,
+          score: false,
+          content: true
+        }
+      },
+      form: {}
+    }
   },
-  methods: {},
+  methods: {
+    submitMovieScore () {
+      if (this.$checkFormValidate(this.status.validate)) {
+        this.status.isLoadingSubmit = true
+
+        const newScore = {
+          score: this.form.score,
+          name: this.form.name,
+          content: this.form.content
+        }
+
+        this.$axios.$put(`/api/movies/${this.data.movieItem.id}/score`, newScore)
+          .then((response) => {
+            this.data.movieItem.scores.push(response.data)
+            this.form = {}
+            this.status.showModal = false
+            this.status.isLoadingSubmit = false
+          })
+          .catch((error) => {
+            this.status.isLoadingSubmit = false
+            console.log(error)
+          })
+      } else {
+        this.$message.error('表单填写有误')
+      }
+    }
+  },
   head () {
     const { name, category, description } = this.data.movieItem
     return {

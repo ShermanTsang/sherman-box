@@ -176,15 +176,33 @@ export default {
               this.data.errors.push(this.label + '不能为空')
             }
           } else if (currentValue && currentValue.length > 0) {
-            if ('max' in ruleItem) {
-              if (currentValue.length > Number.parseInt(ruleItem.max)) {
-                this.data.errors.push(this.label + `超过最大字数限制(${ruleItem.max})`)
+            if ('maxLength' in ruleItem) {
+              if (currentValue.length > Number.parseInt(ruleItem.maxLength)) {
+                this.data.errors.push(this.label + `超过最大字数限制(${ruleItem.maxLength})`)
               }
             }
 
-            if ('min' in ruleItem) {
-              if (currentValue.length < Number.parseInt(ruleItem.max)) {
-                this.data.errors.push(this.label + `小于最小字数限制(${ruleItem.max}｝)`)
+            if ('minLength' in ruleItem) {
+              if (currentValue.length < Number.parseInt(ruleItem.maxLength)) {
+                this.data.errors.push(this.label + `小于最小字数限制(${ruleItem.maxLength}｝)`)
+              }
+            }
+
+            if ('number' in ruleItem) {
+              if (isNaN(currentValue)) {
+                this.data.errors.push(this.label + '只能是数值')
+              }
+            }
+
+            if ('minValue' in ruleItem) {
+              if (!(currentValue >= Number.parseInt(ruleItem.minValue))) {
+                this.data.errors.push(this.label + `不能小于最小值${ruleItem.minValue}`)
+              }
+            }
+
+            if ('maxValue' in ruleItem) {
+              if (!(currentValue <= Number.parseInt(ruleItem.maxValue))) {
+                this.data.errors.push(this.label + `不能大于最大值${ruleItem.minValue}`)
               }
             }
 

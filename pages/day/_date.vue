@@ -53,7 +53,9 @@
           left: 0;
           right: 0;
           padding: 8px 16px;
-          color: #fff;
+          color: #efefef;
+          letter-spacing: 1px;
+          width: 100%;
           white-space: nowrap;
           text-overflow: ellipsis;
           background-image: linear-gradient(126deg, rgba(0, 0, 0, .4), transparent);
