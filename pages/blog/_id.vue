@@ -101,7 +101,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: blogItem } = await $axios.$get(`/api/blogs/${params.id}`)
-    store.commit('currentItem', blogItem)
+    store.commit('currentItem', { name: blogItem.name, category: blogItem.category, date: blogItem.date })
     return {
       data: {
         blogItem

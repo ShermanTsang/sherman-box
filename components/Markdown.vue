@@ -224,14 +224,16 @@
 
 <template>
   <div class="markdown">
-    <article
-      v-lazy-container="{ selector: 'img' }"
-      class="markdown"
-      @click="handleClick($event)"
-      v-html="compiledMarkdown"
-    >
-      <slot />
-    </article>
+    <client-only placeholder="Loading...">
+      <article
+        v-lazy-container="{ selector: 'img' }"
+        class="markdown"
+        @click="handleClick($event)"
+        v-html="compiledMarkdown"
+      >
+        <slot />
+      </article>
+    </client-only>
     <ImageGallery :url.sync="imageModalUrl" />
   </div>
 </template>
@@ -278,7 +280,7 @@ export default {
       }
       this.renderer.link = (href, title, text) => {
         const titleOutput = title ? `title="${title}"` : ''
-        return `<a href="${href}"  ${titleOutput} target="_blank">${text}</a>`
+        return `<a href="${href}"  ${titleOutput} target="_blank" rel="noopener">${text}</a>`
       }
       this.renderer.table = (header, body) => {
         if (body) { body = '<tbody>' + body + '</tbody>' }
@@ -295,7 +297,6 @@ export default {
         tables: true,
         breaks: false,
         pedantic: false,
-        sanitize: true,
         smartLists: true,
         smartypants: false
       })

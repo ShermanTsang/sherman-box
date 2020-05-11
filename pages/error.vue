@@ -3,8 +3,9 @@
 
 <template>
   <LayoutContainer>
-    <Blocker height="40px" />
-    遇到错误了
+    <Tip asset="pic-error">
+      {{ $route.query.statusText || '遇到错误了' }} 错误代码:{{ $route.query.statusCode || '000' }}
+    </Tip>
   </LayoutContainer>
 </template>
 
@@ -14,7 +15,6 @@ export default {
   data () {
     return {
       status: {
-        currentPage: 1
       }
     }
   },

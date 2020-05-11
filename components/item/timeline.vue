@@ -59,20 +59,21 @@
       opacity: .5;
       transition: all .2s ease-in-out;
       cursor: pointer;
-      min-height: 200px;
       z-index: $z-index-card-background;
+      overflow: hidden;
+      box-shadow: 0 0 6px rgba(0, 0, 0, .1);
 
       img {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        box-shadow: 0 0 6px rgba(0, 0, 0, .1);
       }
 
       @media ($screen-md-max) {
         order: 1;
         height: 240px;
+        flex: 0 0 240px;
       }
 
     }

@@ -31,6 +31,13 @@
       box-shadow: 6px 10px 30px rgba(234, 117, 28, 0.5);
     }
 
+    @media ($screen-xs-max) {
+      left: 10px;
+      right: 10px;
+      transform: none;
+      font-size: .9rem;
+    }
+
   }
 </style>
 

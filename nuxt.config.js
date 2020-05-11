@@ -117,7 +117,7 @@ export default {
   */
   build: {
     analyze: false,
-    extractCSS: true,
+    extractCSS: process.env.NODE_ENV === 'production',
     maxChunkSize: 300000,
     postcss: {
       plugins: {

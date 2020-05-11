@@ -9,6 +9,7 @@ export default function ({ $axios, redirect }) {
       const { event, message } = response.data
       if (event === 'returnErrorMessage' || event === 6000) {
         Vue.prototype.$message.error(message)
+        return Promise.reject(message)
       }
       if (event === 'returnInfoMessage') {
         Vue.prototype.$message.info(message)
@@ -23,9 +24,10 @@ export default function ({ $axios, redirect }) {
   })
 
   $axios.onError((error) => {
-    const code = Number.parseInt(error.response && error.response.status)
-    if (code === 400) {
-      redirect('/error')
+    const statusCode = Number.parseInt(error.response && error.response.status)
+    const statusText = error.response && error.response.statusText
+    if (statusCode === 500) {
+      redirect('/error', { statusCode, statusText })
     }
   })
 

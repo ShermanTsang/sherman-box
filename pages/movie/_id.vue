@@ -132,7 +132,8 @@
         <Tag>共 {{ data.movieItem.score_count }} 人参与评分</Tag>
         <Tag>总评为 {{ data.movieItem.score_total }} 分</Tag>
         <Tag v-for="item in data.movieItem.scores" :key="item.id">
-          {{ item.name }} {{ item.score }} 分 - <Datetime :time="item.datetime" format="YYYY-MM-DD" from-now />
+          {{ item.name }} {{ item.score }} 分 -
+          <Datetime :time="item.datetime" format="YYYY-MM-DD" from-now />
         </Tag>
       </LayoutContainer>
     </template>
@@ -153,7 +154,6 @@
       <Comment :id="data.movieItem.id" :source-data="data.movieItem.comments" module="movie" />
     </LayoutContainer>
     <Blocker height="60px" />
-
     <Modal v-model="status.showScoreModal" title="评个分" icon="star" width="500px">
       <Loading v-if="status.isLoadingSubmit" :fix="true">
         评分提交中
@@ -200,7 +200,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: movieItem } = await $axios.$get(`/api/movies/${params.id}`)
-    store.commit('currentItem', movieItem)
+    store.commit('currentItem', { name: movieItem.name, category: movieItem.category, date: movieItem.date })
     return {
       data: {
         movieItem
@@ -236,12 +236,11 @@ export default {
           .then((response) => {
             this.data.movieItem.scores.push(response.data)
             this.form = {}
-            this.status.showModal = false
+            this.status.showScoreModal = false
             this.status.isLoadingSubmit = false
           })
-          .catch((error) => {
+          .catch(() => {
             this.status.isLoadingSubmit = false
-            console.log(error)
           })
       } else {
         this.$message.error('表单填写有误')

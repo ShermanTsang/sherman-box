@@ -253,7 +253,7 @@
             预览地址
           </div>
           <div class="project__detail__item__info">
-            <Tag><a :href="data.projectItem.url" target="_blank">点击进入</a></tag>
+            <Tag><a :href="data.projectItem.url" target="_blank" rel="noopener">点击进入</a></tag>
           </div>
         </div>
         <div v-if="data.projectItem.github" class="project__detail__item">
@@ -262,7 +262,7 @@
             Github仓库
           </div>
           <div class="project__detail__item__info">
-            <Tag><a :href="data.projectItem.github" target="_blank">点击进入</a></tag>
+            <Tag><a :href="data.projectItem.github" target="_blank" rel="noopener">点击进入</a></tag>
           </div>
         </div>
         <div v-if="data.projectItem.qrcode" class="project__detail__item">
@@ -329,7 +329,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: projectItem } = await $axios.$get(`/api/projects/${params.id}`)
-    store.commit('currentItem', projectItem)
+    store.commit('currentItem', { name: projectItem.name, category: projectItem.category, date: projectItem.date })
     return {
       data: {
         projectItem

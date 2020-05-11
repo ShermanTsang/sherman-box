@@ -5,9 +5,12 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 
     &__main {
-      font-size: 0;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
 
       &__item {
         letter-spacing: 1px;
@@ -32,19 +35,26 @@
         }
 
       }
+
     }
 
     &__action {
+      box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
+      flex-shrink: 0;
+
       &__item {
         cursor: pointer;
         display: inline-block;
         padding: 10px;
-        margin: 0 10px;
         border-radius: 4px;
         color: $theme-color;
 
+        &:not(:first-child) {
+          margin-left: 6px;
+        }
+
         &:hover {
-          background-color: rgba(177,177,177, .1);
+          background-color: rgba(177, 177, 177, .1);
         }
       }
     }
@@ -62,7 +72,12 @@
         class="navigator__main__item"
         @click="clickNavItem(item)"
       >
-        <span :class="{'navigator__main__item__module':index===0}">{{ item.text }}</span>
+        <template v-if="index === 0">
+          <span :class="{'navigator__main__item__module':index === 0}">{{ item.text }}</span>
+        </template>
+        <template v-else>
+          {{ item.text }}
+        </template>
         <template v-if="index !== navs.length - 1">
           <Icon v-if="!divider" name="angle-right" color="#ccc" />
           <span v-else class="navigator__main__item__divider">{{ divider }}</span>

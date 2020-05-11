@@ -28,7 +28,7 @@
       z-index: $z-index-modal;
       height: auto;
       overflow: hidden;
-      max-width: 95%;
+      max-width: 96%;
       margin: 0 auto;
       background-color: #fff;
       box-shadow: 0 0 30px rgba(0, 0, 0, .2);
@@ -57,7 +57,13 @@
       }
 
       &__content {
-        padding: 20px;
+        padding: 16px;
+
+        @media ($screen-md-max) {
+          width: 100%;
+          order: 2;
+          padding: 16px 10px;
+        }
       }
 
       &__footer {

@@ -184,7 +184,7 @@ export default {
     }
   },
   mounted () {
-    this.data.commentList = this.sourceData
+    this.data.commentList = [...this.sourceData]
   },
   methods: {
     redirectByUrl (url) {
@@ -217,7 +217,6 @@ export default {
           })
           .catch((error) => {
             this.status.isLoadingSubmit = false
-            console.log(error)
           })
       } else {
         this.$message.error('表单填写有误')

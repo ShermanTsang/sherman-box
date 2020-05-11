@@ -85,6 +85,10 @@ export default {
     event: 'updateValue'
   },
   props: {
+    value: {
+      type: String,
+      default: ''
+    },
     label: {
       type: String,
       default: ''
@@ -177,14 +181,14 @@ export default {
             }
           } else if (currentValue && currentValue.length > 0) {
             if ('maxLength' in ruleItem) {
-              if (currentValue.length > Number.parseInt(ruleItem.maxLength)) {
+              if (!(currentValue.length <= ruleItem.maxLength)) {
                 this.data.errors.push(this.label + `超过最大字数限制(${ruleItem.maxLength})`)
               }
             }
 
             if ('minLength' in ruleItem) {
-              if (currentValue.length < Number.parseInt(ruleItem.maxLength)) {
-                this.data.errors.push(this.label + `小于最小字数限制(${ruleItem.maxLength}｝)`)
+              if (!(currentValue.length > ruleItem.minLength)) {
+                this.data.errors.push(this.label + `小于最小字数限制(${ruleItem.minLength}｝)`)
               }
             }
 

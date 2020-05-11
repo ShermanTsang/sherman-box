@@ -12,9 +12,11 @@
 <script>
 export default {
   layout: 'default',
-  middleware: 'redirect',
+  middleware: ['redirect'],
   asyncData ({ params }) {
     return {}
+  },
+  mounted () {
   },
   methods: {
   },

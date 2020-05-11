@@ -25,10 +25,6 @@ export default {
       status: {}
     }
   },
-  watch: {
-    $route (to, from) {
-    }
-  },
   methods: {
   }
 }
