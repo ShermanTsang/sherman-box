@@ -2,19 +2,27 @@
   .comment {
 
     &__list {
+
       &__item {
+        position: relative;
         display: flex;
         align-items: flex-start;
-        padding: 16px;
+        padding: 16px 0;
         transition: all 300ms ease-in-out;
+        margin-bottom: 10px;
 
-        &:not(:first-child) {
-          border-top: 1px solid #eee;
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          height: 80%;
+          width: 2px;
+          background-color: #efefef;
         }
 
         &__avatar {
-          border-radius: 50%;
-          margin-right: 20px;
+          margin: 0 16px;
+          align-self: center;
         }
 
         &__main {
@@ -25,6 +33,21 @@
             color: #333333;
             font-size: 0.95rem;
             cursor: default;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            &__contact {
+              font-size: .8rem;
+              color: #999;
+
+              &:before {
+                content: '|';
+                color: #ccc;
+                padding: 0 4px;
+              }
+            }
           }
 
           &__content {
@@ -32,6 +55,7 @@
             letter-spacing: 2px;
             font-size: 0.9rem;
             padding: 10px 0;
+            line-height: 1.6;
           }
 
           &__time {
@@ -39,7 +63,13 @@
             font-size: 0.8rem;
           }
         }
+
+        &:hover {
+          box-shadow: 0 0 8px rgba(0, 0, 0, .1) inset;
+        }
+
       }
+
     }
 
   }
@@ -53,26 +83,44 @@
       </Btn>
     </Nameplate>
     <div class="comment__list">
-      <div v-for="item in data.commentList" :key="item.id" class="comment__list__item">
-        <div class="comment__list__item__avatar">
-          <Avatar :sign="item.qq || item.email" size="48px" @click="redirectByUrl(item.website)" />
+      <Loading v-if="status.isLoadingList" :fix="true">
+        评论加载中
+      </Loading>
+      <Waterfall :column="2" gap="16px">
+        <div v-for="item in data.commentList" :key="item.id" class="comment__list__item waterfall__item">
+          <div class="comment__list__item__avatar">
+            <Avatar :value="item.qq || item.email" size="36px" @click="redirectByUrl(item.website)" />
+          </div>
+          <div class="comment__list__item__main">
+            <div class="comment__list__item__main__username" :style="{cursor: item.website? 'pointer' : 'default'}" @click="redirectByUrl(item.website)">
+              {{ item.username }} <Icon v-if="item.website" name="click" color="#999" />
+              <span v-if="item.qq || item.email || item.wechat" class="comment__list__item__main__username__contact">
+                <template v-if="item.qq"><Icon name="qq" size=".8rem" /> {{ item.qq }}</template>
+                <template v-if="item.email"><Icon name="mail" size=".8rem" /> {{ item.email }}</template>
+                <template v-if="item.wechat"><Icon name="wechat" size=".8rem" /> {{ item.wechat }}</template>
+              </span>
+            </div>
+            <div class="comment__list__item__main__content">
+              {{ item.content }}
+            </div>
+            <div class="comment__list__item__main__time">
+              {{ item.datetime }}
+            </div>
+          </div>
         </div>
-        <div class="comment__list__item__main">
-          <div class="comment__list__item__main__username" @click="redirectByUrl(item.website)">
-            {{ item.username }}
-          </div>
-          <div class="comment__list__item__main__content">
-            {{ item.content }}
-          </div>
-          <div class="comment__list__item__main__time">
-            {{ item.datetime }}
-          </div>
-        </div>
-      </div>
+      </Waterfall>
     </div>
-    <Tip v-if="data.commentList.length === 0" asset="pic-comment" max-width="240px">
+    <Tip v-if="!status.isLoadingList && data.commentList.length === 0" asset="pic-comment" max-width="240px">
       暂无评论
     </Tip>
+    <Pagination
+      v-if="meta"
+      type="component"
+      :page="parseInt(meta.current_page)"
+      :total="parseInt(meta.total)"
+      :size="parseInt(meta.per_page)"
+      @change="requestCommentList"
+    />
     <Modal v-model="status.showModal" title="写评论" icon="comment" width="500px">
       <Loading v-if="status.isLoadingSubmit" :fix="true">
         评论发送中
@@ -121,12 +169,13 @@
         name="avatar"
         type="custom"
       >
-        <Avatar :sign="form.contact" size="60px" />
+        <Avatar :value="form.contact" size="60px" />
       </FormItem>
       <Btn slot="footer" :full-width="true" :colorful="true" height="48px" @click="submitSendComment()">
         发送
       </Btn>
     </Modal>
+    <Blocker height="40px"></Blocker>
   </div>
 </template>
 
@@ -141,12 +190,6 @@ export default {
     id: {
       type: [String, Number],
       default: ''
-    },
-    sourceData: {
-      type: Array,
-      default: () => {
-        return []
-      }
     }
   },
   data () {
@@ -154,6 +197,7 @@ export default {
       status: {
         showModal: false,
         isLoadingSubmit: false,
+        isLoadingList: false,
         validate: {
           username: false,
           contact: false,
@@ -164,7 +208,8 @@ export default {
       form: {},
       data: {
         commentList: []
-      }
+      },
+      meta: {}
     }
   },
   computed: {
@@ -184,9 +229,23 @@ export default {
     }
   },
   mounted () {
-    this.data.commentList = [...this.sourceData]
+    this.requestCommentList()
   },
   methods: {
+    async requestCommentList (page = 1) {
+      this.status.isLoadingList = true
+      const { data: commentList, meta } = await this.$axios.$get('/api/comments/', {
+        params: {
+          pageSize: 10,
+          module: this.module,
+          id: this.id,
+          page
+        }
+      })
+      this.data.commentList = commentList
+      this.meta = meta
+      this.status.isLoadingList = false
+    },
     redirectByUrl (url) {
       if (url) {
         window.open(url)

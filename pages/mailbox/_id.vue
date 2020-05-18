@@ -77,7 +77,7 @@
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.mailboxItem.id" :source-data="data.mailboxItem.comments" module="mailbox" />
+      <Comment :id="data.mailboxItem.id" module="mailbox" />
     </LayoutContainer>
     <Blocker height="60px" />
     <Modal v-model="status.showModal" title="解锁邮盒" icon="comment" width="500px">

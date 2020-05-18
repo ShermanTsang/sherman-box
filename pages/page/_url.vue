@@ -9,7 +9,7 @@
     <Nameplate :title="data.pageItem.name" :sub-title="data.pageItem.url" />
     <Markdown :content="data.pageItem.content" />
     <Blocker height="40px" />
-    <Comment :id="data.pageItem.id" :source-data="data.pageItem.comments" module="page" />
+    <Comment :id="data.pageItem.id" module="page" />
   </LayoutContainer>
 </template>
 

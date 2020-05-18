@@ -140,8 +140,8 @@
           &__info {
             padding: 10px 0 0 0;
             text-align: left;
-             overflow-x: unset;
-             overflow-y: unset;
+            overflow-x: unset;
+            overflow-y: unset;
           }
         }
       }
@@ -316,7 +316,7 @@
     </template>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.projectItem.id" :source-data="data.projectItem.comments" module="project" />
+      <Comment :id="data.projectItem.id" module="project" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

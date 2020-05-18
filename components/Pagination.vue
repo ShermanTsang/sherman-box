@@ -28,7 +28,7 @@
 
 <template>
   <div v-if="total > 1" class="pagination">
-    <div class="pagination__item pagination__item--action" @click="jumpPage(parseInt(currentPage) - 1)">
+    <div v-show="currentPage !== 1 " class="pagination__item pagination__item--action" @click="handleClick(parseInt(currentPage) - 1)">
       <Icon name="angle-left" />
     </div>
     <div
@@ -36,7 +36,7 @@
       :key="item"
       class="pagination__item"
       :class="{'pagination__item--active': parseInt(currentPage) === parseInt(item) }"
-      @click="jumpPage(item)"
+      @click="handleClick(item)"
     >
       <template v-if="item === 0">
         ...
@@ -45,7 +45,7 @@
         {{ item }}
       </template>
     </div>
-    <div class="pagination__item pagination__item--action" @click="jumpPage(parseInt(currentPage) + 1)">
+    <div v-show="currentPage !== totalPageNum" class="pagination__item pagination__item--action" @click="handleClick(parseInt(currentPage) + 1)">
       <Icon name="angle-right" />
     </div>
   </div>
@@ -55,6 +55,13 @@
 export default {
   name: 'Pagination',
   props: {
+    type: {
+      type: String,
+      default: 'page',
+      validator (value) {
+        return ['page', 'component'].includes(value)
+      }
+    },
     page: {
       type: Number,
       default: 0
@@ -74,48 +81,51 @@ export default {
     }
   },
   computed: {
+    totalPageNum () {
+      return Math.ceil(this.total / this.size) || 0
+    },
     displayPageList () {
-      const pageNum = Math.ceil(this.total / this.size) || 0
+      const totalPageNum = this.totalPageNum
       const index = this.currentPage
       const arr = []
-      if (pageNum <= 6) {
-        for (let i = 1; i <= pageNum; i++) {
+      if (totalPageNum <= 6) {
+        for (let i = 1; i <= totalPageNum; i++) {
           arr.push(i)
         }
         return arr
       }
       if (index <= 2) {
-        return [1, 2, 3, 0, pageNum]
+        return [1, 2, 3, 0, totalPageNum]
       }
-      if (index >= pageNum - 1) {
-        return [1, 0, pageNum - 1, pageNum]
+      if (index >= totalPageNum - 1) {
+        return [1, 2, 0, totalPageNum - 1, totalPageNum]
       }
       if (index === 3) {
-        return [1, 2, 3, 0, pageNum]
+        return [1, 2, 3, 0, totalPageNum]
       }
-      if (index === pageNum - 2) {
-        return [1, 0, pageNum - 2, pageNum - 1, pageNum]
+      if (index === totalPageNum - 2) {
+        return [1, 0, totalPageNum - 2, totalPageNum - 1, totalPageNum]
       }
-      return [1, 0, index, 0, pageNum]
+      return [1, 0, index, 0, totalPageNum]
     }
   },
   watch: {
     '$route.query.page' (value) {
-      this.currentPage = value
+      if (this.type === 'page') {
+        this.currentPage = value
+      }
     }
   },
   methods: {
-    changePage (currentPage) {
-      this.$emit('change', currentPage)
-    },
-    jumpPage (pageNumber) {
-      if (pageNumber !== 0) {
+    handleClick (totalPageNumber) {
+      this.$emit('change', totalPageNumber)
+      if (this.type === 'page' && totalPageNumber !== 0) {
         const { path = '', query = {} } = this.$route
         const newQuery = JSON.parse(JSON.stringify(query))
-        newQuery.page = pageNumber
+        newQuery.page = totalPageNumber
         this.$router.push({ path, query: newQuery })
-        this.currentPage = pageNumber
       }
+      this.currentPage = totalPageNumber
     }
   }
 }

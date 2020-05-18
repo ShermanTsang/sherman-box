@@ -24,7 +24,7 @@
     }
 
     &__text {
-      margin-top: 10px;
+      margin-top: 30px;
       color: $theme-color;
       font-size: .9rem;
       letter-spacing: 1px;
@@ -59,6 +59,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, .9);
+    z-index: $z-index-overlay;
 
     .loading {
       &__element {
@@ -81,7 +82,7 @@
 </style>
 
 <template>
-  <div class="loading" :class="{'loading--fixed': fix}">
+  <div ref="loading" class="loading" :class="{'loading--fixed': fix}">
     <div class="loading__element" :style="style">
       <div class="loading__element__bounce1"></div>
       <div class="loading__element__bounce2"></div>
@@ -114,7 +115,16 @@ export default {
     }
   },
   mounted () {
+    this.setParentElePosition()
   },
-  methods: {}
+  methods: {
+    setParentElePosition () {
+      const parentNode = this.$refs.loading.parentNode
+      if (parentNode && this.fix) {
+        parentNode.style.setProperty('position', 'relative', 'important')
+        parentNode.style.setProperty('min-height', '200px')
+      }
+    }
+  }
 }
 </script>

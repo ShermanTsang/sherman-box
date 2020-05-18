@@ -26,6 +26,7 @@
     </div>
     <Blocker height="40px" />
     <Pagination
+      type="page"
       :page="parseInt(meta.current_page)"
       :total="parseInt(meta.total)"
       :size="parseInt(meta.per_page)"

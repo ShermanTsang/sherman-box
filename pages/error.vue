@@ -14,14 +14,12 @@ export default {
   layout: 'error',
   data () {
     return {
-      status: {
-      }
+      status: {}
     }
   },
   mounted () {
   },
-  methods: {
-  },
+  methods: {},
   head () {
     return {
       title: '遇到错误了',

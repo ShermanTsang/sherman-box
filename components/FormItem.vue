@@ -187,8 +187,8 @@ export default {
             }
 
             if ('minLength' in ruleItem) {
-              if (!(currentValue.length > ruleItem.minLength)) {
-                this.data.errors.push(this.label + `小于最小字数限制(${ruleItem.minLength}｝)`)
+              if (!(currentValue.length >= ruleItem.minLength)) {
+                this.data.errors.push(this.label + `小于最小字数限制(${ruleItem.minLength})`)
               }
             }
 

@@ -56,8 +56,6 @@
           color: #efefef;
           letter-spacing: 1px;
           width: 100%;
-          white-space: nowrap;
-          text-overflow: ellipsis;
           background-image: linear-gradient(126deg, rgba(0, 0, 0, .4), transparent);
         }
 
@@ -73,6 +71,7 @@
           box-shadow: 0 0 30px rgba(0, 0, 0, .4);
         }
       }
+
     }
 
     &__data {
@@ -435,7 +434,7 @@
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.dayItem.id" :source-data="data.dayItem.comments" module="day" />
+      <Comment :id="data.dayItem.id" module="day" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

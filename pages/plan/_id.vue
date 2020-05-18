@@ -149,8 +149,8 @@
           &__info {
             padding: 10px 0 0 0;
             text-align: left;
-             overflow-x: unset;
-             overflow-y: unset;
+            overflow-x: unset;
+            overflow-y: unset;
           }
         }
       }
@@ -175,9 +175,12 @@
         </div>
         <Blocker height="20px" />
         <div class="plan__header__main__time">
-          始 <Datetime :time="data.planItem.datetime_start" from-now type="datetime" />
+          始
+          <Datetime :time="data.planItem.datetime_start" from-now type="datetime" />
           <br>
-          终 <Datetime v-if="data.planItem.datetime_end" :time="data.planItem.datetime_end" from-now type="datetime" /><span v-else>至今</span>
+          终
+          <Datetime v-if="data.planItem.datetime_end" :time="data.planItem.datetime_end" from-now type="datetime" />
+          <span v-else>至今</span>
         </div>
         <div class="plan__header__main__description">
           {{ data.planItem.description || '暂无项目介绍' }}
@@ -200,7 +203,7 @@
     </template>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.planItem.id" :source-data="data.planItem.comments" module="plan" />
+      <Comment :id="data.planItem.id" module="plan" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

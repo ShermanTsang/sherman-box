@@ -18,8 +18,7 @@ export default {
   },
   mounted () {
   },
-  methods: {
-  },
+  methods: {},
   head () {
     return {
       title: '页面不存在',

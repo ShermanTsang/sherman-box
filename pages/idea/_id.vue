@@ -65,7 +65,7 @@
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.ideaItem.id" :source-data="data.ideaItem.comments" module="idea" />
+      <Comment :id="data.ideaItem.id" module="idea" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

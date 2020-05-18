@@ -63,8 +63,8 @@ export default {
   },
   methods: {
     setColGutter () {
-      this.$children.forEach((vm) => {
-        vm.gutter = this.gutter
+      this.$children.forEach((item) => {
+        item.gutter = this.gutter
       })
     }
   }

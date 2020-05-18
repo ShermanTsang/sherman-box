@@ -1,22 +1,23 @@
 <style lang="scss">
   .btn {
     cursor: pointer;
-    border: 1px solid transparent;
     color: #666;
-    padding: 10px;
+    padding: 8px 10px;
     letter-spacing: 2px;
     background-color: transparent;
     transition: all .2s ease-in-out;
+    border: 1px solid #ddd;
 
     &:hover {
-      color: $theme-color;
-      border-color: $theme-color;
+      border-color: transparent;
+      box-shadow: 0 0 8px rgba(0, 0, 0, .1);
     }
   }
 
   .btn--colorful {
     border: none;
     @include gradient-background;
+
     &:hover {
       color: #fff;
     }

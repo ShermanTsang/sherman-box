@@ -88,7 +88,7 @@
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
-      <Comment :id="data.blogItem.id" :source-data="data.blogItem.comments" module="blog" />
+      <Comment :id="data.blogItem.id" module="blog" />
     </LayoutContainer>
     <Blocker height="60px" />
   </div>

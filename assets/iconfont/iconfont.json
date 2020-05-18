@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "380369",
+      "name": "qq",
+      "font_class": "qq",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "1206114",
+      "name": "wechat",
+      "font_class": "wechat",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "5994087",
+      "name": "link",
+      "font_class": "link",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "12215117",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
       "icon_id": "13553466",
       "name": "bilibili-line",
       "font_class": "bilibili",
@@ -41,13 +69,6 @@
       "unicode_decimal": 58910
     },
     {
-      "icon_id": "1049682",
-      "name": "wechat",
-      "font_class": "wechat",
-      "unicode": "e63b",
-      "unicode_decimal": 58939
-    },
-    {
       "icon_id": "8620022",
       "name": "dribbble",
       "font_class": "dribbble",
@@ -67,13 +88,6 @@
       "font_class": "weibo",
       "unicode": "e60f",
       "unicode_decimal": 58895
-    },
-    {
-      "icon_id": "7239850",
-      "name": "qq",
-      "font_class": "qq",
-      "unicode": "e746",
-      "unicode_decimal": 59206
     },
     {
       "icon_id": "7239811",
@@ -561,7 +575,7 @@
     {
       "icon_id": "3095074",
       "name": "绑定",
-      "font_class": "link",
+      "font_class": "bind",
       "unicode": "e63e",
       "unicode_decimal": 58942
     },

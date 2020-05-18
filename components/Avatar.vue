@@ -3,14 +3,17 @@
     display: inline-block;
 
     img {
+      border-radius: 50%;
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
       background-color: #fff;
+      box-shadow: 0 0 4px rgba(177, 177, 177, .2);
+      border: 1px solid #eee;
 
       &:hover {
-        box-shadow: 0 0 4px rgba(177, 177, 177, .5);
+        box-shadow: 0 0 8px rgba(177, 177, 177, .5);
       }
     }
   }
@@ -33,24 +36,24 @@ export default {
       type: String,
       default: '48px'
     },
-    sign: {
+    value: {
       type: String,
       default: ''
     }
   },
   computed: {
     avatarUrl () {
-      if (this.sign) {
-        const sign = this.sign
-        const isEmail = sign.includes('@')
-        const isQQ = /^[1-9][0-9]{4,9}$/gim.test(sign)
-        // const isWechat = /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/.test(sign)
+      if (this.value) {
+        const value = this.value
+        const isEmail = value.includes('@')
+        const isQQ = /^[1-9][0-9]{4,9}$/gim.test(value)
+        // const isWechat = /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/.test(value)
         if (isEmail) {
-          const originUrl = Gravatar(sign, { size: 200 })
+          const originUrl = Gravatar(value, { size: 200 })
           return originUrl.replace('gravatar.com', 'cn.gravatar.com')
         }
         if (isQQ) {
-          return `http://q2.qlogo.cn/headimg_dl?dst_uin=${sign}&spec=100`
+          return `http://q2.qlogo.cn/headimg_dl?dst_uin=${value}&spec=100`
         }
       }
       return defaultEmail

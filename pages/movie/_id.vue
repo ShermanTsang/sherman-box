@@ -151,7 +151,7 @@
     </LayoutContainer>
     <Blocker height="40px" />
     <LayoutContainer>
-      <Comment :id="data.movieItem.id" :source-data="data.movieItem.comments" module="movie" />
+      <Comment :id="data.movieItem.id" module="movie" />
     </LayoutContainer>
     <Blocker height="60px" />
     <Modal v-model="status.showScoreModal" title="评个分" icon="star" width="500px">

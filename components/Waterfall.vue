@@ -4,7 +4,6 @@
     &__item {
       box-sizing: border-box;
       break-inside: avoid;
-      padding: 10px;
     }
 
     @media ($screen-lg-max) {
@@ -19,7 +18,7 @@
 </style>
 
 <template>
-  <div class="waterfall" :style="style">
+  <div ref="waterfall" class="waterfall" :style="style">
     <slot />
   </div>
 </template>
@@ -43,6 +42,22 @@ export default {
         'column-count': this.column,
         'column-gap': this.gap
       }
+    }
+  },
+  mounted () {
+    this.setNodeChildrenClass()
+  },
+  methods: {
+    setNodeChildrenClass () {
+      // 未生效 待研究
+      // this.$nextTick(() => {
+      //   const waterfallChildren = this.$refs.waterfall.children
+      //   if (waterfallChildren && waterfallChildren.length > 0) {
+      //     waterfallChildren.forEach((item) => {
+      //       item.classList.add('waterfall__item')
+      //     })
+      //   }
+      // })
     }
   }
 }
