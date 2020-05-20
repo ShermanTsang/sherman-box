@@ -58,6 +58,8 @@
 
       &__content {
         padding: 16px;
+        max-height: 80vh;
+        overflow: auto;
 
         @media ($screen-md-max) {
           width: 100%;

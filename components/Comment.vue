@@ -3,73 +3,6 @@
 
     &__list {
 
-      &__item {
-        position: relative;
-        display: flex;
-        align-items: flex-start;
-        padding: 16px 0;
-        transition: all 300ms ease-in-out;
-        margin-bottom: 10px;
-
-        &:before {
-          content: '';
-          position: absolute;
-          left: 0;
-          height: 80%;
-          width: 2px;
-          background-color: #efefef;
-        }
-
-        &__avatar {
-          margin: 0 16px;
-          align-self: center;
-        }
-
-        &__main {
-          width: 100%;
-          overflow: hidden;
-
-          &__username {
-            color: #333333;
-            font-size: 0.95rem;
-            cursor: default;
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-
-            &__contact {
-              font-size: .8rem;
-              color: #999;
-
-              &:before {
-                content: '|';
-                color: #ccc;
-                padding: 0 4px;
-              }
-            }
-          }
-
-          &__content {
-            color: #666666;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            padding: 10px 0;
-            line-height: 1.6;
-          }
-
-          &__time {
-            color: #999999;
-            font-size: 0.8rem;
-          }
-        }
-
-        &:hover {
-          box-shadow: 0 0 8px rgba(0, 0, 0, .1) inset;
-        }
-
-      }
-
     }
 
   }
@@ -87,27 +20,14 @@
         评论加载中
       </Loading>
       <Waterfall :column="2" gap="16px">
-        <div v-for="item in data.commentList" :key="item.id" class="comment__list__item waterfall__item">
-          <div class="comment__list__item__avatar">
-            <Avatar :value="item.qq || item.email" size="36px" @click="redirectByUrl(item.website)" />
-          </div>
-          <div class="comment__list__item__main">
-            <div class="comment__list__item__main__username" :style="{cursor: item.website? 'pointer' : 'default'}" @click="redirectByUrl(item.website)">
-              {{ item.username }} <Icon v-if="item.website" name="click" color="#999" />
-              <span v-if="item.qq || item.email || item.wechat" class="comment__list__item__main__username__contact">
-                <template v-if="item.qq"><Icon name="qq" size=".8rem" /> {{ item.qq }}</template>
-                <template v-if="item.email"><Icon name="mail" size=".8rem" /> {{ item.email }}</template>
-                <template v-if="item.wechat"><Icon name="wechat" size=".8rem" /> {{ item.wechat }}</template>
-              </span>
-            </div>
-            <div class="comment__list__item__main__content">
-              {{ item.content }}
-            </div>
-            <div class="comment__list__item__main__time">
-              {{ item.datetime }}
-            </div>
-          </div>
-        </div>
+        <ItemComment
+          v-for="item in data.commentList"
+          :key="item.id"
+          :item="item"
+          class="waterfall__item"
+          level="parent"
+          @clickReplyBtn="handleReply"
+        ></ItemComment>
       </Waterfall>
     </div>
     <Tip v-if="!status.isLoadingList && data.commentList.length === 0" asset="pic-comment" max-width="240px">
@@ -121,10 +41,18 @@
       :size="parseInt(meta.per_page)"
       @change="requestCommentList"
     />
-    <Modal v-model="status.showModal" title="写评论" icon="comment" width="500px">
+    <Modal v-model="status.showModal" :title="data.replyTarget ? '回复评论':'写评论'" icon="comment" width="800px">
       <Loading v-if="status.isLoadingSubmit" :fix="true">
         评论发送中
       </Loading>
+      <FormItem
+        v-if="data.replyTarget"
+        label="回复对象"
+        name="replyTarget"
+        type="custom"
+      >
+        <ItemComment :item="data.replyTarget" :show-replies="false" />
+      </FormItem>
       <FormItem
         v-model="form.username"
         validate="required|maxLength:8"
@@ -207,7 +135,8 @@ export default {
       },
       form: {},
       data: {
-        commentList: []
+        commentList: [],
+        replyTarget: null
       },
       meta: {}
     }
@@ -226,6 +155,14 @@ export default {
         }
       }
       return false
+    }
+  },
+  watch: {
+    'status.showModal' (status) {
+      if (status === false) {
+        this.form = {}
+        this.data.replyTarget = null
+      }
     }
   },
   mounted () {
@@ -265,12 +202,14 @@ export default {
           qq: this.contactType === 'qq' ? contact : '',
           email: this.contactType === 'email' ? contact : ''
         }
+        if (this.data.replyTarget) {
+          appendParams.parent_id = this.data.replyTarget.id
+        }
         const newComment = { ...this.form, ...appendParams }
 
         this.$axios.$post('/api/comments', newComment)
           .then((response) => {
-            this.data.commentList.push(response.data)
-            this.form = {}
+            this.requestCommentList()
             this.status.showModal = false
             this.status.isLoadingSubmit = false
           })
@@ -280,6 +219,10 @@ export default {
       } else {
         this.$message.error('表单填写有误')
       }
+    },
+    handleReply (replyItem) {
+      this.data.replyTarget = replyItem
+      this.status.showModal = true
     }
   }
 }

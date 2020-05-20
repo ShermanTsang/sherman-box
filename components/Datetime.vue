@@ -8,7 +8,7 @@
 
 <template>
   <nuxt-link v-if="localTime" :to="{path:`/day/${localTime.format('YYYY-MM-DD')}`}" class="moment" :style="style">
-    {{ localTime.format(format) }}
+    {{ localTime.format(timeFormat) }}
     <small v-if="fromNow">{{ fromNowFormat }}</small>
   </nuxt-link>
 </template>
@@ -22,12 +22,15 @@ export default {
       default: null
     },
     format: {
-      type: String,
-      default: 'YYYY-MM-DD'
+      type: [String, undefined],
+      default: undefined
     },
     type: {
       type: String,
-      default: 'date'
+      default: 'date',
+      validator (value) {
+        return ['date', 'datetime'].includes(value)
+      }
     },
     fromNow: {
       type: Boolean,
@@ -56,6 +59,16 @@ export default {
     fromNowFormat () {
       const expectedTimeValue = this.isDateFormat ? this.localTime.set('hour', 23).set('minute', 59) : this.localTime
       return this.isDateFormat && this.isToday ? '今天' : expectedTimeValue.from()
+    },
+    timeFormat () {
+      if (this.format) {
+        return this.format
+      }
+      const presetFormat = {
+        date: 'YYYY-MM-DD',
+        datetime: 'YYYY-MM-DD HH:mm:ss'
+      }
+      return presetFormat[this.type]
     }
   }
 }
