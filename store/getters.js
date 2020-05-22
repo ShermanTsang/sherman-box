@@ -47,5 +47,8 @@ export default {
       }).join(' ') || ''
     })
     return statisticsData
+  },
+  user (state) {
+    return state.user
   }
 }

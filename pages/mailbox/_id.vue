@@ -109,7 +109,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: mailboxItem } = await $axios.$get(`/api/mailboxes/${params.id}`)
-    store.commit('currentItem', { name: mailboxItem.name, category: mailboxItem.category, date: mailboxItem.date })
+    store.commit('SET_CURRENT_ITEM', { name: mailboxItem.name, category: mailboxItem.category, date: mailboxItem.date })
     return {
       data: {
         mailboxItem

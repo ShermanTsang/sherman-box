@@ -6,6 +6,6 @@ export default function ({ app: { router }, route, store, redirect }) {
     type: pageType,
     module: pageModule
   }
-  store.commit('currentPage', currentPage)
-  store.commit('currentItem', {})
+  store.commit('SET_CURRENT_PAGE', currentPage)
+  store.commit('SET_CURRENT_ITEM', {})
 }

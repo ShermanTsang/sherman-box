@@ -152,6 +152,26 @@ export default function ({ store }) {
     return !!(falseItem || falseItem === undefined)
   }
 
+  function fillStateByLocalStorage (actionKey, cacheKey, valueType, defaultValue) {
+    if (process.client) {
+      const localCache = localStorage.getItem(`ShareManBox~${cacheKey}`)
+      let finalValue = null
+      if (!localCache) {
+        finalValue = defaultValue
+      }
+      if (valueType === 'number') {
+        finalValue = Number.parseInt(localCache) || defaultValue
+      }
+      if (valueType === 'object') {
+        finalValue = JSON.parse(localCache) || defaultValue
+      }
+      if (valueType === 'string') {
+        finalValue = JSON.parse(localCache) || defaultValue
+      }
+      this.$store.commit(actionKey, finalValue)
+    }
+  }
+
   Vue.prototype.$config = getConfigItem
   Vue.prototype.$configList = getConfigList
   Vue.prototype.$getConfig = getConfig
@@ -163,4 +183,5 @@ export default function ({ store }) {
   Vue.prototype.$getSeoInfo = getSeoInfo
   Vue.prototype.$getModuleConfig = getModuleConfig
   Vue.prototype.$checkFormValidate = checkFormValidate
+  Vue.prototype.$fillStateByLocalStorage = fillStateByLocalStorage
 }

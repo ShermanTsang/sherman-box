@@ -329,7 +329,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: projectItem } = await $axios.$get(`/api/projects/${params.id}`)
-    store.commit('currentItem', { name: projectItem.name, category: projectItem.category, date: projectItem.date })
+    store.commit('SET_CURRENT_ITEM', { name: projectItem.name, category: projectItem.category, date: projectItem.date })
     return {
       data: {
         projectItem

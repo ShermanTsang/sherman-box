@@ -78,7 +78,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: ideaItem } = await $axios.$get(`/api/ideas/${params.id}`)
-    store.commit('currentItem', { name: ideaItem.name, category: ideaItem.category, date: ideaItem.date })
+    store.commit('SET_CURRENT_ITEM', { name: ideaItem.name, category: ideaItem.category, date: ideaItem.date })
     return {
       data: {
         ideaItem

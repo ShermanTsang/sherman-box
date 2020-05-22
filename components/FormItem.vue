@@ -165,6 +165,9 @@ export default {
       this.checkValidate(value)
     }
   },
+  mounted () {
+    this.data.value = this.value
+  },
   methods: {
     changeValue (currentValue) {
       this.$emit('updateValue', currentValue)

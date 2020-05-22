@@ -1,29 +1,43 @@
+function storeToLocalStorage (key, data) {
+  if (process.client) {
+    try {
+      localStorage.setItem(`ShareManBox~${key}`, JSON.stringify(data))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}
+
 export default {
-  currentPage (state, data) {
+  SET_CURRENT_PAGE (state, data) {
     state.currentPage = data
   },
-  currentItem (state, data) {
+  SET_CURRENT_ITEM (state, data) {
     state.currentItem = data
   },
-  configurationList (state, data) {
+  SET_CONFIGURATION_LIST (state, data) {
     state.configurationList = data
   },
-  imageAssetList (state, data) {
+  SET_IMAGE_ASSET_LIST (state, data) {
     state.imageAssetList = data
   },
-  fileAssetList (state, data) {
+  SET_FILE_ASSET_LIST (state, data) {
     state.fileAssetList = data
   },
-  moduleList (state, data) {
+  SET_MODULE_LIST (state, data) {
     state.moduleList = data
   },
-  pageList (state, data) {
+  SET_PAGE_LIST (state, data) {
     state.pageList = data
   },
-  categoryList (state, data) {
+  SET_CATEGORY_LIST (state, data) {
     state.categoryList = data
   },
-  statisticsModule (state, data) {
+  SET_STATISTICS_MODULE (state, data) {
     state.statisticsModule = data
+  },
+  SET_USER (state, data) {
+    state.user = data
+    storeToLocalStorage('user', data)
   }
 }

@@ -1,29 +1,29 @@
 export default {
-  async GET_CONFIGURATION_LIST ({ commit }) {
+  async getConfigurationList ({ commit }) {
     const { data } = await this.$axios.$get('/api/configurations')
-    commit('configurationList', data)
+    commit('SET_CONFIGURATION_LIST', data)
   },
-  async GET_FILE_ASSET_LIST ({ commit }) {
+  async getFileAssetList ({ commit }) {
     const { data } = await this.$axios.$get('/api/fileAssets')
-    commit('fileAssetList', data)
+    commit('SET_FILE_ASSET_LIST', data)
   },
-  async GET_IMAGE_ASSET_LIST ({ commit }) {
+  async getImageAssetList ({ commit }) {
     const { data } = await this.$axios.$get('/api/imageAssets')
-    commit('imageAssetList', data)
+    commit('SET_IMAGE_ASSET_LIST', data)
   },
-  async GET_MODULE_LIST ({ commit }) {
+  async getModuleList ({ commit }) {
     const { data } = await this.$axios.$get('/api/modules')
-    commit('moduleList', data)
+    commit('SET_MODULE_LIST', data)
   },
-  async GET_PAGE_LIST ({ commit }) {
+  async getPageList ({ commit }) {
     const { data } = await this.$axios.$get('/api/pages')
-    commit('pageList', data)
+    commit('SET_PAGE_LIST', data)
   },
-  async GET_CATEGORY_LIST ({ commit }) {
+  async getCategoryList ({ commit }) {
     const { data } = await this.$axios.$get('/api/categories')
-    commit('categoryList', data)
+    commit('SET_CATEGORY_LIST', data)
   },
-  async GET_INIT_DATA ({ commit }) {
+  async getInitData ({ commit }) {
     const [configurations, fileAssets, imageAssets, modules, pages, categories, statisticsModule] =
       await Promise.all([
         this.$axios.$get('/api/configurations'),
@@ -34,21 +34,21 @@ export default {
         this.$axios.$get('/api/categories'),
         this.$axios.$get('/api/common/statistics/module')
       ])
-    commit('configurationList', configurations.data)
-    commit('fileAssetList', fileAssets.data)
-    commit('imageAssetList', imageAssets.data)
-    commit('moduleList', modules.data)
-    commit('pageList', pages.data)
-    commit('categoryList', categories.data)
-    commit('statisticsModule', statisticsModule.data)
+    commit('SET_CONFIGURATION_LIST', configurations.data)
+    commit('SET_FILE_ASSET_LIST', fileAssets.data)
+    commit('SET_IMAGE_ASSET_LIST', imageAssets.data)
+    commit('SET_MODULE_LIST', modules.data)
+    commit('SET_PAGE_LIST', pages.data)
+    commit('SET_CATEGORY_LIST', categories.data)
+    commit('SET_STATISTICS_MODULE', statisticsModule.data)
   },
   async nuxtServerInit ({ dispatch }) {
-    await dispatch('GET_INIT_DATA')
-    // await dispatch('GET_CONFIGURATION_LIST')
-    // await dispatch('GET_FILE_ASSET_LIST')
-    // await dispatch('GET_IMAGE_ASSET_LIST')
-    // await dispatch('GET_MODULE_LIST')
-    // await dispatch('GET_PAGE_LIST')
-    // await dispatch('GET_CATEGORY_LIST')
+    await dispatch('getInitData')
+    // await dispatch('getConfigurationList')
+    // await dispatch('getFileAssetList')
+    // await dispatch('getImageAssetList')
+    // await dispatch('getModuleList')
+    // await dispatch('getPageList')
+    // await dispatch('getCategoryList')
   }
 }

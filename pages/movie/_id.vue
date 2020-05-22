@@ -200,7 +200,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: movieItem } = await $axios.$get(`/api/movies/${params.id}`)
-    store.commit('currentItem', { name: movieItem.name, category: movieItem.category, date: movieItem.date })
+    store.commit('SET_CURRENT_ITEM', { name: movieItem.name, category: movieItem.category, date: movieItem.date })
     return {
       data: {
         movieItem

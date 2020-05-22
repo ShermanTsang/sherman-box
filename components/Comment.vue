@@ -10,16 +10,16 @@
 
 <template>
   <div class="comment">
+    <Loading v-if="status.isLoadingList" :fix="true">
+      评论加载中
+    </Loading>
     <Nameplate title="评论" sub-title="comment">
       <Btn @click="status.showModal = true">
         写评论
       </Btn>
     </Nameplate>
     <div class="comment__list">
-      <Loading v-if="status.isLoadingList" :fix="true">
-        评论加载中
-      </Loading>
-      <Waterfall :column="2" gap="16px">
+      <Waterfall v-if="data.commentList && data.commentList.length > 0" :column="2" gap="16px">
         <ItemComment
           v-for="item in data.commentList"
           :key="item.id"
@@ -87,7 +87,7 @@
         label="内容"
         name="comment"
         type="input"
-        validate="required|maxLength:30|minLength:4"
+        validate="required|maxLength:500|minLength:4"
         placeholder="留下你的想法、疑问、评论或回忆"
         @changeValidate="valid => status.validate.comment = valid"
       />
@@ -160,15 +160,20 @@ export default {
   watch: {
     'status.showModal' (status) {
       if (status === false) {
-        this.form = {}
+        this.form.content = ''
         this.data.replyTarget = null
       }
     }
   },
   mounted () {
     this.requestCommentList()
+    this.fillUserInfo()
   },
   methods: {
+    fillUserInfo () {
+      this.$fillStateByLocalStorage('SET_USER', 'user', 'object', {})
+      this.form = JSON.parse(JSON.stringify(this.$store.getters.user))
+    },
     async requestCommentList (page = 1) {
       this.status.isLoadingList = true
       const { data: commentList, meta } = await this.$axios.$get('/api/comments/', {
@@ -216,6 +221,12 @@ export default {
           .catch((error) => {
             this.status.isLoadingSubmit = false
           })
+
+        this.$store.commit('SET_USER', {
+          username: this.form.username,
+          contact: this.form.contact,
+          website: this.form.website
+        })
       } else {
         this.$message.error('表单填写有误')
       }

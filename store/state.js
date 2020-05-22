@@ -7,5 +7,6 @@ export default () => ({
   moduleList: [],
   pageList: [],
   categoryList: [],
-  statisticsModule: []
+  statisticsModule: [],
+  user: {}
 })

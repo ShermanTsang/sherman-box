@@ -216,7 +216,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: planItem } = await $axios.$get(`/api/plans/${params.id}`)
-    store.commit('currentItem', { name: planItem.name, category: planItem.category, date: planItem.date })
+    store.commit('SET_CURRENT_ITEM', { name: planItem.name, category: planItem.category, date: planItem.date })
     return {
       data: {
         planItem

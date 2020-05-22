@@ -456,7 +456,7 @@ export default {
         planCollection: planList
       }
     } = await $axios.$get(`/api/days/${params.date}`)
-    store.commit('currentItem', { name: dayItem.name, category: dayItem.category, date: dayItem.date })
+    store.commit('SET_CURRENT_ITEM', { name: dayItem.name, category: dayItem.category, date: dayItem.date })
     return {
       data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList }
     }
