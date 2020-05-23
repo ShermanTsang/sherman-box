@@ -57,10 +57,11 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'page',
-      validator (value) {
-        return ['page', 'component'].includes(value)
-      }
+      default: 'page'
+    },
+    urlField: {
+      type: [String, undefined],
+      default: undefined
     },
     page: {
       type: Number,
@@ -77,7 +78,7 @@ export default {
   },
   data () {
     return {
-      currentPage: parseInt(this.$route.query.page) || 1
+      currentPage: parseInt(this.$route.query[this.type === 'page' ? 'page' : `${this.type}Page`]) || 1
     }
   },
   computed: {
@@ -117,15 +118,15 @@ export default {
     }
   },
   methods: {
-    handleClick (totalPageNumber) {
-      this.$emit('change', totalPageNumber)
-      if (this.type === 'page' && totalPageNumber !== 0) {
+    handleClick (currentPage) {
+      this.$emit('change', currentPage)
+      if (currentPage !== 0) {
         const { path = '', query = {} } = this.$route
         const newQuery = JSON.parse(JSON.stringify(query))
-        newQuery.page = totalPageNumber
+        newQuery[this.type === 'page' ? 'page' : `${this.type}Page`] = currentPage
         this.$router.push({ path, query: newQuery })
       }
-      this.currentPage = totalPageNumber
+      this.currentPage = currentPage
     }
   }
 }

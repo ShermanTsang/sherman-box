@@ -34,12 +34,12 @@
       暂无评论
     </Tip>
     <Pagination
-      v-if="meta"
-      type="component"
+      v-if="meta && meta.last_page > 1"
+      type="comment"
       :page="parseInt(meta.current_page)"
       :total="parseInt(meta.total)"
       :size="parseInt(meta.per_page)"
-      @change="requestCommentList"
+      @change="changePage"
     />
     <Modal v-model="status.showModal" :title="data.replyTarget ? '回复评论':'写评论'" icon="comment" width="800px">
       <Loading v-if="status.isLoadingSubmit" :fix="true">
@@ -123,6 +123,7 @@ export default {
   data () {
     return {
       status: {
+        currentPage: 1,
         showModal: false,
         isLoadingSubmit: false,
         isLoadingList: false,
@@ -160,28 +161,38 @@ export default {
   watch: {
     'status.showModal' (status) {
       if (status === false) {
-        this.form.content = ''
         this.data.replyTarget = null
       }
     }
   },
   mounted () {
+    this.checkCurrentPageNum()
     this.requestCommentList()
     this.fillUserInfo()
   },
   methods: {
+    checkCurrentPageNum () {
+      const { query = {} } = this.$route
+      if (query.commentPage) {
+        this.status.currentPage = query.commentPage
+      }
+    },
     fillUserInfo () {
       this.$fillStateByLocalStorage('SET_USER', 'user', 'object', {})
       this.form = JSON.parse(JSON.stringify(this.$store.getters.user))
     },
-    async requestCommentList (page = 1) {
+    changePage (currentPage) {
+      this.status.currentPage = currentPage
+      this.requestCommentList(currentPage)
+    },
+    async requestCommentList (currentPage = this.status.currentPage) {
       this.status.isLoadingList = true
       const { data: commentList, meta } = await this.$axios.$get('/api/comments/', {
         params: {
           pageSize: 10,
           module: this.module,
           id: this.id,
-          page
+          page: currentPage
         }
       })
       this.data.commentList = commentList
@@ -217,6 +228,7 @@ export default {
             this.requestCommentList()
             this.status.showModal = false
             this.status.isLoadingSubmit = false
+            this.form = {}
           })
           .catch((error) => {
             this.status.isLoadingSubmit = false
