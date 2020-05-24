@@ -1,4 +1,6 @@
 <style lang="scss">
+  .idea {
+  }
 </style>
 
 <template>
@@ -6,11 +8,11 @@
     <Blocker height="20px" />
     <CategoryBox module="idea" />
     <Blocker height="20px" />
-    <Waterfall v-if="data.ideaList && data.ideaList.length > 0">
+    <Waterfall v-if="data.ideaList && data.ideaList.length > 0" gap="16px">
       <div
         v-for="item in data.ideaList"
         :key="item.id"
-        class="waterfall__item"
+        class="waterfall__item idea__item"
       >
         <item-idea :item="item" />
       </div>

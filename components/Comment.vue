@@ -228,7 +228,7 @@ export default {
             this.requestCommentList()
             this.status.showModal = false
             this.status.isLoadingSubmit = false
-            this.form = {}
+            this.fillUserInfo()
           })
           .catch((error) => {
             this.status.isLoadingSubmit = false

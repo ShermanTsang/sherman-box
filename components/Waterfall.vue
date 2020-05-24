@@ -40,7 +40,7 @@ export default {
     style () {
       return {
         'column-count': this.column,
-        'column-gap': this.gap
+        'column-gap': this.gap,
       }
     }
   },
