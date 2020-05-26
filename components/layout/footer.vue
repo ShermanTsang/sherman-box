@@ -1,54 +1,72 @@
 <style lang="scss">
   .footer {
     border-top: 1px solid #efefef;
-    padding: 30px 10px;
+    box-shadow: 0 -2px 8px rgba(177, 177, 177, .1);
 
-    &__container {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
+    &__main {
+      padding: 24px 0;
 
-      &__page {
-        &__item {
-          cursor: pointer;
-          display: inline-block;
-          font-size: .95rem;
-          color: #999;
-          letter-spacing: 2px;
+      &__container {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
 
-          a {
-            color: #999;
-          }
+        @media ($screen-xs-max) {
+          flex-flow: column nowrap;
+          line-height: 2;
+        }
 
-          &:not(:last-child) {
-            margin-right: 20px;
+        &__column {
+          &__item {
+            cursor: pointer;
+            display: inline-block;
+            font-size: .95rem;
+            color: #666;
+            letter-spacing: 1px;
+
+            &:not(:first-child) {
+              padding-left: 10px;
+
+              &:before {
+                font-size: .9rem;
+                content: '/';
+                font-weight: bold;
+                color: #efefef;
+              }
+            }
+
+            i {
+              margin-left: 10px;
+              transition: color .2s ease-in-out;
+              color: #999;
+
+              &:hover {
+                color: #666;
+              }
+            }
+
           }
         }
-      }
-
-      &__info {
-        font-size: .9rem;
-        color: #999;
       }
     }
 
-    @media ($screen-xs-max) {
-      margin-left: 0;
+    &__info {
+      padding: 20px 0;
+      border-top: 1px solid #efefef;
 
       &__container {
-        flex-flow: column nowrap;
-        font-size: .9rem;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
 
-        &__page {
-          &__item {
-            &:not(:last-child) {
-              margin-right: 14px;
-            }
-          }
+        @media ($screen-xs-max) {
+          flex-flow: column nowrap;
+          line-height: 2;
         }
 
-        &__info {
-          margin-top: 10px;
+        &__item {
+          font-size: .9rem;
+          color: #999;
         }
       }
     }
@@ -58,26 +76,66 @@
 
 <template>
   <footer class="footer">
-    <LayoutContainer class="footer__container">
-      <div class="footer__container__page">
-        <div v-for="item in $store.getters.pageList" :key="item.id" class="footer__container__page__item" @click="redirectToPage(item)">
-          {{ item.name }}
+    <div class="footer__main">
+      <LayoutContainer class="footer__main__container">
+        <div class="footer__main__container__column">
+          <div
+            v-for="item in $store.getters.pageList"
+            :key="item.id"
+            class="footer__main__container__column__item"
+            @click="redirectToPage(item)"
+          >
+            {{ item.name }}
+          </div>
         </div>
-      </div>
-      <div class="footer__container__info">
-        {{ $getConfig('site.icp') }}
-      </div>
-    </LayoutContainer>
+        <div class="footer__main__container__column">
+          <div
+            v-for="item in data.socialMediaList"
+            :key="item.id"
+            class="footer__main__container__column__item"
+            @click="redirectToPage(item)"
+          >
+            <Icon :name="item.icon" size="20px" />
+          </div>
+        </div>
+      </LayoutContainer>
+    </div>
+    <div class="footer__info">
+      <LayoutContainer class="footer__info__container">
+        <div class="footer__info__container__item">
+          {{ $getConfig('site.name') }}
+        </div>
+        <div class="footer__info__container__item">
+          {{ $getConfig('site.icp') }}
+        </div>
+      </LayoutContainer>
+    </div>
   </footer>
 </template>
 
 <script>
 export default {
   name: 'LayoutFooter',
+  data () {
+    return {
+      data: {
+        socialMediaList: [
+          { icon: 'weibo', name: '微博', url: this.$getConfig('socialMedia.weibo') },
+          { icon: 'zhihu', name: '知乎', url: this.$getConfig('socialMedia.zhihu') },
+          { icon: 'px', name: '500PX', url: this.$getConfig('socialMedia.500px') },
+          { icon: 'bilibili', name: 'bilibili', url: this.$getConfig('socialMedia.bilibili') }
+        ]
+      }
+    }
+  },
   methods: {
     redirectToPage (item) {
       if (item.isExtra) {
         window.open(`/${item.url}`)
+        return
+      }
+      if (item.url.includes('://')) {
+        window.open(`${item.url}`)
         return
       }
       this.$router.push({ name: 'page-url', params: { type: 'page', id: item.id, url: item.url } })

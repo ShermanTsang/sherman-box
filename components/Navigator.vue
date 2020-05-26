@@ -24,6 +24,7 @@
         }
 
         &__module {
+          display: inline-block;
           color: $theme-color;
           padding: 4px 12px;
           border-radius: 4px;

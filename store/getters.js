@@ -22,8 +22,8 @@ export default {
   },
   pageList (state) {
     const extraPage = [
-      { name: '开发日志', url: 'page/log', isExtra: true },
-      { name: 'Sitemap', url: 'sitemap.xml', isExtra: true }
+      { name: '索引', url: 'sitemap.xml', isExtra: true },
+      { name: '开发日志', url: 'page/log', isExtra: true }
     ]
     return [...state.pageList, ...extraPage]
   },

@@ -3,7 +3,8 @@
     position: relative;
     margin: auto;
     overflow: hidden;
-    padding-bottom: 60px;
+    padding-top: 60px;
+    padding-bottom: 120px;
 
     &:before {
       content: '';
@@ -79,7 +80,7 @@
 
     &__more {
       position: absolute;
-      bottom: 20px;
+      bottom: 60px;
       left: 50%;
       transform: translateX(-50%);
       color: #999;
