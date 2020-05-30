@@ -29,7 +29,7 @@
 </style>
 
 <template>
-  <div v-if="imgUrl" class="pic" :style="imgStyle" @click="handleClick()">
+  <div v-if="imgUrl" ref="pic" class="pic" :style="imgStyle" @click="handleClick()">
     <img v-lazy="imgUrl">
     <div v-if="$slots.default && $slots.default[0]" class="pic__text">
       <slot />
@@ -52,6 +52,10 @@ export default {
     path: {
       type: String,
       default: null
+    },
+    autoFill: {
+      type: Boolean,
+      default: undefined
     },
     radius: {
       type: String,
@@ -101,7 +105,8 @@ export default {
     },
     imgUrl () {
       if (this.url) {
-        return this.$getOssUrl(this.url)
+        const isExternalUrl = this.url.startsWith('http') || this.url.startsWith('data:')
+        return isExternalUrl ? this.url : this.$getOssUrl(this.url)
       }
       if (this.asset) {
         return this.$getImageAsset(this.asset)
@@ -117,7 +122,21 @@ export default {
       return undefined
     }
   },
+  mounted () {
+    this.autoFill && this.fillParentNode()
+  },
   methods: {
+    fillParentNode () {
+      const parentNode = this.$refs.pic.parentNode
+      if (parentNode) {
+        const parentNodeStyle = window.getComputedStyle
+          ? window.getComputedStyle(parentNode, '')
+          : parentNode.currentStyle
+        const { height, width } = parentNodeStyle
+        height && this.$refs.pic.style.setProperty('height', height)
+        width && this.$refs.pic.style.setProperty('width', width)
+      }
+    },
     handleClick () {
       if (this.link) {
         this.$router.push(this.link)

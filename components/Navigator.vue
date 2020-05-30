@@ -90,7 +90,18 @@
       <div class="navigator__action__item" @click="backToTop()">
         <Icon name="arrow-up" color="#999" size="20px"></Icon>
       </div>
+      <div v-if="currentItem && 'name' in currentItem" class="navigator__action__item" @click="openPoster()">
+        <Icon name="share" color="#999" size="20px"></Icon>
+      </div>
     </div>
+    <Modal v-model="status.showPoster" title="海报分享" icon="share" width="540px">
+      <Poster
+        :module="currentPage.module"
+        :image="currentItem.image"
+        :text-template="currentModule.poster_text"
+        :fields="[{field: 'name',value: currentItem.name},{field: 'date',value: currentItem.date}]"
+      />
+    </Modal>
   </div>
 </template>
 
@@ -109,7 +120,24 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      status: {
+        showPoster: false
+      }
+    }
+  },
   computed: {
+    currentPage () {
+      return this.$store.getters.currentPage
+    },
+    currentItem () {
+      return this.$store.getters.currentItem
+    },
+    currentModule () {
+      const module = this.currentPage.module
+      return module && this.$getModuleConfig(module)
+    },
     style () {
       return {}
     }
@@ -122,6 +150,9 @@ export default {
     },
     backToTop () {
       document.body.scrollIntoView()
+    },
+    openPoster () {
+      this.status.showPoster = true
     }
   }
 }

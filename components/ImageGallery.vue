@@ -39,7 +39,7 @@
   <transition name="fade">
     <div v-if="imageUrl" class="image-modal" @click="handleClick($event)">
       <div class="image-modal__image">
-        <Pic :url="$getOssUrl(imageUrl)" />
+        <Pic :url="imageUrl" />
       </div>
     </div>
   </transition>

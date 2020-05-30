@@ -59,7 +59,9 @@ export default {
     { src: '@/plugins/gradient-color', mode: 'client' },
     { src: '@/plugins/vue-lazyload', mode: 'client' },
     { src: '@/plugins/vue-router', mode: 'client' },
-    { src: '@/plugins/message', mode: 'client' }
+    { src: '@/plugins/message', mode: 'client' },
+    { src: '@/plugins/html2canvas', mode: 'client' },
+    { src: '@/plugins/qrcodejs2', mode: 'client' }
   ],
 
   /*

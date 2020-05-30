@@ -25,11 +25,11 @@
             letter-spacing: 1px;
 
             &:not(:first-child) {
-              padding-left: 10px;
 
               &:before {
                 font-size: .9rem;
                 content: '/';
+                padding: 0 6px;
                 font-weight: bold;
                 color: #efefef;
               }
@@ -123,7 +123,8 @@ export default {
           { icon: 'weibo', name: '微博', url: this.$getConfig('socialMedia.weibo') },
           { icon: 'zhihu', name: '知乎', url: this.$getConfig('socialMedia.zhihu') },
           { icon: 'px', name: '500PX', url: this.$getConfig('socialMedia.500px') },
-          { icon: 'bilibili', name: 'bilibili', url: this.$getConfig('socialMedia.bilibili') }
+          { icon: 'bilibili', name: 'bilibili', url: this.$getConfig('socialMedia.bilibili') },
+          { icon: 'github', name: 'GitHub', url: this.$getConfig('socialMedia.github') }
         ]
       }
     }

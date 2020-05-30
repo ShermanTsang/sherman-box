@@ -55,6 +55,12 @@
       border-top: 1px solid #efefef;
     }
 
+    &__navigator--fixed {
+      position: fixed;
+      width: 100%;
+      top: 0;
+    }
+
     &:hover {
       box-shadow: 0 2px 12px rgba(177, 177, 177, .2);
     }
@@ -82,7 +88,7 @@
       </div>
     </div>
     <transition name="slideFromBottom">
-      <div v-if="currentModule && status.isDisplayNavigator" id="navigator" class="header__navigator">
+      <div v-if="currentModule" id="navigator" class="header__navigator" :class="{'header__navigator--fixed': status.isDisplayNavigator}">
         <Navigator :navs="navs" :divider="currentPage.type === 'list'?'/':'>'" />
       </div>
     </transition>
@@ -108,7 +114,8 @@ export default {
       return this.$store.getters.currentItem
     },
     currentModule () {
-      return this.currentPage.module && this.$getModuleConfig(this.currentPage.module)
+      const module = this.currentPage.module
+      return module && this.$getModuleConfig(module)
     },
     statisticsModule () {
       return this.$store.getters.statisticsModule

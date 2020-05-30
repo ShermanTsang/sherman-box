@@ -84,7 +84,7 @@
               <span>{{ item.category.name || '无分类' }}</span> {{ item.name }}
             </div>
             <div class="log__list__item__image">
-              <Pic :url="$getOssUrl(item.image)"></Pic>
+              <Pic :url="item.image"></Pic>
             </div>
             <div class="log__list__item__main">
               {{ item.description }}

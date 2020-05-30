@@ -102,12 +102,12 @@ export default {
         return [1, 2, 0, totalPageNum - 1, totalPageNum]
       }
       if (index === 3) {
-        return [1, 2, 3, 0, totalPageNum]
+        return [1, 2, 3, 4, 0, totalPageNum]
       }
       if (index === totalPageNum - 2) {
         return [1, 0, totalPageNum - 2, totalPageNum - 1, totalPageNum]
       }
-      return [1, 0, index, 0, totalPageNum]
+      return [1, 0, index - 1, index, index + 1, 0, totalPageNum]
     }
   },
   watch: {

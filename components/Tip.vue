@@ -392,7 +392,7 @@ export default {
     }
   },
   computed: {
-    imageStyle() {
+    imageStyle () {
       return {
         'max-width': this.maxWidth
       }

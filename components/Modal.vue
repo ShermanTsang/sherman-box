@@ -31,7 +31,7 @@
       max-width: 96%;
       margin: 0 auto;
       background-color: #fff;
-      box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+      box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
 
       &__header {
         border-bottom: 1px solid #eee;
@@ -121,6 +121,10 @@ export default {
     showModal: {
       type: Boolean,
       default: false
+    },
+    lockScroll: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -134,10 +138,18 @@ export default {
       }
     }
   },
+  watch: {
+    showModal (value) {
+      this.lockScroll && this.setScreenScrolling(value ? 'hidden' : 'auto')
+    }
+  },
   methods: {
     toggleModalStatus () {
       this.$emit('toggleModalStatus', !this.showModal)
       this.$emit(this.showModal ? 'onOpen' : 'onClose')
+    },
+    setScreenScrolling (attr) {
+      document.body.style.overflow = attr
     }
   }
 }
