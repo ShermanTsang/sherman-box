@@ -39,5 +39,9 @@ export default {
   SET_USER (state, data) {
     state.user = data
     storeToLocalStorage('user', data)
+  },
+  SET_HAS_NAVIGATOR (state, data) {
+    state.hasNavigator = data
+    storeToLocalStorage('hasNavigator', data)
   }
 }

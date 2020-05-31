@@ -4,16 +4,26 @@
     overflow: hidden;
     margin-top: $header-height;
   }
+
+  .main--withNavigator {
+    margin-top: $header-height-withNav;
+  }
+
 </style>
 
 <template>
-  <main class="main">
+  <main class="main" :class="{'main--withNavigator': hasNavigator}">
     <slot />
   </main>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'LayoutMain'
+  name: 'LayoutMain',
+  computed: {
+    ...mapGetters(['hasNavigator'])
+  }
 }
 </script>

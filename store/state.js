@@ -1,4 +1,5 @@
 export default () => ({
+  hasNavigator: false,
   currentPage: {},
   currentItem: {},
   configurationList: [],

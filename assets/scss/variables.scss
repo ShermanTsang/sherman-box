@@ -18,6 +18,7 @@ $sidebar-width: 140px;
 $header-main-height: 64px;
 $header-nav-height: 64px;
 $header-height: $header-main-height;
+$header-height-withNav: $header-main-height + $header-nav-height;
 
 @mixin gradient-background {
   background-color: #51defe;

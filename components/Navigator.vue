@@ -64,7 +64,7 @@
 </style>
 
 <template>
-  <div v-if="navs && navs.length > 0" :style="style" class="navigator">
+  <div v-if="navs && navs.length > 0" class="navigator">
     <div class="navigator__main">
       <div
         v-for="(item,index) in navs"
@@ -111,13 +111,7 @@ export default {
   props: {
     divider: {
       type: String,
-      default: undefined
-    },
-    navs: {
-      type: Array,
-      default () {
-        return []
-      }
+      default: ''
     }
   },
   data () {
@@ -138,8 +132,42 @@ export default {
       const module = this.currentPage.module
       return module && this.$getModuleConfig(module)
     },
-    style () {
-      return {}
+    statisticsModule () {
+      return this.$store.getters.statisticsModule
+    },
+    navs () {
+      if (!this.currentModule) {
+        return false
+      }
+      if (this.currentPage.type === 'list') {
+        const { name, url } = this.currentModule
+        const statistics = this.statisticsModule.find(item => item.module === this.currentModule.url)
+        return [
+          { text: name, path: `/${url}` },
+          { text: statistics ? statistics.text : '', color: '#999' }
+        ]
+      }
+      if (this.currentPage.type === 'item') {
+        const { name: moduleName, url: moduleUrl } = this.currentModule
+        const { name, category, date } = this.currentItem
+        const navs = [
+          { text: moduleName, path: `/${moduleUrl}` }
+        ]
+        if (category) {
+          navs.push({ text: category.name })
+        }
+        if (name || date) {
+          const dateFormat = date ? this.$time(date).format('YYYY-MM-DD') : ''
+          navs.push({ text: name || dateFormat })
+        }
+        return navs
+      }
+      return []
+    }
+  },
+  watch: {
+    navs (value) {
+      this.$store.commit('SET_HAS_NAVIGATOR', !!value)
     }
   },
   methods: {

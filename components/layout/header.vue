@@ -73,7 +73,7 @@
 </style>
 
 <template>
-  <header class="header" :class="{'header--shadow': status.isDisplayNavigator}">
+  <header class="header" :class="{'header--shadow': status.isPinNavigator}">
     <div class="header__main">
       <div id="logo" class="header__main__logo">
         <Logo type="text" height="40px" />
@@ -88,8 +88,8 @@
       </div>
     </div>
     <transition name="slideFromBottom">
-      <div v-if="currentModule" id="navigator" class="header__navigator" :class="{'header__navigator--fixed': status.isDisplayNavigator}">
-        <Navigator :navs="navs" :divider="currentPage.type === 'list'?'/':'>'" />
+      <div id="navigator" class="header__navigator" :class="{'header__navigator--fixed': status.isPinNavigator}">
+        <Navigator />
       </div>
     </transition>
   </header>
@@ -101,54 +101,12 @@ export default {
   data () {
     return {
       status: {
-        isDisplayNavigator: false,
+        isPinNavigator: false,
         lastScrollOffset: 0
       }
     }
   },
   computed: {
-    currentPage () {
-      return this.$store.getters.currentPage
-    },
-    currentItem () {
-      return this.$store.getters.currentItem
-    },
-    currentModule () {
-      const module = this.currentPage.module
-      return module && this.$getModuleConfig(module)
-    },
-    statisticsModule () {
-      return this.$store.getters.statisticsModule
-    },
-    navs () {
-      if (!this.currentModule) {
-        return false
-      }
-      if (this.currentPage.type === 'list') {
-        const { name, url } = this.currentModule
-        const statistics = this.statisticsModule.find(item => item.module === this.currentModule.url)
-        return [
-          { text: name, path: `/${url}` },
-          { text: statistics ? statistics.text : '', color: '#999' }
-        ]
-      }
-      if (this.currentPage.type === 'item') {
-        const { name: moduleName, url: moduleUrl } = this.currentModule
-        const { name, category, date } = this.currentItem
-        const navs = [
-          { text: moduleName, path: `/${moduleUrl}` }
-        ]
-        if (category) {
-          navs.push({ text: category.name })
-        }
-        if (name || date) {
-          const dateFormat = date ? this.$time(date).format('YYYY-MM-DD') : ''
-          navs.push({ text: name || dateFormat })
-        }
-        return navs
-      }
-      return []
-    }
   },
   mounted () {
     window.addEventListener('scroll', this.onScroll)
@@ -160,7 +118,7 @@ export default {
     onScroll () {
       const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       const isScrollDown = (scrollOffset - this.status.lastScrollOffset) > 0
-      this.status.isDisplayNavigator = isScrollDown && scrollOffset > 200
+      this.status.isPinNavigator = isScrollDown && scrollOffset > 200
       this.status.lastScrollOffset = scrollOffset
     }
   }

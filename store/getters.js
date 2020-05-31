@@ -50,5 +50,8 @@ export default {
   },
   user (state) {
     return state.user
+  },
+  hasNavigator (state) {
+    return state.hasNavigator
   }
 }
