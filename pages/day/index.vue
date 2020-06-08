@@ -8,7 +8,7 @@
 
 <template>
   <LayoutContainer>
-    <Blocker height="20px" />
+    <Blocker height="48px" />
     <div v-if="data.dayList" class="day-list">
       <LayoutRow :gutter="16">
         <LayoutCol

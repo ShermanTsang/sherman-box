@@ -170,6 +170,9 @@ export default {
       this.$store.commit('SET_HAS_NAVIGATOR', !!value)
     }
   },
+  created () {
+    this.$store.commit('SET_HAS_NAVIGATOR', this.navs)
+  },
   methods: {
     clickNavItem (item) {
       if (item.path) {

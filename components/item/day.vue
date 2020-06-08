@@ -2,83 +2,73 @@
   .day-item {
     transition-duration: 0.2s;
     text-overflow: ellipsis;
-    letter-spacing: 1px;
-    overflow: hidden;
     cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    height: 300px;
 
-    &__header {
+    &__meta {
       position: relative;
-      height: 220px;
-      box-shadow: 0 -10px 20px 16px #fff inset;
-      color: #fff;
-      text-shadow: 4px 4px 6px rgba(0, 0, 0, .2);
-
-      &__text {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        padding: 16px;
-        cursor: pointer;
-
-        &__main {
-          font-size: 1.85rem;
-          font-weight: bold;
-          letter-spacing: 2px;
-        }
-
-        &__sub {
-          font-size: 1.1rem;
-        }
-      }
-
-      &__image {
-        height: 100%;
-        width: 100%;
-        transform: scale(1.4);
-        z-index: $z-index-card-background;
-        transition: all 200ms ease-in;
-        opacity: .8;
-        background-position: center;
-        background-size: cover;
-      }
-
-    }
-
-    &__header--withoutImage {
+      flex-basis: 120px;
       color: #999;
-      text-shadow: none;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      padding: 16px;
+      cursor: pointer;
+      text-align: center;
+
+      &__main {
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 1.8;
+      }
+
+      &__sub {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
     }
 
     &__main {
-      margin-top: 40px;
-      padding: 16px;
-      line-height: 1.5;
+      border-left: 2px dotted #eee;
+      position: relative;
+      flex-grow: 1;
+      overflow: hidden;
 
       &__info {
-        color: #999999;
+        position: absolute;
+        letter-spacing: 1px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: $z-index-card-content;
         font-size: .9rem;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-content: center;
 
         &__detail {
-          display: flex;
-          flex-flow: row wrap;
-          justify-content: flex-start;
+          padding: 16px;
 
           &__item {
-            border: 1px solid #eee;
-            padding: 2px 10px;
-            border-radius: 4px;
+            color: #fff;
+            display: inline-block;
+            border-bottom: 2px solid rgba(255,255,255,.3);
+            padding: 6px 10px;
+            border-radius: 2px;
             cursor: default;
             font-size: .95rem;
             margin: 4px;
 
             i {
               font-size: 1.25rem;
-              color: #ccc;
+              color: #efefef;
             }
 
             small {
@@ -86,29 +76,58 @@
             }
 
           }
+
+        }
+
+      }
+
+      &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        z-index: $z-index-card-background;
+        transition: all 200ms ease-in;
+        background-position: center;
+        background-size: cover;
+
+        &:before {
+          transition: all 200ms ease-in;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 100%;
+          width: 100%;
+          z-index: $z-index-card-background;
+          background-color: rgba(0,0,0,.4);
+          content: '';
+        }
+      }
+
+    }
+
+    &__main--withoutImage {
+      .day-item__main__info__detail__item {
+        color: #999;
+        border-color: #efefef;
+
+        i {
+          color: #ccc;
         }
       }
     }
 
     &:hover {
-      .day-item__header__image {
-        opacity: 1;
-      }
-    }
-
-    @media ($screen-xs-max) {
-      flex-flow: column nowrap;
-
-      &__main {
-        height: auto;
-        padding: 16px;
-        order: 2;
-
-        &__info {
-          font-size: .85rem;
+      .day-item__main__image {
+        &:before {
+          background-color: rgba(0,0,0,.1);
         }
       }
-
     }
 
   }
@@ -119,18 +138,18 @@
     class="day-list__item day-item"
     @click.native="$router.push(`/day/${ $time(item.date).format('YYYY-MM-DD') }`)"
   >
-    <div :class="{'day-item__header--withoutImage': !item.image}" class="day-item__header">
-      <div v-lazy:background-image="$getOssUrl(item.image)" class="day-item__header__image"></div>
-      <div class="day-item__header__text">
-        <div class="day-item__header__text__main">
-          {{ $time(item.date).format('MM.DD') }}
-        </div>
-        <div class="day-item__header__text__sub">
-          {{ $time(item.date).format('YYYY dddd') }}
-        </div>
+    <div class="day-item__meta">
+      <div class="day-item__meta__main">
+        {{ $time(item.date).format('MM.DD') }}
+      </div>
+      <div class="day-item__meta__sub">
+        {{ $time(item.date).format('YYYY') }}
+        <br>
+        {{ $time(item.date).format('dddd') }}
       </div>
     </div>
-    <div class="day-item__main">
+    <div class="day-item__main" :class="{'day-item__main--withoutImage': !item.image}">
+      <div v-if="item.image" v-lazy:background-image="$getOssUrl(item.image)" class="day-item__main__image"></div>
       <div class="day-item__main__info">
         <div class="day-item__main__info__detail">
           <div v-if="item.event" class="day-item__main__info__detail__item">

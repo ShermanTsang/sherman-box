@@ -18,7 +18,7 @@
 </style>
 
 <template>
-  <div ref="waterfall" class="waterfall" :style="style">
+  <div ref="waterfall" class="waterfall" :style="parentStyle">
     <slot />
   </div>
 </template>
@@ -37,10 +37,10 @@ export default {
     }
   },
   computed: {
-    style () {
+    parentStyle () {
       return {
         'column-count': this.column,
-        'column-gap': this.gap,
+        'column-gap': this.gap
       }
     }
   },
@@ -49,15 +49,12 @@ export default {
   },
   methods: {
     setNodeChildrenClass () {
-      // 未生效 待研究
-      // this.$nextTick(() => {
-      //   const waterfallChildren = this.$refs.waterfall.children
-      //   if (waterfallChildren && waterfallChildren.length > 0) {
-      //     waterfallChildren.forEach((item) => {
-      //       item.classList.add('waterfall__item')
-      //     })
-      //   }
-      // })
+      const items = this.$slots.default
+      items && items.forEach((item) => {
+        const element = item.elm
+        element.classList.add('waterfall__item')
+        element.style.setProperty('margin', `${this.gap} 0`)
+      })
     }
   }
 }

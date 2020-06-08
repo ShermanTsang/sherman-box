@@ -8,7 +8,7 @@
 
 <template>
   <LayoutContainer>
-    <Blocker height="20px" />
+    <Blocker height="48px" />
     <CategoryBox module="blog" />
     <Blocker height="20px" />
     <LayoutContainer max-width="1440px">

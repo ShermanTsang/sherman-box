@@ -8,7 +8,7 @@
 
 <template>
   <LayoutContainer>
-    <Blocker height="20px" />
+    <Blocker height="48px" />
     <CategoryBox module="mailbox" />
     <Blocker height="20px" />
     <div v-if="data.mailboxList && data.mailboxList.length > 0" class="mailbox-list">

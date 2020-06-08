@@ -12,6 +12,7 @@
         justify-content: space-between;
 
         @media ($screen-xs-max) {
+          align-items: center;
           flex-flow: column nowrap;
           line-height: 2;
         }
@@ -48,6 +49,7 @@
           }
         }
       }
+
     }
 
     &__info {
@@ -62,6 +64,7 @@
         @media ($screen-xs-max) {
           flex-flow: column nowrap;
           line-height: 2;
+          align-items: center;
         }
 
         &__item {

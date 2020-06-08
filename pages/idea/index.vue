@@ -5,14 +5,14 @@
 
 <template>
   <LayoutContainer>
-    <Blocker height="20px" />
+    <Blocker height="48px" />
     <CategoryBox module="idea" />
     <Blocker height="20px" />
     <Waterfall v-if="data.ideaList && data.ideaList.length > 0" gap="16px">
       <div
         v-for="item in data.ideaList"
         :key="item.id"
-        class="waterfall__item idea__item"
+        class="idea__item"
       >
         <item-idea :item="item" />
       </div>

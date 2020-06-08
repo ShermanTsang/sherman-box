@@ -30,7 +30,8 @@
 
 <template>
   <div v-if="imgUrl" ref="pic" class="pic" :style="imgStyle" @click="handleClick()">
-    <img v-lazy="imgUrl">
+    <img v-if="lazyLoad" v-lazy="imgUrl">
+    <img v-else :src="imgUrl">
     <div v-if="$slots.default && $slots.default[0]" class="pic__text">
       <slot />
     </div>
@@ -56,6 +57,10 @@ export default {
     autoFill: {
       type: Boolean,
       default: undefined
+    },
+    lazyLoad: {
+      type: Boolean,
+      default: true
     },
     radius: {
       type: String,

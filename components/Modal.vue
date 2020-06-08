@@ -149,7 +149,7 @@ export default {
       this.$emit(this.showModal ? 'onOpen' : 'onClose')
     },
     setScreenScrolling (attr) {
-      document.body.style.overflow = attr
+      document.body.style.setProperty('overflow', attr)
     }
   }
 }

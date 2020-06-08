@@ -8,7 +8,7 @@
 
 <template>
   <LayoutContainer>
-    <Blocker height="20px" />
+    <Blocker height="48px" />
     <CategoryBox module="plan" />
     <Blocker height="20px" />
     <div v-if="data.planList && data.planList.length > 0" class="plan-list">

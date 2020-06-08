@@ -24,7 +24,6 @@
           v-for="item in data.commentList"
           :key="item.id"
           :item="item"
-          class="waterfall__item"
           level="parent"
           @clickReplyBtn="handleReply"
         ></ItemComment>

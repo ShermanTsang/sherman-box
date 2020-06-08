@@ -5,6 +5,7 @@
     }
 
     &__body {
+      width: 100%;
       box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
       background-color: #ffffff;
       border-radius: 8px;
@@ -12,8 +13,8 @@
       border: 1px solid #efefef;
 
       &__image {
-        height: 300px;
         width: 100%;
+        max-height: 340px;
         overflow: hidden;
       }
 
@@ -24,9 +25,9 @@
         color: #999;
 
         span {
+          position: relative;
           color: $theme-color;
           padding: 0 4px;
-          border-bottom: 1px solid $theme-color;
         }
       }
 
@@ -52,12 +53,21 @@
       }
     }
 
+    &__image {
+      width: 100%;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
   }
 </style>
 
 <template>
   <div class="poster">
-    <template v-if="!this.$getModuleConfig(this.module).poster_text">
+    <template v-if="!this.$getModuleConfig(module).poster_text">
       <Tip>
         该模块暂不支持海报分享
       </Tip>
@@ -80,9 +90,9 @@
           生成专属海报
         </Btn>
       </div>
-      <div v-if="!status.isEditingMode" ref="posterBody" class="poster__body">
+      <div v-show="!status.isEditingMode && !data.posterImage" ref="posterBody" class="poster__body">
         <div class="poster__body__image">
-          <Pic :url="image" auto-fill />
+          <Pic :url="image" auto-fill :lazy-load="false" />
         </div>
         <div class="poster__body__text" v-html="posterTextHtml" />
         <div class="poster__body__footer">
@@ -99,6 +109,9 @@
             ShareMan's Box
           </div>
         </div>
+      </div>
+      <div v-if="data.posterImage" class="poster__image">
+        <img :src="data.posterImage">
       </div>
     </template>
   </div>
@@ -127,6 +140,7 @@ export default {
     fields: {
       type: Array,
       default () {
+        // Format example
         // :fields="[{field: 'fieldName',value: fieldValue}]"
         return []
       }
@@ -197,15 +211,15 @@ export default {
     },
     generatePoster () {
       setTimeout(() => {
-        this.$html2canvas(this.$refs.posterBody, {
+        const posterBody = this.$refs.posterBody
+        this.$html2canvas(posterBody, {
           useCORS: true,
-          allowTaint: false,
+          allowTaint: true,
           logging: false,
           letterRendering: true,
-          backgroundColor: null
+          backgroundColor: '#fff'
         }).then((canvas) => {
           this.data.posterImage = canvas.toDataURL('image/png')
-          // TODO 图片加载问题
         })
       })
     }
