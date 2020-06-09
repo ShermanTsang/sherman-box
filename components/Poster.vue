@@ -97,7 +97,7 @@
         <div class="poster__body__text" v-html="posterTextHtml" />
         <div class="poster__body__footer">
           <div class="poster__body__footer__qrcode">
-            <QrCode :size="80" color-dark="#999">
+            <QrCode v-if="data.pageUrl" :size="80" color-dark="#999">
               {{ data.pageUrl }}
             </QrCode>
           </div>

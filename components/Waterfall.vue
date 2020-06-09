@@ -47,13 +47,18 @@ export default {
   mounted () {
     this.setNodeChildrenClass()
   },
+  updated () {
+    this.setNodeChildrenClass()
+  },
   methods: {
     setNodeChildrenClass () {
       const items = this.$slots.default
-      items && items.forEach((item) => {
-        const element = item.elm
-        element.classList.add('waterfall__item')
-        element.style.setProperty('margin', `${this.gap} 0`)
+      items && items.forEach((nodeItem) => {
+        if (nodeItem.tag) {
+          const element = nodeItem.elm
+          element.classList.add('waterfall__item')
+          element.style.setProperty('margin', `${this.gap} 0`)
+        }
       })
     }
   }

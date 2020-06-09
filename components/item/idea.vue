@@ -1,6 +1,8 @@
 <style lang="scss">
   .idea-item {
     padding: 32px;
+    cursor: pointer;
+    border: 1px solid #efefef;
 
     &__content {
       letter-spacing: 2px;
@@ -32,20 +34,18 @@
 </style>
 
 <template>
-  <nuxt-link :to="`/idea/${item.id}`">
-    <Card class="idea-item">
-      <div class="idea-item__content">
-        {{ item.content }}
-      </div>
-      <div class="idea-item__info">
-        {{ item.name }}
-        <br>
-        <small>
-          {{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}
-        </small>
-      </div>
-    </Card>
-  </nuxt-link>
+  <Card class="idea-item" @click="$router.push(`/idea/${item.id}`)">
+    <div class="idea-item__content">
+      {{ item.content }}
+    </div>
+    <div class="idea-item__info">
+      {{ item.name }}
+      <br>
+      <small>
+        {{ $time(item.datetime).format('YYYY-MM-DD') }} / {{ $time(item.datetime).fromNow() }}
+      </small>
+    </div>
+  </Card>
 </template>
 
 <script>

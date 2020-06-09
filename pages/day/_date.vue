@@ -313,7 +313,7 @@
                       :url="url"
                       radius="2px"
                       can-preview
-                      :styles="{width: '30%',height:'120px',margin:'4px',border:'1px solid #efefef'}"
+                      :styles="{width: '45%',height:'160px',margin:'4px',border:'1px solid #efefef'}"
                     ></Pic>
                   </template>
                 </div>
@@ -456,7 +456,7 @@ export default {
         planCollection: planList
       }
     } = await $axios.$get(`/api/days/${params.date}`)
-    store.commit('SET_CURRENT_ITEM', { image:dayItem.image, name: `${dayItem.date}日迹`, category: dayItem.category, date: dayItem.date })
+    store.commit('SET_CURRENT_ITEM', { image: dayItem.image, name: `${dayItem.date}日迹`, category: dayItem.category, date: dayItem.date })
     return {
       data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList }
     }
