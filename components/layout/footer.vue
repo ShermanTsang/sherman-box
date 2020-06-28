@@ -1,10 +1,11 @@
 <style lang="scss">
   .footer {
     border-top: 1px solid #efefef;
-    box-shadow: 0 -2px 8px rgba(177, 177, 177, .1);
 
     &__main {
-      padding: 24px 0;
+      box-shadow: 0 4px 6px rgba(177,177,177, .1) inset;
+      background-color: #f8fafc;
+      padding: 48px 0;
 
       &__container {
         display: flex;
@@ -127,7 +128,8 @@ export default {
           { icon: 'zhihu', name: '知乎', url: this.$getConfig('socialMedia.zhihu') },
           { icon: 'px', name: '500PX', url: this.$getConfig('socialMedia.500px') },
           { icon: 'bilibili', name: 'bilibili', url: this.$getConfig('socialMedia.bilibili') },
-          { icon: 'github', name: 'GitHub', url: this.$getConfig('socialMedia.github') }
+          { icon: 'github', name: 'GitHub', url: this.$getConfig('socialMedia.github') },
+          { icon: 'lark', name: '语雀', url: this.$getConfig('socialMedia.lark') }
         ]
       }
     }

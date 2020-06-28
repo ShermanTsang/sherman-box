@@ -9,18 +9,23 @@
 <template>
   <LayoutContainer>
     <Blocker height="48px" />
-    <CategoryBox module="blog" />
-    <Blocker height="20px" />
     <LayoutContainer max-width="1440px">
-      <div v-if="data.blogList && data.blogList.length > 0" class="blog-list">
-        <ItemBlog v-for="item in data.blogList" :key="item.id" :item="item" class="blog-list__item" />
-      </div>
-      <Tip v-else>
-        暂无内容
-      </Tip>
-      <Blocker height="40px" />
+      <Tabs :tabs="[{text:'目录模式',name:'catalog',icon:'post'},{text:'列表模式',name:'list',icon:'category'}]" @select="changeTab">
+        <div slot="catalog">
+          <CatalogTree v-show="status.mode === 'catalog'" :data="blogCatalog" />
+        </div>
+        <div slot="list">
+          <div v-if="data.blogList && data.blogList.length > 0" class="blog-list">
+            <ItemBlog v-for="item in data.blogList" :key="item.id" :item="item" class="blog-list__item" />
+          </div>
+          <Tip v-else>
+            暂无内容
+          </Tip>
+        </div>
+      </Tabs>
     </LayoutContainer>
     <Pagination
+      v-show="status.mode === 'list'"
       type="page"
       :page="parseInt(meta.current_page)"
       :total="parseInt(meta.total)"
@@ -48,13 +53,28 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      status: {
+        mode: 'catalog'
+      }
+    }
+  },
+  computed: {
+    blogCatalog () {
+      const blogCategoryList = this.$store.getters.categoryList.filter((item) => {
+        return item.module === 'blog'
+      })
+      return this.$constructTree(blogCategoryList, 'id', 'parent_id', ['sub_categories', 'parent_category'])
+    }
   },
   mounted () {
   },
   methods: {
     changePage (currentPage) {
       this.$router.push({ name: 'blog', query: { page: parseInt(currentPage) } })
+    },
+    changeTab ({ name }) {
+      this.status.mode = name
     }
   },
   head () {

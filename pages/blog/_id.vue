@@ -55,6 +55,11 @@
           }
         }
       }
+
+      &__text--withoutImage {
+        text-shadow: none;
+        color: #666;
+      }
     }
 
   }
@@ -63,9 +68,9 @@
 <template>
   <div class="blog">
     <div class="blog__header">
-      <div v-lazy:background-image="$getOssUrl(data.blogItem.image)" class="blog__header__image">
+      <div v-if="data.blogItem.image" v-lazy:background-image="$getOssUrl(data.blogItem.image)" class="blog__header__image">
       </div>
-      <LayoutContainer class="blog__header__text">
+      <LayoutContainer class="blog__header__text" :class="{'blog__header__text--withoutImage': !data.blogItem.image}">
         <div class="blog__header__text__title">
           {{ data.blogItem.name }}
         </div>
@@ -73,18 +78,22 @@
         <div class="blog__header__text__info">
           <div class="blog__header__text__info__item">
             <Icon name="category" />
-            {{ data.blogItem.category.name }}
+            {{ data.blogItem.category ? data.blogItem.category.name : '待分类' }}
           </div>
           <div class="blog__header__text__info__item">
             <Icon name="clock" />
             <Datetime :time="data.blogItem.datetime" format="YYYY-MM-DD" from-now />
+          </div>
+          <div v-if="data.blogItem.lark_doc" class="blog__header__text__info__item">
+            <Icon name="lark" /> 文档同步自语雀，<Datetime :time="data.blogItem.lark_doc.updated_at" type="datetime" />更新
           </div>
         </div>
       </LayoutContainer>
     </div>
     <Blocker height="40px" />
     <LayoutContainer class="blog__content">
-      <Markdown :content="data.blogItem.content" />
+      <HtmlContent v-if="data.blogItem.lark_slug" :content="data.blogItem.lark_doc.content_html" />
+      <Markdown v-else :content="data.blogItem.content" />
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
@@ -101,7 +110,7 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: blogItem } = await $axios.$get(`/api/blogs/${params.id}`)
-    store.commit('SET_CURRENT_ITEM', { image: blogItem.image,name: blogItem.name, category: blogItem.category, date: blogItem.date })
+    store.commit('SET_CURRENT_ITEM', { image: blogItem.image, name: blogItem.name, category: blogItem.category, date: blogItem.date })
     return {
       data: {
         blogItem
@@ -111,7 +120,7 @@ export default {
   head () {
     const { name, category, description } = this.data.blogItem
     return {
-      title: `${name} - ${category.name} - 博文`,
+      title: `${name} - ${category ? category.name : '待分类'} - 博文`,
       meta: [
         {
           hid: 'index',

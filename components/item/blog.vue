@@ -80,6 +80,7 @@
     class="blog-list__item blog-item"
   >
     <div
+      v-if="item.image"
       v-lazy:background-image="$getOssUrl(item.image)"
       :to="`/blog/${item.id}`"
       class="blog-item__image"
@@ -96,7 +97,7 @@
       </div>
       <Blocker height="10px" />
       <div class="blog-item__main__description">
-        # {{ item.category.name }}
+        # {{ item.category ? item.category.name : '未分类' }}
         <template v-if="item.description">
           {{ item.description.length > 100 ? `${item.description.substring(0,100)}...` : item.description }}
         </template>

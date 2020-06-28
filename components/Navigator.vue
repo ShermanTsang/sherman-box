@@ -154,6 +154,9 @@ export default {
           { text: moduleName, path: `/${moduleUrl}` }
         ]
         if (category) {
+          if (category.parent_category && 'name' in category.parent_category) {
+            navs.push({ text: category.parent_category.name })
+          }
           navs.push({ text: category.name })
         }
         if (name || date) {

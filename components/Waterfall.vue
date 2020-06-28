@@ -4,6 +4,8 @@
     &__item {
       box-sizing: border-box;
       break-inside: avoid;
+      height: 100%; // avoid sub item overflow
+      overflow: auto; // avoid sub item overflow
     }
 
     @media ($screen-lg-max) {

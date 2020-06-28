@@ -9,8 +9,6 @@
       align-items: center;
       justify-content: center;
       white-space: nowrap;
-      border-bottom: 1px solid #efefef;
-      box-shadow: 0 6px 10px rgba(177,177,177,.1);
 
       &__item {
         color: #666;
@@ -19,7 +17,11 @@
         font-size: 1rem;
         padding: 8px 16px;
         cursor: pointer;
-        border-radius: 4px 4px 0 0;
+        border-radius: 4px;
+
+        i {
+          padding-right: 10px;
+        }
 
         &:not(:last-child) {
           margin-right: 24px;
@@ -44,7 +46,7 @@
     }
 
     &__content {
-
+      margin-top: 20px;
     }
 
   }
@@ -60,7 +62,7 @@
         :class="{'tabs__select__item--active': tabItem.name === status.activeTab}"
         @click="handleClick(tabItem)"
       >
-        {{ tabItem.text }}
+        <Icon v-if="tabItem.icon" :name="tabItem.icon" />{{ tabItem.text }}
       </div>
     </div>
     <div class="tabs__content">

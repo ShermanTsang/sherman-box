@@ -172,6 +172,30 @@ export default function ({ store }) {
     }
   }
 
+  function constructTree (originData, idFieldName = 'id', parentIdFieldName = 'parent_id', uselessFieldNameArray = []) {
+    const data = JSON.parse(JSON.stringify(originData))
+
+    data.forEach(function (item) {
+      // delete useless field
+      ['children', ...uselessFieldNameArray].forEach((fieldName) => {
+        item[fieldName] && (delete item[fieldName])
+      })
+    })
+
+    const itemMapFromId = {}
+    data.forEach(function (item) {
+      itemMapFromId[item[idFieldName]] = item
+    })
+
+    const dataTree = []
+    data.forEach((item) => {
+      const parent = itemMapFromId[item[parentIdFieldName]]
+      parent ? ((parent.children || (parent.children = []))).push(item) : dataTree.push(item)
+    })
+
+    return dataTree
+  }
+
   Vue.prototype.$config = getConfigItem
   Vue.prototype.$configList = getConfigList
   Vue.prototype.$getConfig = getConfig
@@ -184,4 +208,5 @@ export default function ({ store }) {
   Vue.prototype.$getModuleConfig = getModuleConfig
   Vue.prototype.$checkFormValidate = checkFormValidate
   Vue.prototype.$fillStateByLocalStorage = fillStateByLocalStorage
+  Vue.prototype.$constructTree = constructTree
 }

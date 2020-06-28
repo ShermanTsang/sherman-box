@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1074281",
+      "name": "Dot",
+      "font_class": "dot-big",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "4114002",
+      "name": "circle",
+      "font_class": "circle-empty",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "68291",
+      "name": "dot1",
+      "font_class": "dot-small",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "380331",
+      "name": "dot",
+      "font_class": "dot-middle",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "14220842",
+      "name": "动态",
+      "font_class": "trend",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "15545628",
+      "name": "语雀",
+      "font_class": "lark",
+      "unicode": "f160",
+      "unicode_decimal": 61792
+    },
+    {
       "icon_id": "380369",
       "name": "qq",
       "font_class": "qq",

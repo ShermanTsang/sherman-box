@@ -31,7 +31,7 @@ export default {
         this.$axios.$get('/api/imageAssets'),
         this.$axios.$get('/api/modules'),
         this.$axios.$get('/api/pages'),
-        this.$axios.$get('/api/categories'),
+        this.$axios.$get('/api/categories', { params: { withItems: 1 } }),
         this.$axios.$get('/api/common/statistics/module')
       ])
     commit('SET_CONFIGURATION_LIST', configurations.data)
