@@ -1,9 +1,8 @@
 <style lang="scss">
   .footer {
-    border-top: 1px solid #efefef;
 
     &__main {
-      box-shadow: 0 4px 6px rgba(177,177,177, .1) inset;
+      box-shadow: 0 4px 4px 1px rgba(177,177,177, .1) inset,0 -4px 4px 1px rgba(177,177,177, .1) inset;
       background-color: #f8fafc;
       padding: 48px 0;
 
@@ -55,7 +54,6 @@
 
     &__info {
       padding: 20px 0;
-      border-top: 1px solid #efefef;
 
       &__container {
         display: flex;
@@ -89,7 +87,9 @@
             class="footer__main__container__column__item"
             @click="redirectToPage(item)"
           >
-            {{ item.name }}
+            <CustomFont display="inline-block">
+              {{ item.name }}
+            </CustomFont>
           </div>
         </div>
         <div class="footer__main__container__column">
@@ -107,10 +107,10 @@
     <div class="footer__info">
       <LayoutContainer class="footer__info__container">
         <div class="footer__info__container__item">
-          {{ $getConfig('site.name') }}
+          <CustomFont>{{ $getConfig('site.name') }} <Datetime :link-with-timeline="false" format="2011-YYYY" :time="new Date().toDateString()" /></CustomFont>
         </div>
         <div class="footer__info__container__item">
-          {{ $getConfig('site.icp') }}
+          <CustomFont>{{ $getConfig('site.icp') }}</CustomFont>
         </div>
       </LayoutContainer>
     </div>

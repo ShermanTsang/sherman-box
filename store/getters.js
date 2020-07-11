@@ -16,14 +16,14 @@ export default {
   },
   moduleList (state) {
     const extraModule = [
-      { name: '轴线', url: 'timeline', icon: 'iconfont icon-schedule' }
+      // { name: '', url: '', icon: '' }
     ]
     return [...extraModule, ...state.moduleList]
   },
   pageList (state) {
     const extraPage = [
       { name: '索引', url: 'sitemap.xml', isExtra: true },
-      { name: '开发日志', url: 'page/log', isExtra: true }
+      { name: '更新', url: 'page/log', isExtra: true }
     ]
     return [...state.pageList, ...extraPage]
   },

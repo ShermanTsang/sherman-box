@@ -146,11 +146,12 @@
           </div>
           <transition name="fade">
             <div v-show="status.showBody[item.id]" v-if="item.items && item.items.length > 0" class="catalog__item__main__content__object">
-              <div
+              <nuxt-link
                 v-for="entityItem in item.items"
                 :key="entityItem.id"
+                :to="`/${entityItem.module}/${entityItem.resource_sn}`"
+                tag="div"
                 class="catalog__item__main__content__object__item"
-                @click="$router.push(`/${entityItem.module}/${entityItem.resource_sn}`)"
               >
                 <div class="catalog__item__main__content__object__item__name">
                   {{ entityItem.name }}
@@ -163,7 +164,7 @@
                 <div v-if="entityItem.image" class="catalog__item__main__content__object__item__image">
                   <Pic :url="entityItem.image" auto-fill />
                 </div>
-              </div>
+              </nuxt-link>
             </div>
           </transition>
         </div>

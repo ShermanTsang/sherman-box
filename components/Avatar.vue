@@ -1,6 +1,7 @@
 <style lang="scss">
   .avatar {
     display: inline-block;
+    transition: all .2s ease-in;
 
     img {
       border-radius: 50%;
@@ -20,7 +21,7 @@
 </style>
 
 <template>
-  <div class="avatar" :style="style" @click="$emit(click)">
+  <div class="avatar" :style="style" @click="$emit('click')">
     <img :src="avatarUrl">
   </div>
 </template>

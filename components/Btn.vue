@@ -1,14 +1,16 @@
 <style lang="scss">
   .btn {
     cursor: pointer;
-    color: #666;
+    color: #999;
     padding: 8px 10px;
     letter-spacing: 2px;
     background-color: transparent;
     transition: all .2s ease-in-out;
-    border: 1px solid #ddd;
+    border: 1px solid #efefef;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .1);
 
     &:hover {
+      color: #666;
       border-color: transparent;
       box-shadow: 0 0 8px rgba(0, 0, 0, .1);
     }
@@ -31,7 +33,7 @@
 </style>
 
 <template>
-  <button class="btn" :class="classes" :style="style" @click="$emit('click')">
+  <button class="btn" :class="classes" :style="style" @click="handleClick">
     <slot />
   </button>
 </template>
@@ -59,6 +61,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    to: {
+      type: [String, Object],
+      default: undefined
     }
   },
   computed: {
@@ -77,6 +83,14 @@ export default {
       }
     }
   },
-  methods: {}
+  methods: {
+    handleClick () {
+      this.$emit('click')
+      this.to && this.pushRouter()
+    },
+    pushRouter () {
+      this.$router.push(this.to)
+    }
+  }
 }
 </script>

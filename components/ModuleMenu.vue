@@ -109,13 +109,13 @@
         &:before {
           transition: .2s ease-in-out;
           position: absolute;
-          width: 30px;
-          bottom: 0;
-          left: calc(50% - 15px);
-          background-color: $theme-color;
-          height: 3px;
+          width: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          background-color: rgba($theme-color,.5);
+          height: 4px;
           content: '';
-          border-radius: 4px;
           opacity: 0.5;
         }
 
@@ -156,7 +156,9 @@
         @click="clickModalMenu(item.url)"
       >
         <Icon :name="item.icon" />
-        {{ item.name }}
+        <CustomFont display="inline">
+          {{ item.name }}
+        </CustomFont>
       </div>
     </div>
     <Modal v-model="status.showModal" icon="menu" title="模块" width="500px">
@@ -172,7 +174,9 @@
             <Icon :name="item.icon" size="24px" />
           </div>
           <div class="menu--vertical__item__name web-font">
-            {{ item.name }}
+            <CustomFont display="inline">
+              {{ item.name }}
+            </CustomFont>
           </div>
         </div>
       </div>

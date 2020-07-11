@@ -5,22 +5,22 @@
     }
 
     &__main {
-      input {
+      &__input {
         outline: none;
         color: #999;
         letter-spacing: 2px;
         width: 100%;
         padding: 10px;
         max-width: 100%;
+        line-height: 24px;
         transition: all .2s ease-in-out;
         background-size: 28px;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: 1px solid #ccc;
+        font-size: 1.4rem;
+        border: none;
+        text-align: center;
 
         &:focus {
-          border-bottom: 1px solid #ddd;
+          background-color: rgba(177,177,177,.1);
         }
       }
     }
@@ -29,17 +29,20 @@
 
 <template>
   <div class="search">
-    <div class="search__button" @click="status.showModal = true">
-      <Icon name="search" color="#999" size="18px"></Icon>
-    </div>
-    <Modal v-model="status.showModal" title="搜索" icon="search" width="400px">
+    <slot>
+      <div class="search__button" @click="status.showModal = true">
+        <Icon name="search" color="#999" size="18px"></Icon>
+      </div>
+    </slot>
+    <Modal v-model="status.showModal" title="搜索" icon="search" width="800px">
       <div class="search__main">
         <input
           v-model="form.keyword"
+          class="search__main__input"
           type="text"
           minlength="2"
           maxlength="15"
-          placeholder="找寻记忆..."
+          placeholder="请输入关键字..."
           @keyup.enter="search"
         >
       </div>

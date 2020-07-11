@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2195986",
+      "name": "口令",
+      "font_class": "token",
+      "unicode": "e8e0",
+      "unicode_decimal": 59616
+    },
+    {
+      "icon_id": "6403473",
+      "name": "door",
+      "font_class": "door",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
       "icon_id": "1074281",
       "name": "Dot",
       "font_class": "dot-big",

@@ -3,6 +3,9 @@ import config from '../config'
 
 export default function ({ store }) {
   function getConfigItem (key) {
+    if (!key) {
+      return null
+    }
     return config[key] ? config[key] : `[!${key}]`
   }
 
@@ -196,7 +199,7 @@ export default function ({ store }) {
     return dataTree
   }
 
-  Vue.prototype.$config = getConfigItem
+  Vue.prototype.$config1 = getConfigItem
   Vue.prototype.$configList = getConfigList
   Vue.prototype.$getConfig = getConfig
   Vue.prototype.$getFileAsset = getFileAsset

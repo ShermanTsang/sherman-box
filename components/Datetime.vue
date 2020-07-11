@@ -1,5 +1,6 @@
 <style lang="scss">
   .moment {
+    display: inline;
     position: relative;
     transition: all .3s ease-in-out;
     color: unset !important;
@@ -7,10 +8,10 @@
 </style>
 
 <template>
-  <nuxt-link v-if="localTime" :to="{path:`/day/${localTime.format('YYYY-MM-DD')}`}" class="moment" :style="style">
+  <div v-if="localTime" class="moment" :style="style" @click="handleClick">
     {{ localTime.format(timeFormat) }}
     <small v-if="fromNow">{{ fromNowFormat }}</small>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -20,6 +21,10 @@ export default {
     time: {
       type: String,
       default: null
+    },
+    linkWithTimeline: {
+      type: Boolean,
+      default: true
     },
     format: {
       type: [String, undefined],
@@ -44,7 +49,8 @@ export default {
   computed: {
     style () {
       return {
-        color: this.color + '!important'
+        color: this.color + '!important',
+        cursor: this.linkWithTimeline ? 'pointer' : 'default'
       }
     },
     localTime () {
@@ -69,6 +75,13 @@ export default {
         datetime: 'YYYY-MM-DD HH:mm:ss'
       }
       return presetFormat[this.type]
+    }
+  },
+  methods: {
+    handleClick () {
+      if (this.linkWithTimeline) {
+        this.$router.push(`/day/${this.localTime.format('YYYY-MM-DD')}`)
+      }
     }
   }
 }

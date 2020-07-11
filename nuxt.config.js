@@ -44,6 +44,7 @@ export default {
     '@/assets/scss/global.scss',
     '@/assets/scss/animate.scss',
     '@/assets/scss/override.scss',
+    '@/assets/scss/font.scss',
     '@/assets/iconfont/iconfont.css'
   ],
 
@@ -84,7 +85,7 @@ export default {
       pages.forEach((item) => {
         routers.push({
           url: `/${item.module}/${item.resource_sn}`,
-          changefreq: 'monthly',
+          changefreq: 'daily',
           priority: 1
         })
       })

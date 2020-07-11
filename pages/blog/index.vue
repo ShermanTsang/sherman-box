@@ -39,15 +39,24 @@
 <script>
 export default {
   async asyncData ({ $axios, query }) {
-    const { data: blogList, meta } = await $axios.$get('/api/blogs', {
+    const getBlogList = await $axios.$get('/api/blogs', {
       params: {
         page: query.page,
         categoryId: query.categoryId || ''
       }
     })
+    const getCategoryList = $axios.$get('/api/categories', { params: {
+      module: 'blog',
+      withItems: 1,
+      sortBy: 'order',
+      order: 'asc'
+    }
+    })
+    const [{ data: blogList, meta }, { data: categoryList }] = await Promise.all([getBlogList, getCategoryList])
     return {
       data: {
-        blogList
+        blogList,
+        categoryList
       },
       meta
     }
@@ -61,10 +70,7 @@ export default {
   },
   computed: {
     blogCatalog () {
-      const blogCategoryList = this.$store.getters.categoryList.filter((item) => {
-        return item.module === 'blog'
-      })
-      return this.$constructTree(blogCategoryList, 'id', 'parent_id', ['sub_categories', 'parent_category'])
+      return this.$constructTree(this.data.categoryList, 'id', 'parent_id', ['sub_categories', 'parent_category'])
     }
   },
   mounted () {

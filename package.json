@@ -11,7 +11,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "analyze": "nuxt build --analyze"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",
@@ -25,7 +26,7 @@
     "lodash": "^4.17.11",
     "marked": "^1.0.0",
     "normalize.css": "^8.0.1",
-    "nuxt": "^2.12.0",
+    "nuxt": "^2.13.0",
     "qrcodejs2": "^0.0.2",
     "vue-lazyload": "^1.2.6"
   },

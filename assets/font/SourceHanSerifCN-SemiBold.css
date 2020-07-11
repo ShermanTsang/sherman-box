@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "SourceHanSerifCN-SemiBold";
+    src: url("SourceHanSerifCN-SemiBold.eot"); /* IE9 */
+    src: url("SourceHanSerifCN-SemiBold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    
+    url("SourceHanSerifCN-SemiBold.woff") format("woff"), /* chrome、firefox */
+    url("SourceHanSerifCN-SemiBold.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+    
+    url("SourceHanSerifCN-SemiBold.svg#SourceHanSerifCN-SemiBold") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+

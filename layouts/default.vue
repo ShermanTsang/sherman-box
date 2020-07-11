@@ -11,7 +11,9 @@
     <LayoutHeader class="layout-header" />
     <LayoutView>
       <LayoutMain class="layout-main">
-        <nuxt />
+        <transition name="fade">
+          <nuxt />
+        </transition>
       </LayoutMain>
       <LayoutFooter />
     </LayoutView>

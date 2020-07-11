@@ -26,13 +26,13 @@ export default {
   async getInitData ({ commit }) {
     const [configurations, fileAssets, imageAssets, modules, pages, categories, statisticsModule] =
       await Promise.all([
-        this.$axios.$get('/api/configurations'),
-        this.$axios.$get('/api/fileAssets'),
-        this.$axios.$get('/api/imageAssets'),
-        this.$axios.$get('/api/modules'),
-        this.$axios.$get('/api/pages'),
-        this.$axios.$get('/api/categories', { params: { withItems: 1 } }),
-        this.$axios.$get('/api/common/statistics/module')
+        this.$axios.$get('/api/configurations').catch(err => err),
+        this.$axios.$get('/api/fileAssets').catch(err => err),
+        this.$axios.$get('/api/imageAssets').catch(err => err),
+        this.$axios.$get('/api/modules').catch(err => err),
+        this.$axios.$get('/api/pages').catch(err => err),
+        this.$axios.$get('/api/categories').catch(err => err),
+        this.$axios.$get('/api/common/statistics/module').catch(err => err)
       ])
     commit('SET_CONFIGURATION_LIST', configurations.data)
     commit('SET_FILE_ASSET_LIST', fileAssets.data)

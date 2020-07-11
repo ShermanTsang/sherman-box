@@ -20,7 +20,7 @@
       right: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255,255,255,.9);
+      background-color: rgba(255,255,255,.9);
     }
 
     &__container {
@@ -31,24 +31,34 @@
       max-width: 96%;
       margin: 0 auto;
       background-color: #fff;
-      box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+      box-shadow: 0 0 30px 8px rgba(177,177,177, .2);
 
       &__header {
-        border-bottom: 1px solid #eee;
         font-size: 1.15rem;
         letter-spacing: 2px;
-        color: $theme-color;
-        padding: 20px;
+        color: #666;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px dotted #efefef;
 
         /deep/ i {
           font-size: 20px;
         }
 
+        &__name {
+          cursor: default;
+          display: inline-block;
+          box-shadow: -2px -2px 4px 2px rgba(177,177,177,.2) inset;
+          padding: 16px 24px;
+        }
+
         &__close {
           color: #ddd;
-          float: right;
           transition: all .2s ease-in-out;
           cursor: pointer;
+          padding: 16px;
 
           &:hover {
             transform: scale(1.2);
@@ -82,8 +92,10 @@
     <div class="modal__overlay" @click="toggleModalStatus()"></div>
     <div class="modal__container" :style="containerStyle">
       <div class="modal__container__header">
-        <Icon v-if="icon" :name="icon" />
-        {{ title }}
+        <div class="modal__container__header__name">
+          <Icon v-if="icon" :name="icon" />
+          {{ title }}
+        </div>
         <span class="modal__container__header__close" @click="toggleModalStatus()">
           <Icon name="close" />
         </span>
