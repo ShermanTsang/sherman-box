@@ -5,8 +5,15 @@
 </style>
 
 <template>
-  <div class="logo">
-    <img :src="image" :style="style" alt="logo" @click="$router.push('/')">
+  <div class="logo" @click="$router.push('/')">
+    <template v-if="type === 'image'">
+      <img :src="$getImageAsset('logo')" :style="style" alt="logo">
+    </template>
+    <template v-if="type === 'text'">
+      <CustomFont size="1.4rem" color="#666">
+        {{ $getConfig('site.name') }}
+      </CustomFont>
+    </template>
   </div>
 </template>
 
@@ -18,7 +25,7 @@ export default {
       type: String,
       default: 'text',
       validator (value) {
-        return ['text', 'icon'].includes(value)
+        return ['text', 'icon', 'image'].includes(value)
       }
     },
     height: {
@@ -31,9 +38,6 @@ export default {
     }
   },
   computed: {
-    image () {
-      return this.type === 'text' ? this.$getImageAsset('logo') : '/favicon.ico'
-    },
     style () {
       return {
         width: this.width,
