@@ -155,29 +155,29 @@ export default {
         }
       })
     }
-  },
+  }
 
   /*
   ** Build modules
   */
-  buildModules: [
-    '@nuxtjs/pwa'
-  ],
+  // buildModules: [
+  //   '@nuxtjs/pwa'
+  // ],
 
   /*
   ** Progressive web app configuration
   */
-  pwa: {
-    icon: {
-      iconSrc: './static/icon.png'
-    },
-    manifest: {
-      name: config['site.name'],
-      lang: 'zh',
-      start_url: '/'
-    },
-    workbox: {
-      /* workbox options */
-    }
-  }
+  // pwa: {
+  //   icon: {
+  //     iconSrc: './static/icon.png'
+  //   },
+  //   manifest: {
+  //     name: config['site.name'],
+  //     lang: 'zh',
+  //     start_url: '/'
+  //   },
+  //   workbox: {
+  //     /* workbox options */
+  //   }
+  // }
 }
