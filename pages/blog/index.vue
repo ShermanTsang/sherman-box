@@ -15,6 +15,9 @@
           <CatalogTree v-show="status.mode === 'catalog'" :data="blogCatalog" />
         </div>
         <div slot="list">
+          <Blocker height="20px" />
+          <CategoryBox module="blog" />
+          <Blocker height="20px" />
           <div v-if="data.blogList && data.blogList.length > 0" class="blog-list">
             <ItemBlog v-for="item in data.blogList" :key="item.id" :item="item" class="blog-list__item" />
           </div>

@@ -155,32 +155,32 @@ export default {
         }
       })
     }
-  },
+  }
 
   /*
   ** Build modules
   */
-  buildModules: [
-    '@nuxtjs/pwa'
-  ],
+  // buildModules: [
+  //   '@nuxtjs/pwa'
+  // ],
 
   /*
   ** Progressive web app configuration
   */
-  pwa: {
-    icon: {
-      iconSrc: './static/icon.png'
-    },
-    manifest: {
-      name: config['site.name'],
-      lang: 'zh',
-      start_url: '/'
-    },
-    workbox: {
-      workboxURL: 'https://g.alicdn.com/kg/workbox/4.3.1/workbox-sw.js',
-      config: {
-        modulePathPrefix: 'https://g.alicdn.com/kg/workbox/'
-      }
-    }
-  }
+  // pwa: {
+  //   icon: {
+  //     iconSrc: './static/icon.png'
+  //   },
+  //   manifest: {
+  //     name: config['site.name'],
+  //     lang: 'zh',
+  //     start_url: '/'
+  //   },
+  //   workbox: {
+  //     workboxURL: 'https://g.alicdn.com/kg/workbox/4.3.1/workbox-sw.js',
+  //     config: {
+  //       modulePathPrefix: 'https://g.alicdn.com/kg/workbox/'
+  //     }
+  //   }
+  // }
 }

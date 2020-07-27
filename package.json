@@ -1,7 +1,7 @@
 {
   "name": "shareman-box-v3",
   "title": "曾小满的盒子 ShareMan's Box",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "ShareManBox front-end version 3 with nuxt.js.",
   "author": "ShareManT",
   "private": true,
@@ -32,7 +32,6 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.2",
-    "@nuxtjs/pwa": "^3.0.0-beta.20",
     "babel-eslint": "^10.0.1",
     "eslint": "^6.8.0",
     "eslint-config-standard": ">=12.0.0",

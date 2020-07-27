@@ -1,72 +1,77 @@
 <style lang="scss">
-  .category-box {
-    position: relative;
-    color: #999;
-    margin: 16px 0;
+.category-box {
+  position: relative;
+  color: #999;
+  margin: 16px 0;
 
-    &__content {
-      display: -webkit-box;
-      overflow-x: scroll;
-      overflow-scrolling: touch;
-      white-space: nowrap;
+  &__content {
+    display: -webkit-box;
+    overflow-x: scroll;
+    overflow-scrolling: touch;
+    white-space: nowrap;
 
-      &__item {
-        position: relative;
-        display: inline-block;
-        letter-spacing: 2px;
-        font-size: 1rem;
-        padding: 0 16px;
+    &__item {
+      position: relative;
+      display: inline-block;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      padding: 0 16px;
 
-        &:not(:last-child) {
-          margin-right: 24px;
-        }
+      &:not(:last-child) {
+        margin-right: 24px;
       }
-
-      &__item--active {
-        color: $theme-color;
-
-        &:before {
-          position: absolute;
-          width: 100%;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background-color: $theme-color;
-          height: 12px;
-          content: '';
-          opacity: 0.2;
-        }
-      }
-
-      &::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-        display: none;
-      }
-
     }
 
-    &__scrollbar {
-      position: absolute;
-      display: block;
-      top: 0;
-      bottom: 0;
-      width: 20px;
-      background-color: #fff;
-      box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
+    &__item--active {
+      color: $theme-color;
+
+      &:before {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $theme-color;
+        height: 12px;
+        content: '';
+        opacity: 0.2;
+      }
     }
 
-    &__scrollbar--left {
-      left: 0;
-      text-align: left;
-    }
-
-    &__scrollbar--right {
-      right: 0;
-      text-align: right;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
     }
 
   }
+
+  &__scrollbar {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background-color: #fff;
+    box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
+    cursor: pointer;
+
+    &:hover {
+      width: 40px;
+    }
+  }
+
+  &__scrollbar--left {
+    left: 0;
+    text-align: left;
+  }
+
+  &__scrollbar--right {
+    right: 0;
+    text-align: right;
+  }
+
+}
 </style>
 
 <template>
@@ -80,7 +85,7 @@
         全部
       </nuxt-link>
       <nuxt-link
-        v-for="item in categoryList"
+        v-for="item in data.categoryList"
         :key="item.id"
         :to="`${$route.path}?categoryId=${item.id}&page=1`"
         :class="{'category-box__content__item--active':isActiveCategory(item.id)}"
@@ -89,10 +94,18 @@
         {{ item.name }}
       </nuxt-link>
     </div>
-    <div v-show="status.showLeftScrollbar" class="category-box__scrollbar category-box__scrollbar--left" @click="scrollCategoryBox()">
+    <div
+      v-show="status.showLeftScrollbar"
+      class="category-box__scrollbar category-box__scrollbar--left"
+      @click="scrollCategoryBox('left')"
+    >
       <Icon name="angle-left" color="#aaa" size="18px" />
     </div>
-    <div v-show="status.showRightScrollbar" class="category-box__scrollbar category-box__scrollbar--right" @click="scrollCategoryBox()">
+    <div
+      v-show="status.showRightScrollbar"
+      class="category-box__scrollbar category-box__scrollbar--right"
+      @click="scrollCategoryBox('right')"
+    >
       <Icon name="angle-right" color="#aaa" size="18px" />
     </div>
   </div>
@@ -105,6 +118,10 @@ export default {
     module: {
       type: String,
       default: ''
+    },
+    withItems: {
+      type: Number,
+      default: 0
     }
   },
   data () {
@@ -112,19 +129,19 @@ export default {
       status: {
         showRightScrollbar: false,
         showLeftScrollbar: false
+      },
+      data: {
+        categoryList: []
       }
     }
   },
-  computed: {
-    categoryList () {
-      const allList = this.$store.getters.categoryList || []
-      return allList.filter((item) => {
-        return item.module === this.module
-      })
+  watch: {
+    'data.categoryList' () {
+      this.checkScrollbarStatus()
     }
   },
   mounted () {
-    this.checkScrollbarStatus()
+    this.requestCategoryList()
     window.onresize = () => {
       this.checkScrollbarStatus()
     }
@@ -136,16 +153,29 @@ export default {
     isActiveCategory (categoryId) {
       return parseInt(this.$route.query.categoryId) === parseInt(categoryId)
     },
-    scrollCategoryBox () {
+    scrollCategoryBox (orientation = 'right') {
       const categoryBox = this.$refs.categoryBox
       const scrollLeft = categoryBox.scrollLeft
-      categoryBox.scrollLeft = scrollLeft + 40
+      categoryBox.scrollLeft = orientation === 'right' ? (scrollLeft + 40) : (scrollLeft - 40)
     },
     checkScrollbarStatus () {
-      const categoryBox = this.$refs.categoryBox
-      const { parentNode, scrollWidth, scrollLeft } = categoryBox
-      this.status.showRightScrollbar = scrollWidth > parentNode.scrollWidth
-      this.status.showLeftScrollbar = scrollLeft > 0
+      setTimeout(() => {
+        const categoryBox = this.$refs.categoryBox
+        const { parentNode, scrollWidth, scrollLeft } = categoryBox
+        this.status.showRightScrollbar = scrollWidth > parentNode.scrollWidth
+        this.status.showLeftScrollbar = scrollLeft > 0
+      }, 0)
+    },
+    async requestCategoryList () {
+      const { data: categoryList } = await this.$axios.$get('/api/categories', {
+        params: {
+          module: this.module,
+          withItems: this.withItems,
+          sortBy: 'order',
+          order: 'asc'
+        }
+      })
+      this.data.categoryList = categoryList
     }
   }
 }

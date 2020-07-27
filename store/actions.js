@@ -24,14 +24,13 @@ export default {
     commit('SET_CATEGORY_LIST', data)
   },
   async getInitData ({ commit }) {
-    const [configurations, fileAssets, imageAssets, modules, pages, categories, statisticsModule] =
+    const [configurations, fileAssets, imageAssets, modules, pages, statisticsModule] =
       await Promise.all([
         this.$axios.$get('/api/configurations').catch(err => err),
         this.$axios.$get('/api/fileAssets').catch(err => err),
         this.$axios.$get('/api/imageAssets').catch(err => err),
         this.$axios.$get('/api/modules').catch(err => err),
         this.$axios.$get('/api/pages').catch(err => err),
-        this.$axios.$get('/api/categories').catch(err => err),
         this.$axios.$get('/api/common/statistics/module').catch(err => err)
       ])
     commit('SET_CONFIGURATION_LIST', configurations.data)
@@ -39,7 +38,6 @@ export default {
     commit('SET_IMAGE_ASSET_LIST', imageAssets.data)
     commit('SET_MODULE_LIST', modules.data)
     commit('SET_PAGE_LIST', pages.data)
-    commit('SET_CATEGORY_LIST', categories.data)
     commit('SET_STATISTICS_MODULE', statisticsModule.data)
   },
   async nuxtServerInit ({ dispatch }) {

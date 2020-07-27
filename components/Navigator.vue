@@ -79,7 +79,7 @@
         <template v-else>
           {{ item.text }}
         </template>
-        <template v-if="index !== navs.length - 1">
+        <template v-if="index !== navs.length - 1 && navs.length > 1">
           <Icon v-if="!divider" name="angle-right" color="#ccc" />
           <span v-else class="navigator__main__item__divider">{{ divider }}</span>
         </template>
