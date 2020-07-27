@@ -43,7 +43,7 @@
         align-items: center;
         border-bottom: 1px dotted #efefef;
 
-        /deep/ i {
+        ::v-deep i {
           font-size: 20px;
         }
 

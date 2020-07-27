@@ -127,12 +127,21 @@ export default {
         'postcss-url': false
       }
     },
+    loaders: {
+      sass: {
+        implementation: require('sass')
+      },
+      scss: {
+        implementation: require('sass'),
+        additionalData: '@import "@/assets/scss/variables.scss";'
+      }
+    },
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend (config, { isDev, loaders }) {
       // Run ESLint on save
-      if (ctx.isDev && process.client) {
+      if (isDev && process.client) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
@@ -140,20 +149,6 @@ export default {
           exclude: /(node_modules)/
         })
       }
-      // Add scss variables
-      config.module.rules.forEach((rule) => {
-        if (/scss/.test(rule.test.toString())) {
-          rule.oneOf.forEach((item) => {
-            item.use.push({
-              loader: 'sass-loader',
-              options: {
-                sourceMap: false,
-                prependData: '@import "@/assets/scss/variables.scss";'
-              }
-            })
-          })
-        }
-      })
     }
   }
 
