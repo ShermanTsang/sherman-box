@@ -1,66 +1,66 @@
 <style lang="scss">
-  .navigator {
-    height: $header-nav-height;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
+.navigator {
+  height: $header-nav-height;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+
+  &__main {
+    white-space: nowrap;
+    width: 100%;
     overflow: hidden;
 
-    &__main {
-      white-space: nowrap;
-      width: 100%;
-      overflow: hidden;
+    &__item {
+      letter-spacing: 1px;
+      display: inline-block;
+      font-size: .95rem;
+      color: #666;
+      cursor: default;
 
-      &__item {
-        letter-spacing: 1px;
-        display: inline-block;
-        font-size: .95rem;
-        color: #666;
-        cursor: default;
-
-        &:not(:first-child) {
-          margin-left: 10px;
-        }
-
-        &__module {
-          display: inline-block;
-          color: $theme-color;
-          padding: 4px 12px;
-          border-radius: 4px;
-          background-color: rgba($theme-color, 0.1);
-        }
-
-        &__divider {
-          color: #ccc;
-        }
-
+      &:not(:first-child) {
+        margin-left: 10px;
       }
 
-    }
-
-    &__action {
-      box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
-      flex-shrink: 0;
-
-      &__item {
-        cursor: pointer;
+      &__module {
         display: inline-block;
-        padding: 10px;
-        border-radius: 4px;
         color: $theme-color;
-
-        &:not(:first-child) {
-          margin-left: 6px;
-        }
-
-        &:hover {
-          background-color: rgba(177, 177, 177, .1);
-        }
+        padding: 4px 12px;
+        border-radius: 4px;
+        background-color: rgba($theme-color, 0.1);
       }
+
+      &__divider {
+        color: #ccc;
+      }
+
     }
 
   }
+
+  &__action {
+    box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
+    flex-shrink: 0;
+
+    &__item {
+      cursor: pointer;
+      display: inline-block;
+      padding: 10px;
+      border-radius: 4px;
+      color: $theme-color;
+
+      &:not(:first-child) {
+        margin-left: 6px;
+      }
+
+      &:hover {
+        background-color: rgba(177, 177, 177, .1);
+      }
+    }
+  }
+
+}
 </style>
 
 <template>
@@ -79,7 +79,7 @@
         <template v-else>
           {{ item.text }}
         </template>
-        <template v-if="index !== navs.length - 1 && navs.length > 1">
+        <template v-if="(index !== navs.length - 1) && navs.length > 1">
           <Icon v-if="!divider" name="angle-right" color="#ccc" />
           <span v-else class="navigator__main__item__divider">{{ divider }}</span>
         </template>
@@ -111,7 +111,7 @@ export default {
   props: {
     divider: {
       type: String,
-      default: ''
+      default: ' / '
     }
   },
   data () {

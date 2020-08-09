@@ -26,10 +26,10 @@
       padding: 44px 0;
 
       img {
+        border: 2px solid #efefef;
         margin: 0 auto;
         max-width: 100%;
         max-height: 100%;
-        box-shadow: 0 0 30px rgba(0, 0, 0, .2);
       }
     }
   }

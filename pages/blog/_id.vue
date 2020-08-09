@@ -80,19 +80,23 @@
             <Icon name="category" />
             {{ data.blogItem.category ? data.blogItem.category.name : '待分类' }}
           </div>
-          <div class="blog__header__text__info__item">
+          <div v-if="data.blogItem.lark_doc" class="blog__header__text__info__item">
             <Icon name="clock" />
-            <Datetime :time="data.blogItem.datetime" format="YYYY-MM-DD" from-now />
+            <Datetime :time="data.blogItem.lark_doc.created_at" type="date" />创建,<Datetime :time="data.blogItem.lark_doc.updated_at" type="datetime" />更新
+          </div>
+          <div v-else class="blog__header__text__info__item">
+            <Icon name="clock" />
+            <Datetime :time="data.blogItem.created_at" type="date" />创建,<Datetime :time="data.blogItem.updated_at" type="datetime" />更新
           </div>
           <div v-if="data.blogItem.lark_doc" class="blog__header__text__info__item">
-            <Icon name="lark" /> 文档同步自语雀，<Datetime :time="data.blogItem.lark_doc.updated_at" type="datetime" />更新
+            <Icon name="lark" /> 文档同步自语雀
           </div>
         </div>
       </LayoutContainer>
     </div>
     <Blocker height="40px" />
     <LayoutContainer class="blog__content">
-      <HtmlContent v-if="data.blogItem.lark_slug" :content="data.blogItem.lark_doc.content_html" />
+      <HtmlContent v-if="data.blogItem.lark_doc" :content="data.blogItem.lark_doc.content_html" />
       <Markdown v-else :content="data.blogItem.content" />
     </LayoutContainer>
     <Blocker height="60px" />

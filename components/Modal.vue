@@ -21,6 +21,7 @@
       width: 100%;
       height: 100%;
       background-color: rgba(255,255,255,.9);
+      filter: blur(5px)
     }
 
     &__container {
@@ -41,7 +42,8 @@
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px dotted #efefef;
+        padding: 16px 24px;
+        box-shadow: 0 6px 6px rgba(177,177,177,.1);
 
         ::v-deep i {
           font-size: 20px;
@@ -50,15 +52,12 @@
         &__name {
           cursor: default;
           display: inline-block;
-          box-shadow: -2px -2px 4px 2px rgba(177,177,177,.2) inset;
-          padding: 16px 24px;
         }
 
         &__close {
           color: #ddd;
           transition: all .2s ease-in-out;
           cursor: pointer;
-          padding: 16px;
 
           &:hover {
             transform: scale(1.2);
@@ -67,7 +66,7 @@
       }
 
       &__content {
-        padding: 16px;
+        padding: 24px;
         max-height: 80vh;
         overflow: auto;
 
@@ -154,6 +153,9 @@ export default {
     showModal (value) {
       this.lockScroll && this.setScreenScrolling(value ? 'hidden' : 'auto')
     }
+  },
+  destroyed () {
+    this.lockScroll && this.setScreenScrolling('auto')
   },
   methods: {
     toggleModalStatus () {
