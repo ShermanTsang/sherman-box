@@ -87,7 +87,7 @@ export default {
     },
     displayPageList () {
       const totalPageNum = this.totalPageNum
-      const index = this.currentPage
+      const index = Number.parseInt(this.currentPage)
       const arr = []
       if (totalPageNum <= 6) {
         for (let i = 1; i <= totalPageNum; i++) {

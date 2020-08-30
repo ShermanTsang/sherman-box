@@ -71,6 +71,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/sitemap'
+    // '@nuxtjs/pwa'
   ],
 
   /*
@@ -151,13 +152,6 @@ export default {
       }
     }
   }
-
-  /*
-  ** Build modules
-  */
-  // buildModules: [
-  //   '@nuxtjs/pwa'
-  // ],
 
   /*
   ** Progressive web app configuration

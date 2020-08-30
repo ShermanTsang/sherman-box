@@ -2,7 +2,7 @@
   .markdown {
 
     article {
-      font-size: 16px;
+      font-size: 1rem;
       counter-reset: h1;
       color: #666;
       letter-spacing: 1px;

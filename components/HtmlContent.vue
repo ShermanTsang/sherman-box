@@ -2,7 +2,7 @@
   .htmlContent {
 
     article {
-      font-size: 16px !important;
+      font-size: 1rem !important;
       counter-reset: h1 !important;
       color: #666 !important;
       letter-spacing: 1px !important;
@@ -106,34 +106,9 @@
 
         code {
           margin: 0 4px !important;
-          color: $theme-color !important;
           position: relative !important;
           font-family: Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important;
           font-size: .9em !important;
-
-          &:after {
-            content: '' !important;
-            position: absolute !important;
-            bottom: -6px !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
-            height: 2px !important;
-            border-radius: 4px !important;
-            opacity: .4 !important;
-            @include gradient-background;
-          }
-        }
-      }
-
-      pre {
-        max-height: 400px !important;
-        width: 100% !important;
-        overflow: auto !important;
-
-        code {
-          color: #f8f8f2 !important;
-          font: 400 .95em Source Code Pro, DejaVu Sans Mono, Ubuntu Mono, Anonymous Pro, Droid Sans Mono, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, PingFang SC, Microsoft YaHei, sans-serif !important !important;
         }
       }
 
@@ -142,6 +117,7 @@
         cursor: pointer !important;
         margin: 20px 0 !important;
         max-width: 100% !important;
+        height: auto !important;
         transition: all .2s ease-in !important;
 
         &:hover {
@@ -156,50 +132,12 @@
 
         table {
           border-collapse: collapse !important;
-
-          thead {
-            background-color: #efefef !important;
-            text-align: left !important;
-
-            tr {
-              border-bottom: 2px solid #efefef !important;
-
-              th {
-                border: none !important;
-                padding: 10px 6px !important;
-                font-weight: normal !important;
-                white-space: nowrap !important;
-
-                &:not(:first-child) {
-                  border-left: 1px solid #efefef !important;
-                  margin-left: 6px !important;
-                }
-              }
-            }
-          }
-
-          tbody {
-
-            tr {
-              border-bottom: 2px solid #efefef !important;
-              transition: all .2s ease-in-out !important;
-
-              td {
-                font-weight: normal !important;
-                white-space: nowrap !important;
-
-                &:not(:first-child) {
-                  border-left: 1px solid #efefef !important;
-                  margin-left: 6px !important;
-                }
-              }
-
-              &:hover {
-                background-color: rgba(239, 239, 239, 0.5) !important;
-              }
-            }
-          }
         }
+      }
+
+      pre {
+        width: 100% !important;
+        overflow: auto !important;
       }
 
       @media ($screen-xs-max) {
