@@ -28,7 +28,7 @@
         border-radius: 2px;
         left: 0;
         bottom: -20px;
-        opacity: .6;
+        opacity: .5;
         background-color: #1170f5;
         background-image: linear-gradient(126deg, #0262f5 0%, #fff 99%);
       }

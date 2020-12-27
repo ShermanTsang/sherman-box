@@ -208,13 +208,13 @@
             <Tag>{{ data.projectItem.tags }}</tag>
           </div>
         </div>
-        <div v-if="data.projectItem.status" class="project__detail__item">
+        <div v-if="data.projectItem.state" class="project__detail__item">
           <div class="project__detail__item__name">
-            <Icon name="status" />
+            <Icon name="state" />
             项目状态
           </div>
           <div class="project__detail__item__info">
-            <Tag>{{ data.projectItem.status }}</tag>
+            <Tag>{{ data.projectItem.state }}</tag>
             <Tag v-if="data.projectItem.hours">
               耗时约{{ data.projectItem.hours }}小时
             </tag>

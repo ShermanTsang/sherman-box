@@ -30,11 +30,11 @@
 <template>
   <div class="search">
     <slot>
-      <div class="search__button" @click="status.showModal = true">
+      <div class="search__button" @click="state.showModal = true">
         <Icon name="search" color="#999" size="18px"></Icon>
       </div>
     </slot>
-    <Modal v-model="status.showModal" title="搜索" icon="search" width="800px">
+    <Modal v-model="state.showModal" title="搜索" icon="search" width="800px">
       <div class="search__main">
         <input
           v-model="form.keyword"
@@ -56,7 +56,7 @@ export default {
   props: {},
   data () {
     return {
-      status: {
+      state: {
         showModal: false
       },
       form: {
@@ -72,8 +72,8 @@ export default {
         return
       }
       this.$router.push({ name: 'search', query: { keyword } })
-      if (this.status.showModal) {
-        this.status.showModal = false
+      if (this.state.showModal) {
+        this.state.showModal = false
       }
     }
   }

@@ -3,7 +3,7 @@
 
     &__image {
       position: relative;
-      height: 400px;
+      height: 500px;
       margin-bottom: 60px;
 
       &__background {
@@ -30,15 +30,13 @@
         left: 0;
         right: 0;
         bottom: 0;
-        width: 960px;
-        height: 420px;
-        max-width: 85%;
+        max-width: 1600px;
+        max-height: 900px;
         margin: 0 auto;
         z-index: $z-index-card-content;
         overflow: hidden;
         transition: all .2s ease-in-out;
         box-shadow: 2px 2px 26px rgba(0, 0, 0, .2);
-        border-radius: 6px;
 
         img {
           display: block;

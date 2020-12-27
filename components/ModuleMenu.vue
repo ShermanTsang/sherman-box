@@ -140,11 +140,11 @@
 
 <template>
   <div class="menu">
-    <div v-if="!status.showModal" class="menu--horizontal">
+    <div v-if="!state.showModal" class="menu--horizontal">
       <div
         class="menu--horizontal__item menu--horizontal__item--button"
-        :class="{'menu--horizontal__item--active': status.showModal}"
-        @click="status.showModal = !status.showModal"
+        :class="{'menu--horizontal__item--active': state.showModal}"
+        @click="state.showModal = !state.showModal"
       >
         <Icon name="menu" size="20px" color="#666" />
       </div>
@@ -161,7 +161,7 @@
         </CustomFont>
       </div>
     </div>
-    <Modal v-model="status.showModal" icon="menu" title="模块" width="500px">
+    <Modal v-model="state.showModal" icon="menu" title="模块" width="500px">
       <div class="menu--vertical">
         <div
           v-for="(item,index) in $store.getters.moduleList"
@@ -190,7 +190,7 @@ export default {
   props: {},
   data () {
     return {
-      status: {
+      state: {
         showModal: false
       }
     }
@@ -204,8 +204,8 @@ export default {
     },
     clickModalMenu (url) {
       this.$router.push(`/${url}`)
-      if (this.status.showModal) {
-        this.status.showModal = false
+      if (this.state.showModal) {
+        this.state.showModal = false
       }
     }
   }

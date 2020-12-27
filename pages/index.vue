@@ -1,6 +1,6 @@
 <style lang="scss">
 .index {
-  $slide-padding: 24px;
+  $slide-padding: 48px;
 
   &__about {
     margin: $slide-padding;
@@ -43,16 +43,16 @@
     <Slider>
       <SliderItem layout="flex-column-center">
         <div class="index__about">
-          <CustomFont color="#666" size="3.6rem">
+          <CustomFont color="#666" size="3.4rem">
             你好，
           </CustomFont>
-          <CustomFont color="#666" size="3rem">
+          <CustomFont color="#666" size="2.9rem">
             我叫曾小满。
           </CustomFont>
-          <CustomFont color="#999" size="1.6rem">
+          <CustomFont color="#999" size="1.5rem">
             一位热爱生活、富有创造力的开发者。
           </CustomFont>
-          <CustomFont color="#666" size="1.4rem" height="2">
+          <CustomFont color="#666" size="1.3rem" height="2">
             很高兴与你相遇！
           </CustomFont>
           <Blocker height="16px" />
@@ -67,7 +67,7 @@
             </div>
             <div class="index__about__button__item">
               <Search ref="search">
-                <Btn @click="$refs.search.status.showModal = true">
+                <Btn @click="$refs.search.state.showModal = true">
                   <Icon name="search" />
                   <CustomFont display="inline">
                     搜索
@@ -77,7 +77,7 @@
             </div>
             <div v-if="false" class="index__about__button__item">
               <Search ref="search">
-                <Btn @click="$refs.search.status.showModal = true">
+                <Btn @click="$refs.search.state.showModal = true">
                   <Icon name="token" />
                   <CustomFont display="inline">
                     口令
@@ -87,7 +87,7 @@
             </div>
             <div v-if="false" class="index__about__button__item">
               <Search ref="search">
-                <Btn @click="$refs.search.status.showModal = true">
+                <Btn @click="$refs.search.state.showModal = true">
                   <Icon name="door" />
                   <CustomFont display="inline">
                     任意门
@@ -139,7 +139,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         currentPage: 1
       }
     }

@@ -73,7 +73,7 @@
       </Tip>
     </template>
     <template v-else>
-      <div v-if="status.isEditingMode && status.isPreDataReady" class="poster__form">
+      <div v-if="state.isEditingMode && state.isPreDataReady" class="poster__form">
         <FormItem
           v-for="item in variableFieldArray"
           :key="item.field"
@@ -83,16 +83,16 @@
           :name="item.text"
           type="input"
           :placeholder="`请输入 ${item.text}`"
-          @changeValidate="valid => status.validate[item.field] = valid"
+          @changeValidate="valid => state.validate[item.field] = valid"
         />
         <Blocker height="24px" />
         <Btn :full-width="true" :colorful="true" height="48px" @click="submitPosterForm()">
           生成专属海报
         </Btn>
       </div>
-      <div v-show="!status.isEditingMode && !data.posterImage" ref="posterBody" class="poster__body">
+      <div v-show="!state.isEditingMode && !data.posterImage" ref="posterBody" class="poster__body">
         <div class="poster__body__image">
-          <Pic :url="image" auto-fill :lazy-load="false" />
+          <Pic :url="image" auto-fill :lazy-load="false" :need-proxy="true" />
         </div>
         <div class="poster__body__text" v-html="posterTextHtml" />
         <div class="poster__body__footer">
@@ -149,7 +149,7 @@ export default {
   data () {
     return {
       form: {},
-      status: {
+      state: {
         isEditingMode: true,
         isPreDataReady: false,
         validate: {}
@@ -197,13 +197,13 @@ export default {
         })
       }
       this.variableFieldArray.forEach((item) => {
-        this.status.validate[item.field] = false
+        this.state.validate[item.field] = false
       })
-      this.status.isPreDataReady = true
+      this.state.isPreDataReady = true
     },
     submitPosterForm () {
-      if (this.$checkFormValidate(this.status.validate)) {
-        this.status.isEditingMode = false
+      if (this.$checkFormValidate(this.state.validate)) {
+        this.state.isEditingMode = false
         this.generatePoster()
       } else {
         this.$message.error('表单填写有误')

@@ -22,7 +22,7 @@
 
 <template>
   <div class="avatar" :style="style" @click="$emit('click')">
-    <img :src="avatarUrl">
+    <Pic :url="avatarUrl" />
   </div>
 </template>
 

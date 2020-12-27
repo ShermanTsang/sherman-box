@@ -12,7 +12,7 @@
     <LayoutContainer max-width="1440px">
       <Tabs :tabs="[{text:'目录模式',name:'catalog',icon:'post'},{text:'列表模式',name:'list',icon:'category'}]" @select="changeTab">
         <div slot="catalog">
-          <CatalogTree v-show="status.mode === 'catalog'" :data="blogCatalog" />
+          <CatalogTree v-show="state.mode === 'catalog'" :data="blogCatalog" />
         </div>
         <div slot="list">
           <Blocker height="20px" />
@@ -28,7 +28,7 @@
       </Tabs>
     </LayoutContainer>
     <Pagination
-      v-show="status.mode === 'list'"
+      v-show="state.mode === 'list'"
       type="page"
       :page="parseInt(meta.current_page)"
       :total="parseInt(meta.total)"
@@ -66,7 +66,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         mode: 'catalog'
       }
     }
@@ -83,7 +83,7 @@ export default {
       this.$router.push({ name: 'blog', query: { page: parseInt(currentPage) } })
     },
     changeTab ({ name }) {
-      this.status.mode = name
+      this.state.mode = name
     }
   },
   head () {

@@ -67,7 +67,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         currentPage: 1
       }
     }
@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     async requestMoreResult () {
-      const requestPage = this.status.currentPage + 1
+      const requestPage = this.state.currentPage + 1
       const { data: timeline, meta } = await this.$axios.$get('/api/common/search', {
         params: {
           keyword: this.$route.query.keyword,
@@ -85,7 +85,7 @@ export default {
       })
       this.data.resultList = [...this.data.resultList, ...timeline]
       this.meta = meta
-      this.status.currentPage++
+      this.state.currentPage++
     }
   },
   head () {

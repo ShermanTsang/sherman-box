@@ -59,14 +59,14 @@
         v-for="tabItem in tabs"
         :key="tabItem.name"
         class="tabs__select__item"
-        :class="{'tabs__select__item--active': tabItem.name === status.activeTab}"
+        :class="{'tabs__select__item--active': tabItem.name === state.activeTab}"
         @click="handleClick(tabItem)"
       >
         <Icon v-if="tabItem.icon" :name="tabItem.icon" />{{ tabItem.text }}
       </div>
     </div>
     <div class="tabs__content">
-      <slot :name="status.activeTab"></slot>
+      <slot :name="state.activeTab"></slot>
     </div>
   </div>
 </template>
@@ -84,7 +84,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         activeTab: this.tabs.length > 0 ? this.tabs[0].name : ''
       }
     }
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     handleClick (tabItem) {
-      this.status.activeTab = tabItem.name
+      this.state.activeTab = tabItem.name
       this.$emit('select', tabItem)
     }
   }

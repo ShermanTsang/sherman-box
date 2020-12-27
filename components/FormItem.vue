@@ -209,7 +209,7 @@ export default {
 
             if ('maxValue' in ruleItem) {
               if (!(currentValue <= Number.parseInt(ruleItem.maxValue))) {
-                this.data.errors.push(this.label + `不能大于最大值${ruleItem.minValue}`)
+                this.data.errors.push(this.label + `不能大于最大值${ruleItem.maxValue}`)
               }
             }
 

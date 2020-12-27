@@ -43,13 +43,13 @@ export default function ({ store }) {
     return `${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/${url}`
   }
 
-  function getOssUrl (url, isProxy = false) {
+  function getOssUrl (url, needProxy = false) {
     if (!url) {
       return ''
     }
     const isWithDomain = url.includes('http://') || url.includes('https://')
-    const is3rdResource = !url.includes('cdn.share-man.com') && !url.includes('sharemancdn.ochase.com')
-    const resourceDomain = isProxy ? '/oss/' : `https://${config['oss.domain.https']}`
+    const is3rdResource = !url.includes(config['server.host']) && !url.includes(config['oss.domain.https']) && !url.includes(config['oss.domain.custom'])
+    const resourceDomain = needProxy ? '/oss' : `https://${config['oss.domain.https']}`
     return isWithDomain
       ? (is3rdResource ? url : `${resourceDomain}/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
       : `${resourceDomain}/${url}`

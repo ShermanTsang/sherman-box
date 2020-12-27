@@ -125,16 +125,21 @@
       <Blocker height="60px" />
       <LayoutContainer class="movie__content">
         <Nameplate title="评分" sub-title="score">
-          <Btn @click="status.showScoreModal = true">
+          <Btn @click="state.showScoreModal = true">
             评个分
           </Btn>
         </Nameplate>
-        <Tag>共 {{ data.movieItem.score_count }} 人参与评分</Tag>
-        <Tag>总评为 {{ data.movieItem.score_total }} 分</Tag>
-        <Tag v-for="item in data.movieItem.scores" :key="item.id">
-          {{ item.name }} {{ item.score }} 分 -
-          <Datetime :time="item.datetime" format="YYYY-MM-DD" from-now />
-        </Tag>
+        <template v-if="data.movieItem.score_count">
+          <Tag>共 {{ data.movieItem.score_count }} 人参与评分</Tag>
+          <Tag>总评为 {{ data.movieItem.score_total }} 分</Tag>
+          <Tag v-for="item in data.movieItem.scores" :key="item.id">
+            {{ item.name }} {{ item.score }} 分 -
+            <Datetime :time="item.datetime" format="YYYY-MM-DD" from-now />
+          </Tag>
+        </template>
+        <template v-else>
+          <Tag>期待你的评分</Tag>
+        </template>
       </LayoutContainer>
     </template>
     <template v-if="data.movieItem.schedule">
@@ -154,8 +159,8 @@
       <Comment :id="data.movieItem.id" module="movie" />
     </LayoutContainer>
     <Blocker height="60px" />
-    <Modal v-model="status.showScoreModal" title="评个分" icon="star" width="500px">
-      <Loading v-if="status.isLoadingSubmit" :fix="true">
+    <Modal v-model="state.showScoreModal" title="评个分" icon="star" width="500px">
+      <Loading v-if="state.isLoadingSubmit" :fix="true">
         评分提交中
       </Loading>
       <FormItem
@@ -165,7 +170,7 @@
         name="name"
         type="input"
         placeholder="敢问大侠叫什么?"
-        @changeValidate="valid => status.validate.name = valid"
+        @changeValidate="valid => state.validate.name = valid"
       />
       <FormItem
         v-model="form.score"
@@ -174,7 +179,7 @@
         type="input"
         validate="required|number|minValue:0.1|maxValue:10"
         placeholder="0.1-10"
-        @changeValidate="valid => status.validate.score = valid"
+        @changeValidate="valid => state.validate.score = valid"
       >
       </FormItem>
       <FormItem
@@ -184,7 +189,7 @@
         type="input"
         validate="maxLength:60"
         placeholder="可简述为何这样评分"
-        @changeValidate="valid => status.validate.content = valid"
+        @changeValidate="valid => state.validate.content = valid"
       />
       <Btn slot="footer" :full-width="true" :colorful="true" height="48px" @click="submitMovieScore()">
         提交
@@ -209,7 +214,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         showScoreModal: false,
         isLoadingSubmit: false,
         validate: {
@@ -223,8 +228,8 @@ export default {
   },
   methods: {
     submitMovieScore () {
-      if (this.$checkFormValidate(this.status.validate)) {
-        this.status.isLoadingSubmit = true
+      if (this.$checkFormValidate(this.state.validate)) {
+        this.state.isLoadingSubmit = true
 
         const newScore = {
           score: this.form.score,
@@ -236,11 +241,12 @@ export default {
           .then((response) => {
             this.data.movieItem.scores.push(response.data)
             this.form = {}
-            this.status.showScoreModal = false
-            this.status.isLoadingSubmit = false
+            this.state.showScoreModal = false
+            this.state.isLoadingSubmit = false
+            this.$router.go(0)
           })
           .catch(() => {
-            this.status.isLoadingSubmit = false
+            this.state.isLoadingSubmit = false
           })
       } else {
         this.$message.error('表单填写有误')

@@ -27,12 +27,11 @@
         display: inline-block;
         color: $theme-color;
         padding: 4px 12px;
-        border-radius: 4px;
         background-color: rgba($theme-color, 0.1);
       }
 
       &__divider {
-        color: #ccc;
+        color: #eee;
       }
 
     }
@@ -76,7 +75,7 @@
         <template v-if="index === 0">
           <span :class="{'navigator__main__item__module':index === 0}">{{ item.text }}</span>
         </template>
-        <template v-else>
+        <template v-else-if="item.text">
           {{ item.text }}
         </template>
         <template v-if="(index !== navs.length - 1) && navs.length > 1">
@@ -94,7 +93,7 @@
         <Icon name="share" color="#999" size="20px"></Icon>
       </div>
     </div>
-    <Modal v-model="status.showPoster" title="海报分享" icon="share" width="540px">
+    <Modal v-model="state.showPoster" title="海报分享" icon="share" width="540px">
       <Poster
         :module="currentPage.module"
         :image="currentItem.image"
@@ -116,7 +115,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         showPoster: false
       }
     }
@@ -142,10 +141,11 @@ export default {
       if (this.currentPage.type === 'list') {
         const { name, url } = this.currentModule
         const statistics = this.statisticsModule.find(item => item.module === this.currentModule.url)
-        return [
-          { text: name, path: `/${url}` },
-          { text: statistics ? statistics.text : '', color: '#999' }
-        ]
+        const navs = [{ text: name, path: `/${url}` }]
+        if (statistics) {
+          navs.push({ text: statistics ? statistics.text : '', color: '#999' })
+        }
+        return navs
       }
       if (this.currentPage.type === 'item') {
         const { name: moduleName, url: moduleUrl } = this.currentModule
@@ -159,9 +159,12 @@ export default {
           }
           navs.push({ text: category.name })
         }
-        if (name || date) {
+        if (name) {
+          navs.push({ text: name })
+        }
+        if (date) {
           const dateFormat = date ? this.$time(date).format('YYYY-MM-DD') : ''
-          navs.push({ text: name || dateFormat })
+          navs.push({ text: dateFormat })
         }
         return navs
       }
@@ -186,7 +189,7 @@ export default {
       document.body.scrollIntoView()
     },
     openPoster () {
-      this.status.showPoster = true
+      this.state.showPoster = true
     }
   }
 }

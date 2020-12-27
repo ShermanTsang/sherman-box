@@ -67,7 +67,7 @@
       v-if="data.mailboxItem.content === null"
       width="300px"
       class="mailbox__locker"
-      @click="status.showModal = true"
+      @click="state.showModal = true"
     >
       <Icon name="lock" />
       解锁
@@ -80,8 +80,8 @@
       <Comment :id="data.mailboxItem.id" module="mailbox" />
     </LayoutContainer>
     <Blocker height="60px" />
-    <Modal v-model="status.showModal" title="解锁邮盒" icon="comment" width="500px">
-      <Loading v-if="status.isLoadingSubmit" :fix="true">
+    <Modal v-model="state.showModal" title="解锁邮盒" icon="comment" width="500px">
+      <Loading v-if="state.isLoadingSubmit" :fix="true">
         密码校验中
       </Loading>
       <FormItem
@@ -91,7 +91,7 @@
         name="password"
         type="input"
         placeholder="等待解锁"
-        @changeValidate="valid => status.validate.password = valid"
+        @changeValidate="valid => state.validate.password = valid"
       >
         <span v-if="data.mailboxItem.hint" slot="tip">提示：{{ data.mailboxItem.hint }}</span>
       </FormItem>
@@ -118,7 +118,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         showModal: false,
         isLoadingSubmit: false,
         validate: {
@@ -137,11 +137,11 @@ export default {
   },
   methods: {
     submitCheckPassword () {
-      if (!this.$checkFormValidate(this.status.validate)) {
+      if (!this.$checkFormValidate(this.state.validate)) {
         this.$message.error('表单有错误')
         return
       }
-      this.status.isLoadingSubmit = true
+      this.state.isLoadingSubmit = true
       const { id } = this.data.mailboxItem
       const { password } = this.form
       this.$axios.$post(`/api/mailboxes/${id}/check`, {
@@ -152,16 +152,16 @@ export default {
         .then(({ data, event, code }) => {
           if (event === 'returnErrorMessage' || event === 6000) {
             this.$message.error('邮盒密码错误')
-            this.status.showModal = false
-            this.status.isLoadingSubmit = false
+            this.state.showModal = false
+            this.state.isLoadingSubmit = false
             this.errors.clear()
             return
           }
           if (code === 200) {
             this.data.mailboxItem = data
           }
-          this.status.showModal = false
-          this.status.isLoadingSubmit = false
+          this.state.showModal = false
+          this.state.isLoadingSubmit = false
           this.errors.clear()
         })
     }

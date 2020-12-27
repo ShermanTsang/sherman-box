@@ -71,7 +71,7 @@
     <Blocker height="40px" />
     <Tabs :tabs="[{text:'网站更新日志',name:'log'},{text:'代码版本日志',name:'github'}]" @select="changeTab">
       <div slot="log" class="log__list">
-        <Loading v-if="status.isLoading" :fix="true">
+        <Loading v-if="state.isLoading" :fix="true">
           正在加载网站更新日志...
         </Loading>
         <template v-if="data.updateList && data.updateList.length > 0">
@@ -106,7 +106,7 @@
         />
       </div>
       <div slot="github" class="log__list">
-        <Loading v-if="status.isLoading" :fix="true">
+        <Loading v-if="state.isLoading" :fix="true">
           正在从Github拉取日志...
         </Loading>
         <template v-if="data.githubCommitList && data.githubCommitList.length > 0">
@@ -146,7 +146,7 @@ export default {
         githubCommitList: [],
         updateList: []
       },
-      status: {
+      state: {
         isLoading: false,
         currentGithubListPage: 0,
         source: 'log'
@@ -159,19 +159,19 @@ export default {
   },
   methods: {
     async requestGithubCommitLog () {
-      this.status.isLoading = true
-      const requestPage = this.status.currentGithubListPage + 1
+      this.state.isLoading = true
+      const requestPage = this.state.currentGithubListPage + 1
       const githubCommitList = await this.$axios.$get('https://api.github.com/repos/ShareManT/ShareManBox-Nuxt/commits', {
         params: {
           page: requestPage
         }
       })
       this.data.githubCommitList = [...this.data.githubCommitList, ...githubCommitList]
-      this.status.currentGithubListPage++
-      this.status.isLoading = false
+      this.state.currentGithubListPage++
+      this.state.isLoading = false
     },
     async requestUpdateLog (pageNum) {
-      this.status.isLoading = true
+      this.state.isLoading = true
       const { data: updateList, meta } = await this.$axios.$get('/api/logs', {
         params: {
           page: pageNum
@@ -179,13 +179,13 @@ export default {
       })
       this.data.updateList = updateList
       this.meta = meta
-      this.status.isLoading = false
+      this.state.isLoading = false
     },
     openGithubCommitDetailPage (sha) {
       window.open(`https://github.com/ShareManT/ShareManBox-Nuxt/commit/${sha}`)
     },
     changeTab ({ name }) {
-      this.status.activeTab = name
+      this.state.activeTab = name
       name === 'log' ? this.requestUpdateLog() : this.requestGithubCommitLog()
     }
   },

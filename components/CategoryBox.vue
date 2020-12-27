@@ -95,14 +95,14 @@
       </nuxt-link>
     </div>
     <div
-      v-show="status.showLeftScrollbar"
+      v-show="state.showLeftScrollbar"
       class="category-box__scrollbar category-box__scrollbar--left"
       @click="scrollCategoryBox('left')"
     >
       <Icon name="angle-left" color="#aaa" size="18px" />
     </div>
     <div
-      v-show="status.showRightScrollbar"
+      v-show="state.showRightScrollbar"
       class="category-box__scrollbar category-box__scrollbar--right"
       @click="scrollCategoryBox('right')"
     >
@@ -126,7 +126,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         showRightScrollbar: false,
         showLeftScrollbar: false
       },
@@ -162,8 +162,8 @@ export default {
       setTimeout(() => {
         const categoryBox = this.$refs.categoryBox
         const { parentNode, scrollWidth, scrollLeft } = categoryBox
-        this.status.showRightScrollbar = scrollWidth > parentNode.scrollWidth
-        this.status.showLeftScrollbar = scrollLeft > 0
+        this.state.showRightScrollbar = scrollWidth > parentNode.scrollWidth
+        this.state.showLeftScrollbar = scrollLeft > 0
       }, 0)
     },
     async requestCategoryList () {

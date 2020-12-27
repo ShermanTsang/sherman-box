@@ -73,7 +73,7 @@
 </style>
 
 <template>
-  <header class="header" :class="{'header--shadow': status.isPinNavigator}">
+  <header class="header" :class="{'header--shadow': state.isPinNavigator}">
     <div class="header__main">
       <div id="logo" class="header__main__logo">
         <Logo type="text" height="40px" />
@@ -88,7 +88,7 @@
       </div>
     </div>
     <transition name="slideFromBottom">
-      <div id="navigator" class="header__navigator" :class="{'header__navigator--fixed': status.isPinNavigator}">
+      <div id="navigator" class="header__navigator" :class="{'header__navigator--fixed': state.isPinNavigator}">
         <Navigator />
       </div>
     </transition>
@@ -100,7 +100,7 @@ export default {
   name: 'LayoutHeader',
   data () {
     return {
-      status: {
+      state: {
         isPinNavigator: false,
         lastScrollOffset: 0
       }
@@ -117,9 +117,9 @@ export default {
   methods: {
     onScroll () {
       const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      const isScrollDown = (scrollOffset - this.status.lastScrollOffset) > 0
-      this.status.isPinNavigator = isScrollDown && scrollOffset > 200
-      this.status.lastScrollOffset = scrollOffset
+      const isScrollDown = (scrollOffset - this.state.lastScrollOffset) > 0
+      this.state.isPinNavigator = isScrollDown && scrollOffset > 200
+      this.state.lastScrollOffset = scrollOffset
     }
   }
 }

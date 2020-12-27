@@ -146,9 +146,10 @@
         <div class="movie-item__content__info__item">
           <icon name="category" size=".9rem" />
           {{ item.category.name }}
-          /
+        </div>
+        <div class="movie-item__content__info__item">
           <icon name="star" size=".9rem" />
-          {{ item.score }}分
+          {{ item.score ? `${item.score}分` : '待评分' }}
         </div>
         <div class="movie-item__content__info__item">
           <icon name="user" size=".9rem" />

@@ -6,6 +6,7 @@ const config = {
   'site.name': '',
   'site.description': '',
   'site.keywords': '',
+  'site.domain': '',
   'api.protocol': '',
   'api.version': '',
   'api.domain': '',

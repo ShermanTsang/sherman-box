@@ -1,79 +1,94 @@
 <style lang="scss">
-  .footer {
+.footer {
 
-    &__main {
-      box-shadow: 0 4px 4px 1px rgba(177,177,177, .1) inset,0 -4px 4px 1px rgba(177,177,177, .1) inset;
-      background-color: #f8fafc;
-      padding: 48px 0;
+  &__main {
+    //box-shadow: 0 4px 4px 1px rgba(177,177,177, .1) inset,0 -4px 4px 1px rgba(177,177,177, .1) inset;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+    background-color: #ffff;
+    padding: 48px 0;
 
-      &__container {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
+    &__container {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
 
-        @media ($screen-xs-max) {
-          align-items: center;
-          flex-flow: column nowrap;
-          line-height: 2;
-        }
-
-        &__column {
-          &__item {
-            cursor: pointer;
-            display: inline-block;
-            font-size: .95rem;
-            color: #666;
-            letter-spacing: 1px;
-
-            &:not(:first-child) {
-
-              &:before {
-                font-size: .9rem;
-                content: '/';
-                padding: 0 6px;
-                font-weight: bold;
-                color: #efefef;
-              }
-            }
-
-            i {
-              margin-left: 10px;
-              transition: color .2s ease-in-out;
-              color: #999;
-
-              &:hover {
-                color: #666;
-              }
-            }
-
-          }
-        }
+      @media ($screen-xs-max) {
+        align-items: center;
+        flex-flow: column nowrap;
+        line-height: 2;
       }
 
-    }
-
-    &__info {
-      padding: 20px 0;
-
-      &__container {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-
-        @media ($screen-xs-max) {
-          flex-flow: column nowrap;
-          line-height: 2;
-          align-items: center;
-        }
-
+      &__column {
         &__item {
-          font-size: .9rem;
-          color: #999;
+          cursor: pointer;
+          display: inline-block;
+          font-size: .95rem;
+          color: #666;
+          letter-spacing: 1px;
+          transition: all .2s ease-in-out;
+
+          &:not(:first-child) {
+
+            &:before {
+              font-size: .9rem;
+              content: '/';
+              padding: 0 6px;
+              font-weight: bold;
+              color: #efefef;
+            }
+          }
+
+          i {
+            margin-left: 10px;
+            transition: color .2s ease-in-out;
+            color: #999;
+
+            &:hover {
+              color: #666;
+            }
+          }
+
+          &__name {
+            display: inline-block;
+            font-size: 0;
+          }
+
+          &:hover {
+            .footer__main__container__column__item__name {
+              font-size: 1rem;
+            }
+          }
+
         }
       }
     }
 
   }
+
+  &__info {
+    padding: 20px 0;
+
+    &__container {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+
+      @media ($screen-xs-max) {
+        flex-flow: column nowrap;
+        line-height: 2;
+        align-items: center;
+      }
+
+      &__item {
+        font-size: .9rem;
+        color: #999;
+      }
+
+    }
+  }
+
+}
 </style>
 
 <template>
@@ -100,6 +115,9 @@
             @click="redirectToPage(item)"
           >
             <Icon :name="item.icon" size="20px" />
+            <div class="footer__main__container__column__item__name">
+              {{ item.name }}
+            </div>
           </div>
         </div>
       </LayoutContainer>
@@ -107,7 +125,10 @@
     <div class="footer__info">
       <LayoutContainer class="footer__info__container">
         <div class="footer__info__container__item">
-          <CustomFont>{{ $getConfig('site.name') }} <Datetime :link-with-timeline="false" format="2011-YYYY" :time="new Date().toDateString()" /></CustomFont>
+          <CustomFont>
+            {{ $getConfig('site.name') }}
+            <Datetime :link-with-timeline="false" format="2011-YYYY" :time="new Date().toDateString()" />
+          </CustomFont>
         </div>
         <div class="footer__info__container__item">
           <CustomFont>{{ $getConfig('site.icp') }}</CustomFont>

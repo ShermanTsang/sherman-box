@@ -28,7 +28,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         currentPage: 1
       }
     }
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     async requestTimeline () {
-      const requestPage = this.status.currentPage + 1
+      const requestPage = this.state.currentPage + 1
       const { data: timeline, meta } = await this.$axios.$get('/api/common/timeline', {
         params: {
           pageSize: 10,
@@ -46,7 +46,7 @@ export default {
       })
       this.data.timeline = [...this.data.timeline, ...timeline]
       this.meta = meta
-      this.status.currentPage++
+      this.state.currentPage++
     }
   },
   head () {

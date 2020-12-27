@@ -17,18 +17,19 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'generator-star-spacing': 'off',
     'vue/no-v-html': 'off',
-    'quotes': [1, 'single'],
+    quotes: [1, 'single'],
     'object-curly-newline': 'off',
     'no-void': 'off',
-    'camelcase': 'off',
+    camelcase: 'off',
+    'vue/comment-directive': 'off',
     'vue/html-self-closing': ['error', {
-      'html': {
-        'void': 'never',
-        'normal': 'any',
-        'component': 'any'
+      html: {
+        void: 'never',
+        normal: 'any',
+        component: 'any'
       },
-      'svg': 'always',
-      'math': 'always'
+      svg: 'always',
+      math: 'always'
     }]
   }
 }

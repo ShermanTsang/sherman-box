@@ -48,6 +48,7 @@
             cursor: pointer;
             transition: all .2s ease-in;
             position: relative;
+            overflow: hidden;
 
             &__name {
               color: #666;
@@ -132,12 +133,12 @@
           <div class="catalog__item__main__content__name" @click="toggleItemBody(item)">
             <Icon
               v-if="item.children"
-              :name="status.showBody[item.id] ? 'arrow-down' :'arrow-up'"
+              :name="state.showBody[item.id] ? 'arrow-down' :'arrow-up'"
               color="#aaa"
             />
             <Icon
               v-else-if="item.items && item.items.length > 0"
-              :name="status.showBody[item.id] ? 'arrow-down' :'arrow-up'"
+              :name="state.showBody[item.id] ? 'arrow-down' :'arrow-up'"
               color="#aaa"
             />
             <Icon v-else name="dot-small" color="#aaa" />
@@ -145,7 +146,7 @@
             <span v-if="item.items.length > 0">{{ item.items.length }}</span>
           </div>
           <transition name="fade">
-            <div v-show="status.showBody[item.id]" v-if="item.items && item.items.length > 0" class="catalog__item__main__content__object">
+            <div v-show="state.showBody[item.id]" v-if="item.items && item.items.length > 0" class="catalog__item__main__content__object">
               <nuxt-link
                 v-for="entityItem in item.items"
                 :key="entityItem.id"
@@ -170,7 +171,7 @@
         </div>
       </div>
       <transition name="fade">
-        <div v-show="status.showBody[item.id]" class="catalog__item__children">
+        <div v-show="state.showBody[item.id]" class="catalog__item__children">
           <CatalogTree v-if="item.children" :data="item.children" />
         </div>
       </transition>
@@ -191,7 +192,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         showBody: {}
       }
     }
@@ -205,12 +206,12 @@ export default {
       const hasChildren = 'children' in item && item.children.length > 0
       const hasObjects = 'items' in item && item.items.length > 0
       if (hasChildren || hasObjects) {
-        this.$set(this.status.showBody, item.id, !this.status.showBody[item.id])
+        this.$set(this.state.showBody, item.id, !this.state.showBody[item.id])
       }
     },
     initStatus (catalogData = this.data) {
       catalogData.forEach((item) => {
-        this.$set(this.status.showBody, item.id, true)
+        this.$set(this.state.showBody, item.id, true)
         if (item.children) {
           this.initStatus(item.children)
         }

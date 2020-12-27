@@ -3,6 +3,7 @@
     flex: 1;
     overflow: hidden;
     margin-top: $header-height;
+    background-color: #fff;
   }
 
   .main--withNavigator {

@@ -10,11 +10,11 @@
 
 <template>
   <div class="comment">
-    <Loading v-if="status.isLoadingList" :fix="true">
+    <Loading v-if="state.isLoadingList" :fix="true">
       评论加载中
     </Loading>
     <Nameplate title="评论" sub-title="comment">
-      <Btn @click="status.showModal = true">
+      <Btn @click="state.showModal = true">
         写评论
       </Btn>
     </Nameplate>
@@ -29,7 +29,7 @@
         ></ItemComment>
       </Waterfall>
     </div>
-    <Tip v-if="!status.isLoadingList && data.commentList.length === 0" asset="pic-comment" max-width="240px">
+    <Tip v-if="!state.isLoadingList && data.commentList.length === 0" asset="pic-comment" max-width="240px">
       暂无评论
     </Tip>
     <Pagination
@@ -40,8 +40,8 @@
       :size="parseInt(meta.per_page)"
       @change="changePage"
     />
-    <Modal v-model="status.showModal" :title="data.replyTarget ? '回复评论':'写评论'" icon="comment" width="800px">
-      <Loading v-if="status.isLoadingSubmit" :fix="true">
+    <Modal v-model="state.showModal" :title="data.replyTarget ? '回复评论':'写评论'" icon="comment" width="800px">
+      <Loading v-if="state.isLoadingSubmit" :fix="true">
         评论发送中
       </Loading>
       <FormItem
@@ -59,7 +59,7 @@
         name="username"
         type="input"
         placeholder="该如何称呼你呢？"
-        @changeValidate="valid => status.validate.username = valid"
+        @changeValidate="valid => state.validate.username = valid"
       />
       <FormItem
         v-model="form.contact"
@@ -68,7 +68,7 @@
         type="input"
         validate="required|maxLength:30"
         placeholder="QQ / Wechat / Email"
-        @changeValidate="valid => status.validate.contact = valid"
+        @changeValidate="valid => state.validate.contact = valid"
       >
         <span v-if="contactType" slot="tip">使用 {{ contactType }} 作为联系方式</span>
       </FormItem>
@@ -79,7 +79,7 @@
         type="input"
         validate="url|maxLength:60"
         placeholder="可填写你的网站、博客、微博或其他社媒地址"
-        @changeValidate="valid => status.validate.website = valid"
+        @changeValidate="valid => state.validate.website = valid"
       />
       <FormItem
         v-model="form.comment"
@@ -88,7 +88,7 @@
         type="input"
         validate="required|maxLength:500|minLength:4"
         placeholder="留下你的想法、疑问、评论或回忆"
-        @changeValidate="valid => status.validate.comment = valid"
+        @changeValidate="valid => state.validate.comment = valid"
       />
       <FormItem
         v-if="['qq','email'].includes(contactType)"
@@ -121,7 +121,7 @@ export default {
   },
   data () {
     return {
-      status: {
+      state: {
         currentPage: 1,
         showModal: false,
         isLoadingSubmit: false,
@@ -158,8 +158,8 @@ export default {
     }
   },
   watch: {
-    'status.showModal' (status) {
-      if (status === false) {
+    'state.showModal' (state) {
+      if (state === false) {
         this.data.replyTarget = null
       }
     }
@@ -173,7 +173,7 @@ export default {
     checkCurrentPageNum () {
       const { query = {} } = this.$route
       if (query.commentPage) {
-        this.status.currentPage = query.commentPage
+        this.state.currentPage = query.commentPage
       }
     },
     fillUserInfo () {
@@ -181,11 +181,11 @@ export default {
       this.form = JSON.parse(JSON.stringify(this.$store.getters.user))
     },
     changePage (currentPage) {
-      this.status.currentPage = currentPage
+      this.state.currentPage = currentPage
       this.requestCommentList(currentPage)
     },
-    async requestCommentList (currentPage = this.status.currentPage) {
-      this.status.isLoadingList = true
+    async requestCommentList (currentPage = this.state.currentPage) {
+      this.state.isLoadingList = true
       const { data: commentList, meta } = await this.$axios.$get('/api/comments/', {
         params: {
           pageSize: 10,
@@ -196,7 +196,7 @@ export default {
       })
       this.data.commentList = commentList
       this.meta = meta
-      this.status.isLoadingList = false
+      this.state.isLoadingList = false
     },
     redirectByUrl (url) {
       if (url) {
@@ -204,8 +204,8 @@ export default {
       }
     },
     submitSendComment () {
-      if (this.$checkFormValidate(this.status.validate)) {
-        this.status.isLoadingSubmit = true
+      if (this.$checkFormValidate(this.state.validate)) {
+        this.state.isLoadingSubmit = true
         const { contact } = this.form
         const appendParams = {
           page_url: this.$route.path,
@@ -225,12 +225,12 @@ export default {
         this.$axios.$post('/api/comments', newComment)
           .then((response) => {
             this.requestCommentList()
-            this.status.showModal = false
-            this.status.isLoadingSubmit = false
+            this.state.showModal = false
+            this.state.isLoadingSubmit = false
             this.fillUserInfo()
           })
           .catch((error) => {
-            this.status.isLoadingSubmit = false
+            this.state.isLoadingSubmit = false
           })
 
         this.$store.commit('SET_USER', {
@@ -244,7 +244,7 @@ export default {
     },
     handleReply (replyItem) {
       this.data.replyTarget = replyItem
-      this.status.showModal = true
+      this.state.showModal = true
     }
   }
 }

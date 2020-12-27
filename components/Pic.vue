@@ -87,6 +87,10 @@ export default {
     link: {
       type: [String, undefined],
       default: undefined
+    },
+    needProxy: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -111,7 +115,7 @@ export default {
     imgUrl () {
       if (this.url) {
         const isExternalUrl = this.url.startsWith('http') || this.url.startsWith('data:')
-        return isExternalUrl ? this.url : this.$getOssUrl(this.url)
+        return isExternalUrl ? this.url : this.$getOssUrl(this.url, this.needProxy)
       }
       if (this.asset) {
         return this.$getImageAsset(this.asset)
