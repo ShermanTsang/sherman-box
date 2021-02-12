@@ -1,5 +1,7 @@
 <style lang="scss">
-  .slider {
+$prefix: 'slider';
+
+.#{$prefix} {
     transition: all .3s ease-in-out;
   }
 </style>

@@ -1,5 +1,7 @@
 <style lang="scss">
-  .timeline {
+$prefix: 'timeline';
+
+.#{$prefix} {
     position: relative;
     margin: auto;
     overflow: hidden;

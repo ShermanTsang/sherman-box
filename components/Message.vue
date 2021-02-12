@@ -1,5 +1,7 @@
 <style lang="scss">
-  .message {
+$prefix: 'message';
+
+.#{$prefix} {
     position: fixed;
     bottom: 40px;
     left: 50%;

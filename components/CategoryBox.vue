@@ -1,5 +1,7 @@
 <style lang="scss">
-.category-box {
+$prefix:'category-box';
+
+.#{$prefix} {
   position: relative;
   color: #999;
   margin: 16px 0;

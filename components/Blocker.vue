@@ -1,5 +1,7 @@
 <style lang="scss">
-  .blocker {
+$prefix: 'blocker';
+
+  .#{$prefix} {
     display: flex;
     color: #999;
     font-size: .9rem;

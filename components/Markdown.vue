@@ -1,5 +1,7 @@
 <style lang="scss">
-  .markdown {
+$prefix: 'markdown';
+
+.#{$prefix} {
 
     article {
       font-size: 1rem;

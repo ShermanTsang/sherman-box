@@ -1,17 +1,19 @@
 <style lang="scss">
-.slider-item {
+$prefix: 'slider-item';
+
+.#{$prefix} {
   position: relative;
   overflow: auto;
 }
 
-.slider-item--flex-row-center {
+.#{$prefix}--flex-row-center {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
 }
 
-.slider-item--flex-column-center {
+.#{$prefix}--flex-column-center {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;

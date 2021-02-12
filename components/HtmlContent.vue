@@ -1,5 +1,7 @@
 <style lang="scss">
-  .htmlContent {
+$prefix: 'html-content';
+
+  .#{$prefix} {
 
     article {
       font-size: 1rem !important;
@@ -155,10 +157,10 @@
 </style>
 
 <template>
-  <div class="htmlContent">
+  <div class="html-content">
     <client-only placeholder="Loading...">
       <article
-        class="htmlContent"
+        class="html-content"
         @click="handleClick($event)"
         v-html="finalHtml"
       >

@@ -1,5 +1,7 @@
 <style lang="scss">
-.navigator {
+$prefix: 'navigator';
+
+.#{$prefix} {
   height: $header-nav-height;
   display: flex;
   flex-flow: row nowrap;

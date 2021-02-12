@@ -1,5 +1,7 @@
 <style lang="scss">
-  .nameplate {
+$prefix: 'nameplate';
+
+.#{$prefix} {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
@@ -13,6 +15,7 @@
       letter-spacing: 2px;
       color: #333;
       position: relative;
+      z-index: $z-index-card-content;
 
       span {
         font-size: 1.1rem;
@@ -23,14 +26,16 @@
       &:after {
         position: absolute;
         content: '';
-        height: 8px;
-        width: 40px;
-        border-radius: 2px;
-        left: 0;
-        bottom: -20px;
-        opacity: .5;
+        height: 20px;
+        width: 100%;
+        border-radius: 10px;
+        right: 0;
+        left: 6px;
+        top: 10px;
+        opacity: .4;
+        z-index: -1;
         background-color: #1170f5;
-        background-image: linear-gradient(126deg, #0262f5 0%, #fff 99%);
+        background-image: linear-gradient(90deg, #d2feff 0, #9faffc);
       }
     }
 

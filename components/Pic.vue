@@ -1,5 +1,7 @@
 <style lang="scss">
-  .pic {
+$prefix: 'pic';
+
+.#{$prefix} {
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -113,13 +115,6 @@ export default {
       }
     },
     imgUrl () {
-      if (this.url) {
-        const isExternalUrl = this.url.startsWith('http') || this.url.startsWith('data:')
-        return isExternalUrl ? this.url : this.$getOssUrl(this.url, this.needProxy)
-      }
-      if (this.asset) {
-        return this.$getImageAsset(this.asset)
-      }
       if (this.path) {
         try {
           return require('../assets/image/' + this.path)
@@ -127,6 +122,13 @@ export default {
           console.log('Image resource \'' + this.path + '\' is not found !')
           return require('../assets/image/imageError.png')
         }
+      }
+      if (this.url) {
+        const isExternalUrl = this.url.startsWith('http') || this.url.startsWith('data:')
+        return isExternalUrl ? this.url : this.$getOssUrl(this.url, this.needProxy)
+      }
+      if (this.asset) {
+        return this.$getImageAsset(this.asset)
       }
       return undefined
     }

@@ -1,5 +1,7 @@
 <style lang="scss">
-  .modal {
+$prefix: 'modal';
+
+.#{$prefix} {
     z-index: $z-index-modal;
     position: fixed;
     top: 0;

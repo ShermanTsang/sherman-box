@@ -9,8 +9,13 @@
 
 <template>
   <div v-if="localTime" class="moment" :style="style" @click="handleClick">
-    {{ localTime.format(timeFormat) }}
-    <small v-if="fromNow">{{ fromNowFormat }}</small>
+    <template v-if="onlyFromNow">
+      {{ fromNowFormat }}
+    </template>
+    <template v-else>
+      {{ localTime.format(timeFormat) }}
+      <small v-if="fromNow">{{ fromNowFormat }}</small>
+    </template>
   </div>
 </template>
 
@@ -40,6 +45,10 @@ export default {
     fromNow: {
       type: Boolean,
       default: undefined
+    },
+    onlyFromNow: {
+      type: Boolean,
+      default: false
     },
     color: {
       type: String,

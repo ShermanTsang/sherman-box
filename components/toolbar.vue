@@ -1,5 +1,7 @@
 <style lang="scss">
-  .toolbar {
+$prefix: 'toolbar';
+
+.#{$prefix} {
     background-color: rgba(255, 255, 255, .95);
     overflow: hidden;
     height: $header-height;

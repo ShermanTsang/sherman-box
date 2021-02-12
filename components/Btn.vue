@@ -1,35 +1,37 @@
 <style lang="scss">
-  .btn {
-    cursor: pointer;
-    color: #999;
-    padding: 8px 10px;
-    letter-spacing: 2px;
-    background-color: transparent;
-    transition: all .2s ease-in-out;
-    border: 1px solid #efefef;
-    box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+$prefix: 'btn';
 
-    &:hover {
-      color: #666;
-      border-color: transparent;
-      box-shadow: 0 0 8px rgba(0, 0, 0, .1);
-    }
+.#{$prefix} {
+  cursor: pointer;
+  color: #999;
+  padding: 8px 10px;
+  letter-spacing: 2px;
+  background-color: transparent;
+  transition: all .2s ease-in-out;
+  border: 1px solid #efefef;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+
+  &:hover {
+    color: #666;
+    border-color: transparent;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .1);
   }
+}
 
-  .btn--colorful {
-    border: none;
-    @include gradient-background;
+.#{$prefix}--colorful {
+  border: none;
+  @include gradient-background;
 
-    &:hover {
-      color: #fff;
-    }
+  &:hover {
+    color: #fff;
   }
+}
 
-  .btn--disabled {
-    pointer-events: none;
-    color: #999;
-    background-color: #efefef;
-  }
+.#{$prefix}--disabled {
+  pointer-events: none;
+  color: #999;
+  background-color: #efefef;
+}
 </style>
 
 <template>

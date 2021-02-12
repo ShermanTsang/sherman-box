@@ -1,5 +1,7 @@
 <style lang="scss">
-  .tabs {
+$prefix: 'tabs';
+
+.#{$prefix} {
     position: relative;
     margin: 16px 0;
 

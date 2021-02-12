@@ -1,11 +1,13 @@
 <style lang="scss">
-  .comment {
+$prefix: 'comment';
 
-    &__list {
+.#{$prefix} {
 
-    }
+  &__list {
 
   }
+
+}
 </style>
 
 <template>

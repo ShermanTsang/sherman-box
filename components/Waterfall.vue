@@ -1,11 +1,14 @@
 <style lang="scss">
-  .waterfall {
+$prefix: 'waterfall';
+
+.#{$prefix} {
 
     &__item {
       box-sizing: border-box;
       break-inside: avoid;
-      height: 100%; // avoid sub item overflow
-      overflow: auto; // avoid sub item overflow
+      page-break-inside: avoid;
+      //height: 100%; // avoid sub item overflow
+      //overflow: auto; // avoid sub item overflow
     }
 
     @media ($screen-lg-max) {
@@ -59,7 +62,7 @@ export default {
         if (nodeItem.tag) {
           const element = nodeItem.elm
           element.classList.add('waterfall__item')
-          element.style.setProperty('margin', `${this.gap} 0`)
+          // element.style.setProperty('margin', `${this.gap} 0`)
         }
       })
     }

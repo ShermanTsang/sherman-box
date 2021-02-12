@@ -1,5 +1,7 @@
 <style lang="scss">
-  .logo {
+$prefix: 'logo';
+
+.#{$prefix} {
     cursor: pointer;
   }
 </style>
@@ -10,9 +12,9 @@
       <img :src="$getImageAsset('logo')" :style="style" alt="logo">
     </template>
     <template v-if="type === 'text'">
-      <CustomFont size="1.4rem" color="#666">
+      <CustomText size="1.4rem" color="#666">
         {{ $getConfig('site.name') }}
-      </CustomFont>
+      </CustomText>
     </template>
   </div>
 </template>

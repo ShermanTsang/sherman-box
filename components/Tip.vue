@@ -1,5 +1,7 @@
 <style lang="scss">
-  .tip {
+$prefix: 'tip';
+
+.#{$prefix} {
     padding: 16px;
     margin: 20px auto;
     background-color: #fff;

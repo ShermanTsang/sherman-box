@@ -102,9 +102,9 @@
             class="footer__main__container__column__item"
             @click="redirectToPage(item)"
           >
-            <CustomFont display="inline-block">
+            <CustomText display="inline-block">
               {{ item.name }}
-            </CustomFont>
+            </CustomText>
           </div>
         </div>
         <div class="footer__main__container__column">
@@ -125,13 +125,13 @@
     <div class="footer__info">
       <LayoutContainer class="footer__info__container">
         <div class="footer__info__container__item">
-          <CustomFont>
+          <CustomText>
             {{ $getConfig('site.name') }}
             <Datetime :link-with-timeline="false" format="2011-YYYY" :time="new Date().toDateString()" />
-          </CustomFont>
+          </CustomText>
         </div>
         <div class="footer__info__container__item">
-          <CustomFont>{{ $getConfig('site.icp') }}</CustomFont>
+          <CustomText>{{ $getConfig('site.icp') }}</CustomText>
         </div>
       </LayoutContainer>
     </div>

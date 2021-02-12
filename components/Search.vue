@@ -1,5 +1,7 @@
 <style lang="scss">
-  .search {
+$prefix: 'search';
+
+.#{$prefix} {
     &__button {
       cursor: pointer;
     }

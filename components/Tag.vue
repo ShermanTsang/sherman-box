@@ -1,5 +1,7 @@
 <style lang="scss">
-  .tag {
+$prefix: 'tag';
+
+.#{$prefix} {
     display: inline-block;
 
     &__item {
@@ -8,15 +10,16 @@
       position: relative;
       cursor: default;
       font-size: .9rem;
-      margin: 1px;
+      margin: 2px;
       padding: 6px 10px;
       white-space: normal;
       color: #666;
-      background-color: #fff;
+      background-color: transparent;
       border: 1px solid #ddd;
       letter-spacing: 1px;
       transition: all .2s ease-in;
       line-height: 1.4;
+      border-radius: 2px;
 
       &:not(:last-child) {
         margin-right: 5px;

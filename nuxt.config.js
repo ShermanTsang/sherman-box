@@ -41,10 +41,10 @@ export default {
   */
   css: [
     'normalize.css',
-    '@/assets/scss/global.scss',
-    '@/assets/scss/animate.scss',
-    '@/assets/scss/override.scss',
-    '@/assets/scss/font.scss',
+    '@/assets/css/global.scss',
+    '@/assets/css/animate.scss',
+    '@/assets/css/override.scss',
+    '@/assets/css/font.scss',
     '@/assets/iconfont/iconfont.css'
   ],
 
@@ -134,7 +134,7 @@ export default {
       },
       scss: {
         implementation: require('sass'),
-        additionalData: '@import "@/assets/scss/variables.scss";'
+        additionalData: '@import "@/assets/css/variables.scss";'
       }
     },
     /*

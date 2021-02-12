@@ -1,164 +1,90 @@
 <style lang="scss">
-  .day {
+.day {
 
-    &__image {
-      position: relative;
-      height: 500px;
-      margin-bottom: 60px;
+  &__image {
+    position: relative;
+    height: 500px;
+    margin-bottom: 60px;
 
-      &__background {
-        position: absolute;
-        top: -10px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 100%;
-        z-index: $z-index-card-background;
-        border-radius: 2px;
-        background-size: cover;
-        background-position: center;
-        filter: blur(2.5px);
-        transform: scale(1.2);
-        opacity: 0.8;
-        box-shadow: 0 -40px 30px 40px #fff inset;
-        transition: all .2s ease-in-out;
-      }
-
-      &__main {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        max-width: 1600px;
-        max-height: 900px;
-        margin: 0 auto;
-        z-index: $z-index-card-content;
-        overflow: hidden;
-        transition: all .2s ease-in-out;
-        box-shadow: 2px 2px 26px rgba(0, 0, 0, .2);
-
-        img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        &__text {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 8px 16px;
-          color: #efefef;
-          letter-spacing: 1px;
-          width: 100%;
-          background-image: linear-gradient(126deg, rgba(0, 0, 0, .4), transparent);
-        }
-
-      }
-
-      &:hover {
-        .day__image__background {
-          opacity: .5;
-          animation: imageMove 6s ease-in-out forwards infinite;
-        }
-
-        .day__image__main {
-          box-shadow: 0 0 30px rgba(0, 0, 0, .4);
-        }
-      }
-
+    &__background {
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      z-index: $z-index-card-background;
+      border-radius: 2px;
+      background-size: cover;
+      background-position: center;
+      filter: blur(2.5px);
+      transform: scale(1.2);
+      opacity: 0.8;
+      box-shadow: 0 -40px 30px 40px #fff inset;
+      transition: all .2s ease-in-out;
     }
 
-    &__data {
+    &__main {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-width: 1600px;
+      max-height: 900px;
+      margin: 0 auto;
+      z-index: $z-index-card-content;
       overflow: hidden;
+      transition: all .2s ease-in-out;
+      box-shadow: 2px 2px 26px rgba(0, 0, 0, .2);
 
-      &__main {
-        position: relative;
-
-        &__item {
-          border: 1px solid #efefef;
-          padding: 16px;
-          break-inside: avoid;
-          margin-bottom: 16px;
-          transition: .2s all ease-in-out;
-
-          &__name {
-            display: inline-flex;
-            flex-flow: row nowrap;
-            align-items: center;
-            color: #666;
-            letter-spacing: 2px;
-            font-size: 1rem;
-            padding: 10px 0;
-            border-bottom: 2px solid #efefef;
-
-            i {
-              margin-right: 10px;
-              font-size: 1.25rem;
-              color: #999;
-            }
-          }
-
-          &__content {
-            overflow: hidden;
-            margin-top: 10px;
-            padding: 10px 0;
-          }
-
-          &:hover {
-            box-shadow: 0 0 14px rgba(0, 0, 0, .1) inset;
-          }
-        }
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
-    }
 
-    &__block {
-      padding: 16px;
-      text-align: center;
-      margin: 16px 0;
-
-      &__main {
-        font-size: 1rem;
+      &__text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 8px 16px;
+        color: #efefef;
+        letter-spacing: 1px;
+        width: 100%;
+        background-image: linear-gradient(126deg, rgba(0, 0, 0, .4), transparent);
       }
 
     }
 
-    &__paginator {
-      box-sizing: content-box;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: space-between;
-
-      &__item {
-        color: #666;
-        font-size: .95rem;
+    &:hover {
+      .day__image__background {
+        opacity: .5;
+        animation: imageMove 6s ease-in-out forwards infinite;
       }
 
-      &__item--divider {
-        width: 2px;
-        margin: 0 10px;
-        height: 20px;
-        background-color: #efefef;
+      .day__image__main {
+        box-shadow: 0 0 30px rgba(0, 0, 0, .4);
       }
     }
 
   }
 
-  @keyframes imageMove {
-    0% {
-      background-position: top left;
-    }
-    50% {
-      background-position: center center;
-    }
-    100% {
-      background-position: bottom right;
-    }
+}
+
+@keyframes imageMove {
+  0% {
+    background-position: top left;
   }
+  50% {
+    background-position: center center;
+  }
+  100% {
+    background-position: bottom right;
+  }
+}
 
 </style>
 
@@ -179,256 +105,150 @@
       </div>
     </div>
     <LayoutContainer>
-      <LayoutRow :gutter="24">
-        <LayoutCol
-          :lg="{span:24}"
-          :xl="{span:20}"
-        >
-          <Nameplate>
-            <Datetime slot="title" :time="data.dayItem.date" format="YYYY年MM月DD日" class="day__date__text" />
-            <small slot="subTitle">
-              <Datetime :time="data.dayItem.date" format="ddd" />
-            </small>
-            <div class="day__paginator">
-              <template v-if="data.dayItem.day_previous">
-                <div class="day__paginator__item">
-                  <Icon color="#ccc" name="angle-left" />
-                  <Datetime :time="data.dayItem.day_previous.date" type="date" />
-                </div>
-              </template>
-              <div
-                v-if="data.dayItem.day_previous && data.dayItem.day_next"
-                class="day__paginator__item day__paginator__item--divider"
-              >
-              </div>
-              <template v-if="data.dayItem.day_next">
-                <div class="day__paginator__item">
-                  <Datetime :time="data.dayItem.day_next.date" type="date" />
-                  <Icon color="#ccc" name="angle-right" />
-                </div>
-              </template>
-            </div>
-          </Nameplate>
-          <div class="day__data">
-            <Waterfall :column="2" gap="16px" class="day__data__main">
-              <div v-if="data.dayItem.event" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="calendar" />
-                  事件
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.event }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.time_sleep && data.dayItem.time_wakeup" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="sleep" />
-                  睡眠
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>
-                    入眠{{ data.dayItem.time_sleep }},
-                    醒来{{ data.dayItem.time_wakeup }},
-                    时长{{ sleepHour }}
-                  </tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.weather" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="weather" />
-                  天气
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.weather }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.step" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="run" />
-                  步数
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.step }}步</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.weight" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="weight" />
-                  体重
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.weight }}斤</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.movement" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="schedule" />
-                  活动
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.movement }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.mood" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="mood" />
-                  状态
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.mood }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.location" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="location" />
-                  位置
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.location }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.people" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="user" />
-                  人物
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.people }}</tag>
-                </div>
-              </div>
-              <div v-if="data.dayItem.food" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="food" />
-                  食物
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.food }}</tag>
-                  <template v-if="data.dayItem.food_images && data.dayItem.food_images.length>0">
-                    <Blocker height="30px" divider divider-height="1px" />
-                    <Pic
-                      v-for="url in data.dayItem.food_images"
-                      :key="url"
-                      :url="url"
-                      radius="2px"
-                      can-preview
-                      :styles="{width: '45%',height:'160px',margin:'4px',border:'1px solid #efefef'}"
-                    ></Pic>
-                  </template>
-                </div>
-              </div>
-              <div v-if="data.dayItem.medicine" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="medicine" />
-                  药物
-                </div>
-                <div class="day__data__main__item__content">
-                  <Tag>{{ data.dayItem.medicine }}</tag>
-                </div>
-              </div>
-              <div v-if="data.movieList && data.movieList.length > 0" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="movie" />
-                  观影
-                </div>
-                <div class="day__data__main__item__content">
-                  <Pic
-                    v-for="item in data.movieList"
-                    :key="item.id"
-                    :url="item.image"
-                    width="30%"
-                    height="340px"
-                    :style="{margin:'8px'}"
-                    :link="`/movie/${item.id}`"
-                  >
-                    {{ item.name }}
-                  </Pic>
-                </div>
-              </div>
-              <div v-if="data.blogList && data.blogList.length > 0" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="post" />
-                  博文
-                </div>
-                <div class="day__data__main__item__content">
-                  <Pic
-                    v-for="item in data.mblogList"
-                    :key="item.id"
-                    :url="item.image"
-                    width="25%"
-                    height="200px"
-                    :style="{margin:'8px'}"
-                    :link="`/movie/${blog.id}`"
-                  >
-                    {{ item.name }}
-                  </Pic>
-                </div>
-              </div>
-              <div v-if="data.projectList && data.projectList.length > 0" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="project" />
-                  项目
-                </div>
-                <div class="day__data__main__item__content">
-                  <Pic
-                    v-for="item in data.projectList"
-                    :key="item.id"
-                    :url="item.image"
-                    width="100%"
-                    height="200px"
-                    :style="{margin:'8px'}"
-                    :link="`/project/${item.id}`"
-                  >
-                    {{ item.name }}
-                  </Pic>
-                </div>
-              </div>
-              <div v-if="data.ideaList && data.ideaList.length > 0" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="idea" />
-                  想法
-                </div>
-                <div class="day__data__main__item__content">
-                  <ItemTimeline v-for="item in data.ideaList" :key="item.id" :item="item" text="detail" />
-                </div>
-              </div>
-              <div v-if="data.planList && data.planList.length > 0" class="day__data__main__item">
-                <div class="day__data__main__item__name">
-                  <Icon name="plan" />
-                  计划
-                </div>
-                <div class="day__data__main__item__content">
-                  <Pic
-                    v-for="item in data.planList"
-                    :key="item.id"
-                    :url="item.image"
-                    width="30%"
-                    height="200px"
-                    :style="{margin:'8px'}"
-                    :link="`/plan/${item.id}`"
-                  >
-                    {{ item.name }}
-                  </Pic>
-                </div>
-              </div>
-            </Waterfall>
-          </div>
-        </LayoutCol>
-        <LayoutCol
-          :lg="{span:24}"
-          :xl="{span:4}"
-        >
-          <template v-if="differentYears">
-            <Nameplate title="那年今日" sub-title="retrospect" />
-            <Card
-              v-for="item in differentYears"
-              :key="item.date"
-              class="day__block"
+      <Blocker height="24px" />
+      <Nameplate>
+        <Datetime slot="title" :time="data.dayItem.date" format="YYYY年MM月DD日" class="day__date__text" />
+        <small slot="subTitle">
+          <Datetime :time="data.dayItem.date" format="ddd" />
+        </small>
+      </Nameplate>
+      <div class="day__data">
+        <Waterfall :column="3" gap="16px" class="day__data__main">
+          <InfoCell v-if="data.dayItem.event" icon="calendar" name="事件">
+            <Tag>{{ data.dayItem.event }}</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.time_sleep && data.dayItem.time_wakeup" icon="sleep" name="睡眠">
+            <Tag>
+              入眠{{ data.dayItem.time_sleep }},
+              醒来{{ data.dayItem.time_wakeup }},
+              时长{{ sleepHour }}
+            </Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.weather" icon="weather" name="天气">
+            <Tag>{{ data.dayItem.weather }}</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.step" icon="run" name="步数">
+            <Tag>{{ data.dayItem.step }}步</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.weight" icon="weight" name="体重">
+            <Tag>{{ data.dayItem.weight }}斤</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.movement" icon="schedule" name="活动">
+            <Tag>{{ data.dayItem.movement }}</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.mood" icon="mood" name="状态">
+            <Tag>{{ data.dayItem.mood }}</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.location" icon="location" name="位置">
+            <Tag>{{ data.dayItem.location }}</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.people" icon="user" name="人物">
+            <Tag>{{ data.dayItem.people }}</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.medicine" icon="medicine" name="药物">
+            <Tag>{{ data.dayItem.medicine }}</Tag>
+          </InfoCell>
+          <InfoCell v-if="data.dayItem.food" icon="food" name="食物">
+            <Tag>{{ data.dayItem.food }}</Tag>
+            <template v-if="data.dayItem.food_images && data.dayItem.food_images.length>0">
+              <Blocker height="30px" divider divider-height="1px" />
+              <Pic
+                v-for="url in data.dayItem.food_images"
+                :key="url"
+                :url="url"
+                radius="2px"
+                can-preview
+                :styles="{width: '45%',height:'160px',margin:'4px',border:'1px solid #efefef'}"
+              ></Pic>
+            </template>
+          </InfoCell>
+          <InfoCell v-if="data.movieList && data.movieList.length > 0" icon="movie" name="观影">
+            <Pic
+              v-for="item in data.movieList"
+              :key="item.id"
+              :url="item.image"
+              width="30%"
+              height="340px"
+              :style="{margin:'8px'}"
+              :link="`/movie/${item.id}`"
             >
-              <Datetime :time="item.date" type="date" from-now />
-            </Card>
-          </template>
-        </LayoutCol>
-      </LayoutRow>
+              {{ item.name }}
+            </Pic>
+          </InfoCell>
+          <InfoCell v-if="data.blogList && data.blogList.length > 0" icon="post" name="博文">
+            <Pic
+              v-for="item in data.mblogList"
+              :key="item.id"
+              :url="item.image"
+              width="25%"
+              height="200px"
+              :style="{margin:'8px'}"
+              :link="`/movie/${blog.id}`"
+            >
+              {{ item.name }}
+            </Pic>
+          </InfoCell>
+          <InfoCell v-if="data.projectList && data.projectList.length > 0" icon="project" name="项目">
+            <Pic
+              v-for="item in data.projectList"
+              :key="item.id"
+              :url="item.image"
+              width="100%"
+              height="200px"
+              :style="{margin:'8px'}"
+              :link="`/project/${item.id}`"
+            >
+              {{ item.name }}
+            </Pic>
+          </InfoCell>
+          <InfoCell v-if="data.ideaList && data.ideaList.length > 0" icon="idea" name="想法">
+            <ItemTimeline v-for="item in data.ideaList" :key="item.id" :item="item" text="detail" />
+          </InfoCell>
+          <InfoCell v-if="data.planList && data.planList.length > 0" icon="plan" name="计划">
+            <Pic
+              v-for="item in data.planList"
+              :key="item.id"
+              :url="item.image"
+              width="30%"
+              height="200px"
+              :style="{margin:'8px'}"
+              :link="`/plan/${item.id}`"
+            >
+              {{ item.name }}
+            </Pic>
+          </InfoCell>
+        </Waterfall>
+      </div>
+      <Blocker height="24px" />
+      <Nameplate title="往昔回顾" sub-title="retrospect" />
+      <InfoBox v-if="data.dayItem.day_previous" icon="angle-left" description="前一天" :path="`/day/${data.dayItem.day_previous.date}`" :image="data.dayItem.day_previous.image">
+        <CustomText size="1.2rem">
+          <Datetime :time="data.dayItem.day_previous.date" format="YYYY年" :link-with-timeline="false" />
+        </CustomText>
+        <br>
+        <CustomText size="1rem">
+          <Datetime :time="data.dayItem.day_previous.date" format="MM月DD日 ddd" :link-with-timeline="false" />
+        </CustomText>
+      </InfoBox><template v-if="differentYears">
+        <InfoBox v-for="item in differentYears" :key="item.date" icon="check" :path="`/day/${item.date}`" :image="item.image">
+          <CustomText size="1.2rem">
+            <Datetime :time="item.date" format="YYYY年" :link-with-timeline="false" />
+          </CustomText>
+          <br>
+          <CustomText size="1rem">
+            <Datetime :time="item.date" format="MM月DD日 ddd" :link-with-timeline="false" />
+          </CustomText>
+          <Datetime slot="description" :time="item.date" type="date" only-from-now :link-with-timeline="false" />
+        </InfoBox>
+      </template><InfoBox v-if="data.dayItem.day_next" icon="angle-right" description="后一天" :path="`/day/${data.dayItem.day_next.date}`" :image="data.dayItem.day_next.image">
+        <CustomText size="1.2rem">
+          <Datetime :time="data.dayItem.day_next.date" format="YYYY年" :link-with-timeline="false" />
+        </CustomText>
+        <br>
+        <CustomText size="1rem">
+          <Datetime :time="data.dayItem.day_next.date" format="MM月DD日 ddd" :link-with-timeline="false" />
+        </CustomText>
+      </InfoBox>
     </LayoutContainer>
     <Blocker height="60px" />
     <LayoutContainer>
@@ -454,7 +274,12 @@ export default {
         planCollection: planList
       }
     } = await $axios.$get(`/api/days/${params.date}`)
-    store.commit('SET_CURRENT_ITEM', { image: dayItem.image, name: `${dayItem.date}日迹`, category: dayItem.category, date: dayItem.date })
+    store.commit('SET_CURRENT_ITEM', {
+      image: dayItem.image,
+      name: `${dayItem.date}日迹`,
+      category: dayItem.category,
+      date: dayItem.date
+    })
     return {
       data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList }
     }

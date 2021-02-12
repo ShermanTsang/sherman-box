@@ -25,9 +25,9 @@ export default function ({ $axios, redirect }) {
 
   $axios.onError((error) => {
     const statusCode = Number.parseInt(error.response && error.response.status)
-    const statusText = error.response && error.response.statusText
+    const statusCustomText = error.response && error.response.statusCustomText
     if (statusCode === 500) {
-      redirect('/error', { statusCode, statusText })
+      redirect('/error', { statusCode, statusCustomText })
     }
   })
 

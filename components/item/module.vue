@@ -38,15 +38,15 @@
     <div class="item-module__main">
       <div class="item-module__main__name">
         <Icon :name="item.icon" size="26px" color="#999" />
-        <CustomFont color="#666">
+        <CustomText color="#666">
           {{ item.name }}
-        </CustomFont>
+        </CustomText>
       </div>
       <Blocker divider height="20px" />
       <div class="item-module__main__description">
-        <CustomFont color="#999">
+        <CustomText color="#999">
           {{ item.description }}
-        </CustomFont>
+        </CustomText>
       </div>
     </div>
   </Card>

@@ -1,5 +1,7 @@
 <style lang="scss">
-  .menu {
+$prefix: 'menu';
+
+.#{$prefix} {
 
     &--vertical {
       display: flex;
@@ -156,9 +158,9 @@
         @click="clickModalMenu(item.url)"
       >
         <Icon :name="item.icon" />
-        <CustomFont display="inline">
+        <CustomText display="inline">
           {{ item.name }}
-        </CustomFont>
+        </CustomText>
       </div>
     </div>
     <Modal v-model="state.showModal" icon="menu" title="模块" width="500px">
@@ -174,9 +176,9 @@
             <Icon :name="item.icon" size="24px" />
           </div>
           <div class="menu--vertical__item__name web-font">
-            <CustomFont display="inline">
+            <CustomText display="inline">
               {{ item.name }}
-            </CustomFont>
+            </CustomText>
           </div>
         </div>
       </div>

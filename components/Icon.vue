@@ -1,5 +1,7 @@
 <style lang="scss">
-  .iconfont {
+$prefix: 'iconfont';
+
+  .#{$prefix} {
     display: inline-block;
     letter-spacing: 1px;
   }

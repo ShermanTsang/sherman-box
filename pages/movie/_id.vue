@@ -146,7 +146,7 @@
       <Blocker height="60px" />
       <LayoutContainer class="movie__content">
         <Nameplate title="追剧" sub-title="binge-watching" />
-        <Tag>{{ data.movieItem.schedule }}</tag>
+        <Tag>{{ data.movieItem.schedule }}</Tag>
       </LayoutContainer>
     </template>
     <Blocker height="60px" />

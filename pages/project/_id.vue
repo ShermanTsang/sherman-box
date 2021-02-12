@@ -54,61 +54,6 @@
 
     }
 
-    &__detail {
-      background-color: #fff;
-      display: flex;
-      flex-flow: row wrap;
-
-      &__item {
-        flex: 0 0 33.33%;
-        border: 1px solid #eee;
-        position: relative;
-        font-size: .95rem;
-        color: #666;
-        height: 200px;
-        margin-left: -1px;
-        margin-bottom: -1px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: column;
-        transition: all .3s ease-in-out;
-
-        &__name {
-          flex: 0 1 20px;
-          font-size: 1rem;
-          letter-spacing: 1px;
-          line-height: 1.5;
-          padding-bottom: 10px;
-          margin: 20px 10px;
-          border-bottom: 2px solid #efefef;
-          transition: all .3s;
-
-          i {
-            margin-right: 1rem;
-            font-size: 1.2rem;
-          }
-        }
-
-        &__info {
-          font-size: .85rem;
-          padding: 10px;
-          width: 100%;
-          text-align: center;
-          overflow-x: hidden;
-          overflow-y: auto;
-
-          img {
-            max-height: 100px;
-          }
-        }
-
-        &:hover {
-          box-shadow: 0 0 20px rgba(0, 0, 0, .1) inset;
-        }
-      }
-    }
-
     @media ($screen-xs-max) {
       &__header {
         &__main {
@@ -120,28 +65,6 @@
           &__description {
             margin: 20px 20px 0 20px;
             padding: 20px;
-          }
-        }
-      }
-      &__detail {
-        display: block;
-
-        &__item {
-          border: none;
-          padding: 20px 10px;
-          width: 100%;
-          height: auto;
-          display: block;
-
-          &__name {
-            margin: 0;
-          }
-
-          &__info {
-            padding: 10px 0 0 0;
-            text-align: left;
-            overflow-x: unset;
-            overflow-y: unset;
           }
         }
       }
@@ -173,108 +96,48 @@
     <Blocker height="60px" />
     <LayoutContainer>
       <Nameplate title="详情" sub-title="Detail" />
-      <div class="project__detail">
-        <div v-if="data.projectItem.datetime_start" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="clock" />
-            项目时间
-          </div>
-          <div class="project__detail__item__info">
-            <Tag>
-              始
-              <Datetime :time="data.projectItem.datetime_start" from-now type="datetime" />
-            </tag>
-            <Tag v-if="data.projectItem.datetime_end">
-              终
-              <Datetime :time="data.projectItem.datetime_end" from-now type="datetime" />
-            </tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.category" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="category" />
-            项目类型
-          </div>
-          <div class="project__detail__item__info">
-            <Tag>{{ data.projectItem.category.name }}</tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.tags" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="hashtag" />
-            项目标签
-          </div>
-          <div class="project__detail__item__info">
-            <Tag>{{ data.projectItem.tags }}</tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.state" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="state" />
-            项目状态
-          </div>
-          <div class="project__detail__item__info">
-            <Tag>{{ data.projectItem.state }}</tag>
-            <Tag v-if="data.projectItem.hours">
-              耗时约{{ data.projectItem.hours }}小时
-            </tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.role" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="role" />
-            我的角色
-          </div>
-          <div class="project__detail__item__info">
-            <Tag>{{ data.projectItem.role }}</tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.client" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="user-client" />
-            需求委托方
-          </div>
-          <div class="project__detail__item__info">
-            <Tag>{{ data.projectItem.client }}</tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.coworker" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="user-helper" />
-            项目协作者
-          </div>
-          <div class="project__detail__item__info">
-            <Tag>{{ data.projectItem.coworker }}</tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.url" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="link" />
-            预览地址
-          </div>
-          <div class="project__detail__item__info">
-            <Tag><a :href="data.projectItem.url" target="_blank" rel="noopener">点击进入</a></tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.github" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="github" />
-            Github仓库
-          </div>
-          <div class="project__detail__item__info">
-            <Tag><a :href="data.projectItem.github" target="_blank" rel="noopener">点击进入</a></tag>
-          </div>
-        </div>
-        <div v-if="data.projectItem.qrcode" class="project__detail__item">
-          <div class="project__detail__item__name">
-            <Icon name="github" />
-            预览地址
-          </div>
-          <div class="project__detail__item__info">
-            <img v-lazy="$getOssUrl(data.projectItem.qrcode)">
-          </div>
-        </div>
-      </div>
+      <Waterfall :column="2" gap="16px">
+        <InfoCell v-if="data.projectItem.datetime_start" name="项目时间" icon="clock">
+          <Tag>
+            始
+            <Datetime :time="data.projectItem.datetime_start" from-now type="datetime" />
+          </Tag>
+          <Tag v-if="data.projectItem.datetime_end">
+            终
+            <Datetime :time="data.projectItem.datetime_end" from-now type="datetime" />
+          </Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.category" name="项目类型" icon="category">
+          <Tag>{{ data.projectItem.category.name }}</Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.tags" name="项目标签" icon="hashtag">
+          <Tag>{{ data.projectItem.tags }}</Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.state" name="项目状态" icon="state">
+          <Tag>{{ data.projectItem.state }}</Tag>
+          <Tag v-if="data.projectItem.hours">
+            耗时约{{ data.projectItem.hours }}小时
+          </Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.role" name="我的角色" icon="role">
+          <Tag>{{ data.projectItem.role }}</Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.client" name="需求委托方" icon="user-client">
+          <Tag>{{ data.projectItem.client }}</Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.coworker" name="项目协作者" icon="user-helper">
+          <Tag>{{ data.projectItem.coworker }}</Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.url" name="预览地址" icon="link">
+          <Tag><a :href="data.projectItem.url" target="_blank" rel="noopener">点击进入</a></Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.github" name="Github仓库" icon="github">
+          <Tag><a :href="data.projectItem.github" target="_blank" rel="noopener">点击进入</a></Tag>
+        </InfoCell>
+        <InfoCell v-if="data.projectItem.qrcode" name="预览地址" icon="github">
+          <img v-lazy="$getOssUrl(data.projectItem.qrcode)">
+        </InfoCell>
+      </Waterfall>
     </LayoutContainer>
     <template v-if="data.projectItem.content">
       <Blocker height="60px" />

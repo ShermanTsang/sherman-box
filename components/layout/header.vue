@@ -16,7 +16,6 @@
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
       height: $header-main-height;
 
       &__logo {
@@ -74,22 +73,26 @@
 
 <template>
   <header class="header" :class="{'header--shadow': state.isPinNavigator}">
-    <div class="header__main">
-      <div id="logo" class="header__main__logo">
-        <Logo type="text" height="40px" />
-      </div>
-      <div class="header__main__content">
-        <div class="header__main__content__menu">
-          <ModuleMenu />
+    <LayoutContainer>
+      <div class="header__main">
+        <div id="logo" class="header__main__logo">
+          <Logo type="text" height="40px" />
         </div>
-        <div class="header__main__content__action">
-          <Search />
+        <div class="header__main__content">
+          <div class="header__main__content__menu">
+            <ModuleMenu />
+          </div>
+          <div class="header__main__content__action">
+            <Search />
+          </div>
         </div>
       </div>
-    </div>
+    </LayoutContainer>
     <transition name="slideFromBottom">
       <div id="navigator" class="header__navigator" :class="{'header__navigator--fixed': state.isPinNavigator}">
-        <Navigator />
+        <LayoutContainer>
+          <Navigator />
+        </LayoutContainer>
       </div>
     </transition>
   </header>

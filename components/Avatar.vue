@@ -1,5 +1,7 @@
 <style lang="scss">
-  .avatar {
+$prefix: 'avatar';
+
+  .#{$prefix} {
     display: inline-block;
     transition: all .2s ease-in;
 
@@ -16,19 +18,20 @@
       &:hover {
         box-shadow: 0 0 8px rgba(177, 177, 177, .5);
       }
+
     }
   }
 </style>
 
 <template>
   <div class="avatar" :style="style" @click="$emit('click')">
-    <Pic :url="avatarUrl" />
+    <Pic v-if="value" :url="avatarUrl" />
+    <Pic v-else path="defaultAvatar.png" />
   </div>
 </template>
 
 <script>
 import Gravatar from 'gravatar-url'
-import defaultEmail from '@/assets/image/defaultAvatar.png'
 
 export default {
   name: 'Avatar',
@@ -57,7 +60,7 @@ export default {
           return `http://q2.qlogo.cn/headimg_dl?dst_uin=${value}&spec=100`
         }
       }
-      return defaultEmail
+      return null
     },
     style () {
       return {

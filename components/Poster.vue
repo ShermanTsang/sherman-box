@@ -1,5 +1,7 @@
 <style lang="scss">
-  .poster {
+$prefix: 'poster';
+
+.#{$prefix} {
 
     &__form {
     }
@@ -94,7 +96,7 @@
         <div class="poster__body__image">
           <Pic :url="image" auto-fill :lazy-load="false" :need-proxy="true" />
         </div>
-        <div class="poster__body__text" v-html="posterTextHtml" />
+        <div class="poster__body__text" v-html="posterCustomTextHtml" />
         <div class="poster__body__footer">
           <div class="poster__body__footer__qrcode">
             <QrCode v-if="data.pageUrl" :size="80" color-dark="#999">
@@ -173,12 +175,12 @@ export default {
       })
       return variableFieldArray
     },
-    posterTextHtml () {
-      let posterText = this.textTemplate
+    posterCustomTextHtml () {
+      let posterCustomText = this.textTemplate
       this.variableFieldArray.forEach((item) => {
-        posterText = posterText.replace(new RegExp('{' + item.field + '.*?}'), `<span>${this.form[item.field]}</span>`)
+        posterCustomText = posterCustomText.replace(new RegExp('{' + item.field + '.*?}'), `<span>${this.form[item.field]}</span>`)
       })
-      return posterText
+      return posterCustomText
     }
   },
   mounted () {

@@ -1,5 +1,7 @@
 <style lang="scss">
-  .page-loading {
+$prefix: 'page-loading';
+
+.#{$prefix} {
     position: fixed;
     left: 50%;
     bottom: 60px;

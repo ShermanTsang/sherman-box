@@ -130,10 +130,10 @@
     <div v-if="item.image" v-lazy:background-image="$getOssUrl(item.image)" class="day-item__image"></div>
     <div class="day-item__meta">
       <div class="day-item__meta__main">
-        <CustomFont>{{ $time(item.date).format('MM.DD') }}</CustomFont>
+        <CustomText>{{ $time(item.date).format('MM.DD') }}</CustomText>
       </div>
       <div class="day-item__meta__sub">
-        <CustomFont>{{ $time(item.date).format('YYYY') }} / {{ $time(item.date).format('dddd') }}</CustomFont>
+        <CustomText>{{ $time(item.date).format('YYYY') }} / {{ $time(item.date).format('dddd') }}</CustomText>
       </div>
     </div>
     <div class="day-item__info">

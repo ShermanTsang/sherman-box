@@ -1,5 +1,7 @@
 <style lang="scss">
-.catalog {
+$prefix: 'catalog';
+
+.#{$prefix} {
   &__item {
 
     &__main {
@@ -95,7 +97,7 @@
             &:hover {
               padding: 16px 10px;
 
-              .catalog__item__main__content__object__item__image {
+              .#{$prefix}__item__main__content__object__item__image {
                 opacity: 1;
               }
             }

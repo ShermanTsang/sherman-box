@@ -1,5 +1,7 @@
 <style lang="scss">
-  .pagination {
+$prefix: 'pagination';
+
+.#{$prefix} {
     margin: 0 auto;
     text-align: center;
 

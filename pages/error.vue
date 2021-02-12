@@ -4,7 +4,7 @@
 <template>
   <LayoutContainer>
     <Tip asset="pic-error">
-      {{ $route.query.stateText || '遇到错误了' }} 错误代码:{{ $route.query.stateCode || '000' }}
+      {{ $route.query.stateCustomText || '遇到错误了' }} 错误代码:{{ $route.query.stateCode || '000' }}
     </Tip>
   </LayoutContainer>
 </template>

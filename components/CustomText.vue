@@ -1,18 +1,20 @@
 <style lang="scss">
-  .sentence {
+$prefix: 'custom-text';
+
+  .#{$prefix} {
     font-family: SourceHanSerifCN-SemiBold, $font-family-base;
   }
 </style>
 
 <template>
-  <div class="sentence" :style="style">
+  <div class="custom-text" :style="style">
     <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CustomFont',
+  name: 'CustomText',
   props: {
     font: {
       type: String,

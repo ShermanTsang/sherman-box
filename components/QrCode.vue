@@ -1,5 +1,7 @@
 <style lang="scss">
-  .qr-code {
+$prefix: 'qr-code';
+
+.#{$prefix} {
     display: flex;
     color: #999;
     font-size: .9rem;

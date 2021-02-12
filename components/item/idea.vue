@@ -3,6 +3,7 @@
     padding: 32px;
     cursor: pointer;
     border: 1px solid #efefef;
+    margin: 16px 0;
 
     &__content {
       letter-spacing: 2px;

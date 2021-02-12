@@ -43,35 +43,35 @@
     <Slider>
       <SliderItem layout="flex-column-center">
         <div class="index__about">
-          <CustomFont color="#666" size="3.4rem">
+          <CustomText color="#666" size="3.4rem">
             你好，
-          </CustomFont>
-          <CustomFont color="#666" size="2.9rem">
+          </CustomText>
+          <CustomText color="#666" size="2.9rem">
             我叫曾小满。
-          </CustomFont>
-          <CustomFont color="#999" size="1.5rem">
+          </CustomText>
+          <CustomText color="#999" size="1.5rem">
             一位热爱生活、富有创造力的开发者。
-          </CustomFont>
-          <CustomFont color="#666" size="1.3rem" height="2">
+          </CustomText>
+          <CustomText color="#666" size="1.3rem" height="2">
             很高兴与你相遇！
-          </CustomFont>
+          </CustomText>
           <Blocker height="16px" />
           <div class="index__about__button">
             <div class="index__about__button__item">
               <Btn :to="{name:'timeline'}">
                 <Icon name="home" />
-                <CustomFont display="inline">
+                <CustomText display="inline">
                   进入
-                </CustomFont>
+                </CustomText>
               </Btn>
             </div>
             <div class="index__about__button__item">
               <Search ref="search">
                 <Btn @click="$refs.search.state.showModal = true">
                   <Icon name="search" />
-                  <CustomFont display="inline">
+                  <CustomText display="inline">
                     搜索
-                  </CustomFont>
+                  </CustomText>
                 </Btn>
               </Search>
             </div>
@@ -79,9 +79,9 @@
               <Search ref="search">
                 <Btn @click="$refs.search.state.showModal = true">
                   <Icon name="token" />
-                  <CustomFont display="inline">
+                  <CustomText display="inline">
                     口令
-                  </CustomFont>
+                  </CustomText>
                 </Btn>
               </Search>
             </div>
@@ -89,9 +89,9 @@
               <Search ref="search">
                 <Btn @click="$refs.search.state.showModal = true">
                   <Icon name="door" />
-                  <CustomFont display="inline">
+                  <CustomText display="inline">
                     任意门
-                  </CustomFont>
+                  </CustomText>
                 </Btn>
               </Search>
             </div>
@@ -101,12 +101,12 @@
       <SliderItem layout="flex-column-center" :background-image="$getImageAsset('index-module-background')">
         <div class="index__module">
           <div class="index__module__title">
-            <CustomFont color="#999" size="1.4rem">
+            <CustomText color="#999" size="1.4rem">
               这是我构思、设计与开发的个人网站，它也是我的实验室。
-            </CustomFont>
-            <CustomFont color="#666" size="1.8rem">
+            </CustomText>
+            <CustomText color="#666" size="1.8rem">
               "模块化"是中心设计思想。
-            </CustomFont>
+            </CustomText>
           </div>
           <div class="index__module__area">
             <LayoutRow :gutter="16">

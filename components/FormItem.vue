@@ -1,5 +1,7 @@
 <style lang="scss">
-  .form-item {
+$prefix: 'form-item';
+
+  .#{$prefix} {
 
     &:not(:first-child) {
       margin-top: 16px;

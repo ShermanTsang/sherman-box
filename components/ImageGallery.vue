@@ -1,5 +1,7 @@
 <style lang="scss">
-  .image-modal {
+$prefix: 'image-gallery';
+
+  .#{$prefix} {
     z-index: $z-index-modal;
     position: fixed;
     top: 0;
@@ -37,8 +39,8 @@
 
 <template>
   <transition name="fade">
-    <div v-if="imageUrl" class="image-modal" @click="handleClick($event)">
-      <div class="image-modal__image">
+    <div v-if="imageUrl" class="image-gallery" @click="handleClick($event)">
+      <div class="image-gallery__image">
         <Pic :url="imageUrl" />
       </div>
     </div>
