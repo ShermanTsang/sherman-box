@@ -15,8 +15,4 @@ if (process.env.NODE_ENV !== 'production') {
   console.table(config)
 }
 
-function getConfig() {
-
-}
-
 export default config

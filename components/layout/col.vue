@@ -1,13 +1,13 @@
 <style scoped lang="scss">
-  .col {
-    $class-prefix: col-;
+  .i-col {
+    $class-prefix: i-col-;
 
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
         width: ($n / 24) * 100%;
       }
     }
-    $class-prefix: offset-;
+    $class-prefix:  i-offset-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
         margin-left: ($n / 24) * 100%;
@@ -15,13 +15,13 @@
     }
 
     @media ($screen-xs-max) {
-      $class-prefix: col-xs-;
+      $class-prefix: i-col-xs-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           width: ($n / 24) * 100%;
         }
       }
-      $class-prefix: offset-xs-;
+      $class-prefix:  i-offset-xs-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           margin-left: ($n / 24) * 100%;
@@ -30,13 +30,13 @@
     }
 
     @media ($screen-sm-min) {
-      $class-prefix: col-sm-;
+      $class-prefix: i-col-sm-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           width: ($n / 24) * 100%;
         }
       }
-      $class-prefix: offset-sm-;
+      $class-prefix:  i-offset-sm-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           margin-left: ($n / 24) * 100%;
@@ -45,13 +45,13 @@
     }
 
     @media ($screen-md-min) {
-      $class-prefix: col-md-;
+      $class-prefix: i-col-md-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           width: ($n / 24) * 100%;
         }
       }
-      $class-prefix: offset-md-;
+      $class-prefix:  i-offset-md-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           margin-left: ($n / 24) * 100%;
@@ -60,13 +60,13 @@
     }
 
     @media ($screen-lg-min) {
-      $class-prefix: col-lg-;
+      $class-prefix: i-col-lg-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           width: ($n / 24) * 100%;
         }
       }
-      $class-prefix: offset-lg-;
+      $class-prefix:  i-offset-lg-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           margin-left: ($n / 24) * 100%;
@@ -75,13 +75,13 @@
     }
 
     @media ($screen-xl-min) {
-      $class-prefix: col-xl-;
+      $class-prefix: i-col-xl-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           width: ($n / 24) * 100%;
         }
       }
-      $class-prefix: offset-xl-;
+      $class-prefix:  i-offset-xl-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           margin-left: ($n / 24) * 100%;
@@ -90,13 +90,13 @@
     }
 
     @media ($screen-xxl-min) {
-      $class-prefix: col-xxl-;
+      $class-prefix: i-col-xxl-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           width: ($n / 24) * 100%;
         }
       }
-      $class-prefix: offset-xxl-;
+      $class-prefix:  i-offset-xxl-;
       @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
           margin-left: ($n / 24) * 100%;
@@ -108,7 +108,7 @@
 </style>
 
 <template>
-  <div class="col" :class="colClass" :style="colStyle">
+  <div class="i-col" :class="colClass" :style="colStyle">
     <slot />
   </div>
 </template>
@@ -197,8 +197,8 @@ export default {
     createClasses (obj, str = '') {
       if (!obj) { return [] } // 值为 undefined 会产生 bug
       const array = []
-      if (obj.span) { array.push(`col-${str}${obj.span}`) } // 关联scss的绑定动态变量
-      if (obj.offset) { array.push(`offset-${str}${obj.offset}`) }
+      if (obj.span) { array.push(`i-col-${str}${obj.span}`) } // 关联scss的绑定动态变量
+      if (obj.offset) { array.push(`i- i-offset-${str}${obj.offset}`) }
       return array
     }
   }

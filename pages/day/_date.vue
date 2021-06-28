@@ -60,30 +60,15 @@
     }
 
     &:hover {
-      .day__image__background {
-        opacity: .5;
-        animation: imageMove 6s ease-in-out forwards infinite;
-      }
 
       .day__image__main {
         box-shadow: 0 0 30px rgba(0, 0, 0, .4);
       }
+
     }
 
   }
 
-}
-
-@keyframes imageMove {
-  0% {
-    background-position: top left;
-  }
-  50% {
-    background-position: center center;
-  }
-  100% {
-    background-position: bottom right;
-  }
 }
 
 </style>
@@ -153,7 +138,7 @@
             <template v-if="data.dayItem.food_images && data.dayItem.food_images.length>0">
               <Blocker height="30px" divider divider-height="1px" />
               <Pic
-                v-for="url in data.dayItem.food_images"
+                v-for="url in JSON.parse(data.dayItem.food_images || '[]')"
                 :key="url"
                 :url="url"
                 radius="2px"

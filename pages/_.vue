@@ -23,7 +23,7 @@ export default {
     return {
       title: '页面不存在',
       meta: [
-        { hid: 'index', name: 'description', content: this.$getSeoInfo('description', '页面不存在') }
+        { hid: '404', name: 'description', content: this.$getSeoInfo('description', '页面不存在') }
       ]
     }
   }

@@ -155,7 +155,7 @@ $prefix: 'menu';
         :key="index"
         :class="{'menu--horizontal__item--active': isActiveMenu(item)}"
         class="menu--horizontal__item menu--horizontal__item--normal"
-        @click="clickModalMenu(item.url)"
+        @click="clickModalMenu(item.slug)"
       >
         <Icon :name="item.icon" />
         <CustomText display="inline">

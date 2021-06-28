@@ -65,7 +65,7 @@ export default {
       return this.$getStringCount(this.tagValue)
     },
     tagResult () {
-      return this.tagValue.split(',')
+      return this.tagValue.split(',').filter(tag => tag !== '')
     }
   }
 }

@@ -26,14 +26,14 @@ export default function ({ store }) {
 
   function getConfig (key, returnType = 'value') {
     if (!key) {
-      return '[ key is null ]'
+      throw new Error('Please input key')
     }
     const configurationList = this.$store.getters.configurationList || []
     const configurationTarget = configurationList.find((item) => {
-      return item.name === key || item.id === key
+      return item.key === key || item.id === key
     })
     if (!configurationTarget) {
-      return `[ configuration ${key} not found ]`
+      return `{{ ${key} }}`
     }
     return returnType === 'object' ? configurationTarget : configurationTarget.value || ''
   }

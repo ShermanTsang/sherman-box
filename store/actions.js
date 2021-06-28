@@ -1,5 +1,7 @@
 export default {
   async getConfigurationList ({ commit }) {
+    const test = await this.$axios.$get('/api/configurations')
+    console.log(test)
     const { data } = await this.$axios.$get('/api/configurations')
     commit('SET_CONFIGURATION_LIST', data)
   },
@@ -30,15 +32,15 @@ export default {
         this.$axios.$get('/api/fileAssets').catch(err => err),
         this.$axios.$get('/api/imageAssets').catch(err => err),
         this.$axios.$get('/api/modules').catch(err => err),
-        this.$axios.$get('/api/pages').catch(err => err),
-        this.$axios.$get('/api/common/statistics/module').catch(err => err)
+        this.$axios.$get('/api/pages').catch(err => err)
+        // this.$axios.$get('/api/common/statistics/module').catch(err => err)
       ])
     commit('SET_CONFIGURATION_LIST', configurations.data)
     commit('SET_FILE_ASSET_LIST', fileAssets.data)
     commit('SET_IMAGE_ASSET_LIST', imageAssets.data)
     commit('SET_MODULE_LIST', modules.data)
     commit('SET_PAGE_LIST', pages.data)
-    commit('SET_STATISTICS_MODULE', statisticsModule.data)
+    // commit('SET_STATISTICS_MODULE', statisticsModule.data)
   },
   async nuxtServerInit ({ dispatch }) {
     await dispatch('getInitData')

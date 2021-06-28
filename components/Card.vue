@@ -1,5 +1,5 @@
 <style lang="scss">
-  .card {
+  .i-card {
     transition: all .2s ease-in-out;
     box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
     background-color: #ffffff;
@@ -16,7 +16,7 @@
 </style>
 
 <template>
-  <div class="card" @click="$emit('click')">
+  <div class="i-card" @click="$emit('click')">
     <slot />
   </div>
 </template>

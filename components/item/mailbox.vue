@@ -85,14 +85,14 @@
   >
     <div class="card mail-item">
       <div class="mail-item__header">
-        <nuxt-link nuxt-link :to="`/mailbox/${item.id}`">
+        <nuxt-link :to="`/mailbox/${item.id}`">
           <div class="mail-item__header__image">
             <img :src="$getOssUrl(item.image)">
           </div>
         </nuxt-link>
       </div>
       <div class="mail-item__content">
-        <nuxt-link nuxt-link :to="`/mailbox/${item.id}`">
+        <nuxt-link :to="`/mailbox/${item.id}`">
           <span>From</span> {{ item.from }}
           <span>To</span> {{ item.to }}
         </nuxt-link>

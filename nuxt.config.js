@@ -151,7 +151,7 @@ export default {
         })
       }
     }
-  }
+  },
 
   /*
   ** Progressive web app configuration
@@ -172,4 +172,9 @@ export default {
   //     }
   //   }
   // }
+
+  buildModules: [
+    'nuxt-windicss'
+  ]
+
 }

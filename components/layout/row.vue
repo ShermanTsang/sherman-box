@@ -1,5 +1,5 @@
 <style scoped lang="scss">
-  .row {
+  .i-row {
     display: flex;
     flex-wrap: wrap; // 允许换行，当row的两个col的span值都为24时，就呈现两行
     &.align-left {
@@ -17,7 +17,7 @@
 </style>
 
 <template>
-  <div class="row" :style="rowStyle" :class="rowClass">
+  <div class="i-row" :style="rowStyle" :class="rowClass">
     <slot />
   </div>
 </template>
