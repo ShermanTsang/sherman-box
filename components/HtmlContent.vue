@@ -4,7 +4,7 @@ $prefix: 'html-content';
   .#{$prefix} {
 
     article {
-      font-size: 1rem !important;
+      font-size: 1.1rem !important;
       counter-reset: h1 !important;
       color: #666 !important;
       letter-spacing: 1px !important;
@@ -101,6 +101,7 @@ $prefix: 'html-content';
         -webkit-margin-start: 0 !important;
         -webkit-margin-end: 0 !important;
         line-height: 1.8 !important;
+        font-size: 1rem !important;
 
         a {
           color: $theme-color !important;

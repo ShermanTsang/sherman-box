@@ -1,14 +1,8 @@
 <style lang="scss">
-  .moment {
-    display: inline;
-    position: relative;
-    transition: all .3s ease-in-out;
-    color: unset !important;
-  }
 </style>
 
 <template>
-  <div v-if="localTime" class="moment" :style="style" @click="handleClick">
+  <div v-if="localTime" class="inline relative hover:(bg-[#0a84ea] text-white px-2) transition duration-300 ease-linear" :style="style" @click="handleClick">
     <template v-if="onlyFromNow">
       {{ fromNowFormat }}
     </template>

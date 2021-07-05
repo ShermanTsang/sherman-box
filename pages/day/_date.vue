@@ -2,9 +2,7 @@
 .day {
 
   &__image {
-    position: relative;
-    height: 500px;
-    margin-bottom: 60px;
+    @apply w-full h-[600px] relative mb-10;
 
     &__background {
       position: absolute;
@@ -62,7 +60,7 @@
     &:hover {
 
       .day__image__main {
-        box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+        box-shadow: 0 0 10px rgba(0, 0, 0, .4);
       }
 
     }
@@ -82,12 +80,12 @@
         class="day__image__background"
       >
       </div>
-      <div class="day__image__main">
+      <LayoutContainer class="day__image__main">
         <img v-lazy="$getOssUrl(data.dayItem.image)">
         <div v-if="data.dayItem.image_text" class="day__image__main__text">
           {{ data.dayItem.image_text }}
         </div>
-      </div>
+      </LayoutContainer>
     </div>
     <LayoutContainer>
       <Blocker height="24px" />
@@ -162,7 +160,7 @@
           </InfoCell>
           <InfoCell v-if="data.blogList && data.blogList.length > 0" icon="post" name="博文">
             <Pic
-              v-for="item in data.mblogList"
+              v-for="item in data.blogList"
               :key="item.id"
               :url="item.image"
               width="25%"
@@ -251,7 +249,8 @@ export default {
   async asyncData ({ $axios, store, params }) {
     const {
       data: {
-        dayItem, movieCollection: movieList,
+        dayItem,
+        movieCollection: movieList,
         ideaCollection: ideaList,
         blogCollection: blogList,
         projectCollection: projectList,

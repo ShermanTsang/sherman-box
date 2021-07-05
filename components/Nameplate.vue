@@ -24,18 +24,8 @@ $prefix: 'nameplate';
       }
 
       &:after {
-        position: absolute;
         content: '';
-        height: 20px;
-        width: 100%;
-        border-radius: 10px;
-        right: 0;
-        left: 6px;
-        top: 10px;
-        opacity: .4;
-        z-index: -1;
-        background-color: #1170f5;
-        background-image: linear-gradient(90deg, #d2feff 0, #9faffc);
+        @apply h-full w-full z-[-1] opacity-20 -top-2 -left-3 absolute bg-gradient-to-r from-[#1170f5] to-transparent rounded-2xl;
       }
     }
 
@@ -63,6 +53,7 @@ $prefix: 'nameplate';
     }
 
   }
+
 </style>
 
 <template>

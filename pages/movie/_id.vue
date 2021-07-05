@@ -146,7 +146,9 @@
       <Blocker height="60px" />
       <LayoutContainer class="movie__content">
         <Nameplate title="追剧" sub-title="binge-watching" />
-        <Tag>{{ data.movieItem.schedule }}</Tag>
+        <Tag v-for="(item,index) in data.movieItem.schedule" :key="index">
+          {{ item.date }} - {{ item.name }}
+        </Tag>
       </LayoutContainer>
     </template>
     <Blocker height="60px" />

@@ -34,6 +34,7 @@ $prefix:'category-box';
         left: 0;
         right: 0;
         background-color: $theme-color;
+        border-radius: 12px;
         height: 12px;
         content: '';
         opacity: 0.2;
