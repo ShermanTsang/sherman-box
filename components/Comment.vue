@@ -31,8 +31,8 @@ $prefix: 'comment';
         ></ItemComment>
       </Waterfall>
     </div>
-    <Tip v-if="!state.isLoadingList && data.commentList.length === 0" asset="pic-comment" max-width="240px">
-      暂无评论
+    <Tip v-if="!state.isLoadingList && data.commentList.length === 0" lottie="notify" :width="260" :height="260">
+      暂无评论，期待你的声音
     </Tip>
     <Pagination
       v-if="meta && meta.last_page > 1"

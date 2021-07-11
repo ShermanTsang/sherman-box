@@ -22,7 +22,7 @@
     <Nameplate :sub-title="this.$route.query.keyword || ''" title="搜索" />
     <Blocker height="20px" />
     <div v-if="data.resultList && data.resultList.length > 0" class="search__info">
-      <Pic asset="pic-search" width="260px"></Pic>
+      <Lottie name="search" />
       <Blocker height="40px" />
       共 <span>{{ meta.total }}</span> 条线索数据，页数 <span>{{ meta.current_page }}</span> / {{ meta.last_page }}
     </div>

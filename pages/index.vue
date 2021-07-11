@@ -43,10 +43,10 @@
     <Slider>
       <SliderItem layout="flex-column-center">
         <div class="index__about">
-          <CustomText color="#666" size="3.4rem">
+          <CustomText color="#666" size="3.3rem">
             你好，
           </CustomText>
-          <CustomText color="#666" size="2.9rem">
+          <CustomText color="#666" size="2.8rem">
             我叫曾小满。
           </CustomText>
           <CustomText color="#999" size="1.5rem">

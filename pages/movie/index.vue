@@ -8,6 +8,7 @@
 
 <template>
   <LayoutContainer>
+<!--    <ItemModule :item="moduleList.find(item => item.slug === 'movie')" class="mt-10"/>-->
     <Blocker height="48px" />
     <CategoryBox module="movie" />
     <Blocker height="20px" />
@@ -42,6 +43,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   async asyncData ({ $axios, query }) {
     const { data: movieList, meta } = await $axios.$get('/api/movies', {
@@ -61,7 +64,8 @@ export default {
   data () {
     return {}
   },
-  mounted () {
+  computed: {
+    ...mapGetters(['moduleList'])
   },
   methods: {
     changePage (currentPage) {

@@ -3,8 +3,8 @@
 
 <template>
   <LayoutContainer>
-    <Tip asset="pic-404">
-      页面不存在
+    <Tip lottie="404">
+      您访问的页面丢失
     </Tip>
   </LayoutContainer>
 </template>
