@@ -166,7 +166,7 @@
               width="25%"
               height="200px"
               :style="{margin:'8px'}"
-              :link="`/movie/${blog.id}`"
+              :link="`/movie/${item.id}`"
             >
               {{ item.name }}
             </Pic>
@@ -184,7 +184,7 @@
               {{ item.name }}
             </Pic>
           </InfoCell>
-          <InfoCell v-if="data.ideaList && data.ideaList.length > 0" icon="idea" name="想法">
+          <InfoCell v-if="data.ideaList && data.ideaList.length > 0" icon="bulb" name="想法">
             <ItemTimeline v-for="item in data.ideaList" :key="item.id" :item="item" text="detail" />
           </InfoCell>
           <InfoCell v-if="data.planList && data.planList.length > 0" icon="plan" name="计划">

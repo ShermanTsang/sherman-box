@@ -26,6 +26,7 @@ $prefix: 'tip';
       font-size: .95rem;
       opacity: .8;
       border-radius: 2px;
+      cursor: default;
       background-color: rgba($theme-color,.1);
     }
 
@@ -38,7 +39,7 @@ $prefix: 'tip';
       <Pic :asset="asset" />
     </div>
     <div v-else-if="lottie" class="tip__image__pic">
-      <Lottie :name="lottie" :width="width" :height="height" />
+      <Lottie :name="lottie" :width="Number.parseInt(width)" :height="Number.parseInt(height)" />
     </div>
     <div v-if="$slots.default && $slots.default[0]" class="tip__text">
       <slot />
