@@ -35,7 +35,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ShermanBox-Nuxt/web:${{steps.get_version.outputs.VERSION}}
+          tags: sherman-box-nuxt/web:${{steps.get_version.outputs.VERSION}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
