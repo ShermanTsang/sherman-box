@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <div v-if="localTime" class="inline relative hover:(bg-[#0a84ea] text-white px-2) transition duration-300 ease-linear" :style="style" @click="handleClick">
+  <div v-if="localTime" class="inline relative transition duration-300 ease-linear" :style="style" @click="handleClick">
     <template v-if="onlyFromNow">
       {{ fromNowFormat }}
     </template>
@@ -83,7 +83,7 @@ export default {
   methods: {
     handleClick () {
       if (this.linkWithTimeline) {
-        this.$router.push(`/day/${this.localTime.format('YYYY-MM-DD')}`)
+        this.$router.push({path: `/day/${this.localTime.format('YYYY-MM-DD')}`})
       }
     }
   }

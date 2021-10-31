@@ -1,24 +1,8 @@
 <style lang="scss">
-  .layout-container {
-    margin: 0 auto;
-
-    @media ($screen-xs-max) {
-      width: 95%;
-    }
-
-    @media ($screen-sm-min) {
-      width: 92%;
-    }
-
-    @media ($screen-md-min) {
-      width: 90%;
-    }
-
-  }
 </style>
 
 <template>
-  <div class="layout-container" :style="style">
+  <div class="container mx-auto">
     <slot />
   </div>
 </template>

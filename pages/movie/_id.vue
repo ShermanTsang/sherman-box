@@ -105,7 +105,7 @@
         </div>
         <div v-if="data.movieItem.score" class="movie__header__main__item">
           <Icon name="star" />
-          {{ data.movieItem.score }}分
+          {{ data.movieItem.score > 0 ? `${data.movieItem.score}分` : '待评分' }}
         </div>
         <div v-if="data.movieItem.people" class="movie__header__main__item">
           <Icon name="user" />

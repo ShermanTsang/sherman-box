@@ -1,29 +1,6 @@
 import Vue from 'vue'
-import config from '../config'
 
-export default function ({ store }) {
-  function getConfigItem (key) {
-    if (!key) {
-      return null
-    }
-    return config[key] ? config[key] : `[!${key}]`
-  }
-
-  function getConfigList (keyword) {
-    if (!keyword) {
-      return config
-    } else {
-      const filterConfigKey = Object.keys(config).filter((item) => {
-        return item.includes(keyword)
-      })
-      const filterConfigObject = {}
-      filterConfigKey.forEach((item) => {
-        filterConfigObject[item] = config[item]
-      })
-      return filterConfigObject
-    }
-  }
-
+export default function ({ store, $config }) {
   function getConfig (key, returnType = 'value') {
     if (!key) {
       throw new Error('Please input key')
@@ -39,8 +16,7 @@ export default function ({ store }) {
   }
 
   function getApiUrl (url) {
-    const config = this.$configList('api')
-    return `${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/${url}`
+    return `${$config.apiProtocol}://${$config.apiDomain}/${$config.apiVersion}/${url}`
   }
 
   function getOssUrl (url, needProxy = false) {
@@ -48,8 +24,8 @@ export default function ({ store }) {
       return ''
     }
     const isWithDomain = url.includes('http://') || url.includes('https://')
-    const is3rdResource = !url.includes(config['server.host']) && !url.includes(config['oss.domain.https']) && !url.includes(config['oss.domain.custom'])
-    const resourceDomain = needProxy ? '/oss' : `https://${config['oss.domain.https']}`
+    const is3rdResource = !url.includes($config.serverHost) && !url.includes($config.ossDomainHttps) && !url.includes($config.ossDomainCustom)
+    const resourceDomain = needProxy ? '/oss' : `https://${$config.ossDomainHttps}`
     return isWithDomain
       ? (is3rdResource ? url : `${resourceDomain}/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
       : `${resourceDomain}/${url}`
@@ -102,10 +78,10 @@ export default function ({ store }) {
   function getSeoInfo (type, value) {
     const seoConfig = {
       description: {
-        value: `${value} - ${config['site.description']}`
+        value: `${value} - ${$config.siteDescription}`
       },
       keywords: {
-        value: `${value} - ${config['site.keywords']}`
+        value: `${value} - ${$config.siteKeywords}`
       }
     }
     return seoConfig[type].value || ''
@@ -199,8 +175,6 @@ export default function ({ store }) {
     return dataTree
   }
 
-  Vue.prototype.$config1 = getConfigItem
-  Vue.prototype.$configList = getConfigList
   Vue.prototype.$getConfig = getConfig
   Vue.prototype.$getFileAsset = getFileAsset
   Vue.prototype.$getImageAsset = getImageAsset

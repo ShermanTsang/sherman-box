@@ -84,5 +84,5 @@ dist
 sw.*
 
 # Custome Config
-config/custom.js
-config/default.js
+config1/custom.js
+config1/default.js

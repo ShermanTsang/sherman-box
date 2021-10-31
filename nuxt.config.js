@@ -1,29 +1,45 @@
 import axios from 'axios'
-import config from './config'
 
 export default {
-  mode: 'universal',
-
+  publicRuntimeConfig: {
+    serverHost: process.env.SERVER_HOST,
+    serverPort: process.env.SERVER_PORT,
+    siteName: process.env.SITE_NAME,
+    siteDescription: process.env.SITE_DESCRIPTION,
+    siteKeywords: process.env.SITE_KEYWORDS,
+    siteDomain: process.env.SITE_DOMAIN,
+    apiProtocol: process.env.API_PROTOCOL,
+    apiVersion: process.env.API_VERSION,
+    apiDomain: process.env.API_DOMAIN,
+    ossProtocol: process.env.OSS_PROTOCOL,
+    ossDomainDefault: process.env.OSS_DOMAIN_DEFAULT,
+    ossDomainCustom: process.env.OSS_DOMAIN_CUSTOM,
+    ossDomainHttps: process.env.OSS_DOMAIN_HTTPS,
+    thirdpartyBaiduAnalyzeId: process.env.THIRDPARTY_BAIDU_ANALYZE_ID
+  },
+  privateRuntimeConfig: {
+    // apiSecret: process.env.API_SECRET
+  },
   server: {
-    port: config['server.port'],
-    host: config['server.host']
+    port: process.env.SERVER_PORT,
+    host: process.env.SERVER_HOST
   },
   /*
   ** Headers of the page
   */
   head: {
-    titleTemplate: `%s - ${config['site.name']}`,
+    titleTemplate: `%s - ${process.env.SITE_NAME}`,
     meta: [
       { charset: 'utf-8' },
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
       },
-      { hid: 'description', name: 'description', content: config['site.description'] },
-      { hid: 'keywords', name: 'keywords', content: config['site.keywords'] }
+      { hid: 'description', name: 'description', content: process.env.SITE_DESCRIPTION },
+      { hid: 'keywords', name: 'keywords', content: process.env.SITE_KEYWORDS }
     ],
     script: [
-      { src: `//hm.baidu.com/hm.js?${config['3rd.baiduAnalyze.id']}` }
+      { src: `//hm.baidu.com/hm.js?${process.env.THIRDPARTY_BAIDU_ANALYZE_ID}` }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -81,7 +97,7 @@ export default {
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     routes: async () => {
-      const { data: { data: pages } } = await axios.get(`${config['api.protocol']}://${config['api.domain']}/${config['api.version']}/common/sitemap`)
+      const { data: { data: pages } } = await axios.get(`${process.env.API_PROTOCOL}://${process.env.API_DOMAIN}/${process.env.API_VERSION}/common/sitemap`)
       const routers = []
       pages.forEach((item) => {
         routers.push({
@@ -105,8 +121,8 @@ export default {
   ** Proxy configuration
   */
   proxy: {
-    '/api/': { target: `${config['api.protocol']}://${config['api.domain']}`, pathRewrite: { '^/api/': 'v1/' } },
-    '/oss/': { target: `${config['oss.protocol']}://${config['oss.domain.https']}`, pathRewrite: { '^/oss/': '/' } }
+    '/api/': { target: `${process.env.API_PROTOCOL}://${process.env.API_DOMAIN}`, pathRewrite: { '^/api/': 'v1/' } },
+    '/oss/': { target: `${process.env.OSS_PROTOCOL}://${process.env.OSS_DOMAIN_HTTPS}`, pathRewrite: { '^/oss/': '/' } }
   },
 
   /*
@@ -122,7 +138,7 @@ export default {
   build: {
     analyze: false,
     extractCSS: process.env.NODE_ENV === 'production',
-    maxChunkSize: 300000,
+    maxChunkSize: 100000,
     postcss: {
       plugins: {
         'postcss-url': false
@@ -134,7 +150,7 @@ export default {
       },
       scss: {
         implementation: require('sass'),
-        additionalData: '@import "@/assets/css/variables.scss";'
+        additionalData: '@use "sass:math";@import "@/assets/css/variables.scss";'
       }
     },
     /*
@@ -161,7 +177,7 @@ export default {
   //     iconSrc: './static/icon.png'
   //   },
   //   manifest: {
-  //     name: config['site.name'],
+  //     name: process.env.SITE_NAME,
   //     lang: 'zh',
   //     start_url: '/'
   //   },

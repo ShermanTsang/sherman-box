@@ -2,17 +2,19 @@
 </style>
 
 <template>
-  <div class="w-max-full overflow-hidden">
-    <lottie
-      v-if="name && state.isReady"
-      :name="name"
-      :options="config.defaultOptions"
-      :height="config.height"
-      :width="config.width"
-      :loop="loop"
-      @animCreated="handleAnimation"
-    />
-  </div>
+  <client-only placeholder="Loading...">
+    <div class="w-max-full overflow-hidden">
+      <lottie
+        v-if="name && state.isReady"
+        :name="name"
+        :options="config.defaultOptions"
+        :height="config.height"
+        :width="config.width"
+        :loop="loop"
+        @animCreated="handleAnimation"
+      />
+    </div>
+  </client-only>
 </template>
 
 <script>

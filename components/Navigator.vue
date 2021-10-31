@@ -41,7 +41,7 @@ $prefix: 'navigator';
   }
 
   &__action {
-    box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
+    //box-shadow: 0 -20px 20px 30px rgb(255, 255, 255);
     flex-shrink: 0;
 
     &__item {
