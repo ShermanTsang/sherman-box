@@ -131,7 +131,9 @@
           </CustomText>
         </div>
         <div class="footer__info__container__item">
-          <CustomText>{{ $getConfig('site.icp') }}</CustomText>
+          <a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank">
+            <CustomText>{{ $getConfig('site.icp') }}</CustomText>
+          </a>
         </div>
       </LayoutContainer>
     </div>
