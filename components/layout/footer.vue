@@ -126,7 +126,7 @@
       <LayoutContainer class="footer__info__container">
         <div class="footer__info__container__item">
           <CustomText>
-            {{ $getConfig('site.name') }}
+            <a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank">{{ $getConfig('site.name') }}</a>
             <Datetime :link-with-timeline="false" format="2011-YYYY" :time="new Date().toDateString()" />
           </CustomText>
         </div>
