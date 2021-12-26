@@ -2,12 +2,12 @@
 .datepicker {
 
   &__area {
-    @apply appearance-none py-2 px-6 cursor-pointer bg-[rgba(177,177,177,.1)] rounded-full transition ease-in-out duration-300 hover:(bg-blue-100 text-blue-600)
+    @layer appearance-none py-2 px-6 cursor-pointer bg-[rgba(177,177,177,.1)] rounded-full transition ease-in-out duration-300 hover:(bg-blue-100 text-blue-600)
 
   }
 
   select {
-    @apply cursor-pointer w-20 focus:outline-none focus:bg-[transparent] focus:border-purple-500 outline-none border-none bg-[transparent]
+    @layer cursor-pointer w-20 focus:outline-none focus:bg-[transparent] focus:border-purple-500 outline-none border-none bg-[transparent]
   }
 
 }

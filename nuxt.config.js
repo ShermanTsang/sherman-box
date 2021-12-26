@@ -190,7 +190,7 @@ export default {
   // }
 
   buildModules: [
-    'nuxt-windicss'
+    '@nuxtjs/tailwindcss'
   ]
 
 }

@@ -31,7 +31,7 @@ $prefix: 'avatar';
 </template>
 
 <script>
-// import Gravatar from 'gravatar-url'
+import Gravatar from 'gravatar-url'
 
 export default {
   name: 'Avatar',
@@ -53,9 +53,8 @@ export default {
         const isQQ = /^[1-9][0-9]{4,9}$/gim.test(value)
         // const isWechat = /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/.test(value)
         if (isEmail) {
-          // const originUrl = Gravatar(value, { size: 200 })
-          // return originUrl.replace('gravatar.com', 'cn.gravatar.com')
-          return null
+          const originUrl = Gravatar(value, { size: 200 })
+          return originUrl.replace('gravatar.com', 'cn.gravatar.com')
         }
         if (isQQ) {
           return `http://q2.qlogo.cn/headimg_dl?dst_uin=${value}&spec=100`
