@@ -21,13 +21,14 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/sitemap": "^2.2.1",
     "core-js": "^3.15.1",
+    "crypto": "^1.0.1",
     "dayjs": "^1.8.16",
     "grade-js": "^1.0.10",
-    "gravatar-url": "^3.0.1",
-    "highlight.js": "^10.0.0",
+    "gravatar-url": "^4.0.1",
+    "highlight.js": "^11.3.1",
     "html2canvas": "^1.0.0-rc.5",
     "lodash": "^4.17.11",
-    "marked": "^2.0.0",
+    "marked": "^4.0.8",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.15.7",
     "qrcodejs2": "^0.0.2",
@@ -36,14 +37,14 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
-    "@nuxtjs/eslint-config": "^6.0.1",
+    "@nuxtjs/eslint-config": "^8.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
-    "eslint": "^7.29.0",
-    "eslint-plugin-nuxt": "^2.0.0",
-    "eslint-plugin-vue": "^7.12.1",
+    "eslint": "^8.5.0",
+    "eslint-plugin-nuxt": "^3.1.0",
+    "eslint-plugin-vue": "^8.2.0",
     "nuxt-windicss": "^2.2.1",
     "sass": "^1.26.10",
-    "sass-loader": "^9.0.2"
+    "sass-loader": "10.1.1"
   },
   "postcss": {
     "plugins": {
