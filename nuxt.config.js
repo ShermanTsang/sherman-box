@@ -2,8 +2,8 @@ import axios from 'axios'
 
 export default {
   publicRuntimeConfig: {
-    serverHost: process.env.SERVER_HOST,
-    serverPort: process.env.SERVER_PORT,
+    serverHost: process.env.SERVER_HOST || '0.0.0.0',
+    serverPort: process.env.SERVER_PORT || 3000,
     siteName: process.env.SITE_NAME,
     siteDescription: process.env.SITE_DESCRIPTION,
     siteKeywords: process.env.SITE_KEYWORDS,
