@@ -2,8 +2,13 @@
 </style>
 
 <template>
-  <header class="fixed bg-[rgba(255,255,255,.9)] z-99 top-0 left-0 right-0 backdrop-filter backdrop-blur-lg backdrop-saturate-[2] w-full border-b-1 border-gray-100 transition duration-200 hover:(bg-[rgba(255,255,255,.95)]) <md:(px-4)">
-    <div class="container w-full mx-auto flex flex-row flex-nowrap justify-between items-center" :class="{'hidden': state.isPinNavigator}">
+  <header
+    class="fixed bg-[rgba(255,255,255,.9)] z-[99] top-0 left-0 right-0 backdrop-filter backdrop-blur-lg backdrop-saturate-[2] w-full border-b-1 border-gray-100 transition duration-200 hover:(bg-[rgba(255,255,255,.95)]) <md:(px-4)"
+  >
+    <div
+      class="container w-full mx-auto flex flex-row flex-nowrap justify-between items-center"
+      :class="{'hidden': state.isPinNavigator}"
+    >
       <div id="logo" class="header__main__logo">
         <Logo type="text" height="40px" />
       </div>
@@ -29,8 +34,7 @@ export default {
       }
     }
   },
-  computed: {
-  },
+  computed: {},
   mounted () {
     window.addEventListener('scroll', this.onScroll)
   },

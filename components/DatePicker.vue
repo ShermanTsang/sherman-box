@@ -1,30 +1,21 @@
-<style lang="scss">
-.datepicker {
-
-  &__area {
-    @layer appearance-none py-2 px-6 cursor-pointer bg-[rgba(177,177,177,.1)] rounded-full transition ease-in-out duration-300 hover:(bg-blue-100 text-blue-600)
-
-  }
-
-  select {
-    @layer cursor-pointer w-20 focus:outline-none focus:bg-[transparent] focus:border-purple-500 outline-none border-none bg-[transparent]
-  }
-
-}
-</style>
-
 <template>
   <div class="datepicker flex flex-row items-center justify-between text-[#666] text-md <md:(flex-wrap)">
-    <div class="datepicker__area <md:(order-1)" @click="goToPrevMonth">
-      <Icon name="angle-left" size=".8em" /> 上月
+    <div class="px-2 py-4 <md:(order-1) cursor-pointer flex-shrink-0" @click="goToPrevMonth">
+      <Icon name="angle-left" size=".8em" />
+      上月
     </div>
-    <div class="datepicker__area <md:(order-first w-full text-center mb-4)">
+    <div class="px-2 py-4 <md:(order-first w-full text-center mb-4)">
       <select id="year" v-model="state.year" name="year">
         <option v-for="year in yearArray" :key="year" :value="year">
           {{ year }}
         </option>
       </select>
-      <select id="month" v-model="state.month" name="month">
+      <select
+        id="month"
+        v-model="state.month"
+        name="month"
+        class="cursor-pointer w-20 focus:outline-none focus:bg-[transparent] focus:border-purple-500 outline-none border-none bg-[transparent]"
+      >
         <option
           v-for="month in monthArray"
           :key="month"
@@ -34,8 +25,13 @@
         </option>
       </select>
     </div>
-    <div class="datepicker__area <md:(order-3)" :class="{'cursor-not-allowed': data.currentYear === state.year}" @click="goToNextMonth">
-      下月 <Icon name="angle-right" size=".8rem" />
+    <div
+      class="px-2 py-4 <md:(order-3) cursor-pointer flex-shrink-0"
+      :class="{'cursor-not-allowed': data.currentYear === state.year}"
+      @click="goToNextMonth"
+    >
+      下月
+      <Icon name="angle-right" size=".8rem" />
     </div>
   </div>
 </template>
@@ -72,6 +68,9 @@ export default {
     }
   },
   computed: {
+    date () {
+      return `${this.state.year}-${this.state.month}-${this.state.day}`
+    },
     yearArray () {
       let startYear = 2016
       const endYear = new Date().getFullYear()
@@ -92,31 +91,25 @@ export default {
         monthArray.push(startMonth += 1)
       }
       return monthArray
-      // return monthArray.map((month) => {
-      //   return String(month).padStart(2, '0')
-      // })
     }
   },
   watch: {
     'state.year' (year) {
       this.$emit('changeYear', year)
-      this.changeDate('year', year)
+      this.changeDate()
     },
     'state.month' (month) {
       this.$emit('changeMonth', month)
-      this.changeDate('month', month)
+      this.changeDate()
     },
     'state.day' (day) {
       this.$emit('changeDay', day)
-      this.changeDate('day', day)
+      this.changeDate()
     }
   },
   methods: {
-    changeDate (type, value) {
-      this.$emit('changeDate', {
-        type,
-        value
-      })
+    changeDate () {
+      this.$emit('changeDate', this.date)
     },
     goToPrevMonth () {
       if (this.state.month === 1) {

@@ -1,12 +1,9 @@
-<style lang="scss">
-</style>
-
 <template>
   <LayoutContainer>
     <DatePicker
       class="my-10"
-      :default-year="$route.query.year || new Date().getFullYear()"
-      :default-month="$route.query.month || (new Date().getMonth() + 1)"
+      :default-year=" Number.parseInt($route.query.year) || new Date().getFullYear()"
+      :default-month="Number.parseInt($route.query.month) || (new Date().getMonth() + 1)"
       @changeDate="changeDate"
     />
     <template v-if="data.dayList.length === 0">
@@ -41,8 +38,8 @@ export default {
   async asyncData ({ $axios, query }) {
     const { data: dayList, meta } = await $axios.$get('/api/days', {
       params: {
-        year: query.year || new Date().getFullYear(),
-        month: query.month || (new Date().getMonth() + 1),
+        year: Number.parseInt(query.year) || new Date().getFullYear(),
+        month: Number.parseInt(query.month) || (new Date().getMonth() + 1),
         pageSize: 31,
         page: query.page
       }
@@ -54,18 +51,6 @@ export default {
       meta
     }
   },
-  data () {
-  },
-  mounted () {
-  },
-  methods: {
-    changeDate ({ type, value }) {
-      const { year, month } = this.$route.query
-      const date = { year, month }
-      date[type] = value
-      this.$router.push({ name: 'day', query: date })
-    }
-  },
   head () {
     return {
       title: '日迹',
@@ -74,6 +59,14 @@ export default {
       ]
     }
   },
-  watchQuery: ['page', 'year', 'month']
+  watchQuery: ['page', 'year', 'month'],
+  mounted () {
+  },
+  methods: {
+    changeDate (date) {
+      const [year, month] = date.split('-')
+      this.$router.push({ name: 'day', query: { year, month } })
+    }
+  }
 }
 </script>
