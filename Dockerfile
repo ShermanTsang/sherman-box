@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN yarn config set registry https://registry.npm.taobao.org
+
 RUN yarn install \
   --prefer-offline \
   --frozen-lockfile \
@@ -18,6 +20,8 @@ RUN rm -rf node_modules && \
   --pure-lockfile \
   --non-interactive \
   --production=true
+
+RUN yarn add sass
 
 FROM node:lts
 

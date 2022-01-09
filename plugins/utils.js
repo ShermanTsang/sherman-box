@@ -24,8 +24,8 @@ export default function ({ store, $config }) {
       return ''
     }
     const isWithDomain = url.includes('http://') || url.includes('https://')
-    const is3rdResource = !url.includes($config.serverHost) && !url.includes($config.ossDomainHttps) && !url.includes($config.ossDomainCustom)
-    const resourceDomain = needProxy ? '/oss' : `https://${$config.ossDomainHttps}`
+    const is3rdResource = !url.includes($config.serverHost)
+    const resourceDomain = needProxy ? '/oss' : $config.ossBaseurl
     return isWithDomain
       ? (is3rdResource ? url : `${resourceDomain}/${url.replace(/^http(s)?:\/\/(.*?)\//, '')}`)
       : `${resourceDomain}/${url}`

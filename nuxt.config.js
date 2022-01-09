@@ -8,14 +8,8 @@ export default {
     siteDescription: process.env.SITE_DESCRIPTION,
     siteKeywords: process.env.SITE_KEYWORDS,
     siteDomain: process.env.SITE_DOMAIN,
-    apiProtocol: process.env.API_PROTOCOL,
-    apiVersion: process.env.API_VERSION,
-    apiDomain: process.env.API_DOMAIN,
-    ossProtocol: process.env.OSS_PROTOCOL,
-    ossDomainDefault: process.env.OSS_DOMAIN_DEFAULT,
-    ossDomainCustom: process.env.OSS_DOMAIN_CUSTOM,
-    ossDomainHttps: process.env.OSS_DOMAIN_HTTPS,
-    thirdpartyBaiduAnalyzeId: process.env.THIRDPARTY_BAIDU_ANALYZE_ID
+    apiBaseurl: process.env.API_BASEURL,
+    ossBaseurl: process.env.OSS_BASEURL
   },
   privateRuntimeConfig: {
     // apiSecret: process.env.API_SECRET
@@ -39,7 +33,7 @@ export default {
       { hid: 'keywords', name: 'keywords', content: process.env.SITE_KEYWORDS }
     ],
     script: [
-      { src: `//hm.baidu.com/hm.js?${process.env.THIRDPARTY_BAIDU_ANALYZE_ID}` }
+      { src: `//hm.baidu.com/hm.js?${process.env.SERVICE_BAIDU_ANALYZE_ID}` }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -97,7 +91,7 @@ export default {
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     routes: async () => {
-      const { data: { data: pages } } = await axios.get(`${process.env.API_PROTOCOL}://${process.env.API_DOMAIN}/${process.env.API_VERSION}/common/sitemap`)
+      const { data: { data: pages } } = await axios.get(`${process.env.API_BASEURL}/common/sitemap`)
       const routers = []
       pages.forEach((item) => {
         routers.push({
@@ -121,8 +115,8 @@ export default {
   ** Proxy configuration
   */
   proxy: {
-    '/api/': { target: `${process.env.API_PROTOCOL}://${process.env.API_DOMAIN}`, pathRewrite: { '^/api/': 'v1/' } },
-    '/oss/': { target: `${process.env.OSS_PROTOCOL}://${process.env.OSS_DOMAIN_HTTPS}`, pathRewrite: { '^/oss/': '/' } }
+    '/api/': { target: `${process.env.API_BASEURL}`, pathRewrite: { '^/api/': 'v1/' } },
+    '/oss/': { target: `${process.env.OSS_BASEURL}`, pathRewrite: { '^/oss/': '/' } }
   },
 
   /*
