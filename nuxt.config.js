@@ -50,7 +50,7 @@ export default {
   ** Global CSS
   */
   css: [
-    'normalize.css',
+    // 'normalize.css',
     '@/assets/css/global.scss',
     '@/assets/css/animate.scss',
     '@/assets/css/override.scss',
@@ -115,7 +115,7 @@ export default {
   ** Proxy configuration
   */
   proxy: {
-    '/api/': { target: `${process.env.API_BASEURL}`, pathRewrite: { '^/api/': 'v1/' } },
+    '/api/': { target: `${process.env.API_BASEURL}`, pathRewrite: { '^/api/': '/' } },
     '/oss/': { target: `${process.env.OSS_BASEURL}`, pathRewrite: { '^/oss/': '/' } }
   },
 

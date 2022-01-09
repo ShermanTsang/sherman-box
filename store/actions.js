@@ -1,7 +1,5 @@
 export default {
   async getConfigurationList ({ commit }) {
-    const test = await this.$axios.$get('/api/configurations')
-    console.log(test)
     const { data } = await this.$axios.$get('/api/configurations')
     commit('SET_CONFIGURATION_LIST', data)
   },
@@ -26,7 +24,7 @@ export default {
     commit('SET_CATEGORY_LIST', data)
   },
   async getInitData ({ commit }) {
-    const [configurations, fileAssets, imageAssets, modules, pages, statisticsModule] =
+    const [configurations, fileAssets, imageAssets, modules, pages] =
       await Promise.all([
         this.$axios.$get('/api/configurations').catch(err => err),
         this.$axios.$get('/api/fileAssets').catch(err => err),

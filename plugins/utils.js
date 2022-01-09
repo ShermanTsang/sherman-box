@@ -15,10 +15,6 @@ export default function ({ store, $config }) {
     return returnType === 'object' ? configurationTarget : configurationTarget.value || ''
   }
 
-  function getApiUrl (url) {
-    return `${$config.apiProtocol}://${$config.apiDomain}/${$config.apiVersion}/${url}`
-  }
-
   function getOssUrl (url, needProxy = false) {
     if (!url) {
       return ''
@@ -178,7 +174,6 @@ export default function ({ store, $config }) {
   Vue.prototype.$getConfig = getConfig
   Vue.prototype.$getFileAsset = getFileAsset
   Vue.prototype.$getImageAsset = getImageAsset
-  Vue.prototype.$getApiUrl = getApiUrl
   Vue.prototype.$getOssUrl = getOssUrl
   Vue.prototype.$getStringCount = getStringCount
   Vue.prototype.$getSeoInfo = getSeoInfo
