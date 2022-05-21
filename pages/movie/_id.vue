@@ -1,81 +1,81 @@
 <style lang="scss">
-  .movie {
+.movie {
 
-    &__header {
-      position: relative;
-      padding: 80px 0;
-      overflow: hidden;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 8px #f0f1f2;
-      background-image: linear-gradient(135deg, rgb(130, 130, 130) 0%, rgb(103, 103, 103) 75%);
+  &__header {
+    position: relative;
+    padding: 80px 0;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px #f0f1f2;
+    background-image: linear-gradient(135deg, rgb(130, 130, 130) 0%, rgb(103, 103, 103) 75%);
 
-      &__poster {
+    &__poster {
 
-        &__image {
-          overflow: hidden;
-          max-height: 405px;
-          max-width: 270px;
-          box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
+      &__image {
+        overflow: hidden;
+        max-height: 405px;
+        max-width: 270px;
+        box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
 
-          img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-        }
-
-        &__name {
-          color: #fff;
-          text-shadow: 0 0 10px rgba(0, 0, 0, .5);
-          cursor: default;
-          font-size: 1.5rem;
-          padding: 0 10px;
-          text-align: center;
-          letter-spacing: 2px;
-          @media ($screen-xs-max) {
-            font-size: 1.3rem;
-          }
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
 
-      &__main {
-        display: block;
-        max-width: 400px;
-
+      &__name {
+        color: #fff;
+        text-shadow: 0 0 10px rgba(0, 0, 0, .5);
+        cursor: default;
+        font-size: 1.5rem;
+        padding: 0 10px;
+        text-align: center;
+        letter-spacing: 2px;
         @media ($screen-xs-max) {
-          margin-top: 30px;
-        }
-
-        &__item {
-          font-size: 1.1rem;
-          align-self: flex-start;
-          letter-spacing: 2px;
-          padding: 10px;
-          cursor: default;
-          color: #ffffff;
-          text-shadow: 0 0 6px rgba(0, 0, 0, .4);
-
-          @media ($screen-xs-max) {
-            font-size: 1rem;
-          }
-
-          &:not(:first-child) {
-            border-top: 1px solid rgba(255, 255, 255, .2);
-          }
+          font-size: 1.3rem;
         }
       }
+    }
+
+    &__main {
+      display: block;
+      max-width: 400px;
 
       @media ($screen-xs-max) {
-        flex-flow: column nowrap;
+        margin-top: 30px;
       }
 
+      &__item {
+        font-size: 1.1rem;
+        align-self: flex-start;
+        letter-spacing: 2px;
+        padding: 10px;
+        cursor: default;
+        color: #ffffff;
+        text-shadow: 0 0 6px rgba(0, 0, 0, .4);
+
+        @media ($screen-xs-max) {
+          font-size: 1rem;
+        }
+
+        &:not(:first-child) {
+          border-top: 1px solid rgba(255, 255, 255, .2);
+        }
+      }
+    }
+
+    @media ($screen-xs-max) {
+      flex-flow: column nowrap;
     }
 
   }
+
+}
 </style>
 
 <template>
@@ -126,7 +126,7 @@
       <LayoutContainer class="movie__content">
         <Nameplate title="评分" sub-title="score">
           <Btn @click="state.showScoreModal = true">
-            评个分
+            我也看过，评分/留个印记
           </Btn>
         </Nameplate>
         <template v-if="data.movieItem.score_count">
@@ -145,14 +145,14 @@
     <template v-if="data.movieItem.schedule">
       <Blocker height="60px" />
       <LayoutContainer class="movie__content">
-        <Nameplate title="追剧" sub-title="binge-watching" />
+        <Nameplate title="追溯" sub-title="binge-watching" />
         <Tag v-for="(item,index) in data.movieItem.schedule" :key="index">
           {{ item.date }} - {{ item.name }}
         </Tag>
       </LayoutContainer>
     </template>
     <Blocker height="60px" />
-    <LayoutContainer class="movie__content">
+    <LayoutContainer v-if="data.movieItem.comment" class="movie__content">
       <Nameplate title="想法" sub-title="thinking" />
       <Markdown :content="data.movieItem.comment || ''" />
     </LayoutContainer>
@@ -168,10 +168,10 @@
       <FormItem
         v-model="form.name"
         validate="required|maxLength:15"
-        label="评分人"
+        label="观影人"
         name="name"
         type="input"
-        placeholder="敢问大侠叫什么?"
+        placeholder="您的姓名/昵称"
         @changeValidate="valid => state.validate.name = valid"
       />
       <FormItem
@@ -180,7 +180,7 @@
         name="score"
         type="input"
         validate="required|number|minValue:0.1|maxValue:10"
-        placeholder="0.1-10"
+        placeholder="0.1-10分"
         @changeValidate="valid => state.validate.score = valid"
       >
       </FormItem>
@@ -193,6 +193,17 @@
         placeholder="可简述为何这样评分"
         @changeValidate="valid => state.validate.content = valid"
       />
+      <FormItem
+        v-model="form.addToWatcherList"
+        label="添加你的名字作为共同观影人？"
+        name="addToWatcherList"
+        type="select"
+        :default-value="1"
+        validate="required"
+        :options="[{text:'好，添加', value: 1}, {text:'不添加，仅评分', value: 0}]"
+        @changeValidate="valid => state.validate.addToWatcherList = valid"
+      >
+      </FormItem>
       <Btn slot="footer" :full-width="true" :colorful="true" height="48px" @click="submitMovieScore()">
         提交
       </Btn>
@@ -207,7 +218,12 @@ export default {
   },
   async asyncData ({ $axios, store, params }) {
     const { data: movieItem } = await $axios.$get(`/api/movies/${params.id}`)
-    store.commit('SET_CURRENT_ITEM', { image: movieItem.image, name: movieItem.name, category: movieItem.category, date: movieItem.datetime })
+    store.commit('SET_CURRENT_ITEM', {
+      image: movieItem.image,
+      name: movieItem.name,
+      category: movieItem.category,
+      date: movieItem.datetime
+    })
     return {
       data: {
         movieItem
@@ -222,10 +238,24 @@ export default {
         validate: {
           name: false,
           score: false,
-          content: true
+          content: true,
+          addToWatcherList: true
         }
       },
       form: {}
+    }
+  },
+  head () {
+    const { name, category, description } = this.data.movieItem
+    return {
+      title: `${name} - ${category.name} - 观影`,
+      meta: [
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${description || ''}`)
+        }
+      ]
     }
   },
   methods: {
@@ -236,7 +266,8 @@ export default {
         const newScore = {
           score: this.form.score,
           name: this.form.name,
-          content: this.form.content
+          content: this.form.content,
+          addToWatcherList: this.form.addToWatcherList
         }
 
         this.$axios.$put(`/api/movies/${this.data.movieItem.id}/score`, newScore)
@@ -253,19 +284,6 @@ export default {
       } else {
         this.$message.error('表单填写有误')
       }
-    }
-  },
-  head () {
-    const { name, category, description } = this.data.movieItem
-    return {
-      title: `${name} - ${category.name} - 观影`,
-      meta: [
-        {
-          hid: 'index',
-          name: 'description',
-          content: this.$getSeoInfo('description', `${description || ''}`)
-        }
-      ]
     }
   }
 }
