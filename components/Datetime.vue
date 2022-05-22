@@ -83,7 +83,7 @@ export default {
   methods: {
     handleClick () {
       if (this.linkWithTimeline) {
-        this.$router.push({path: `/day/${this.localTime.format('YYYY-MM-DD')}`})
+        this.$router.push({ path: `/day/${this.localTime.format('YYYY-MM-DD')}` })
       }
     }
   }

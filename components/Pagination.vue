@@ -2,40 +2,44 @@
 $prefix: 'pagination';
 
 .#{$prefix} {
-    margin: 0 auto;
-    text-align: center;
+  margin: 0 auto;
+  text-align: center;
 
-    &__item {
-      display: inline-block;
-      padding: 6px 10px;
-      color: #999;
-      font-size: 1rem;
-      margin: 0 2px;
-      cursor: pointer;
-      border-radius: 2px;
-    }
-
-    &__item--active {
-      border-color: $theme-color;
-      color: $theme-color;
-      border-bottom: 2px solid $theme-color;
-    }
-
-    &__item--action {
-      color: #999;
-    }
-
+  &__item {
+    display: inline-block;
+    padding: 6px 10px;
+    color: #999;
+    font-size: 1rem;
+    margin: 0 2px;
+    cursor: pointer;
+    border-radius: 2px;
   }
+
+  &__item--active {
+    border-color: $theme-color;
+    color: $theme-color;
+    border-bottom: 2px solid $theme-color;
+  }
+
+  &__item--action {
+    color: #999;
+  }
+
+}
 </style>
 
 <template>
   <div v-if="total > 1" class="pagination">
-    <div v-show="currentPage !== 1 " class="pagination__item pagination__item--action" @click="handleClick(parseInt(currentPage) - 1)">
+    <div
+      v-show="currentPage !== 1 "
+      class="pagination__item pagination__item--action"
+      @click="handleClick(parseInt(currentPage) - 1)"
+    >
       <Icon name="angle-left" />
     </div>
     <div
-      v-for="item in displayPageList"
-      :key="item"
+      v-for="(item,index) in displayPageList"
+      :key="index"
       class="pagination__item"
       :class="{'pagination__item--active': parseInt(currentPage) === parseInt(item) }"
       @click="handleClick(item)"
@@ -47,7 +51,11 @@ $prefix: 'pagination';
         {{ item }}
       </template>
     </div>
-    <div v-show="currentPage !== totalPageNum" class="pagination__item pagination__item--action" @click="handleClick(parseInt(currentPage) + 1)">
+    <div
+      v-show="currentPage !== totalPageNum"
+      class="pagination__item pagination__item--action"
+      @click="handleClick(parseInt(currentPage) + 1)"
+    >
       <Icon name="angle-right" />
     </div>
   </div>

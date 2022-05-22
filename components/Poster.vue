@@ -3,73 +3,73 @@ $prefix: 'poster';
 
 .#{$prefix} {
 
-    &__form {
+  &__form {
+  }
+
+  &__body {
+    width: 100%;
+    box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #efefef;
+
+    &__image {
+      width: 100%;
+      max-height: 340px;
+      overflow: hidden;
     }
 
-    &__body {
-      width: 100%;
-      box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
-      background-color: #ffffff;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid #efefef;
+    &__text {
+      padding: 16px;
+      line-height: 1.8;
+      font-size: 1rem;
+      color: #999;
 
-      &__image {
-        width: 100%;
-        max-height: 340px;
-        overflow: hidden;
+      span {
+        position: relative;
+        color: $theme-color;
+        padding: 0 4px;
+      }
+    }
+
+    &__footer {
+      border-top: 2px dashed #eee;
+      padding: 16px;
+      font-size: .9rem;
+      color: #999;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+
+      &__qrcode {
+
       }
 
       &__text {
         padding: 16px;
-        line-height: 1.8;
-        font-size: 1rem;
-        color: #999;
-
-        span {
-          position: relative;
-          color: $theme-color;
-          padding: 0 4px;
-        }
-      }
-
-      &__footer {
-        border-top: 2px dashed #eee;
-        padding: 16px;
-        font-size: .9rem;
-        color: #999;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: center;
-
-        &__qrcode {
-
-        }
-
-        &__text {
-          padding: 16px;
-          line-height: 1.5;
-          flex-grow: 1;
-        }
+        line-height: 1.5;
+        flex-grow: 1;
       }
     }
-
-    &__image {
-      width: 100%;
-
-      img {
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-
   }
+
+  &__image {
+    width: 100%;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+}
 </style>
 
 <template>
   <div class="poster">
-    <template v-if="!this.$getModuleConfig(module).poster_text">
+    <template v-if="!$getModuleConfig(module).poster_text">
       <Tip>
         该模块暂不支持海报分享
       </Tip>
@@ -108,7 +108,7 @@ $prefix: 'poster';
             <br>
             {{ data.pageUrl }}
             <br>
-            ShareMan's Box
+            Sherman's Box
           </div>
         </div>
       </div>

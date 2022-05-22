@@ -1,25 +1,25 @@
 <style lang="scss">
-  .search {
+.search {
 
-    &__info {
-      padding: 16px;
-      text-align: center;
-      color: #999;
-      font-size: .95rem;
+  &__info {
+    padding: 16px;
+    text-align: center;
+    color: #999;
+    font-size: .95rem;
 
-      span {
-        color: $theme-color;
-        border-bottom: 1px solid $theme-color;
-      }
+    span {
+      color: $theme-color;
+      border-bottom: 1px solid $theme-color;
     }
-
   }
+
+}
 </style>
 
 <template>
   <LayoutContainer class="search">
     <Blocker height="40px" />
-    <Nameplate :sub-title="this.$route.query.keyword || ''" title="搜索" />
+    <Nameplate :sub-title="$route.query.keyword || ''" title="搜索" />
     <Blocker height="20px" />
     <div v-if="data.resultList && data.resultList.length > 0" class="search__info">
       <Lottie name="search" />
@@ -72,22 +72,6 @@ export default {
       }
     }
   },
-  mounted () {
-  },
-  methods: {
-    async requestMoreResult () {
-      const requestPage = this.state.currentPage + 1
-      const { data: timeline, meta } = await this.$axios.$get('/api/common/search', {
-        params: {
-          keyword: this.$route.query.keyword,
-          page: requestPage
-        }
-      })
-      this.data.resultList = [...this.data.resultList, ...timeline]
-      this.meta = meta
-      this.state.currentPage++
-    }
-  },
   head () {
     return {
       title: `${this.$route.query.keyword || '请输入关键字'} - 搜索`,
@@ -100,6 +84,25 @@ export default {
       ]
     }
   },
-  watchQuery: ['page', 'keyword']
+  watchQuery: ['page', 'keyword'],
+  mounted () {
+  },
+  methods: {
+    async requestMoreResult () {
+      const params = {
+        keyword: this.$route.query.keyword,
+        page: this.state.currentPage + 1
+      }
+      if (this.$route.query.module) {
+        params.module = this.$route.query.module
+      }
+      const { data: timeline, meta } = await this.$axios.$get('/api/common/search', {
+        params
+      })
+      this.data.resultList = [...this.data.resultList, ...timeline]
+      this.meta = meta
+      this.state.currentPage++
+    }
+  }
 }
 </script>

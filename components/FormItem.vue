@@ -1,56 +1,56 @@
 <style lang="scss">
 $prefix: 'form-item';
 
-  .#{$prefix} {
+.#{$prefix} {
 
-    &:not(:first-child) {
-      margin-top: 16px;
-    }
+  &:not(:first-child) {
+    margin-top: 16px;
+  }
 
-    &__name {
-      display: block;
-      letter-spacing: 2px;
-      color: #666;
+  &__name {
+    display: block;
+    letter-spacing: 2px;
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 14px;
+
+    span {
+      margin-left: 4px;
       font-size: 1rem;
-      margin-bottom: 14px;
-
-      span {
-        margin-left: 4px;
-        font-size: 1rem;
-        color: $theme-color;
-      }
-    }
-
-    &__content {
-      input {
-        width: 100%;
-        font-size: 1rem;
-        padding: 0 10px;
-        line-height: 34px;
-        border-bottom: 1px solid #ddd;
-      }
-    }
-
-    &__error {
-      display: block;
-      margin-top: 10px;
-
-      span {
-        background-color: rgba(orangered, .1);
-        margin: 10px 4px;
-        padding: 4px 8px;
-        color: orangered;
-        font-size: .9rem;
-      }
-    }
-
-    &__tip {
-      margin: 10px 0;
       color: $theme-color;
+    }
+  }
+
+  &__content {
+    input {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0 10px;
+      line-height: 34px;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  &__error {
+    display: block;
+    margin-top: 10px;
+
+    span {
+      background-color: rgba(orangered, .1);
+      margin: 10px 4px;
+      padding: 4px 8px;
+      color: orangered;
       font-size: .9rem;
     }
-
   }
+
+  &__tip {
+    margin: 10px 0;
+    color: $theme-color;
+    font-size: .9rem;
+  }
+
+}
 </style>
 
 <template>
@@ -59,13 +59,37 @@ $prefix: 'form-item';
       <label :for="name">{{ label }}</label><span v-if="isRequired">*</span>
     </div>
     <div class="form-item__content">
-      <input
-        v-if="type === 'input'"
-        :id="name"
-        v-model="data.value"
-        :name="name"
-        :placeholder="placeholder"
-      >
+      <template v-if="type === 'input'">
+        <input
+          :id="name"
+          v-model="data.value"
+          :name="name"
+          :placeholder="placeholder"
+        >
+      </template>
+      <template v-if="type === 'textarea'">
+        <textarea
+          :id="name"
+          v-model="data.value"
+          :name="name"
+          :placeholder="placeholder"
+          class="border border-solid border-gray-300 px-4 py-2 bg-white w-full"
+        />
+      </template>
+      <template v-if="type === 'select'">
+        <select
+          :id="name"
+          v-model="data.value"
+          :name="name"
+          class="border border-solid border-gray-400 rounded px-4 py-2 bg-white"
+        >
+          <template v-if="options && options.length > 0">
+            <option v-for="item in options" :key="item.value" :value="item.value" class="bg-white">
+              {{ item.text }}
+            </option>
+          </template>
+        </select>
+      </template>
       <slot v-if="type === 'custom'"></slot>
     </div>
     <div v-if="$slots.tip" class="form-item__tip">
@@ -87,13 +111,13 @@ export default {
     event: 'updateValue'
   },
   props: {
-    value: {
-      type: String,
-      default: ''
-    },
     label: {
       type: String,
       default: ''
+    },
+    defaultValue: {
+      type: [String, Number],
+      default: null
     },
     validate: {
       type: String,
@@ -111,8 +135,12 @@ export default {
       type: String,
       default: 'custom',
       validator (value) {
-        return ['custom', 'input', 'textarea'].includes(value)
+        return ['custom', 'input', 'textarea', 'select'].includes(value)
       }
+    },
+    options: {
+      type: Array,
+      default: () => []
     },
     required: {
       type: Boolean,
@@ -168,7 +196,9 @@ export default {
     }
   },
   mounted () {
-    this.data.value = this.value
+    if (this.defaultValue !== null) {
+      this.data.value = this.defaultValue
+    }
   },
   methods: {
     changeValue (currentValue) {
@@ -181,37 +211,37 @@ export default {
       if (validateRules && validateRules.length > 0) {
         for (const ruleItem of validateRules) {
           if ('required' in ruleItem) {
-            if (!currentValue) {
-              this.data.errors.push(this.label + '不能为空')
+            if (currentValue === null) {
+              this.data.errors.push(this.label + ' 不能为空')
             }
           } else if (currentValue && currentValue.length > 0) {
             if ('maxLength' in ruleItem) {
               if (!(currentValue.length <= ruleItem.maxLength)) {
-                this.data.errors.push(this.label + `超过最大字数限制(${ruleItem.maxLength})`)
+                this.data.errors.push(this.label + ` 超过最大字数限制(${ruleItem.maxLength})`)
               }
             }
 
             if ('minLength' in ruleItem) {
               if (!(currentValue.length >= ruleItem.minLength)) {
-                this.data.errors.push(this.label + `小于最小字数限制(${ruleItem.minLength})`)
+                this.data.errors.push(this.label + ` 小于最小字数限制(${ruleItem.minLength})`)
               }
             }
 
             if ('number' in ruleItem) {
               if (isNaN(currentValue)) {
-                this.data.errors.push(this.label + '只能是数值')
+                this.data.errors.push(this.label + ' 只能是数值')
               }
             }
 
             if ('minValue' in ruleItem) {
               if (!(currentValue >= Number.parseInt(ruleItem.minValue))) {
-                this.data.errors.push(this.label + `不能小于最小值${ruleItem.minValue}`)
+                this.data.errors.push(this.label + ` 不能小于最小值${ruleItem.minValue}`)
               }
             }
 
             if ('maxValue' in ruleItem) {
               if (!(currentValue <= Number.parseInt(ruleItem.maxValue))) {
-                this.data.errors.push(this.label + `不能大于最大值${ruleItem.maxValue}`)
+                this.data.errors.push(this.label + ` 不能大于最大值${ruleItem.maxValue}`)
               }
             }
 

@@ -1,142 +1,142 @@
 <style lang="scss">
-  .timeline-item {
-    position: relative;
-    margin: 10px 0;
+.timeline-item {
+  position: relative;
+  margin: 10px 0;
+  overflow: hidden;
+  transition-duration: 0.2s;
+  text-overflow: ellipsis;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border: 1px solid #efefef;
+
+  &__main {
+    padding: 32px;
     overflow: hidden;
-    transition-duration: 0.2s;
-    text-overflow: ellipsis;
-    letter-spacing: 1px;
-    font-size: 1rem;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    border: 1px solid #efefef;
+    align-self: center;
+    flex: 1;
 
-    &__main {
-      padding: 32px;
+    &__name {
+      display: block;
       overflow: hidden;
-      align-self: center;
-      flex: 1;
+      font-size: 1.05rem;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #efefef;
+      letter-spacing: 1px;
+      cursor: pointer;
+      color: #666;
 
-      &__name {
-        display: block;
-        overflow: hidden;
-        font-size: 1.05rem;
-        padding-bottom: 16px;
-        border-bottom: 1px solid #efefef;
-        letter-spacing: 1px;
-        cursor: pointer;
-        color: #666;
-
-        small {
-          color: #999;
-        }
+      small {
+        color: #999;
       }
+    }
 
-      &__info {
-        color: #999999;
-        font-size: .9rem;
-        margin-top: 6px;
+    &__info {
+      color: #999999;
+      font-size: .9rem;
+      margin-top: 6px;
+      overflow: hidden;
+      line-height: 2;
+
+      &__detail {
         overflow: hidden;
-        line-height: 2;
-
-        &__detail {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
+    }
 
-      @media ($screen-md-max) {
-        width: 100%;
+    @media ($screen-md-max) {
+      width: 100%;
+      order: 2;
+      padding: 16px;
+    }
+  }
+
+  &__image {
+    flex: 0 0 200px;
+    opacity: .5;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    z-index: $z-index-card-background;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .1);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media ($screen-md-max) {
+      order: 1;
+      height: 240px;
+      flex: 0 0 240px;
+    }
+
+  }
+
+  &__module {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(rgba(0, 0, 0, .4), transparent);
+    color: #fff;
+    padding: 6px 6px 14px 6px;
+    letter-spacing: 1px;
+    font-size: .9rem;
+    z-index: $z-index-card-content;
+  }
+
+  &:hover {
+    .timeline-item {
+      &__image {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media screen and ($screen-md-max) {
+    flex-flow: column nowrap;
+  }
+
+}
+
+.timeline-item--right {
+  .timeline-item {
+    &__main {
+      order: 0;
+      @media screen and ($screen-md-max) {
         order: 2;
-        padding: 16px;
       }
     }
 
     &__image {
-      flex: 0 0 200px;
-      opacity: .5;
-      transition: all .2s ease-in-out;
-      cursor: pointer;
-      z-index: $z-index-card-background;
-      overflow: hidden;
-      box-shadow: 0 0 6px rgba(0, 0, 0, .1);
-
-      img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      @media ($screen-md-max) {
+      order: -1;
+      @media screen and ($screen-md-max) {
         order: 1;
-        height: 240px;
-        flex: 0 0 240px;
       }
-
     }
 
     &__module {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: linear-gradient(rgba(0, 0, 0, .4), transparent);
-      color: #fff;
-      padding: 6px 6px 14px 6px;
-      letter-spacing: 1px;
-      font-size: .9rem;
-      z-index: $z-index-card-content;
-    }
-
-    &:hover {
-      .timeline-item {
-        &__image {
-          opacity: 1;
-        }
-      }
-    }
-
-    @media screen and ($screen-md-max) {
-      flex-flow: column nowrap;
-    }
-
-  }
-
-  .timeline-item--right {
-    .timeline-item {
-      &__main {
-        order: 0;
-        @media screen and ($screen-md-max) {
-          order: 2;
-        }
-      }
-
-      &__image {
-        order: -1;
-        @media screen and ($screen-md-max) {
-          order: 1;
-        }
-      }
-
-      &__module {
-        left: 0;
-        right: unset;
-      }
+      left: 0;
+      right: unset;
     }
   }
+}
 
-  .search-text {
-    color: orange;
-    margin: 0 1px;
-  }
+.search-text {
+  color: orange;
+  margin: 0 1px;
+}
 
-  .separator-text {
-    color: #eaeaea;
-    font-weight: bold;
-    margin: 0 6px;
-  }
+.separator-text {
+  color: #eaeaea;
+  font-weight: bold;
+  margin: 0 6px;
+}
 </style>
 
 <template>
@@ -189,6 +189,10 @@ export default {
         return ['date', 'detail'].includes(value)
       },
       default: 'date'
+    },
+    openInNewWindow: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -233,7 +237,11 @@ export default {
   methods: {
     redirectToItem () {
       const link = this.link
-      this.$route.path === '/search' ? window.open(link, '_blank') : this.$router.push(link)
+      if (this.$route.path === '/search' || this.openInNewWindow) {
+        window.open(link, '_blank')
+      } else {
+        this.$router.push(link)
+      }
     }
   }
 }

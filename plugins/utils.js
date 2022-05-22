@@ -109,6 +109,12 @@ export default function ({ store, $config }) {
       },
       mailbox: {
         name: '邮局', dateField: 'datetime'
+      },
+      word: {
+        name: '话语', dateField: 'date'
+      },
+      monument: {
+        name: '纪念碑', dateField: 'date'
       }
     }
     if (mainConfigList && mainConfigList.length > 0) {
