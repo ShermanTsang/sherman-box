@@ -52,7 +52,7 @@
         color: #efefef;
         letter-spacing: 1px;
         width: 100%;
-        background-image: linear-gradient(126deg, rgba(0, 0, 0, .4), transparent);
+        background-image: linear-gradient(126deg, rgba(0, 0, 0, .2), transparent);
       }
 
     }
@@ -96,7 +96,7 @@
         </small>
       </Nameplate>
       <div class="day__data">
-        <Waterfall :column="3" gap="16px" class="day__data__main">
+        <Waterfall :column="2" gap="16px" class="day__data__main">
           <InfoCell v-if="data.dayItem.event" icon="calendar" name="事件">
             <Tag>{{ data.dayItem.event }}</Tag>
           </InfoCell>
@@ -117,22 +117,32 @@
             <Tag>{{ data.dayItem.weight }}斤</Tag>
           </InfoCell>
           <InfoCell v-if="data.dayItem.movement" icon="schedule" name="活动">
-            <Tag>{{ data.dayItem.movement }}</Tag>
+            <Tag :enable-search="true">
+              {{ data.dayItem.movement }}
+            </Tag>
           </InfoCell>
           <InfoCell v-if="data.dayItem.mood" icon="mood" name="状态">
             <Tag>{{ data.dayItem.mood }}</Tag>
           </InfoCell>
           <InfoCell v-if="data.dayItem.location" icon="location" name="位置">
-            <Tag>{{ data.dayItem.location }}</Tag>
+            <Tag :enable-search="true">
+              {{ data.dayItem.location }}
+            </Tag>
           </InfoCell>
           <InfoCell v-if="data.dayItem.people" icon="user" name="人物">
-            <Tag>{{ data.dayItem.people }}</Tag>
+            <Tag :enable-search="true">
+              {{ data.dayItem.people }}
+            </Tag>
           </InfoCell>
           <InfoCell v-if="data.dayItem.medicine" icon="medicine" name="药物">
-            <Tag>{{ data.dayItem.medicine }}</Tag>
+            <Tag :enable-search="true">
+              {{ data.dayItem.medicine }}
+            </Tag>
           </InfoCell>
           <InfoCell v-if="data.dayItem.food" icon="food" name="食物">
-            <Tag>{{ data.dayItem.food }}</Tag>
+            <Tag :enable-search="true">
+              {{ data.dayItem.food }}
+            </Tag>
             <template v-if="data.dayItem.food_images && data.dayItem.food_images.length>0">
               <Blocker height="30px" divider divider-height="1px" />
               <Pic
@@ -146,65 +156,54 @@
             </template>
           </InfoCell>
           <InfoCell v-if="data.movieList && data.movieList.length > 0" icon="movie" name="观影">
-            <Pic
-              v-for="item in data.movieList"
-              :key="item.id"
-              :url="item.image"
-              width="30%"
-              height="340px"
-              :style="{margin:'8px'}"
-              :link="`/movie/${item.id}`"
-            >
-              {{ item.name }}
-            </Pic>
+            <Tag v-for="item in data.movieList" :key="item.id">
+              <a
+                :href="`/movie/${item.id}`"
+                target="_blank"
+              >{{ item.name }}</a>
+            </Tag>
           </InfoCell>
           <InfoCell v-if="data.blogList && data.blogList.length > 0" icon="post" name="博文">
-            <Pic
-              v-for="item in data.blogList"
-              :key="item.id"
-              :url="item.image"
-              width="25%"
-              height="200px"
-              :style="{margin:'8px'}"
-              :link="`/movie/${item.id}`"
-            >
-              {{ item.name }}
-            </Pic>
+            <Tag v-for="item in data.blogList" :key="item.id">
+              <a :href="`/blog/${item.id}`" target="_blank">{{
+                item.name
+              }}</a>
+            </Tag>
           </InfoCell>
           <InfoCell v-if="data.projectList && data.projectList.length > 0" icon="project" name="项目">
-            <Pic
-              v-for="item in data.projectList"
-              :key="item.id"
-              :url="item.image"
-              width="100%"
-              height="200px"
-              :style="{margin:'8px'}"
-              :link="`/project/${item.id}`"
-            >
-              {{ item.name }}
-            </Pic>
+            <Tag v-for="item in data.projectList" :key="item.id">
+              <a
+                :href="`/project/${item.id}`"
+                target="_blank"
+              >{{ item.name }}</a>
+            </Tag>
           </InfoCell>
           <InfoCell v-if="data.ideaList && data.ideaList.length > 0" icon="bulb" name="想法">
-            <ItemTimeline v-for="item in data.ideaList" :key="item.id" :item="item" text="detail" />
+            <Tag v-for="item in data.ideaList" :key="item.id">
+              <a
+                :href="`/idea/${item.id}`"
+                target="_blank"
+              >{{ item.name }}</a>
+            </Tag>
           </InfoCell>
           <InfoCell v-if="data.planList && data.planList.length > 0" icon="plan" name="计划">
-            <Pic
-              v-for="item in data.planList"
-              :key="item.id"
-              :url="item.image"
-              width="30%"
-              height="200px"
-              :style="{margin:'8px'}"
-              :link="`/plan/${item.id}`"
-            >
-              {{ item.name }}
-            </Pic>
+            <Tag v-for="item in data.planList" :key="item.id">
+              <a :href="`/plan/${item.id}`" target="_blank">{{
+                item.name
+              }}</a>
+            </Tag>
           </InfoCell>
         </Waterfall>
       </div>
       <Blocker height="24px" />
-      <Nameplate title="往昔回顾" sub-title="retrospect" />
-      <InfoBox v-if="data.dayItem.day_previous" icon="angle-left" description="前一天" :path="`/day/${data.dayItem.day_previous.date}`" :image="data.dayItem.day_previous.image">
+      <Nameplate title="往昔" sub-title="retrospect" />
+      <InfoBox
+        v-if="data.dayItem.day_previous"
+        icon="angle-left"
+        description="前一天"
+        :path="`/day/${data.dayItem.day_previous.date}`"
+        :image="data.dayItem.day_previous.image"
+      >
         <CustomText size="1.2rem">
           <Datetime :time="data.dayItem.day_previous.date" format="YYYY年" :link-with-timeline="false" />
         </CustomText>
@@ -212,8 +211,15 @@
         <CustomText size="1rem">
           <Datetime :time="data.dayItem.day_previous.date" format="MM月DD日 ddd" :link-with-timeline="false" />
         </CustomText>
-      </InfoBox><template v-if="differentYears">
-        <InfoBox v-for="item in differentYears" :key="item.date" icon="check" :path="`/day/${item.date}`" :image="item.image">
+      </InfoBox>
+      <template v-if="differentYears">
+        <InfoBox
+          v-for="item in differentYears"
+          :key="item.date"
+          icon="check"
+          :path="`/day/${item.date}`"
+          :image="item.image"
+        >
           <CustomText size="1.2rem">
             <Datetime :time="item.date" format="YYYY年" :link-with-timeline="false" />
           </CustomText>
@@ -223,7 +229,14 @@
           </CustomText>
           <Datetime slot="description" :time="item.date" type="date" only-from-now :link-with-timeline="false" />
         </InfoBox>
-      </template><InfoBox v-if="data.dayItem.day_next" icon="angle-right" description="后一天" :path="`/day/${data.dayItem.day_next.date}`" :image="data.dayItem.day_next.image">
+      </template>
+      <InfoBox
+        v-if="data.dayItem.day_next"
+        icon="angle-right"
+        description="后一天"
+        :path="`/day/${data.dayItem.day_next.date}`"
+        :image="data.dayItem.day_next.image"
+      >
         <CustomText size="1.2rem">
           <Datetime :time="data.dayItem.day_next.date" format="YYYY年" :link-with-timeline="false" />
         </CustomText>
@@ -268,6 +281,19 @@ export default {
       data: { dayItem, movieList, ideaList, blogList, projectList, mailboxList, planList }
     }
   },
+  head () {
+    const { date } = this.data.dayItem
+    return {
+      title: `${date.substring(0, 11)} - 日迹`,
+      meta: [
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${date.substring(0, 11)}日迹`)
+        }
+      ]
+    }
+  },
   computed: {
     sleepHour () {
       const sleepTime = this.data.dayItem.time_sleep
@@ -290,19 +316,6 @@ export default {
   },
   mounted () {
   },
-  methods: {},
-  head () {
-    const { date } = this.data.dayItem
-    return {
-      title: `${date.substring(0, 11)} - 日迹`,
-      meta: [
-        {
-          hid: 'index',
-          name: 'description',
-          content: this.$getSeoInfo('description', `${date.substring(0, 11)}日迹`)
-        }
-      ]
-    }
-  }
+  methods: {}
 }
 </script>

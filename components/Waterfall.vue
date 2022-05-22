@@ -3,27 +3,27 @@ $prefix: 'waterfall';
 
 .#{$prefix} {
 
-    &__item {
-      box-sizing: border-box;
-      break-inside: avoid;
-      page-break-inside: avoid;
-      //height: 100%; // avoid sub item overflow
-      //overflow: auto; // avoid sub item overflow
-    }
-
-    @media ($screen-lg-max) {
-      column-count: 2 !important;
-    }
-
-    @media ($screen-sm-max) {
-      column-count: 1 !important;
-    }
-
+  &__item {
+    box-sizing: border-box;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    //height: 100%; // avoid sub item overflow
+    //overflow: auto; // avoid sub item overflow
   }
+
+  @media ($screen-lg-max) {
+    column-count: 2 !important;
+  }
+
+  @media ($screen-sm-max) {
+    column-count: 1 !important;
+  }
+
+}
 </style>
 
 <template>
-  <div ref="waterfall" class="waterfall" :style="parentStyle">
+  <div ref="waterfall" class="waterfall py-4" :style="parentStyle">
     <slot />
   </div>
 </template>

@@ -133,7 +133,7 @@
         <CustomText>{{ $time(item.date).format('MM.DD') }}</CustomText>
       </div>
       <div class="day-item__meta__sub">
-        <CustomText>{{ $time(item.date).format('YYYY') }} / {{ $time(item.date).format('dddd') }}</CustomText>
+        <CustomText>{{ $time(item.date).format('YYYY') }} · {{ $time(item.date).format('dddd') }}</CustomText>
       </div>
     </div>
     <div class="day-item__info">

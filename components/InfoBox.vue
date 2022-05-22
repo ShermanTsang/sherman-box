@@ -10,6 +10,10 @@ $prefix: 'infoBox';
   cursor: pointer;
   overflow: hidden;
   margin: 4px;
+  @media ($screen-sm-max) {
+    width: 100% !important;
+    height: 160px !important;
+  }
 
   &__icon {
     position: absolute;
@@ -47,7 +51,7 @@ $prefix: 'infoBox';
 
     &__description {
       color: #999;
-      font-size: .9rem;
+      font-size: .8rem;
       letter-spacing: 1px;
     }
 
@@ -56,7 +60,7 @@ $prefix: 'infoBox';
       padding: 4px;
       color: #333;
       border-radius: 2px;
-      background-color: rgba(255,255,255,.6);
+      background-color: rgba(255, 255, 255, .8);
     }
 
     &__content {
@@ -97,11 +101,19 @@ $prefix: 'infoBox';
     </div>
     <div class="infoBox__image" :style="style.image"></div>
     <div class="infoBox__main">
-      <div v-if="$slots.description || description" class="infoBox__main__description" :class="{'infoBox__main__description--withImage': image}">
+      <div
+        v-if="$slots.description || description"
+        class="infoBox__main__description"
+        :class="{'infoBox__main__description--withImage': image}"
+      >
         {{ description }}
         <slot name="description" />
       </div>
-      <div v-if="$slots.default && $slots.default[0]" class="infoBox__main__content" :class="{'infoBox__main__content--withImage': image}">
+      <div
+        v-if="$slots.default && $slots.default[0]"
+        class="infoBox__main__content"
+        :class="{'infoBox__main__content--withImage': image}"
+      >
         <slot />
       </div>
     </div>

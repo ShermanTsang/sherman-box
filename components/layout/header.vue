@@ -3,7 +3,8 @@
 
 <template>
   <header
-    class="fixed bg-[rgba(255,255,255,.9)] z-[99] top-0 left-0 right-0 backdrop-filter backdrop-blur-lg backdrop-saturate-[2] w-full border-b-1 border-gray-100 transition duration-200 hover:(bg-[rgba(255,255,255,.95)]) <md:(px-4)"
+    class="fixed bg-[rgba(255,255,255,.9)] z-[99] top-0 left-0 right-0 backdrop-filter backdrop-blur-lg backdrop-saturate-[2] w-full border-b-1 border-gray-100 transition duration-200 hover:bg-[rgba(255,255,255,.95)] px-4"
+    :class="{'border border-gray-300 border-solid': state.isPinNavigator}"
   >
     <div
       class="container w-full mx-auto flex flex-row flex-nowrap justify-between items-center"

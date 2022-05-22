@@ -15,14 +15,12 @@
       <InfoBox
         v-for="item in data.dayList"
         :key="item.date"
-        icon="check"
         :path="`/day/${item.date}`"
         :image="item.image"
       >
         <CustomText size="1.2rem">
           <Datetime :time="item.date" format="YYYY年" :link-with-timeline="false" />
         </CustomText>
-        <br>
         <CustomText size="1rem">
           <Datetime :time="item.date" format="MM月DD日 ddd" :link-with-timeline="false" />
         </CustomText>
