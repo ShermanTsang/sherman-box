@@ -8,6 +8,9 @@
         <Lottie name="box2" :height="240" />
         <span v-if="$route.query.name" class="text-blue-400 mr-2">{{ $route.query.name }}</span>
         你有一份“曾小满的盒子”，里面是关于我们的记忆，感谢查收！
+        <div class="hidden lg:block text-blue-600 py-2 text-center">
+          可长按扫码进入！
+        </div>
       </div>
       <div class="hidden lg:block">
         <QrCode v-if="data.pageUrl" :size="140" color-dark="#666" class="absolute right-2 top-2">
