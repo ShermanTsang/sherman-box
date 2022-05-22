@@ -32,7 +32,7 @@
     "highlight.js": "^11.3.1",
     "html2canvas": "^1.0.0-rc.5",
     "lodash": "^4.17.11",
-    "marked": "2.0.0",
+    "marked": "4.0.10",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.15.7",
     "qrcodejs2": "^0.0.2",
