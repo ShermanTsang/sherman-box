@@ -340,6 +340,8 @@ export default {
             this.$message.error('提交失败，请稍候再试')
             this.state.isLoadingSubmit = false
           })
+      } else {
+        this.$message.error('表单填写有误')
       }
     }
   }

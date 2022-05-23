@@ -25,7 +25,7 @@
           name="name"
           :default-value="$route.query.name || ''"
           type="input"
-          placeholder=""
+          placeholder="点击这里输入你的真实姓名"
           @changeValidate="valid => state.validate.name = valid"
         />
         <FormItem
@@ -84,7 +84,11 @@ export default {
   },
   methods: {
     enterBox () {
-      this.$router.push({ path: `/monument/${this.form.monument}`, query: { name: this.form.name } })
+      if (this.$checkFormValidate(this.state.validate)) {
+        this.$router.push({ path: `/monument/${this.form.monument}`, query: { name: this.form.name } })
+      } else {
+        this.$message.error('表单填写有误')
+      }
     }
   }
 }
