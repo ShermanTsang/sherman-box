@@ -90,7 +90,12 @@
     <LayoutContainer>
       <Blocker height="24px" />
       <Nameplate>
-        <Datetime slot="title" :time="data.dayItem.date" format="YYYY年MM月DD日" class="day__date__text" />
+        <Datetime
+          slot="title"
+          :time="data.dayItem.date"
+          format="YYYY年MM月DD日"
+          class="day__date__text"
+        />
         <small slot="subTitle">
           <Datetime :time="data.dayItem.date" format="ddd" />
         </small>
@@ -100,7 +105,11 @@
           <InfoCell v-if="data.dayItem.event" icon="calendar" name="事件">
             <Tag>{{ data.dayItem.event }}</Tag>
           </InfoCell>
-          <InfoCell v-if="data.dayItem.time_sleep && data.dayItem.time_wakeup" icon="sleep" name="睡眠">
+          <InfoCell
+            v-if="data.dayItem.time_sleep && data.dayItem.time_wakeup"
+            icon="sleep"
+            name="睡眠"
+          >
             <Tag>
               入眠{{ data.dayItem.time_sleep }},
               醒来{{ data.dayItem.time_wakeup }},
@@ -134,11 +143,11 @@
               {{ data.dayItem.people }}
             </Tag>
           </InfoCell>
-          <InfoCell v-if="data.dayItem.medicine" icon="medicine" name="药物">
-            <Tag :enable-search="true">
-              {{ data.dayItem.medicine }}
-            </Tag>
-          </InfoCell>
+          <!--          <InfoCell v-if="data.dayItem.medicine" icon="medicine" name="药物">-->
+          <!--            <Tag :enable-search="true">-->
+          <!--              {{ data.dayItem.medicine }}-->
+          <!--            </Tag>-->
+          <!--          </InfoCell>-->
           <InfoCell v-if="data.dayItem.food" icon="food" name="食物">
             <Tag :enable-search="true">
               {{ data.dayItem.food }}
@@ -205,11 +214,19 @@
         :image="data.dayItem.day_previous.image"
       >
         <CustomText size="1.2rem">
-          <Datetime :time="data.dayItem.day_previous.date" format="YYYY年" :link-with-timeline="false" />
+          <Datetime
+            :time="data.dayItem.day_previous.date"
+            format="YYYY年"
+            :link-with-timeline="false"
+          />
         </CustomText>
         <br>
         <CustomText size="1rem">
-          <Datetime :time="data.dayItem.day_previous.date" format="MM月DD日 ddd" :link-with-timeline="false" />
+          <Datetime
+            :time="data.dayItem.day_previous.date"
+            format="MM月DD日 ddd"
+            :link-with-timeline="false"
+          />
         </CustomText>
       </InfoBox>
       <template v-if="differentYears">
@@ -227,7 +244,13 @@
           <CustomText size="1rem">
             <Datetime :time="item.date" format="MM月DD日 ddd" :link-with-timeline="false" />
           </CustomText>
-          <Datetime slot="description" :time="item.date" type="date" only-from-now :link-with-timeline="false" />
+          <Datetime
+            slot="description"
+            :time="item.date"
+            type="date"
+            only-from-now
+            :link-with-timeline="false"
+          />
         </InfoBox>
       </template>
       <InfoBox
@@ -242,7 +265,11 @@
         </CustomText>
         <br>
         <CustomText size="1rem">
-          <Datetime :time="data.dayItem.day_next.date" format="MM月DD日 ddd" :link-with-timeline="false" />
+          <Datetime
+            :time="data.dayItem.day_next.date"
+            format="MM月DD日 ddd"
+            :link-with-timeline="false"
+          />
         </CustomText>
       </InfoBox>
     </LayoutContainer>

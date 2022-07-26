@@ -19,9 +19,10 @@ section {
         <Lottie name="gift" :height="240" />
         <section class="space-y-4">
           <Sentence>
-            Hey, <span v-if="$route.query.name" class="text-blue-400">{{ $route.query.name }}</span> ,你好!
+            Hey, <span v-if="$route.query.name" class="text-blue-400">{{ $route.query.name }}</span>
+            ,你好!
           </Sentence>
-          <Sentence>昨天是 2022年5月21日，二十四节气中的“小满节”。也是在昨天，我成为了26岁的的 “小” 满。</Sentence>
+          <Sentence>2022年5月21日，二十四节气中的“小满节”。也是在昨天，我成为了26岁的的 “小” 满。</Sentence>
 
           <Sentence>这也许是一份晚到了一天送给你的“小礼物”、一份打包的关于“我们”的记忆。</Sentence>
           <Sentence class="text-gray-400">
@@ -45,14 +46,18 @@ section {
             我们一起来回顾下我们的旅途吧，从 <span class="special-data">{{ data.monthCount[0].month }}</span>
             到今日 <span class="special-data">{{ $time().format('YYYY-MM-DD') }}</span> 这期间。
           </Sentence>
-          <Sentence>在“曾小满的盒子”里，我们一共留下了 <span class="special-data">{{ data.totalCount }}</span> 条 “记忆线索”。</Sentence>
+          <Sentence>
+            在“曾小满的盒子”里，我们一共留下了 <span class="special-data">{{ data.totalCount }}</span> 条
+            “记忆线索”。
+          </Sentence>
           <Blocker height="20px"></Blocker>
           <template v-if="moduleCount.day">
             <Sentence class="special-data">
               日迹数据 <span class="float-right text-sm">此处仅展示 {{ data.dayCollection.length }} 条</span>
             </Sentence>
             <Sentence>
-              在 <span class="text-blue-500">{{ moduleCount.day }}</span> 天的日子里，你都给我留下了深刻的印象，因为你，这一天变得不一样。
+              在 <span class="text-blue-500">{{ moduleCount.day }}</span>
+              天的日子里，你都给我留下了深刻的印象，因为你，这一天变得不一样。
             </Sentence>
             <div class="collection-box">
               <ItemTimeline
@@ -69,9 +74,14 @@ section {
           </template>
           <template v-if="moduleCount.movie">
             <Sentence class="special-data">
-              观影数据 <span class="float-right text-sm">此处仅展示 {{ data.movieCollection.length }} 条</span>
+              观影数据 <span class="float-right text-sm">此处仅展示 {{
+                data.movieCollection.length
+              }} 条</span>
             </Sentence>
-            <Sentence>我们一同穿梭在 <span class="special-data">{{ moduleCount.movie }}</span> 部影视作品的光影中（共同观影或你也看过）。</Sentence>
+            <Sentence>
+              我们一同穿梭在 <span class="special-data">{{ moduleCount.movie }}</span>
+              部影视作品的光影中（共同观影或你也看过）。
+            </Sentence>
             <div class="collection-box">
               <ItemTimeline
                 v-for="item in data.movieCollection"
@@ -87,9 +97,13 @@ section {
           </template>
           <template v-if="moduleCount.project">
             <Sentence class="special-data">
-              项目数据 <span class="float-right text-sm">此处仅展示 {{ data.projectCollection.length }} 条</span>
+              项目数据 <span class="float-right text-sm">此处仅展示 {{
+                data.projectCollection.length
+              }} 条</span>
             </Sentence>
-            <Sentence>一同经历过 <span class="special-data">{{ moduleCount.project }}</span> 个作品/项目。</Sentence>
+            <Sentence>
+              一同经历过 <span class="special-data">{{ moduleCount.project }}</span> 个作品/项目。
+            </Sentence>
             <div class="collection-box">
               <ItemTimeline
                 v-for="item in data.projectCollection"
@@ -107,7 +121,10 @@ section {
             <Sentence class="special-data">
               话语记录 <span class="float-right text-sm">此处仅展示 {{ data.wordCollection.length }} 条</span>
             </Sentence>
-            <Sentence>我还珍藏了 <span class="special-data">{{ moduleCount.word }}</span> 段你对我讲的话，点染或激励着我。</Sentence>
+            <Sentence>
+              我还珍藏了 <span class="special-data">{{ moduleCount.word }}</span>
+              段你对我讲的话，点染或激励着我。
+            </Sentence>
             <div class="collection-box">
               <ItemTimeline
                 v-for="item in data.wordCollection"
@@ -127,7 +144,9 @@ section {
           <Blocker height="20px"></Blocker>
           <Sentence>感谢你陪我度过的这些时光，平实又珍贵。因为有你的到来，我的生活变得完整而不同。</Sentence>
           <Sentence>希望在未来的日子我们都能在人生路上按照自己的“航海图”前行，做想做的事，爱值得的人。</Sentence>
-          <Sentence>（对了，还想和你分享：我在去年也遇到了一个很美好、很契合、最重要的是很欣赏的人，虽然现在暂作了分别，但我会努力在过好自己生活的前提下去追寻和追逐，不会放弃！）</Sentence>
+          <Sentence>
+            （对了，还想和你分享：我在去年也遇到了一个很美好、很契合、最重要的是很欣赏的人，虽然现在暂作了分别，但我会努力在过好自己生活的前提下去追寻和追逐，不会放弃！）
+          </Sentence>
         </section>
         <section class="space-y-4">
           <Nameplate title="盒子" sub-title="Box" />
@@ -220,7 +239,13 @@ section {
         @changeValidate="valid => state.validate.is_private = valid"
       >
       </FormItem>
-      <Btn slot="footer" :full-width="true" :colorful="true" height="48px" @click="requestSubmitWord()">
+      <Btn
+        slot="footer"
+        :full-width="true"
+        :colorful="true"
+        height="48px"
+        @click="requestSubmitWord()"
+      >
         提交
       </Btn>
     </Modal>
@@ -317,7 +342,10 @@ export default {
   },
   methods: {
     redirectToTimeline () {
-      const routerJump = this.$router.resolve({ name: 'search', query: { keyword: this.$route.query.name } })
+      const routerJump = this.$router.resolve({
+        name: 'search',
+        query: { keyword: this.$route.query.name }
+      })
       window.open(routerJump.href, '_blank')
     },
     requestSubmitWord () {
