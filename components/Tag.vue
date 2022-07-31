@@ -79,7 +79,7 @@ export default {
       return this.$getStringCount(this.tagValue)
     },
     tagResult () {
-      return this.tagValue.split(',').filter(tag => tag !== '')
+      return this.$getFilteredTagArray(this.tagValue)
     }
   },
   methods: {

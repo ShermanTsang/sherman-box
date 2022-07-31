@@ -177,6 +177,23 @@ export default function ({ store, $config }) {
     return dataTree
   }
 
+  function getFilteredTagArray (tagsText) {
+    const [fuzzyTags, hiddenTags] = [
+      [],
+      ['江忠权']
+    ]
+    return tagsText
+      .trim()
+      .split(',')
+      .map((tag) => {
+        if (fuzzyTags.includes(tag)) {
+          return tag[0].padEnd(tag.length, '*')
+        }
+        return tag
+      })
+      .filter(tag => (tag !== '') && !hiddenTags.includes(tag))
+  }
+
   Vue.prototype.$getConfig = getConfig
   Vue.prototype.$getFileAsset = getFileAsset
   Vue.prototype.$getImageAsset = getImageAsset
@@ -187,4 +204,5 @@ export default function ({ store, $config }) {
   Vue.prototype.$checkFormValidate = checkFormValidate
   Vue.prototype.$fillStateByLocalStorage = fillStateByLocalStorage
   Vue.prototype.$constructTree = constructTree
+  Vue.prototype.$getFilteredTagArray = getFilteredTagArray
 }

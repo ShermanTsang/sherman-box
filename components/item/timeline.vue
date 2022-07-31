@@ -218,6 +218,25 @@ export default {
       return nameFieldHtml
     },
     textFieldHtml () {
+      const textFieldHtmlArray = []
+      const keyword = this.$route.query.keyword
+      const [keywordReplaceReg, keywordReplaceString] = [new RegExp(keyword, 'g'), '<span class="search-text">' + keyword + '</span>']
+      const [separatorReplaceReg, separatorReplaceString] = [/,/g, '<span class="separator-text">/</span>']
+      this.item.text.split('|').forEach((value) => {
+        const tags = this.$getFilteredTagArray(value)
+        const text = tags.join(',')
+
+        if (keyword) {
+          textFieldHtmlArray.push(text.replace(keywordReplaceReg, keywordReplaceString))
+        }
+        const separator = ','
+        if (separator) {
+          textFieldHtmlArray.push(text.replace(separatorReplaceReg, separatorReplaceString))
+        }
+      })
+      return textFieldHtmlArray
+    },
+    tt () {
       let textFieldHtml = this.item.text || ''
       const keyword = this.$route.query.keyword
       if (keyword) {
