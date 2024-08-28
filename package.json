@@ -15,10 +15,7 @@
     "analyze": "nuxt build --analyze",
     "pm2": "nuxt build && pm2 start",
     "build:modern": "nuxt build --modern=server",
-    "start:modern": "nuxt start --modern=server",
-    "deploy": "cloudbase framework deploy",
-    "deploy:client": "cloudbase framework deploy client",
-    "deploy:server": "cloudbase framework deploy server"
+    "start:modern": "nuxt start --modern=server"
   },
   "dependencies": {
     "@cloudbase/vue-provider": "^0.5.1",
