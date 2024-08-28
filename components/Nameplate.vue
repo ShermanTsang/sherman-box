@@ -9,6 +9,28 @@ $prefix: 'nameplate';
   justify-content: space-between;
   margin-bottom: 60px;
 
+  &{
+    @media ($screen-xs-max) {
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding-left: 10px;
+
+      &__title {
+        &:after {
+          left: 10px;
+        }
+
+      }
+
+      &__action {
+        margin-top: 20px;
+        align-self: flex-end;
+        border-bottom: 1px solid #eee;
+      }
+    }
+  }
+
   &__title {
     cursor: default;
     font-size: 1.3rem;
@@ -26,29 +48,6 @@ $prefix: 'nameplate';
     &:after {
       content: '';
       @apply h-full w-full z-[-1] opacity-10 -top-2 -left-3 absolute bg-gradient-to-r from-[#1170f5] to-transparent rounded-2xl;
-    }
-  }
-
-  &__action {
-  }
-
-  @media ($screen-xs-max) {
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    &__title {
-      &:after {
-        left: 10px;
-      }
-
-      padding-left: 10px;
-    }
-
-    &__action {
-      margin-top: 20px;
-      align-self: flex-end;
-      border-bottom: 1px solid #eee;
     }
   }
 

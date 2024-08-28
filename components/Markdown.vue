@@ -23,6 +23,8 @@ $prefix: 'markdown';
 
       h1 {
         font-size: 1.4em;
+        counter-reset: h2;
+        margin: 40px 0;
 
         &:before {
           counter-increment: h1;
@@ -32,12 +34,13 @@ $prefix: 'markdown';
           padding-right: 5px;
         }
 
-        counter-reset: h2;
-        margin: 40px 0;
+
       }
 
       h2 {
         font-size: 1.3em;
+        counter-reset: h3;
+        margin: 20px 0;
 
         &:before {
           counter-increment: h2;
@@ -47,12 +50,11 @@ $prefix: 'markdown';
           padding-right: 5px;
         }
 
-        counter-reset: h3;
-        margin: 20px 0;
       }
 
       h3 {
         font-size: 1.2em;
+        margin: 10px 0;
 
         &:before {
           counter-increment: h3;
@@ -61,11 +63,6 @@ $prefix: 'markdown';
           font-size: .85em;
           padding-right: 5px;
         }
-
-        margin: 10px 0;
-      }
-
-      blockquote {
       }
 
       ul {
@@ -210,12 +207,14 @@ $prefix: 'markdown';
         }
       }
 
-      @media ($screen-xs-max) {
-        font-size: 15px;
-        padding: 0 6px;
+      & {
+        @media ($screen-xs-max) {
+          font-size: 15px;
+          padding: 0 6px;
 
-        pre {
-          max-height: 35vh;
+          pre {
+            max-height: 35vh;
+          }
         }
       }
 
