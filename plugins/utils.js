@@ -180,7 +180,7 @@ export default function ({ store, $config }) {
   function getFilteredTagArray (tagsText) {
     const [fuzzyTags, hiddenTags] = [
       [],
-      ['江忠权']
+      []
     ]
     return tagsText
       .trim()
