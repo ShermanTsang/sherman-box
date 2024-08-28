@@ -23,6 +23,7 @@ $prefix: 'html-content';
 
       h1 {
         font-size: 1.4em !important;
+        counter-reset: h2 !important;
 
         &:before {
           counter-increment: h1 !important;
@@ -32,11 +33,11 @@ $prefix: 'html-content';
           padding-right: 5px !important;
         }
 
-        counter-reset: h2 !important;
       }
 
       h2 {
         font-size: 1.3em !important;
+        counter-reset: h3 !important;
 
         &:before {
           counter-increment: h2 !important;
@@ -46,7 +47,7 @@ $prefix: 'html-content';
           padding-right: 5px !important;
         }
 
-        counter-reset: h3 !important;
+
       }
 
       h3 {
@@ -62,8 +63,6 @@ $prefix: 'html-content';
 
       }
 
-      blockquote {
-      }
 
       ul {
         line-height: 2 !important;
