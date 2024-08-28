@@ -224,10 +224,10 @@ export default {
       const [separatorReplaceReg, separatorReplaceString] = [/,/g, '<span class="separator-text">/</span>']
       this.item.text.split('|').forEach((value) => {
         const tags = this.$getFilteredTagArray(value)
-        const text = tags.join(',')
+        let text = tags.join(',')
 
         if (keyword) {
-          textFieldHtmlArray.push(text.replace(keywordReplaceReg, keywordReplaceString))
+          text = text.replace(keywordReplaceReg, keywordReplaceString)
         }
         const separator = ','
         if (separator) {
@@ -236,22 +236,6 @@ export default {
       })
       return textFieldHtmlArray
     },
-    tt () {
-      let textFieldHtml = this.item.text || ''
-      const keyword = this.$route.query.keyword
-      if (keyword) {
-        const replaceReg = new RegExp(keyword, 'g')
-        const replaceString = '<span class="search-text">' + keyword + '</span>'
-        textFieldHtml = textFieldHtml.replace(replaceReg, replaceString)
-      }
-      const separator = ','
-      if (separator) {
-        const replaceReg = new RegExp(separator, 'g')
-        const replaceString = '<span class="separator-text">/</span>'
-        textFieldHtml = textFieldHtml.replace(replaceReg, replaceString)
-      }
-      return textFieldHtml.split('|')
-    }
   },
   methods: {
     redirectToItem () {
