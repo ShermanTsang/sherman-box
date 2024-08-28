@@ -1,35 +1,18 @@
-FROM node:lts as builder
+FROM node:18
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY . .
 
-RUN yarn config set registry https://registry.npm.taobao.org
+RUN npm config set registry https://registry.npmmirror.com && \
+    npm install -g pnpm
 
-RUN yarn install \
-  --prefer-offline \
-  --frozen-lockfile \
-  --non-interactive \
-  --production=false
+RUN pnpm install --frozen-lockfile
 
-RUN yarn build
+ENV NODE_ENV=production
 
-RUN rm -rf node_modules && \
-  NODE_ENV=production yarn install \
-  --prefer-offline \
-  --pure-lockfile \
-  --non-interactive \
-  --production=true
-
-RUN yarn add sass
-
-FROM node:lts
-
-WORKDIR /app
-
-COPY --from=builder /app  .
+RUN pnpm run build
 
 ENV HOST 0.0.0.0
-EXPOSE 80
-
-CMD [ "yarn", "start" ]
+EXPOSE 3000
+ENTRYPOINT ["pnpm", "start"]
