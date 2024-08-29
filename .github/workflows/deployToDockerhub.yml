@@ -12,9 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,7 +35,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: shermantsang/sherman-box:${{steps.meta.outputs.tags}}
+          tags: ${{ secrets.DOCKER_USERNAME }}/sherman-box:${{ github.sha }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
