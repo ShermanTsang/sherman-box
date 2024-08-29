@@ -38,7 +38,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: shermantsang/sherman-box:${{steps.get_version.outputs.VERSION}}
+          tags: shermantsang/sherman-box:${{steps.meta.outputs.tags}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
