@@ -35,7 +35,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/sherman-box:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sherman-box:${{ github.sha }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
