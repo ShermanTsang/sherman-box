@@ -4,7 +4,7 @@ This is my personal website frontend project.
 
 I'm glad to share the website with you.
 
-[Preview link ( Sherman's box)](https://sherman.com)
+[Preview link ( Sherman's box)](https://shermant.com)
 
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ShermanTsang/sherman-box?label=version)
 
@@ -67,7 +67,11 @@ bun run dev
 
 #### Pull the image
 ```bash
+# pull from dockerhub
 docker pull shermantsang/sherman-box:latest
+
+# pull from github
+docker pull ghcr.io/shermantsang/sherman-box:master
 ```
 #### Launch a container
 
@@ -87,6 +91,19 @@ docker run -d
   --name sherman-box-fronted 
   sherman-box:latest
   ```
+
+### Play with PM2
+
+#### Prepare
+Pull the project, set configurations, install dependencies like the steps mentioned in `Usage > Run on a server`.
+
+#### Start
+A `pm2` configuration has included in project, you can customize your project instance by editing `.ecosystem.config.js`.
+
+```bash
+pm2 start
+```
+
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
