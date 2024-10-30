@@ -78,18 +78,18 @@ docker pull ghcr.io/shermantsang/sherman-box:master
 You need to pass required env options in command
 
 ```bash
-docker run -d 
-  -p 3000:3000 
-  -e SERVER_HOST=0.0.0.0 
-  -e SERVER_PORT=3000 
-  -e SITE_NAME="曾小满的盒子-ShermanBox" 
-  -e SITE_DESCRIPTION="recordMyLife" 
-  -e SITE_KEYWORDS="曾小满,小满,个人网站,个人博客,ShareMan,ShareManT,ShareManTsang,ShermanT" 
-  -e API_BASEURL="https://api.shermant.com/v1" 
-  -e OSS_BASEURL="https://oss.shermant.com" 
-  -e SERVICE_BAIDU_ANALYZE_ID="15a2c685afbd639a5537af013711da1e" 
-  --name sherman-box-fronted 
-  sherman-box:latest
+docker run -d \
+  -p 3000:3000 \
+  -e SERVER_HOST=0.0.0.0 \
+  -e SERVER_PORT=3000 \
+  -e SITE_NAME="曾小满的盒子-ShermanBox" \
+  -e SITE_DESCRIPTION="recordMyLife" \
+  -e SITE_KEYWORDS="曾小满,小满,个人网站,个人博客,ShareMan,ShareManT,ShareManTsang,ShermanT" \
+  -e API_BASEURL="https://api.shermant.com/v1" \
+  -e OSS_BASEURL="https://oss.shermant.com" \
+  -e SERVICE_BAIDU_ANALYZE_ID="15a2c685afbd639a5537af013711da1e" \
+  --name sherman-box-fronted \
+  shermantsang/sherman-box:latest
   ```
 
 ### Play with PM2
