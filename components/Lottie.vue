@@ -4,8 +4,9 @@
 <template>
   <client-only placeholder="Loading...">
     <div class="w-max-full overflow-hidden">
-      <lottie
-        v-if="name && state.isReady"
+      <component
+        v-if="name && state.isReady && lottieComponent"
+        :is="lottieComponent"
         :name="name"
         :options="config.defaultOptions"
         :height="config.height"
@@ -18,13 +19,8 @@
 </template>
 
 <script>
-import Lottie from 'vue-lottie/src/lottie.vue'
-
 export default {
   name: 'Lottie',
-  components: {
-    lottie: Lottie
-  },
   props: {
     name: {
       type: String,
@@ -55,6 +51,7 @@ export default {
       state: {
         isReady: false
       },
+      lottieComponent: null,
       config: {
         defaultOptions: {
           animationData: require(`../assets/animation/${this.name}.json`)
@@ -66,6 +63,11 @@ export default {
   },
   mounted () {
     this.setCompatibleSize()
+    // lottie-web reads `document` during module initialization, so only load
+    // the player after this component has mounted in the browser.
+    import('vue-lottie/src/lottie.vue').then(({ default: Lottie }) => {
+      this.lottieComponent = Lottie
+    })
   },
   methods: {
     handleAnimation (animation) {
