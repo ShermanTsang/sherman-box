@@ -1,0 +1,188 @@
+<style lang="scss">
+  .mailbox {
+
+    &__image {
+      width: 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    &__main {
+      margin-top: 40px;
+      overflow: hidden;
+      text-align: center;
+
+      &__text {
+        color: #666;
+        cursor: default;
+        padding: 0 20px;
+
+        &__title {
+          letter-spacing: 2px;
+          font-size: 1.6rem;
+        }
+
+        &__info {
+          margin-top: 20px;
+          color: #999;
+
+          span {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 0 10px;
+          }
+        }
+      }
+    }
+
+    &__locker {
+      display: block;
+      margin: 40px auto;
+      border: 1px solid #ddd;
+    }
+
+  }
+</style>
+
+<template>
+  <div class="mailbox">
+    <div v-lazy:background-image="$getOssUrl(data.mailboxItem.image)" class="mailbox__image"></div>
+    <LayoutContainer class="mailbox__main">
+      <LayoutContainer class="mailbox__main__text">
+        <div class="mailbox__main__text__title">
+          {{ data.mailboxItem.name }}
+        </div>
+        <div class="mailbox__main__text__info">
+          <span>From</span> {{ data.mailboxItem.from }}
+          <span>To</span> {{ data.mailboxItem.to }}
+        </div>
+        <div class="mailbox__main__text__info">
+          <Icon name="clock" />
+          <Datetime :time="data.mailboxItem.datetime" format="YYYY-MM-DD" from-now />
+        </div>
+      </LayoutContainer>
+    </LayoutContainer>
+    <Btn
+      v-if="data.mailboxItem.content === null"
+      width="300px"
+      class="mailbox__locker"
+      @click="state.showModal = true"
+    >
+      <Icon name="lock" />
+      解锁
+    </Btn>
+    <LayoutContainer v-if="data.mailboxItem.content !== null" class="mailbox__content">
+      <Markdown :content="data.mailboxItem.content" />
+    </LayoutContainer>
+    <Blocker height="60px" />
+    <LayoutContainer>
+      <Comment :id="data.mailboxItem.id" module="mailbox" />
+    </LayoutContainer>
+    <Blocker height="60px" />
+    <Modal v-model:showModal="state.showModal" title="解锁邮盒" icon="comment" width="500px">
+      <Loading v-if="state.isLoadingSubmit" :fix="true">
+        密码校验中
+      </Loading>
+      <FormItem
+        v-model="form.password"
+        validate="required"
+        label="密码"
+        name="password"
+        type="input"
+        placeholder="等待解锁"
+        @changeValidate="valid => state.validate.password = valid"
+      >
+        <template #tip><span v-if="data.mailboxItem.hint">提示：{{ data.mailboxItem.hint }}</span></template>
+      </FormItem>
+      <template #footer>
+        <Btn :full-width="true" :colorful="true" height="48px" @click="submitCheckPassword()">校验</Btn>
+      </template>
+    </Modal>
+  </div>
+</template>
+
+<script setup>
+
+import { useLegacyOptions } from '~/composables/useLegacyOptions'
+
+definePageMeta({ validate: (route) => { const params = route.params; return /^\d+$/.test(params.id) } })
+
+const __legacyOptions = {
+  async asyncData ({ $axios, store, params }) {
+    const { data: mailboxItem } = await $axios.$get(`/api/mailboxes/${params.id}`)
+    store.commit('SET_CURRENT_ITEM', { image: mailboxItem.image, name: mailboxItem.name, category: mailboxItem.category, date: mailboxItem.date })
+    return {
+      data: {
+        mailboxItem
+      }
+    }
+  },
+  data () {
+    return {
+      state: {
+        showModal: false,
+        isLoadingSubmit: false,
+        validate: {
+          password: false
+        }
+      },
+      form: {
+        password: ''
+      }
+    }
+  },
+  mounted () {
+    if (this.data.mailboxItem.content === null) {
+      this.$message.info('该邮盒需要密码解锁')
+    }
+  },
+  methods: {
+    submitCheckPassword () {
+      if (!this.$checkFormValidate(this.state.validate)) {
+        this.$message.error('表单有错误')
+        return
+      }
+      this.state.isLoadingSubmit = true
+      const { id } = this.data.mailboxItem
+      const { password } = this.form
+      this.$axios.$post(`/api/mailboxes/${id}/check`, {
+        page_url: this.$route.path,
+        page_title: document.title,
+        password
+      })
+        .then(({ data, event, code }) => {
+          if (event === 'returnErrorMessage' || event === 6000) {
+            this.$message.error('邮盒密码错误')
+            this.state.showModal = false
+            this.state.isLoadingSubmit = false
+            this.errors.clear()
+            return
+          }
+          if (code === 200) {
+            this.data.mailboxItem = data
+          }
+          this.state.showModal = false
+          this.state.isLoadingSubmit = false
+          this.errors.clear()
+        })
+    }
+  },
+  head () {
+    const { name, category, description } = this.data.mailboxItem
+    return {
+      title: `${name} - ${category.name} - 邮盒`,
+      meta: [
+        {
+          hid: 'index',
+          name: 'description',
+          content: this.$getSeoInfo('description', `${description || ''}`)
+        }
+      ]
+    }
+  }
+}
+
+const { data, form, meta, state, submitCheckPassword } = await useLegacyOptions(__legacyOptions, {})
+
+</script>
