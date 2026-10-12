@@ -239,80 +239,66 @@ $prefix: 'markdown';
 </template>
 
 <script setup>
-import Marked from 'marked'
+import { Marked } from 'marked'
 
 import Highlight from 'highlight.js'
 
 import 'highlight.js/styles/monokai-sublime.css'
 
-import { useLegacyOptions } from '~/composables/useLegacyOptions'
-
-import { toRefs as __toRefs } from 'vue'
-
-const __legacyOptions = {
-  data () {
-    return {
-      renderer: new Marked.Renderer(),
-      imageModalUrl: null
-    }
-  },
-  computed: {
-    compiledMarkdown () {
-      return import.meta.client ? Marked(this.content) : this.content
-    }
-  },
-  created () {
-    if (import.meta.client) {
-      this.setMarkdownOption()
-      this.setMarkdownRenderer()
-    }
-  },
-  methods: {
-    handleClick (event) {
-      if (event.target.nodeName === 'IMG') {
-        this.imageModalUrl = event.target.src
-      }
-    },
-    setMarkdownRenderer () {
-      this.renderer.image = (href, title, text) => {
-        return `<img data-src="${this.$getOssUrl(href)}">`
-      }
-      this.renderer.link = (href, title, text) => {
-        const titleOutput = title ? `title="${title}"` : ''
-        return `<a href="${href}"  ${titleOutput} target="_blank" rel="noopener">${text}</a>`
-      }
-      this.renderer.table = (header, body) => {
-        if (body) { body = '<tbody>' + body + '</tbody>' }
-        return '<div class="table-wrap">\n' + '<table>\n' + '<thead>\n' + header + '</thead>\n' + body + '</table>\n' + '</div>\n'
-      }
-    },
-    setMarkdownOption () {
-      Marked.setOptions({
-        renderer: this.renderer,
-        highlight: (code) => {
-          return Highlight.highlightAuto(code).value
-        },
-        gfm: true,
-        tables: true,
-        breaks: false,
-        pedantic: false,
-        smartLists: true,
-        smartypants: false
-      })
-    }
-  }
-}
+import { computed, ref } from 'vue'
+import { useSiteHelpers } from '~/composables/useSiteHelpers'
 
 defineOptions({ name: "Markdown" })
 
-const legacyProps = defineProps({
-    content: {
-      type: String,
-      default: null
+const props = defineProps({
+  content: {
+    type: String,
+    default: null
+  }
+})
+
+const imageModalUrl = ref(null)
+const { getOssUrl } = useSiteHelpers()
+
+const markdown = new Marked({
+  gfm: true,
+  breaks: false,
+  pedantic: false,
+  renderer: {
+    image ({ href }) {
+      return `<img data-src="${getOssUrl(href)}">`
+    },
+    link ({ href, title, tokens }) {
+      const titleOutput = title ? `title="${title}"` : ''
+      const text = this.parser.parseInline(tokens)
+      return `<a href="${href}" ${titleOutput} target="_blank" rel="noopener">${text}</a>`
+    },
+    table (token) {
+      const header = token.header.map(cell => this.tablecell(cell)).join('')
+      const rows = token.rows.map((row) => {
+        const cells = row.map(cell => this.tablecell(cell)).join('')
+        return this.tablerow({ text: cells })
+      }).join('')
+      const body = rows ? `<tbody>${rows}</tbody>` : ''
+      return `<div class="table-wrap">\n<table>\n<thead>\n${this.tablerow({ text: header })}</thead>\n${body}</table>\n</div>\n`
+    },
+    code ({ text }) {
+      return `<pre><code>${Highlight.highlightAuto(text).value}</code></pre>\n`
     }
-  })
+  }
+})
 
-const { content } = __toRefs(legacyProps)
+const compiledMarkdown = computed(() => {
+  return import.meta.client
+    ? markdown.parse(props.content || '', { async: false })
+    : props.content
+})
 
-const { compiledMarkdown, handleClick, imageModalUrl, renderer, setMarkdownOption, setMarkdownRenderer } = useLegacyOptions(__legacyOptions, legacyProps)
+function handleClick (event) {
+  const target = event.target
+  if (target?.nodeName === 'IMG') {
+    imageModalUrl.value = target.src
+  }
+}
+
 </script>

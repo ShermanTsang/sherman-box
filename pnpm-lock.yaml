@@ -12,32 +12,32 @@ importers:
         specifier: ^8.6.1
         version: 8.6.1(9ee82a22d6ae57c9dae197963b980ee6)
       dayjs:
-        specifier: ^1.8.16
-        version: 1.11.13
+        specifier: ^1.11.23
+        version: 1.11.23
       grade-js:
         specifier: ^1.0.10
         version: 1.0.10
       gravatar-url:
-        specifier: 3.0.1
-        version: 3.0.1
+        specifier: 4.0.2
+        version: 4.0.2
       h3:
         specifier: ^1.15.11
         version: 1.15.11
       highlight.js:
-        specifier: ^11.3.1
-        version: 11.10.0
+        specifier: ^11.12.0
+        version: 11.12.0
       html2canvas:
         specifier: ^1.0.0-rc.5
         version: 1.4.1
       lodash:
-        specifier: ^4.17.11
-        version: 4.17.21
+        specifier: ^4.18.1
+        version: 4.18.1
       lottie-web:
         specifier: ^5.13.0
         version: 5.13.0
       marked:
-        specifier: 2.0.0
-        version: 2.0.0
+        specifier: 18.1.0
+        version: 18.1.0
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -2073,6 +2073,9 @@ packages:
   bluebird@3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
 
+  blueimp-md5@2.19.0:
+    resolution: {integrity: sha512-DRQrD6gJyy8FbiE4s+bDoXS9hiW3Vbx5uCdwvcCf3zLHL+Iv7LtGHLpr+GZV8rHG8tK766FGYBwRbu8pELTt+w==}
+
   bn.js@4.12.0:
     resolution: {integrity: sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==}
 
@@ -2489,8 +2492,8 @@ packages:
   cyclist@1.0.2:
     resolution: {integrity: sha512-0sVXIohTfLqVIW3kb/0n6IiWF3Ifj5nm2XaSrLq2DI6fKIGa2fYAZdk917rUneaeLVpYfFcyXE2ft0fe3remsA==}
 
-  dayjs@1.11.13:
-    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+  dayjs@1.11.23:
+    resolution: {integrity: sha512-QDTCU0M0MxR3hQfnlDJfwekQiaanm1ubOD231u73WBckQ/fsamwRLiE2GBz6D3a/xF1NgfiDLJjXBa1hYOYTtQ==}
 
   db0@0.3.4:
     resolution: {integrity: sha512-RiXXi4WaNzPTHEOu8UPQKMooIbqOEyqA1t7Z6MsdxSCeb8iUC9ko3LcmsLmeUt2SM5bctfArZKkRQggKZz7JNw==}
@@ -3257,9 +3260,9 @@ packages:
   grade-js@1.0.10:
     resolution: {integrity: sha512-i8CrKhbt4aUsU1sUa3GnsNJ5TrJOL/qLGphZdnKPfHKkf3LaqHhBylEp3FBv5yCMTPeyJe9uOXKMVlxt2+Xfcw==}
 
-  gravatar-url@3.0.1:
-    resolution: {integrity: sha512-4hcRvsDmoU6+TS6XksbaRhcRmr0XTgEOEpWG4AWz4zFlE+M89AkqEg09tyzL7S4mmGWSKct+ZLVrnHQrrjVIQg==}
-    engines: {node: '>=8'}
+  gravatar-url@4.0.2:
+    resolution: {integrity: sha512-2xF6Pv7fowoe6iKOShXD7FiH8CtTfLU38ba0Xh82mf5/rqqoOCulhAne3R2nPwRI9/jNKogXhDfqRoWS95ryGg==}
+    engines: {node: '>=12'}
 
   gzip-size@7.0.0:
     resolution: {integrity: sha512-O1Ld7Dr+nqPnmGpdhzLmMTQ4vAsD+rHwMm1NLUmoUFFymBOMKxCCrtDxqdBRYXdeEPEi3SyoR4TizJLQrnKBNA==}
@@ -3335,8 +3338,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  highlight.js@11.10.0:
-    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
+  highlight.js@11.12.0:
+    resolution: {integrity: sha512-nbfWpyRMcMrPMmDwJB+dhX/eiaPKtc2RB+0QZskqJ3WjRA/FDS0e9hZrx8EC/lbEv8gXy98FcDbNa/dspAaJMg==}
     engines: {node: '>=12.0.0'}
 
   hmac-drbg@1.0.1:
@@ -3868,6 +3871,9 @@ packages:
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
+
   lottie-web@5.13.0:
     resolution: {integrity: sha512-+gfBXl6sxXMPe8tKQm7qzLnUy5DUPJPKIyRHwtpCpyUEYjHYRJC/5gjUvdkuO2c3JllrPtHXH5UJJK8LRYl5yQ==}
 
@@ -3910,17 +3916,14 @@ packages:
     resolution: {integrity: sha512-4y7uGv8bd2WdM9vpQsiQNo41Ln1NvhvDRuVt0k2JZQ+ezN2uaQes7lZeZ+QQUHOLQAtDaBJ+7wCbi+ab/KFs+w==}
     engines: {node: '>=0.10.0'}
 
-  marked@2.0.0:
-    resolution: {integrity: sha512-NqRSh2+LlN2NInpqTQnS614Y/3NkVMFFU6sJlRFEpxJ/LHuK/qJECH7/fXZjk4VZstPW/Pevjil/VtSONsLc7Q==}
-    engines: {node: '>= 8.16.2'}
+  marked@18.1.0:
+    resolution: {integrity: sha512-PamYXWWWg2nboG3oX5Ffzpy3EFZROqZJK9hSlMmUnekp7TxPs5DcT95vwd46m73/exfKCRVMtgXoPMI4FEJL6w==}
+    engines: {node: '>= 20'}
     hasBin: true
 
-  md5-hex@2.0.0:
-    resolution: {integrity: sha512-0HLfzJTZ7707VBNM1ydr5sTb+IZLhmU4u2TVA+Eenfn/Ed42/gn10smbAPiuEm/jNgjvWKUiMNihqJQ6flus9w==}
-    engines: {node: '>=4'}
-
-  md5-o-matic@0.1.1:
-    resolution: {integrity: sha512-QBJSFpsedXUl/Lgs4ySdB2XCzUEcJ3ujpbagdZCkRaYIaC0kFnID8jhc84KEiVv6dNFtIrmW7bqow0lDxgJi6A==}
+  md5-hex@4.0.0:
+    resolution: {integrity: sha512-di38zHPn4Tz8LCb5Lz8SpLb/20Hv23aPXpF4Bq1mR5r9JuCZQ/JpcDUxFfZF9Ur5GiUvqS5NQOkR+fm5cYZ0IQ==}
+    engines: {node: '>=12'}
 
   md5.js@1.3.5:
     resolution: {integrity: sha512-xitP+WxNPcTTOgnTJcrhM0xvdPepipPSf3I8EIpGKeFLjt3PlJLIDG3u8EX53ZIubkb+5U2+3rELYpEhHhzdkg==}
@@ -5480,9 +5483,9 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  type-fest@0.3.1:
-    resolution: {integrity: sha512-cUGJnCdr4STbePCgqNFbpVNCepa+kAVohJs1sLhxzdH+gnEoOd8VhbYa7pD3zZYGiURWM2xzEII3fQcRizDkYQ==}
-    engines: {node: '>=6'}
+  type-fest@1.4.0:
+    resolution: {integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==}
+    engines: {node: '>=10'}
 
   type-fest@4.41.0:
     resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
@@ -8406,6 +8409,8 @@ snapshots:
   bluebird@3.7.2:
     optional: true
 
+  blueimp-md5@2.19.0: {}
+
   bn.js@4.12.0:
     optional: true
 
@@ -8979,7 +8984,7 @@ snapshots:
   cyclist@1.0.2:
     optional: true
 
-  dayjs@1.11.13: {}
+  dayjs@1.11.23: {}
 
   db0@0.3.4: {}
 
@@ -9826,10 +9831,10 @@ snapshots:
 
   grade-js@1.0.10: {}
 
-  gravatar-url@3.0.1:
+  gravatar-url@4.0.2:
     dependencies:
-      md5-hex: 2.0.0
-      type-fest: 0.3.1
+      md5-hex: 4.0.0
+      type-fest: 1.4.0
 
   gzip-size@7.0.0:
     dependencies:
@@ -9920,7 +9925,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  highlight.js@11.10.0: {}
+  highlight.js@11.12.0: {}
 
   hmac-drbg@1.0.1:
     dependencies:
@@ -10470,6 +10475,8 @@ snapshots:
 
   lodash@4.17.21: {}
 
+  lodash@4.18.1: {}
+
   lottie-web@5.13.0: {}
 
   lru-cache@10.4.3: {}
@@ -10518,13 +10525,11 @@ snapshots:
       object-visit: 1.0.1
     optional: true
 
-  marked@2.0.0: {}
+  marked@18.1.0: {}
 
-  md5-hex@2.0.0:
+  md5-hex@4.0.0:
     dependencies:
-      md5-o-matic: 0.1.1
-
-  md5-o-matic@0.1.1: {}
+      blueimp-md5: 2.19.0
 
   md5.js@1.3.5:
     dependencies:
@@ -12586,7 +12591,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  type-fest@0.3.1: {}
+  type-fest@1.4.0: {}
 
   type-fest@4.41.0: {}
 
