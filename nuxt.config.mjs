@@ -47,7 +47,13 @@ export default defineNuxtConfig({
       }],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'favicon', href: '/favicon.ico' }
+        { rel: 'favicon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.cn' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.cn', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.cn/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600&family=Source+Code+Pro:wght@400;700&display=swap'
+        }
       ]
     }
   },
@@ -55,7 +61,6 @@ export default defineNuxtConfig({
     '@/assets/css/global.scss',
     '@/assets/css/animate.scss',
     '@/assets/css/override.scss',
-    '@/assets/css/font.scss',
     '@/assets/iconfont/iconfont.css'
   ],
   modules: [

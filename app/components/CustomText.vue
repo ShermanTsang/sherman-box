@@ -2,7 +2,8 @@
 $prefix: 'custom-text';
 
   .#{$prefix} {
-    font-family: SourceHanSerifCN-SemiBold, $font-family-base;
+    font-family: 'Noto Serif SC', $font-family-base;
+    font-weight: 600;
   }
 </style>
 
