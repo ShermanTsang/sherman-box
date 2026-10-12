@@ -6,6 +6,7 @@ import {
   onMounted,
   onUnmounted,
   reactive,
+  ref,
   toRef,
   watch
 } from 'vue'
@@ -130,8 +131,11 @@ export function useLegacyOptions (options: any, props: Record<string, any> = {})
     watch(() => readPath(vm, path), callback, typeof watcher === 'object' ? watcher : {})
   })
 
+  const asyncDataReady = ref(!options.asyncData)
   if (options.head) {
-    useHead(computed(() => normalizeHead(options.head.call(vm))))
+    useHead(computed(() => asyncDataReady.value
+      ? normalizeHead(options.head.call(vm))
+      : {}))
   }
 
   const callHook = (name: string) => options[name]?.call(vm)
@@ -163,6 +167,7 @@ export function useLegacyOptions (options: any, props: Record<string, any> = {})
       if (asyncResult.data.value && typeof asyncResult.data.value === 'object') {
         Object.assign(state, asyncResult.data.value)
       }
+      asyncDataReady.value = true
       return finishSetup()
     })
   }

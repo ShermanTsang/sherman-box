@@ -134,11 +134,11 @@
           <InfoCell v-if="data.dayItem.mood" icon="mood" name="状态">
             <Tag>{{ data.dayItem.mood }}</Tag>
           </InfoCell>
-          <InfoCell v-if="data.dayItem.location" icon="location" name="位置">
-            <Tag :enable-search="true">
-              {{ data.dayItem.location }}
-            </Tag>
-          </InfoCell>
+          <!--          <InfoCell v-if="data.dayItem.location" icon="location" name="位置">-->
+          <!--            <Tag :enable-search="true">-->
+          <!--              {{ data.dayItem.location }}-->
+          <!--            </Tag>-->
+          <!--          </InfoCell>-->
           <InfoCell v-if="data.dayItem.people" icon="user" name="人物">
             <Tag :enable-search="true">
               {{ data.dayItem.people }}
