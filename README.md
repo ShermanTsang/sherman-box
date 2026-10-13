@@ -97,11 +97,30 @@ docker run -d
 #### Prepare
 Pull the project, set configurations, install dependencies like the steps mentioned in `Usage > Run on a server`.
 
+#### Build
+```bash
+pnpm build
+```
+
 #### Start
-A `pm2` configuration has included in project, you can customize your project instance by editing `.ecosystem.config.js`.
+A `pm2` configuration has included in project, you can customize your project instance by editing `ecosystem.config.js`.
 
 ```bash
 pm2 start
+```
+
+Or build and start in one command.
+
+```bash
+pnpm pm2
+```
+
+Notice: PM2 does not read `.env` files. The values in `.env` are read at build time and baked into the server output, so keep `.env` in place before running `pnpm build`. Runtime variables can still be provided in the shell where `pm2 start` is executed.
+
+#### Auto start on boot
+```bash
+pm2 save
+pm2 startup
 ```
 
 

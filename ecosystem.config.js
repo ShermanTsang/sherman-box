@@ -1,3 +1,4 @@
+// Keep this filename: bare `pm2 start` only auto-detects `ecosystem.config.js`.
 const runtimeEnvNames = {
   NUXT_PUBLIC_SITE_NAME: 'SITE_NAME',
   NUXT_PUBLIC_SITE_DESCRIPTION: 'SITE_DESCRIPTION',
@@ -13,12 +14,18 @@ const runtimeEnv = Object.fromEntries(Object.entries(runtimeEnvNames)
 module.exports = {
   apps: [{
     name: 'ShermanBox-Nuxt-V4',
+    cwd: __dirname,
     script: './.output/server/index.mjs',
     interpreter: 'node',
     exec_mode: 'cluster',
     instances: 'max',
     watch: false,
-    env: { NITRO_HOST: process.env.NITRO_HOST || '0.0.0.0', PORT: process.env.PORT || 3000, ...runtimeEnv }
+    env: {
+      NODE_ENV: 'production',
+      NITRO_HOST: process.env.NITRO_HOST || '0.0.0.0',
+      PORT: process.env.PORT || 3000,
+      ...runtimeEnv
+    }
   }],
   deploy: {}
 }

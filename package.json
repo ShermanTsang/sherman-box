@@ -17,7 +17,7 @@
     "lint": "eslint .",
     "precommit": "pnpm lint",
     "analyze": "nuxt build --analyze",
-    "pm2": "pnpm build && pm2 start ecosystem.config.cjs"
+    "pm2": "pnpm build && pm2 start ecosystem.config.js"
   },
   "dependencies": {
     "@nuxtjs/sitemap": "^8.6.1",
