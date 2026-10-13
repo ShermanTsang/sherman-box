@@ -9,6 +9,12 @@
   "engines": {
     "node": ">=24.15.0 <25"
   },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "esbuild",
+    "nuxt",
+    "unrs-resolver"
+  ],
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -17,7 +23,7 @@
     "lint": "eslint .",
     "precommit": "pnpm lint",
     "analyze": "nuxt build --analyze",
-    "pm2": "pnpm build && pm2 start ecosystem.config.js"
+    "pm2": "bun run build && pm2 start ecosystem.config.js"
   },
   "dependencies": {
     "@nuxtjs/sitemap": "^8.6.1",

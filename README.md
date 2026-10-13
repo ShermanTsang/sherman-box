@@ -99,8 +99,10 @@ Pull the project, set configurations, install dependencies like the steps mentio
 
 #### Build
 ```bash
-pnpm build
+bun install
+bun run build
 ```
+Use `bun run build` (not bare `bun build`, which invokes Bun's bundler).
 
 #### Start
 A `pm2` configuration has included in project, you can customize your project instance by editing `ecosystem.config.js`.
@@ -112,10 +114,10 @@ pm2 start
 Or build and start in one command.
 
 ```bash
-pnpm pm2
+bun run pm2
 ```
 
-Notice: PM2 does not read `.env` files. The values in `.env` are read at build time and baked into the server output, so keep `.env` in place before running `pnpm build`. Runtime variables can still be provided in the shell where `pm2 start` is executed.
+Notice: PM2 does not read `.env` files. The `/api` and `/oss` proxy rules and the default public values are resolved at build time, so keep `.env` in place before running `bun run build`. The public values (site name, description, keywords, domain, API and OSS URLs) can still be overridden at runtime: export `NUXT_PUBLIC_*` (or the legacy names like `SITE_NAME`/`API_BASEURL`, which `ecosystem.config.js` maps for you) in the shell before `pm2 start`.
 
 #### Auto start on boot
 ```bash
